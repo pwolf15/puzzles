@@ -32,6 +32,11 @@ private:
         
         return maxSum;
     }
+
+    int maxSubArrayDynamic(vector<int> &nums)
+    {
+        
+    }
 };
 
 int main()
