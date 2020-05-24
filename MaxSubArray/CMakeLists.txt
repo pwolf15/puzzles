@@ -2,5 +2,5 @@ project (MaxSubArray)
 
 # problem 53
 
-set(Source max_subarray.cpp)
+set(Source ${PROJECT_NAME}.cpp)
 add_executable(${PROJECT_NAME} ${Source})

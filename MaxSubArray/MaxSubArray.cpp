@@ -35,7 +35,7 @@ private:
 
     int maxSubArrayDynamic(vector<int> &nums)
     {
-        
+
     }
 };
 
@@ -44,7 +44,28 @@ int main()
 
     Solution sol;
 
-    std::vector<int> arr1 = { -2,1,-3,4,-1,2,1,-5,4 };
-    std::cout << sol.maxSubArray(arr1) << std::endl;
+    const std::vector<std::vector<int>> tests = {
+        {  1 },
+        { -1 },
+        { 0  },
+        { -2,1,-3,4,-1,2,1,-5,4 }
+    };
+
+    const std::vector<int> expected = {
+        1,
+        -1,
+        0,
+        6
+    };
+
+    int i = 0;
+    for (auto test: tests)
+    {
+        auto soln = sol.maxSubArray(test);
+        assert(soln == expected[i]);
+        std::cout << "Test " << i << " passed.\n";
+        i++;
+    };
+
     return 0;
 }
