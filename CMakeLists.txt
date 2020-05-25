@@ -7,6 +7,7 @@ add_subdirectory(LengthOfLastWord)
 add_subdirectory(PlusOne)
 add_subdirectory(AddBinary)
 add_subdirectory(Sqrt)
+add_subdirectory(ClimbingStairs)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)

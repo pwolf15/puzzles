@@ -1,6 +1,6 @@
-project (Sqrt)
+project (ClimbingStairs)
 
-# problem 53
+# problem 70
 
 set(Source ${PROJECT_NAME}.cpp)
 add_executable(${PROJECT_NAME} ${Source})
