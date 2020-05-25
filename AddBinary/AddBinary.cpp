@@ -50,7 +50,7 @@ public:
             // perform full add
             int sum = carryIn ^ (aVal ^ bVal);
             carryOut = (aVal & bVal) | (aVal & carryIn) | (bVal & carryIn);
-            result += std::to_string(sum)[0];
+            result += sum + '0';
             i++;
             carryIn = carryOut;
         }
