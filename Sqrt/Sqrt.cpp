@@ -12,7 +12,7 @@ public:
         int result = 0;
         for (int i = 0; i <= x / 2 + 1; i++)
         {
-            long m = i * i;
+            long m = (long)i * (long)i;
             if (m == x)
             {
                 result = i;
