@@ -13,13 +13,38 @@ public:
     int numJewelsInStones(string J, string S) {
         
         int jewelCount = 0;
-        for (int i = 0; i < S.size(); ++i)
+        int jewelsIndex = 0;
+        int stonesIndex = 0;
+
+        std::sort(J.begin(), J.end());
+        std::sort(S.begin(), S.end());
+
+        while (true)
         {
-            for (int j = 0; j < J.size(); ++j)
+            if (jewelsIndex >= J.size() || stonesIndex >= S.size())
             {
-                
+                // reached end of jewels or stones, break
+                break;
+            }
+            else if (J[jewelsIndex] == S[stonesIndex])
+            {
+                // found jewel, increment stones index
+                jewelCount++;
+                stonesIndex++;
+            }
+            else if (J[jewelsIndex] < S[stonesIndex])
+            {
+                // jewel < stone alphabetically, increment jewel index
+                jewelsIndex++;
+            }
+            else if (J[jewelsIndex] > S[stonesIndex])
+            {
+                // jewel > stone alphabetically, increment stones index
+                stonesIndex++;
             }
         }
+
+        return jewelCount;
     }
 };
 
@@ -30,12 +55,14 @@ int main()
 
     const std::vector<std::vector<std::string>> tests = {
         { "aA", "aAAbbbb" },
-        { "z", "ZZ" }
+        { "z", "ZZ" },
+        { "a", "a"},
     };
 
     const std::vector<int> expected = {
         3,
-        0
+        0,
+        1
     };
 
     int i = 0;
