@@ -5,3 +5,6 @@ project (LeetCode)
 add_subdirectory(MaxSubArray)
 add_subdirectory(LengthOfLastWord)
 add_subdirectory(PlusOne)
+
+# Monthly Challenges
+add_subdirectory(MonthlyChallenge)
