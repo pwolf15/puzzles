@@ -9,6 +9,7 @@ add_subdirectory(AddBinary)
 add_subdirectory(Sqrt)
 add_subdirectory(ClimbingStairs)
 add_subdirectory(RemoveDuplicatesSorted)
+add_subdirectory(MergeSortedArrays)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
