@@ -11,6 +11,7 @@ add_subdirectory(ClimbingStairs)
 add_subdirectory(RemoveDuplicatesSorted)
 add_subdirectory(MergeSortedArrays)
 add_subdirectory(SameTree)
+add_subdirectory(SymmetricTree)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
