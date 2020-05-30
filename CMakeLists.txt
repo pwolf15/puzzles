@@ -17,6 +17,7 @@ add_subdirectory(SameTree)
 add_subdirectory(SymmetricTree)
 add_subdirectory(MaxTreeDepth)
 add_subdirectory(TreeLevelOrderTraversal)
+add_subdirectory(PascalsTriangle)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
