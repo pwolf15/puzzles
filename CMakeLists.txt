@@ -20,6 +20,7 @@ add_subdirectory(TreeLevelOrderTraversal)
 add_subdirectory(PascalsTriangle)
 add_subdirectory(BestTimeBuySellStocks)
 add_subdirectory(IsPalindrome)
+add_subdirectory(Trees)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)

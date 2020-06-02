@@ -111,3 +111,19 @@ void printTreeBreadthFirst(TreeNode *node)
         }
     }
 }
+
+bool equal(TreeNode* a, TreeNode* b)
+{
+    if (a == nullptr && b == nullptr)
+    {
+        return true;
+    }
+    else if (a == nullptr || b == nullptr)
+    {
+        return false;
+    }
+    else
+    {
+        return a->val == b->val ? equal(a->left, a->left) && equal(a->right, b->right) : false;
+    }
+}

@@ -15,3 +15,4 @@ struct TreeNode
 
 TreeNode *createTree(std::vector<int> tree);
 void printTreeBreadthFirst(TreeNode *node);
+bool equal(TreeNode* a, TreeNode* b);
