@@ -22,6 +22,7 @@ add_subdirectory(BestTimeBuySellStocks)
 add_subdirectory(IsPalindrome)
 add_subdirectory(Trees)
 add_subdirectory(SingleNumber)
+add_subdirectory(LinkedLists)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
