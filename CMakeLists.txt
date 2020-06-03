@@ -21,6 +21,7 @@ add_subdirectory(PascalsTriangle)
 add_subdirectory(BestTimeBuySellStocks)
 add_subdirectory(IsPalindrome)
 add_subdirectory(Trees)
+add_subdirectory(SingleNumber)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
