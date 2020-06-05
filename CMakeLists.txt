@@ -23,6 +23,8 @@ add_subdirectory(IsPalindrome)
 add_subdirectory(Trees)
 add_subdirectory(SingleNumber)
 add_subdirectory(LinkedLists)
+add_subdirectory(TwoCityScheduling)
+add_subdirectory(ReverseString)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
