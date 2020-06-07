@@ -27,6 +27,7 @@ add_subdirectory(TwoCityScheduling)
 add_subdirectory(ReverseString)
 add_subdirectory(RandomPickWithWeight)
 add_subdirectory(QueueReconstruction)
+add_subdirectory(CoinChange)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
