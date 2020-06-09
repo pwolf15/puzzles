@@ -29,6 +29,7 @@ add_subdirectory(RandomPickWithWeight)
 add_subdirectory(QueueReconstruction)
 add_subdirectory(CoinChange)
 add_subdirectory(CutRods)
+add_subdirectory(PowerOfTwo)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
