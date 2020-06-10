@@ -30,6 +30,7 @@ add_subdirectory(QueueReconstruction)
 add_subdirectory(CoinChange)
 add_subdirectory(CutRods)
 add_subdirectory(PowerOfTwo)
+add_subdirectory(IsSubsequence)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
