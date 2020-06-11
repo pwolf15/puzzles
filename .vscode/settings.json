@@ -46,6 +46,7 @@
         "random": "cpp",
         "bit": "cpp",
         "stack": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "list": "cpp"
     }
 }

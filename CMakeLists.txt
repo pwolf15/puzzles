@@ -31,6 +31,7 @@ add_subdirectory(CoinChange)
 add_subdirectory(CutRods)
 add_subdirectory(PowerOfTwo)
 add_subdirectory(IsSubsequence)
+add_subdirectory(SearchInsert)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
