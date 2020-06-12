@@ -32,6 +32,7 @@ add_subdirectory(CutRods)
 add_subdirectory(PowerOfTwo)
 add_subdirectory(IsSubsequence)
 add_subdirectory(SearchInsert)
+add_subdirectory(SortColors)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
