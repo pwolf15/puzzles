@@ -47,6 +47,7 @@
         "bit": "cpp",
         "stack": "cpp",
         "set": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "unordered_set": "cpp"
     }
 }
