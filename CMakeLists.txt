@@ -34,6 +34,7 @@ add_subdirectory(IsSubsequence)
 add_subdirectory(SearchInsert)
 add_subdirectory(SortColors)
 add_subdirectory(RandomizedSet)
+add_subdirectory(LargestDivisibleSubset)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
