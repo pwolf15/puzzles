@@ -36,6 +36,7 @@ add_subdirectory(SortColors)
 add_subdirectory(RandomizedSet)
 add_subdirectory(LargestDivisibleSubset)
 add_subdirectory(ValidateIP)
+add_subdirectory(SurroundedRegions)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
