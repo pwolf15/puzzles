@@ -37,6 +37,7 @@ add_subdirectory(RandomizedSet)
 add_subdirectory(LargestDivisibleSubset)
 add_subdirectory(ValidateIP)
 add_subdirectory(SurroundedRegions)
+add_subdirectory(PermutationSequence)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
