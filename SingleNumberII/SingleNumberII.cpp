@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <limits>
 #include <algorithm>
-#include <set>
+#include <unordered_map>
 
 using namespace std;
 
@@ -11,21 +11,25 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         
-        std::set<int> nums2;
-        for (int i = 0; i < nums.size(); ++i)
+        std::unordered_map<int, int> numberMap;
+        for (auto num: nums)
         {
-            auto pos = nums2.find(nums[i]);
-            if (pos != nums2.end())
+            if (numberMap.find(num) != numberMap.end())
             {
-                nums2.erase(*pos);
+                numberMap[num]++;
             }
             else
             {
-                nums2.insert(nums[i]);
+                numberMap[num] = 1;
+            } 
+        }
+        for (auto num: numberMap)
+        {
+            if (num.second != 3)
+            {
+                return num.first;
             }
         }
-
-        return *nums2.begin();
     }
 };
 
@@ -35,19 +39,20 @@ int main()
     Solution sol;
 
     const std::vector<std::vector<int>> tests = {
-        {2,2,1},
-        {4,1,2,1,2},
+        {2,2,3,2},
+        {0,1,0,1,0,1,99},
     };
 
     const std::vector<int> expected = {
-       1,
-       4,
+       3,
+       99,
     };
 
     int i = 0;
     for (auto test: tests)
     {
         auto soln = sol.singleNumber(test);
+        std::cout << "Soln: " << soln << std::endl;
         assert(soln == expected[i]);
         std::cout << "Test " << i << " passed.\n";
         i++;

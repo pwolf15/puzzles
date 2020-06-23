@@ -38,6 +38,7 @@ add_subdirectory(LargestDivisibleSubset)
 add_subdirectory(ValidateIP)
 add_subdirectory(SurroundedRegions)
 add_subdirectory(PermutationSequence)
+add_subdirectory(SingleNumberII)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
