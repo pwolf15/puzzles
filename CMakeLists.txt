@@ -41,6 +41,7 @@ add_subdirectory(PermutationSequence)
 add_subdirectory(SingleNumberII)
 add_subdirectory(FindDuplicate)
 add_subdirectory(PerfectSquares)
+add_subdirectory(HIndex)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
