@@ -11,7 +11,35 @@ using namespace std;
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
-        
+        return hIndexNLogN(citations);
+    }
+private:
+
+    int hIndexNLogN(vector<int>& citations)
+    {
+        std::sort(citations.begin(), citations.end());
+
+        auto i = 0;
+        auto hIndex = 0;
+        for (auto citation: citations)
+        {
+            //std::cout << citation << "," << citations.size() - i << std::endl;
+            if (citation >= (citations.size() - i))
+            {
+                //std::cout << "HERE!" << std::endl;
+                int num = citations.size() - i;
+                hIndex = std::min(citation, num);
+                break;
+            }
+            
+            i++;
+        }
+
+        return hIndex;
+    }
+
+    int hIndexN2(vector<int>& citations)
+    {
         indices.clear();
 
         if (citations.empty())
@@ -56,7 +84,6 @@ public:
         
         return total;
     }
-private:
     std::map<int, int> indices;
 };
 
