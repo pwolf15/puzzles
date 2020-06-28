@@ -39,6 +39,8 @@ add_subdirectory(ValidateIP)
 add_subdirectory(SurroundedRegions)
 add_subdirectory(PermutationSequence)
 add_subdirectory(SingleNumberII)
+add_subdirectory(FindDuplicate)
+add_subdirectory(PerfectSquares)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
