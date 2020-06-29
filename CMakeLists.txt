@@ -42,6 +42,7 @@ add_subdirectory(SingleNumberII)
 add_subdirectory(FindDuplicate)
 add_subdirectory(PerfectSquares)
 add_subdirectory(HIndex)
+add_subdirectory(FindItinerary)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
