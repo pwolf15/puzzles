@@ -43,6 +43,7 @@ add_subdirectory(FindDuplicate)
 add_subdirectory(PerfectSquares)
 add_subdirectory(HIndex)
 add_subdirectory(FindItinerary)
+add_subdirectory(Primitives)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
