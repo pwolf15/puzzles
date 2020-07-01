@@ -1,1 +1,2 @@
 add_subdirectory(CountBits)
+add_subdirectory(Parity)
