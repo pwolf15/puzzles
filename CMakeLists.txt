@@ -44,6 +44,8 @@ add_subdirectory(PerfectSquares)
 add_subdirectory(HIndex)
 add_subdirectory(FindItinerary)
 add_subdirectory(Primitives)
+add_subdirectory(UniquePaths)
+add_subdirectory(DataStructures)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
