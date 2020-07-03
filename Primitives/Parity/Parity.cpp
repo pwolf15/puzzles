@@ -50,6 +50,13 @@ short parity_divide(unsigned long long x)
     return x & 0x1;
 }
 
+bool powerOfTwo(unsigned long long x)
+{
+    // check that isolated rightmost bit is equal to x
+    // return (x & ~(x - 1)) == x;
+    return (x & (x - 1)) == 0;
+}
+
 int main()
 {
     std::cout << "n complexity" << std::endl;
@@ -63,7 +70,7 @@ int main()
     std::cout << parity_k(0xeeeeeee) << std::endl;
 
     std::cout << "Erase lowest bit" << std::endl;
-    std::cout << std::hex << (0xc & ~(0xc - 1)) << std::hex << std::endl; // isolate lowest set bit
+    std::cout << std::hex << (0xc & ~(0xc - 1)) << std::dec << std::endl; // isolate lowest set bit
 
     kPreComputedParity.resize(pow(2, 16));
     for (int i = 0; i < pow(2, 16); i++)
@@ -85,6 +92,11 @@ int main()
     // random inputs => refinement on brute force 20% faster
     // table-based approach four times faster
     // associativity reduces run time by another factor of two
+    std::cout << "power of two" << std::endl;
+    for (int i = 0; i <= 16; i++)
+    {
+        std::cout << i << " : " << powerOfTwo(i) << std::endl;
+    }
 
     return 0;
 }
