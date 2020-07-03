@@ -57,6 +57,24 @@ bool powerOfTwo(unsigned long long x)
     return !(x & (x - 1));
 }
 
+unsigned long rightPropagate(unsigned long long x)
+{
+    // 0b100, 0b11
+    return x | (x - 1);
+}
+
+unsigned long long modPowerOfTwo(unsigned long long x, unsigned long long y)
+{
+    if (!powerOfTwo(y))
+    {
+        return 0;
+    }
+
+    int leftmost = y & ~(y - 1);
+    int mask = rightPropagate(leftmost) >> 1;
+    return (x ^ y) & mask;
+}
+
 int main()
 {
     std::cout << "n complexity" << std::endl;
@@ -97,6 +115,20 @@ int main()
     {
         std::cout << i << " : " << powerOfTwo(i) << std::endl;
     }
+
+    std::cout << "mod power of two" << std::endl;
+    std::cout << modPowerOfTwo(77, 2) << std::endl;
+    std::cout << modPowerOfTwo(77, 64) << std::endl;
+    std::cout << modPowerOfTwo(77, 128) << std::endl;
+    std::cout << modPowerOfTwo(77, 16) << std::endl;
+    // for (int i = 0; i <= 16; i++)
+    // {
+    //     std::cout << i << " : " << powerOfTwo(i) << std::endl;
+    // }
+
+    std::cout << "right propagate: " << std::endl;
+    std::cout << rightPropagate(64) << std::endl;
+
 
     return 0;
 }
