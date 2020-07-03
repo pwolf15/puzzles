@@ -54,7 +54,7 @@ bool powerOfTwo(unsigned long long x)
 {
     // check that isolated rightmost bit is equal to x
     // return (x & ~(x - 1)) == x;
-    return (x & (x - 1)) == 0;
+    return !(x & (x - 1));
 }
 
 int main()
