@@ -4,6 +4,7 @@
 #include <limits>
 #include <queue>
 #include <cmath>
+#include <tuple>
 
 #include "Trees.hpp"
 
@@ -24,68 +25,39 @@ public:
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
 
         vector<vector<int>> levelOrder;
-        std::queue<TreeNode*> nodes;
+        std::queue<std::pair<int, TreeNode*>> nodes;
 
         if (root == nullptr)
         {
             return levelOrder;
         }
-        else
-        {
-            nodes.push(root);
-            levelOrder.push_back({});
-        }
-
-        int i = 0;
-        int level = 1;
         
-        while (true)
+        nodes.push({0, root});
+        levelOrder.push_back({});
+        
+        while (!nodes.empty())
         {
-            if (nodes.empty())
-            {
-                break;
-            }
-
-            root = nodes.front();
+            int level;
+            TreeNode* cur;
+            std::tie( level, cur ) = nodes.front();
             nodes.pop();
-            i++;
 
-            if (i == pow(2, level))
+            if (levelOrder.size() < (level + 1))
             {
-                level++;
-                levelOrder.push_back({});
+                levelOrder.resize(level + 1);
+                levelOrder[level] = {};
             }
 
-            levelOrder[levelOrder.size() - 1].push_back(root->val);
+            levelOrder[level].push_back(cur->val);
 
-            if (root->left)
+            if (cur->left)
             {
-                nodes.push(root->left);
+                nodes.push({ level + 1, cur->left });
             }
-            else
+            if (cur->right)
             {
-                i++;
+                nodes.push({ level + 1, cur->right });
             }
-            
-
-            if (root->right)
-            {
-                nodes.push(root->right);
-            }
-            else
-            {
-                i++;
-            }
-        }
-
-        auto l = 1;
-        for (auto level: levelOrder)
-        {
-            for (auto i: level)
-            {
-                std::cout << "Level: " << l << ", value: " << i << std::endl;
-            }
-            l++;
         }
 
         return std::vector<std::vector<int>>(levelOrder.rbegin(), levelOrder.rend());
@@ -99,7 +71,7 @@ int main()
 
     const std::vector<TreeNode *> tests = {
         createTree({3,9,20,-1,-1,15,7}),
-        createTree({1,2,-1,3,-1,4,-1,5})
+        createTree({1,2,-1,3,-1,4,-1,5, -1})
     };
 
     const std::vector<vector<vector<int>>> expected = {
@@ -121,8 +93,9 @@ int main()
     for (auto test : tests)
     {
         auto soln = sol.levelOrderBottom(test);
-        printTreeBreadthFirst(test);
-        // assert(soln == expected[i]);
+        // printTreeBreadthFirst(test);
+        std::cout << soln[0][0] << std::endl;
+        assert(soln == expected[i]);
         std::cout << "Test " << i << " passed.\n";
         i++;
     };
