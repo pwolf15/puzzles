@@ -10,10 +10,57 @@
 
 using namespace std;
 
+#define LOGS
+// #undef LOGS
+
 class Solution {
 public:
-    int nthUglyNumber(int n) {
-        
+    int nthUglyNumber(int n) 
+    {
+        // return nthUglyNumber_BruteForce(n);
+        return nthUglyNumber_DP(n);
+    }
+private:
+    std::set<int> uglyNumbers;
+    std::set<int> visited;
+
+    int nthUglyNumber_DP(int n)
+    {
+        int i = 0;
+        int p2 = 0;
+        int p3 = 0;
+        int p5 = 0;
+        std::vector<int> ugly(n);
+        ugly[0] = 1;
+
+        for (int i = 1; i < n; ++i)
+        {
+            int minUgly = std::min(ugly[p2] * 2, std::min(ugly[p3] * 3, ugly[p5] * 5));
+
+            #ifdef LOGS
+            std::cout << "Min ugly: " << minUgly << std::endl;
+            #endif
+
+            if (minUgly == ugly[p2] * 2)
+            {
+                p2++;
+            }
+            if (minUgly == ugly[p3] * 3)
+            {
+                p3++;
+            }
+            if (minUgly == ugly[p5] * 5)
+            {
+                p5++;
+            }
+
+            ugly[i] = minUgly;
+        }
+
+        return ugly[n - 1];
+    }
+    int nthUglyNumber_BruteForce(int n)
+    {
         int i = 0;
         int cur = 1;
         uglyNumbers.insert(1);
@@ -26,7 +73,11 @@ public:
             cur = *(uglyNumbers.begin());
             uglyNumbers.erase(cur);
             i++;
+
+            #ifdef LOGS
             std::cout << cur << std::endl;
+            #endif
+
             if (i == n)
             {
                 break;
@@ -53,9 +104,6 @@ public:
 
         return cur;
     }
-private:
-    std::set<int> uglyNumbers;
-    std::set<int> visited;
 };
 
 int main()
