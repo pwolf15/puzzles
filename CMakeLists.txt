@@ -47,6 +47,7 @@ add_subdirectory(UniquePaths)
 add_subdirectory(DataStructures)
 add_subdirectory(Recursion)
 add_subdirectory(Arrays)
+add_subdirectory(Numbers)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
