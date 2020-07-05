@@ -1,3 +1,4 @@
 add_subdirectory(CountBits)
 add_subdirectory(Parity)
 add_subdirectory(SwapBits)
+add_subdirectory(ReverseBits)
