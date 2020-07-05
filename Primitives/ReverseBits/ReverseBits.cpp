@@ -55,6 +55,8 @@ unsigned long long ReverseBits_Cached(unsigned long long x)
 
     size_t mask = 0xffff;
     size_t maskSize = 16;
+
+    // complexity is O(n / L) where n is n-bit integer and L is number of bits in cached keys
     return  ((long long)reversed[(x >> maskSize * 3) & mask]) | 
             (((long long)reversed[(x >> maskSize * 2) & mask]) << maskSize) |
             (((long long)reversed[(x >> maskSize) & mask]) << maskSize * 2) |
