@@ -53,11 +53,12 @@ unsigned long long ReverseBits_Cached(unsigned long long x)
         initCache = true;
     }
 
-    unsigned long long mask = 0xffff;
-    return  ((long long)reversed[(x >> 48) & mask]) | 
-            (((long long)reversed[(x >> 32) & mask]) << 16) |
-            (((long long)reversed[(x >> 16) & mask]) << 32) |
-            (((long long)reversed[x & mask]) << 48);
+    size_t mask = 0xffff;
+    size_t maskSize = 16;
+    return  ((long long)reversed[(x >> maskSize * 3) & mask]) | 
+            (((long long)reversed[(x >> maskSize * 2) & mask]) << maskSize) |
+            (((long long)reversed[(x >> maskSize) & mask]) << maskSize * 2) |
+            (((long long)reversed[x & mask]) << maskSize * 3);
 }
 
 int main()
