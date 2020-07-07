@@ -48,13 +48,8 @@ unsigned long long ClosestIntegerSameWeight(unsigned long long x)
             // don't need to literal swap if i, j differ
             // just bit flip
             unsigned long long bit_mask = (1UL << (i)) | (1UL << (i + 1));
-            swapped = x;
-            swapped ^= bit_mask;
-
-            if (swapped != x)
-            {
-                return swapped;
-            }
+            x ^= bit_mask;
+            return x;
         }
     }
 
@@ -63,6 +58,8 @@ unsigned long long ClosestIntegerSameWeight(unsigned long long x)
 
 int main()
 {
+    std::cout << std::hex << ClosestIntegerSameWeight(14) << std::hex << std::endl;
+    std::cout << std::hex << ClosestIntegerSameWeight(6) << std::hex << std::endl;
     std::cout << std::hex << ClosestIntegerSameWeight(pow(2, 31)) << std::hex << std::endl;
     std::cout << std::hex << ClosestIntegerSameWeight(0) << std::hex << std::endl;
     std::cout << std::dec << ClosestIntegerSameWeight(0xffffffffffffffff) << std::hex << std::endl;
