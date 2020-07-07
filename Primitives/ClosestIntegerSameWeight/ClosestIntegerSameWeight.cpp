@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <limits>
 
 short CountBits(unsigned int x) 
 {
@@ -56,12 +57,43 @@ unsigned long long ClosestIntegerSameWeight(unsigned long long x)
     throw std::invalid_argument("Must not provide 0 or 0xffff'ffff'ffff'ffff");
 }
 
+unsigned long long ClosestIntegerSameWeight_Constant(unsigned long long x)
+{
+    short rightMost1 = log2(x & ~(x - 1));
+    short rightMost0 = log2(~x & ~(~x - 1));
+
+    if (x == 0 || x == std::numeric_limits<unsigned long long>::max())
+    {
+        throw std::invalid_argument("Must not provide 0 or 0xffff'ffff'ffff'ffff");
+    }
+
+    if (rightMost1 > rightMost0)
+    {
+        unsigned long long bit_mask = (1UL << rightMost1) | (1UL << (rightMost1 - 1));
+        x ^= bit_mask;
+        return x;
+    }
+    else
+    {
+        unsigned long long bit_mask = (1UL << rightMost0) | (1UL << (rightMost0 - 1));
+        x ^= bit_mask;
+        return x;
+    }
+}
+
+
 int main()
 {
     std::cout << std::hex << ClosestIntegerSameWeight(14) << std::hex << std::endl;
     std::cout << std::hex << ClosestIntegerSameWeight(6) << std::hex << std::endl;
     std::cout << std::hex << ClosestIntegerSameWeight(pow(2, 31)) << std::hex << std::endl;
-    std::cout << std::hex << ClosestIntegerSameWeight(0) << std::hex << std::endl;
-    std::cout << std::dec << ClosestIntegerSameWeight(0xffffffffffffffff) << std::hex << std::endl;
+    // std::cout << std::hex << ClosestIntegerSameWeight(0) << std::hex << std::endl;
+    // std::cout << std::dec << ClosestIntegerSameWeight(0xffffffffffffffff) << std::hex << std::endl;
+    std::cout << std::dec << ClosestIntegerSameWeight(0b1000000) << std::endl;
+    std::cout << std::dec << ClosestIntegerSameWeight(0b111011) << std::endl;
+   std::cout << std::dec << ClosestIntegerSameWeight(0b111) << std::endl;
+   std::cout << std::dec << ClosestIntegerSameWeight(15) << std::endl;
+   std::cout << std::dec << ClosestIntegerSameWeight_Constant(0b1) << std::endl;
+
     return 0;
 }
