@@ -48,6 +48,7 @@ add_subdirectory(DataStructures)
 add_subdirectory(Recursion)
 add_subdirectory(Arrays)
 add_subdirectory(Numbers)
+add_subdirectory(Strings)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
