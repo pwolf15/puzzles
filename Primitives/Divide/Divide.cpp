@@ -124,6 +124,38 @@ int Divide_alt(int x, int y)
     return quotient;
 }
 
+int Divide_all(int x, int y)
+{
+    // how many times does k * 2^n (think like long division)
+    int quotient = 0;
+    int power = 32;
+    int xNeg = (x >> 31) & 1;
+    int yNeg = (y >> 31) & 1;
+    x = xNeg ? -x : x;
+    y = yNeg ? -y : y;
+    unsigned long long y_power = static_cast<unsigned long long>(y) << power;
+    while (x >= y)
+    {
+        while (y_power > x)
+        {
+            y_power >>= 1;
+            --power;
+        }
+
+        #ifdef DEBUG
+        std::cout << "x: " << x << std::endl;
+        std::cout << "power: " << power << std::endl;
+        std::cout << "y_power: " << y_power << std::endl;
+        std::cout << "quotient: " << quotient << std::endl;
+        #endif
+
+        x -= y_power;
+        quotient += 1 << power;
+    }
+
+    return xNeg ^ yNeg ? -quotient : quotient;
+}
+
 int main()
 {
     std::cout << Divide(7, 4) << std::endl;
@@ -131,7 +163,7 @@ int main()
     std::cout << Divide(100, 3) << std::endl;
     std::cout << Divide(1e6, 1) << std::endl;
     std::cout << Divide(189234, 23) << std::endl;
-    std::cout << Divide_alt(189234, 23) << std::endl; 
+    std::cout << Divide_all(0, 23) << std::endl; 
 
     return 0;
 }
