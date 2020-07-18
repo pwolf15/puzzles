@@ -14,6 +14,7 @@ public:
 
         // need to be able to find frequency with <= O(log n)
 
+        // O(n)
         for (int i = 0; i < nums.size(); ++i)
         {
             if (freqs.find(nums[i]) == freqs.end())
@@ -26,12 +27,14 @@ public:
             }
         }
 
+        // O(n)
         std::multimap<int, int> freqToNum; // map freq to num
         for (auto freq: freqs)
         {
             freqToNum.insert({ freq.second, freq.first });
         }
 
+        // O(k)
         std::vector<int> kFrequent;
         auto it = freqToNum.end();
         for (auto it = freqToNum.rbegin(); it != freqToNum.rend(); ++it)
