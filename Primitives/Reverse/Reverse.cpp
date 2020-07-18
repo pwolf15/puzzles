@@ -24,6 +24,7 @@ long long Reverse_BF(int x)
 }
 
 
+// O(n): n digits in x
 long long Reverse(int x)
 {
     long long result = 0;
