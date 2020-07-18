@@ -27,11 +27,6 @@ long long Reverse_BF(int x)
 long long Reverse(int x)
 {
     long long result = 0;
-    int negative = x & 0x80000000;
-    if (negative)
-    {
-        x = -x;
-    }
 
     while (x)
     {
@@ -39,7 +34,7 @@ long long Reverse(int x)
         x /= 10;
     }
 
-    return negative ? -result : result;
+    return result;
 }
 
 
