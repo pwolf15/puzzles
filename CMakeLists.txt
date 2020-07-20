@@ -50,6 +50,7 @@ add_subdirectory(Arrays)
 add_subdirectory(Numbers)
 add_subdirectory(Strings)
 add_subdirectory(ProjectEuler)
+add_subdirectory(Math)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
