@@ -24,8 +24,8 @@ private:
         // to skip the duplicate.
 
         // When we encounter nums[j] != nums[i], the duplicate run has ended
-        // so we must copy it svalue to nums[i + 1]. I can be incremented and
-        // we repeate the same process until i reaches the array end
+        // so we must copy it svalue to nums[i + 1]. i can be incremented and
+        // we repeat the same process until i reaches the array end
 
         if (nums.empty())
         {
