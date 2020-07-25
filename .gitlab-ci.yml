@@ -3,6 +3,7 @@ stages:
 
 build:
   stage: build
+  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
   script:
   - mkdir build
   - cd build
