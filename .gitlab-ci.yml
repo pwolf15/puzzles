@@ -1,5 +1,6 @@
 stages:
 - build
+- test
 
 build:
   stage: build
@@ -9,3 +10,14 @@ build:
   - cd build
   - cmake ..
   - make -j4
+  artifacts:
+    - build
+
+test:
+  stage: test
+  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
+  script:
+  - cd build
+  - ../resources/scripts/runTests
+  dependencies:
+  - build

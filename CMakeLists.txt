@@ -53,3 +53,11 @@ add_subdirectory(Math)
 
 # Monthly Challenges
 add_subdirectory(MonthlyChallenge)
+
+
+include_directories(include)
+
+# grouped solutions
+add_library(Arrays src/Arrays.cpp)
+
+add_subdirectory(test)
