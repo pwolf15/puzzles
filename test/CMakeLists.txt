@@ -16,7 +16,13 @@ include_directories(include)
 
 add_executable(RunTests 
     src/ArraysTests.cpp
+    src/PrimitivesTests.cpp
+    src/StringsTests.cpp
+    src/LinkedListsTests.cpp
+    src/DynamicProgrammingTests.cpp
+    src/DesignTests.cpp
+    src/TreesTests.cpp
     src/test.cpp
 )
 
-target_link_libraries(RunTests Arrays ${CPPUTEST_LDFLAGS})
+target_link_libraries(RunTests Arrays Primitives Strings LinkedLists DynamicProgramming Design Trees ${CPPUTEST_LDFLAGS})
