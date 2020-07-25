@@ -1,6 +1,7 @@
 stages:
 - build
 - test
+- scan
 
 build:
   stage: build
@@ -13,6 +14,9 @@ build:
   artifacts:
     paths:
     - build
+  only:
+    - master
+    - merge_requests
 
 test:
   stage: test
@@ -22,3 +26,15 @@ test:
   - ../resources/scripts/runTests
   dependencies:
   - build
+  only:
+    - master
+    - merge_requests
+
+scan:
+  stage: scan
+  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
+  script:
+    - cppcheck --enable=all .
+  only:
+    - master
+    - merge_requests
