@@ -116,3 +116,13 @@ catastrophic consequences.
 | Problems                                                                                  | Source                | 
 | ----------------------------------------------------------------------------------------- | --------------------- |
 | [Sorted Array to BST](include/DynamicProgramming.hpp#L13)                                 | LC #108               |
+
+
+TODO: Variants
+Four points in plane (p. 40)
+Two rectangles intersect (p. 40)
+
+Dutch flag (1/2/3/4) p. 46
+Plus One variant p. 47
+CanReachEnd variant p. 49
+Delete Duplicates variants p. 51

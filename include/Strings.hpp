@@ -12,4 +12,8 @@ bool isAnagram(std::string s, std::string t);
 
 bool detectCapitalUse(std::string word);
 
+bool isPalindrome(std::string s);
+
+std::string sumTwo(std::string A, std::string B);
+
 #endif // STRINGS_HPP

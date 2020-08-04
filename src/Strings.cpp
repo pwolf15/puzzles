@@ -14,7 +14,7 @@ int firstUniqueChar_brute(std::string s)
     std::unordered_set<char> uniqueChars;
 
     int i = 0;
-    for (auto c: s)
+    for (auto c : s)
     {
         if (repeatedChars.find(c) != repeatedChars.end())
         {
@@ -31,13 +31,13 @@ int firstUniqueChar_brute(std::string s)
             uniqueChars.erase(c);
             repeatedChars.insert(c);
         }
-        
+
         i++;
     }
 
-    int firstIndex = -1; 
+    int firstIndex = -1;
     i = 0;
-    for (auto c: s)
+    for (auto c : s)
     {
         if (uniqueChars.find(c) != uniqueChars.end())
         {
@@ -51,7 +51,7 @@ int firstUniqueChar_brute(std::string s)
     return firstIndex;
 }
 
-// Given a string, find the first non-repeating character in it and return its index. 
+// Given a string, find the first non-repeating character in it and return its index.
 // If it doesn't exist, return -1.
 int firstUniqChar(std::string s)
 {
@@ -68,7 +68,8 @@ bool isAnagram(std::string s, std::string t)
 bool detectCapitalUse(std::string word)
 {
     size_t i = 0;
-    enum UseType {
+    enum UseType
+    {
         NONE,
         ALL_CAPS,
         FIRST_CAPS,
@@ -96,8 +97,8 @@ bool detectCapitalUse(std::string word)
     {
         return true;
     }
-    
-    for (auto c: word.substr(1))
+
+    for (auto c : word.substr(1))
     {
         // if current is not a capital,
         //  but second capital was found
@@ -127,4 +128,58 @@ bool detectCapitalUse(std::string word)
     }
 
     return usage != UseType::INCORRECT;
+}
+
+bool isPalindrome(std::string s)
+{
+
+    bool isPalindrome = true;
+    int i = 0;
+    int j = s.size() - 1;
+
+    if (s.empty())
+    {
+        return true;
+    }
+
+    while (i < j)
+    {
+        auto c1 = std::tolower(s[i]);
+        auto c2 = std::tolower(s[j]);
+        if (!isalnum(c1))
+        {
+            i++;
+            continue;
+        }
+        else if (!isalnum(c2))
+        {
+            j--;
+            continue;
+        }
+        else if (c1 != c2)
+        {
+            isPalindrome = false;
+            break;
+        }
+        else
+        {
+            i++;
+            j--;
+        }
+    }
+
+    return isPalindrome;
+}
+
+std::string sumTwo(std::string A, std::string B)
+{
+    // char carry  = '0';
+    // char sum    = '0';
+    // for (int i = 0; i < A.size() && i < B.size(); ++i)
+    // {
+    //     sum = carry - '0' & A[A.size() - 1 - i])
+    //     char sum = A[] == B[B.size() - 1 - i] ? '0' : '1';
+    //     char carry = A[A.size() - 1 - i]
+    // }
+    return "";
 }

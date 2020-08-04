@@ -46,3 +46,11 @@ TEST(Primitives, CountPrimes)
     CHECK_EQUAL(168, countPrimes(1000));
     CHECK_EQUAL(41537, countPrimes(499979));
 }
+
+TEST(Primitives, PowerOfFour)
+{
+    CHECK(isPowerOfFour(64));
+    CHECK(!isPowerOfFour(0));
+    CHECK(isPowerOfFour(1));
+    CHECK(isPowerOfFour(16));
+}
