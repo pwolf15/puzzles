@@ -2,6 +2,7 @@
 #define DESIGN_HPP
 
 #include <vector>
+// #include <unordered_set>
 
 class ShuffledArray {
 public:
@@ -41,5 +42,25 @@ public:
 private:
     std::vector<int> store;
 };
+
+// class WordDictionary {
+// public:
+//     /** Initialize your data structure here. */
+//     WordDictionary() {
+        
+//     }
+    
+//     /** Adds a word into the data structure. */
+//     void addWord(std::string word) {
+        
+//     }
+    
+//     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+//     bool search(std::string word) {
+        
+//     }
+
+// private:
+// };
 
 #endif // DESIGN_HPP

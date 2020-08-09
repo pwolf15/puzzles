@@ -1,4 +1,5 @@
 #include "Trees.hpp"
+#include <limits>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -15,4 +16,22 @@ TreeNode* sortedArrayToBST(std::vector<int>& nums)
     tree->right = sortedArrayToBST(right);
     
     return tree;
+}
+
+bool isValidBSTUtil(TreeNode* root, long int min, long int max)
+{
+    if (root == nullptr)
+    {
+        return true;
+    }
+
+    if (root->left && (root->left->val >= root->val || root->left->val <= min)) return false;
+    if (root->right && (root->right->val <= root->val || root->right->val >= max)) return false;
+
+    return isValidBSTUtil(root->left, min, root->val) && isValidBSTUtil(root->right, root->val, max);
+}
+
+bool isValidBST(TreeNode *root)
+{
+    return isValidBSTUtil(root, std::numeric_limits<long int>::min(), std::numeric_limits<long int>::max());
 }

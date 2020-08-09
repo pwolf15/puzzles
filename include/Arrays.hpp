@@ -24,4 +24,28 @@ typedef enum { kRed, kWhite, kBlue } Color;
 
 void DutchFlagPartition(int pivot_index, std::vector<Color>* a_ptr);
 
+void moveZeroes(std::vector<int>& nums);
+
+std::vector<int> PlusOne(std::vector<int> nums);
+
+bool containsDuplicate(std::vector<int>& nums);
+
+bool isValidSudoku(std::vector<std::vector<char>>& board);
+
+std::vector<int> Multiply(std::vector<int> num1, std::vector<int> num2);
+
+bool CanReachEnd(const std::vector<int>& max_advance_steps);
+
+int DeleteDuplicates(std::vector<int>* A_ptr);
+
+int DeleteKey(std::vector<int>* A_ptr, int key);
+
+int AtMostN(std::vector<int>* A_ptr);
+
+double BuyAndSellStockOnce(const std::vector<double>& prices);
+
+size_t longestContiguousSubarray(const std::vector<int>& nums);
+
+double BuyAndSellStockTwice(const std::vector<double>& prices);
+
 #endif // ARRAYS_HPP

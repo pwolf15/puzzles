@@ -144,3 +144,23 @@ int countPrimes(int n)
 {
     return sieve(n);
 }
+
+bool isPowerOfFour(int n)
+{
+    long long powered = 0;
+    bool powerOfFour = false;
+    size_t i = 0;
+    while (powered < n)
+    {
+        powered = pow(4, i);
+        i++;
+
+        if (powered == n)
+        {
+            powerOfFour = true;
+            break;
+        }
+    }
+
+    return powerOfFour;
+}

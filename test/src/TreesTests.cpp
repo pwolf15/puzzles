@@ -34,3 +34,24 @@ TEST(Trees, ConvertSortedArrayToBST)
     auto root = node;
     deleteTree(root);
 };
+
+TEST(Trees, IsValidBST)
+{
+    TreeNode* node  = new TreeNode(2);
+    node->left      = new TreeNode(1);
+    node->right     = new TreeNode(3);
+
+    CHECK(isValidBST(node));
+
+    deleteTree(node);
+
+    node                = new TreeNode(5);
+    node->left          = new TreeNode(1);
+    node->right         = new TreeNode(4);
+    node->right->left   = new TreeNode(3);
+    node->right->right  = new TreeNode(6);
+
+    CHECK(!isValidBST(node));
+
+    deleteTree(node);
+};

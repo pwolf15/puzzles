@@ -20,4 +20,6 @@ int missingNumber(std::vector<int>& nums);
 
 int countPrimes(int n);
 
+bool isPowerOfFour(int n);
+
 #endif // PRIMITIVES_HPP

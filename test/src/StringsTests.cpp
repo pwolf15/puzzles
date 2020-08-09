@@ -27,3 +27,11 @@ TEST(Strings, DetectCapitalUse)
     CHECK(!detectCapitalUse("FlaG"));
     CHECK(!detectCapitalUse("flaG"));
 };
+
+TEST(Strings, IsPalindrome)
+{
+    CHECK(isPalindrome(""));
+    CHECK(isPalindrome("A man, a plan, a canal: Panama"));
+    CHECK(!isPalindrome("race a car"));
+    CHECK(!isPalindrome(",,,,,,,,,,,,acva"));
+};
