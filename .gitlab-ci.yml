@@ -5,7 +5,7 @@ stages:
 
 build:
   stage: build
-  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
+  image: registry.gitlab.com/pwolf15/puzzles/cpp-dev:latest
   script:
   - mkdir build
   - cd build
@@ -20,7 +20,7 @@ build:
 
 test:
   stage: test
-  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
+  image: registry.gitlab.com/pwolf15/puzzles/cpp-dev:latest
   script:
   - cd build
   - ../resources/scripts/runTests
@@ -32,7 +32,7 @@ test:
 
 scan:
   stage: scan
-  image: registry.gitlab.com/pwolf15/leetcode/cpp-dev:latest
+  image: registry.gitlab.com/pwolf15/puzzles/cpp-dev:latest
   script:
     - cppcheck --enable=all .
   only:

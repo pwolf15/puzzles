@@ -54,3 +54,9 @@ TEST(Primitives, PowerOfFour)
     CHECK(isPowerOfFour(1));
     CHECK(isPowerOfFour(16));
 }
+
+TEST(Primitives, MagicSquare)
+{
+    magicSquare(3);
+    // magicSquare(4);
+}
