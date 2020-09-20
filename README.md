@@ -1,5 +1,8 @@
 # Problem Solving through Problems
 
+## Notes
+* Iterative refinement of a brute-force solution.
+
 ## Large-Scale System Design
 
 * https://github.com/donnemartin/system-design-primer
@@ -126,3 +129,7 @@ Dutch flag (1/2/3/4) p. 46
 Plus One variant p. 47
 CanReachEnd variant p. 49
 Delete Duplicates variants p. 51
+
+TODO: sell buy stocks O(n log n)
+TODO: sell buy stocks twice O(n^4), O(N^2)
+TODO: compute an alternation, brute-force swap top and bottom, median solution

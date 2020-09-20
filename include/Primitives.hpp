@@ -22,4 +22,6 @@ int countPrimes(int n);
 
 bool isPowerOfFour(int n);
 
+void magicSquare(int n);
+
 #endif // PRIMITIVES_HPP

@@ -2,6 +2,9 @@
 
 #include <algorithm>
 #include <unordered_set>
+#include <unordered_map>
+#include <deque>
+#include <cmath>
 
 int removeDuplicates_Efficient(std::vector<int> &nums)
 {
@@ -375,11 +378,10 @@ std::vector<int> PlusOne(std::vector<int> A)
     return A;
 }
 
-
-bool containsDuplicate(std::vector<int>& nums)
+bool containsDuplicate(std::vector<int> &nums)
 {
     std::unordered_set<int> elements;
-    for (auto num: nums)
+    for (auto num : nums)
     {
         if (elements.find(num) == elements.end())
         {
@@ -394,7 +396,7 @@ bool containsDuplicate(std::vector<int>& nums)
     return false;
 }
 
-bool isValidSudoku(std::vector<std::vector<char>>& board)
+bool isValidSudoku(std::vector<std::vector<char>> &board)
 {
     // check columns
     for (int i = 0; i < board.size(); i++)
@@ -448,7 +450,7 @@ bool isValidSudoku(std::vector<std::vector<char>>& board)
                 {
                     if (board[i * 3 + k][j * 3 + m] == '.')
                         continue;
-                
+
                     if (grid.find(board[i * 3 + k][j * 3 + m]) == grid.end())
                     {
                         grid.insert(board[i * 3 + k][j * 3 + m]);
@@ -466,10 +468,10 @@ bool isValidSudoku(std::vector<std::vector<char>>& board)
 }
 
 // O(n * m) operations
-// 
+//
 std::vector<int> Multiply_PW(std::vector<int> num1, std::vector<int> num2)
 {
-    // maximum number of digits is m + n, where 
+    // maximum number of digits is m + n, where
     // m == num digits in num1 and n == num digits of num2
     std::vector<int> result(num1.size() + num2.size());
 
@@ -499,7 +501,7 @@ std::vector<int> Multiply_PW(std::vector<int> num1, std::vector<int> num2)
 
     if (iter == result.end())
     {
-        return { 0 };
+        return {0};
     }
     else
     {
@@ -533,8 +535,7 @@ std::vector<int> Multiply_EPI(std::vector<int> num1, std::vector<int> num2)
     // Remove leading zeroes
     result = {
         std::find_if_not(result.begin(), result.end(), [](int a) { return a == 0; }),
-        result.end()
-    };
+        result.end()};
 
     if (result.empty())
     {
@@ -546,20 +547,19 @@ std::vector<int> Multiply_EPI(std::vector<int> num1, std::vector<int> num2)
 
 std::vector<int> Multiply(std::vector<int> num1, std::vector<int> num2)
 {
-   return Multiply_EPI(num1, num2);
+    return Multiply_EPI(num1, num2);
 }
 
 // O(n! ^ 2): each n have to decrement and revisit possibly
 // space complexity: O(n!^2); create new vector for each test case
 // could improve with memoization and iterators instead o new vector
-bool CanReachEnd_BF(const std::vector<int>& max_advance_steps)
+bool CanReachEnd_BF(const std::vector<int> &max_advance_steps)
 {
     // 3, 3, 1, 0, 2, 0, 1
     // try 3
     // 3 -> 0 (no)
     // 2 -> 1 -> 0 (no)
     // 1 -> 3 -> 2 -> end
-
 
     // 3, 2, 0, 0, 2, 0, 1
     // try 3
@@ -595,35 +595,34 @@ bool CanReachEnd_BF(const std::vector<int>& max_advance_steps)
 
 // O(n): go through vector once
 // O(1): constant space complexity
-bool CanReachEnd_EPI(const std::vector<int>& max_advance_steps)
+bool CanReachEnd_EPI(const std::vector<int> &max_advance_steps)
 {
     // 3, 3, 1, 0, 2, 0, 1
     // what's the farthest I can get at a given point
     int furthest_reach_so_far = 0, last_index = max_advance_steps.size() - 1;
-    for (int i = 0; 
-        i <= furthest_reach_so_far && 
-        furthest_reach_so_far < last_index; 
-        ++i)
+    for (int i = 0;
+         i <= furthest_reach_so_far &&
+         furthest_reach_so_far < last_index;
+         ++i)
     {
         furthest_reach_so_far = std::max(
-            furthest_reach_so_far, 
-            max_advance_steps[i] + i
-        );
+            furthest_reach_so_far,
+            max_advance_steps[i] + i);
     }
 
     return furthest_reach_so_far >= last_index;
 }
 
-bool CanReachEnd(const std::vector<int>& max_advance_steps)
+bool CanReachEnd(const std::vector<int> &max_advance_steps)
 {
     return CanReachEnd_EPI(max_advance_steps);
 }
 
 // O(n) time complexity
 // O(1) space
-int DeleteDuplicates_PW(std::vector<int>* A_ptr)
+int DeleteDuplicates_PW(std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
 
     if (A.empty())
     {
@@ -644,9 +643,9 @@ int DeleteDuplicates_PW(std::vector<int>* A_ptr)
 
 // O(n) time complexity
 // O(1) space
-int DeleteDuplicates_EPI(std::vector<int>* A_ptr)
+int DeleteDuplicates_EPI(std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     if (A.empty())
     {
         return 0;
@@ -664,14 +663,14 @@ int DeleteDuplicates_EPI(std::vector<int>* A_ptr)
     return writeIndex;
 }
 
-int DeleteDuplicates(std::vector<int>* A_ptr)
+int DeleteDuplicates(std::vector<int> *A_ptr)
 {
     return DeleteDuplicates_EPI(A_ptr);
 }
 
-int DeleteKey(std::vector<int>* A_ptr, int key)
+int DeleteKey(std::vector<int> *A_ptr, int key)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     if (A.empty())
     {
         return 0;
@@ -689,16 +688,16 @@ int DeleteKey(std::vector<int>* A_ptr, int key)
     return writeIndex;
 }
 
-int AtMostN(std::vector<int>* A_ptr)
+int AtMostN(std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     if (A.empty())
     {
         return 0;
     }
 
     int writeIndex = 0;
-    int curCount   = 1;
+    int curCount = 1;
     for (int i = 1; i < A.size(); ++i)
     {
         if (A[i] != A[writeIndex])
@@ -721,7 +720,7 @@ int AtMostN(std::vector<int>* A_ptr)
 }
 
 // time complexity: O(n^2)
-double BuyAndSellStockOnce_BF(const std::vector<double>& prices)
+double BuyAndSellStockOnce_BF(const std::vector<double> &prices)
 {
     double max = 0;
     for (auto i = 0; i < prices.size() - 1; i++)
@@ -737,11 +736,11 @@ double BuyAndSellStockOnce_BF(const std::vector<double>& prices)
 
 // time complexity: O(n)
 // space complexity: O(1)
-double BuyAndSellStockOnce_LINEAR(const std::vector<double>& prices)
+double BuyAndSellStockOnce_LINEAR(const std::vector<double> &prices)
 {
     double maxDiff = 0;
     double min = std::numeric_limits<double>::max();
-    for (auto price: prices)
+    for (auto price : prices)
     {
         maxDiff = std::max(maxDiff, price - min);
         min = std::min(min, price);
@@ -752,10 +751,10 @@ double BuyAndSellStockOnce_LINEAR(const std::vector<double>& prices)
 
 // time complexity: O(n)
 // space complexity: O(1)
-double BuyAndSellStockOnce_EPI(const std::vector<double>& prices)
+double BuyAndSellStockOnce_EPI(const std::vector<double> &prices)
 {
     double min_price_so_far = std::numeric_limits<double>::max(), max_profit = 0;
-    for (double price: prices)
+    for (double price : prices)
     {
         double max_profit_sell_today = price - min_price_so_far;
         max_profit = std::max(max_profit, max_profit_sell_today);
@@ -765,7 +764,7 @@ double BuyAndSellStockOnce_EPI(const std::vector<double>& prices)
     return max_profit;
 }
 
-double BuyAndSellStockOnce(const std::vector<double>& prices)
+double BuyAndSellStockOnce(const std::vector<double> &prices)
 {
     // TODO: write O(n log n solution)
     return BuyAndSellStockOnce_EPI(prices);
@@ -773,7 +772,7 @@ double BuyAndSellStockOnce(const std::vector<double>& prices)
 
 // time complexity: O(n)
 // space complexity: O(1)
-size_t longestContiguousSubarray(const std::vector<int>& nums)
+size_t longestContiguousSubarray(const std::vector<int> &nums)
 {
     // 1, 2, 2, 3
     if (nums.empty())
@@ -782,8 +781,8 @@ size_t longestContiguousSubarray(const std::vector<int>& nums)
     }
 
     size_t longestSoFar = 1;
-    size_t curLongest   = 1;
-    int curNum          = nums[0];
+    size_t curLongest = 1;
+    int curNum = nums[0];
 
     for (size_t i = 1; i < nums.size(); ++i)
     {
@@ -802,42 +801,376 @@ size_t longestContiguousSubarray(const std::vector<int>& nums)
     return longestSoFar;
 }
 
-double BuyAndSellStockTwice(const std::vector<double>& prices)
+double BuyAndSellStockTwice_BF(const std::vector<double> &prices)
 {
-    // 12, 11, 13, 9, 12, 8, 14, 13, 15
-    // 9, 11, 16, 8, 15
-    // once you hit a new min, 
-    // 12, 11 !
-    // 12, 13 => 1 (max)
-    // 9 => buy
-    // 9, 12 (buy, sell) => 3 (3 + 1 == 4)
-    // 8, 14 (buy, sell) = 6 + 3 == 9
-    // 8, 13 (5)
-    // 8, 15 (7) => 7 + 3 = 10
-    double maxDiff1 = 0.0, maxDiff2 = 0.0, curDiff = 0.0;
-    double curMin = std::numeric_limits<double>::max();
-    int minIndex = -1;
-    int prevMin = -1;
-    int i = 0;
-    // when to compute maxdiff1 vs. maxDiff2
-    for (double price: prices)
+    double max_total_profit = 0;
+    for (size_t i = 0; i < prices.size(); i++)
     {
-        curDiff = std::max(curDiff, price - curMin);
-        double temp = curMin;
-        if (temp == curMin)
+        for (size_t j = 0; j < prices.size(); j++)
         {
-            minIndex = i;
-        }
-        curMin = std::min(curMin, price);
-
-        // won't work, what if curMin is same price for both times to sell
-
-        if (minIndex != curMin)
-        {
-            if (curDiff > maxDiff2) std::swap(curDiff, maxDiff2);
-            if (maxDiff2 > maxDiff1) std::swap(maxDiff2, maxDiff1);
+            for (size_t k = 0; k < prices.size(); k++)
+            {
+                for (size_t l = 0; l < prices.size(); l++)
+                {
+                    if (i < j && k < l && j < k)
+                    {
+                        max_total_profit = std::max(
+                            max_total_profit,
+                            prices[l] - prices[k] +
+                                prices[j] - prices[i]);
+                    }
+                    else if (i < j)
+                    {
+                        // cover the case where only one buy/sell occurs
+                        max_total_profit = std::max(
+                            max_total_profit,
+                            prices[j] - prices[i]);
+                    }
+                }
+            }
         }
     }
 
-    return maxDiff1 + maxDiff2;
+    return max_total_profit;
+}
+
+// O(n) time, O(n) space
+double BuyAndSellStockTwice_EPI(const std::vector<double> &prices)
+{
+    double max_total_profit = 0;
+    std::vector<double> first_buy_sell_profits(prices.size(), 0);
+    double min_price_so_far = std::numeric_limits<double>::max();
+
+    // Forward phase. For each day, we record maximum profit if we sell
+    // on that day.
+    for (int i = 0; i < prices.size(); ++i)
+    {
+        min_price_so_far = std::min(min_price_so_far, prices[i]);
+        max_total_profit = std::max(max_total_profit, prices[i] - min_price_so_far);
+        first_buy_sell_profits[i] = max_total_profit;
+    }
+
+    // Backward phase. For each day, find the maximum profit if we make the
+    // second buy on that day.
+    double max_price_so_far = std::numeric_limits<double>::min();
+    for (int i = prices.size() - 1; i > 0; --i)
+    {
+        max_price_so_far = std::max(max_price_so_far, prices[i]);
+        max_total_profit =
+            std::max(max_total_profit,
+                     max_price_so_far - prices[i] + first_buy_sell_profits[i - 1]);
+    }
+
+    return max_total_profit;
+}
+
+double BuyAndSellStockTwice(const std::vector<double> &prices)
+{
+    return BuyAndSellStockTwice_EPI(prices);
+}
+
+std::vector<int> intersect(std::vector<int> &nums1, std::vector<int> &nums2)
+{
+    std::unordered_map<int, int> uniq1;
+    std::unordered_map<int, int> uniq2;
+
+    for (auto num : nums1)
+    {
+        if (uniq1.find(num) == uniq1.end())
+        {
+            uniq1[num] = 1;
+        }
+        else
+        {
+            uniq1[num]++;
+        }
+    }
+
+    for (auto num : nums2)
+    {
+        if (uniq2.find(num) == uniq2.end())
+        {
+            uniq2[num] = 1;
+        }
+        else
+        {
+            uniq2[num]++;
+        }
+    }
+
+    std::vector<int> result;
+    for (auto entry : uniq1)
+    {
+        int key = entry.first;
+        if (uniq2.find(key) != uniq2.end())
+        {
+            int min = std::min(
+                uniq1[key],
+                uniq2[key]);
+
+            for (int i = 0; i < min; i++)
+            {
+                result.push_back(key);
+            }
+        }
+    }
+
+    return result;
+}
+
+void Rearrange_BF(std::vector<int> *A_ptr)
+{
+    std::vector<int> &A = *A_ptr;
+    std::sort(A.begin(), A.end());
+    std::vector<int> B;
+    B.push_back(A[0]);
+
+    for (size_t i = 1; i < A.size(); i += 2)
+    {
+        if (i + 1 < A.size())
+        {
+            B.push_back(A[i + 1]);
+        }
+
+        B.push_back(A[i]);
+    }
+
+    std::swap(A, B);
+}
+
+void Rearrange_EPI(std::vector<int> *A_ptr)
+{
+    std::vector<int> &A = *A_ptr;
+    for (size_t i = 1; i < A.size(); ++i)
+    {
+        // if ((A[i] > A[i+1] && i % 2 == 0) ||
+        //     (A[i] < A[i+1] && i % 2 == 1))
+
+        // iterative refinement of a brute-force solution
+        if ((A[i-1] < A[i] && i % 2 == 0) ||
+            (A[i-1] > A[i] && i % 2 == 1))
+        {
+            std::swap(A[i-1], A[i]);
+        }
+    }
+}
+
+void Rearrange(std::vector<int> *A_ptr)
+{
+    Rearrange_EPI(A_ptr);
+}
+
+std::vector<int> sortArrayByParity(std::vector<int> &A)
+{
+
+    // if current odd and last even swap
+    int oddIdx = A.size() - 1;
+    int evenIdx = 0;
+
+    auto isEven = [](int n) {
+        return n % 2 == 0;
+    };
+
+    // lhs == odd, rhs == odd => oddStart-- (don't progress even ptr)
+    // lhs == odd, rhs == even => swap(odd, even), oddStart--, evenStart++
+    // lhs == even => just increment even ptr (evenIdx++)
+    // else (lhs == odd) => swap and decrement odd ptr
+    while (oddIdx > evenIdx)
+    {
+        if (isEven(A[evenIdx]))
+        {
+            evenIdx++;
+        }
+        else
+        {
+            std::swap(A[evenIdx], A[oddIdx--]);
+        }
+    }
+
+    std::vector<int> result(A);
+    return result;
+}
+
+// sieve == remove all its multiples from future consideration
+std::vector<int> GeneratePrimes_Sieve(int n)
+{
+    // Sieve of Erastothenes
+    std::vector<int> primes(n + 1, 1);
+    std::vector<int> results;
+    primes[0] = 0;
+    primes[1] = 1;
+    for (size_t i = 2; i <= n; i++)
+    {
+        if (primes[i])
+        {
+            int mult = i;
+            mult += i;
+            while (mult <= n)
+            {
+                primes[mult] = 0;
+                mult += i;
+            }
+        }
+    }
+
+    for (size_t i = 2; i <= n; i++)
+    {
+        if (primes[i])
+        {
+            results.push_back(i);
+        }
+    }
+
+    return results;
+}
+
+// trial-division approach
+// O(n^3/2) => O(n^3/2 / (log n)^2)
+// Given n, return all primes up to and including n.
+// O(n/2 + n/3 + n/5 + n/7 + n/11 + ...)
+// O(n log log n) time complexity
+// O(n) space complexity
+std::vector<int> GeneratePrimes_EPI1(int n)
+{
+    std::vector<int> primes;
+    // is_prime[p] represents if p is prime or not. Initially,
+    // set each to true, excepting 0 and 1. Then use sieving to eliminate
+    // nonprimes.
+    std::deque<bool> is_prime(n + 1, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int p = 2; p <= n; ++p)
+    {
+        if (is_prime[p])
+        {
+            primes.emplace_back(p);
+            // Sieve p's multiples
+            for (int i = p * 2; i <= n; i += p)
+            {
+                is_prime[i] = false;
+            }
+        }
+    }
+
+    return primes;
+}
+// space and time complexity identical for sieve
+// https://stackoverflow.com/a/16890100
+std::vector<int> GeneratePrimes_SieveOptimized(int n)
+{
+    if (n < 2)
+    {
+        return {};
+    }
+    
+    const int size = std::floor(0.5 * (n - 3)) + 1;
+    std::vector<int> primes;
+    primes.emplace_back(2);
+
+    // is_prime[p] represents whether (2i + 3) is prime or not.
+    // For example, is_prime[0] represents 3 is prime or not, is_prime[1]
+    // represents 5, is_prime[2] represents 7, etc.
+    // Initially set each to true. Then use sieving to eliminate nonprimes.
+    std::deque<bool> is_prime(size, true);
+    for (int i = 0; i < size; ++i)
+    {
+        if (is_prime[i])
+        {
+            int p = (i * 2) + 3;
+            primes.emplace_back(p);
+
+            // Sieving from p^2, whose value is (4i^2 + 12i + 9). The index in
+            // is_prime is (2i^2 + 6i + 3) because is_prime[i] represents 2i + 3
+            // 
+            // Note that we need to use long long for j because p^2 might overflow.
+            // p^2 = 4i^2 + 12i + 9
+            // index of p^2 = 2i^2 + 6i + 3 => (2 * index + 3) = 4i^2 + 12i + 9
+            // index = 2i^2 + 6i + 3
+            for (long long j = 2LL * i * i + 6 * i + 3; j < size; j += p)
+            {
+                is_prime[j] = false;
+            }
+        }
+    }
+
+    return primes;
+}
+
+std::vector<int> GeneratePrimes(int n)
+{
+    return GeneratePrimes_SieveOptimized(n);
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+void ApplyPermutation_BF(std::vector<int> perm, std::vector<int>* A_ptr)
+{
+    std::vector<int>& A = *A_ptr;
+    std::vector<int> permuted(A.size());
+
+    for (auto p: perm)
+    {
+        permuted[p] = A[p];
+    }
+
+    std::swap(permuted, A);
+}
+
+void ApplyPermutation_Optimal(std::vector<int> perm, std::vector<int>* A_ptr)
+{
+    std::vector<int>& A = *A_ptr;
+
+    size_t i = 0;
+    while (true)
+    {
+        if (i >= A.size())
+        {
+            break;
+        }
+        else if (i == perm[i])
+        {
+            i++;
+            continue;
+        }
+        else
+        {
+            std::swap(A[i], A[perm[i]]);
+            std::swap(perm[perm[i]], perm[i]);
+        }
+    }
+}
+
+
+// O(n) time complexity
+// O(n) space complexity?
+void ApplyPermutation_EPI(std::vector<int> perm, std::vector<int>* A_ptr)
+{
+    std::vector<int>& A = *A_ptr;
+    for (int i = 0; i < A.size(); ++i)
+    {
+        while (perm[i] != i)
+        {
+            std::swap(A[i], A[perm[i]]);
+            std::swap(perm[i], perm[perm[i]]);
+        }
+    }
+}
+
+void ApplyPermutation_NoMut(std::vector<int> perm, std::vector<int>* A_ptr)
+{
+    std::vector<int>& A = *A_ptr;
+    for (int i = 0; i < A.size(); ++i)
+    {
+        while (perm[i] != i)
+        {
+            std::swap(A[i], A[perm[i]]);
+            std::swap(perm[i], perm[perm[i]]);
+        }
+    }
+}
+
+
+void ApplyPermutation(std::vector<int> perm, std::vector<int>* A_ptr)
+{
+
+    return ApplyPermutation_Optimal(perm, A_ptr);
 }

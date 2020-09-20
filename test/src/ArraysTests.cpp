@@ -446,18 +446,109 @@ TEST(Arrays, LongestContiguousSubarray)
 TEST(Arrays, BuyAndSellStockTwice)
 {
     const std::vector<std::vector<double>> tests = {
-        { 12, 11, 13, 9, 12, 8, 14, 13, 15}
+        { 12, 11, 13, 9, 12, 8, 14, 13, 15},
+        { 3, 91, 4, 95},
+        { 3, 4, 91, 95},
+        { 3, 91, 89, 95},
+        { 3,3,5,0,0,3,1,4 },
+        { 1,2,3,4,5 },
+        { 7,6,4,3,1 },
+        {1,2,4,2,5,7,2,4,9,0},
         };
 
     const std::vector<double> expected = {
-        10
+        10,
+        179,
+        92,
+        94,
+        6,
+        4,
+        0,
+        13
     };
 
     int i = 0;
-    // for (auto test : tests)
-    // {
-    //     auto soln = BuyAndSellStockTwice(test);
-    //     CHECK_EQUAL(expected[i], soln);
-    //     i++;
-    // };
+    for (auto test : tests)
+    {
+        auto soln = BuyAndSellStockTwice(test);
+        CHECK_EQUAL(expected[i], soln);
+        i++;
+    };
 };
+
+TEST(Arrays, IntersectII)
+{
+    std::vector<int> A = {1,2,2,1};
+    std::vector<int> B = {2, 2};
+    auto result = intersect(A, B);
+    for (auto entry: result)
+    {
+        std::cout << entry << std::endl;
+    }
+    A = {4,9,5};
+    B = {9,4,9,8,4};
+    result = intersect(A, B);
+    for (auto entry: result)
+    {
+        std::cout << entry << std::endl;
+    }
+}
+
+TEST(Arrays, Rearrange)
+{
+    std::vector<int> A = {7, 1, 5, 62, 43, 3, 13, 16, 17, 19, 24, 32, 87, 64};
+    Rearrange(&A);
+    size_t i = 0;
+    for (auto entry: A)
+    {
+        std::cout << i << ": " << entry << std::endl;
+        i++;
+    }
+}
+
+TEST(Arrays, GeneratePrimes)
+{
+    int num = 18;
+    auto results = GeneratePrimes(num);
+    std::vector<int> resultsExpected = { 2, 3, 5, 7, 11, 13, 17 };
+    size_t i = 0;
+    for (auto n: results)
+    {
+        CHECK_EQUAL(resultsExpected[i], n);
+        i++;
+    }
+
+    num = 23;
+    resultsExpected = { 2, 3, 5, 7, 11, 13, 17, 19, 23 };
+    i = 0;
+    for (auto n: results)
+    {
+        CHECK_EQUAL(resultsExpected[i], n);
+        i++;
+    }  
+}
+
+TEST(Arrays, ApplyPermutation)
+{
+    std::vector<int> perm = { 2, 0, 1, 3 };
+    std::vector<int> vals = { 1, 2, 3, 4 };
+    std::vector<int> expected = { 2, 3, 1, 4 };
+    ApplyPermutation(perm, &vals);
+    size_t i = 0;
+    for (auto val: expected)
+    {
+        CHECK_EQUAL(expected[i], val);
+        i++;
+    }
+
+    perm = { 3, 2, 1, 0 };
+    vals = { 1, 2, 3, 4 };
+    expected = { 4, 3, 2, 1};
+    ApplyPermutation(perm, &vals);
+    i = 0;
+    for (auto val: expected)
+    {
+        CHECK_EQUAL(expected[i], val);
+        i++;
+    }
+}

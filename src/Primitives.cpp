@@ -4,6 +4,8 @@
 #include <iostream>
 #include <numeric>
 #include <algorithm>
+#include <vector>
+#include <set>
 
 // Known as Digital Root
 // below is basic logarithmic solution
@@ -163,4 +165,74 @@ bool isPowerOfFour(int n)
     }
 
     return powerOfFour;
+}
+
+void magicSquare(int n)
+{
+    std::vector<int> grid;
+    for (int i = 1; i <= n * n; ++i)
+    {
+        grid.push_back(i);
+    }
+
+    while(true)
+    {
+        std::random_shuffle ( grid.begin(), grid.end() );
+        std::vector<int> sums;
+        for (int i = 0; i < n; ++i)
+        {
+            int sum = 0;
+            for (int j = 0; j < n; ++j)
+            {
+                sum += grid[i * n + j];
+            }
+            sums.push_back(sum);
+        }
+
+        for (int i = 0; i < n; ++i)
+        {
+            int sum = 0;
+            for (int j = 0; j < n; ++j)
+            {
+                sum += grid[j * n + i];
+            }
+            sums.push_back(sum);
+        }
+
+        int sum = 0;
+        for (int j = 0; j < n; ++j)
+        {
+            sum += grid[j * n + j];
+        }
+
+        sums.push_back(sum);  
+
+        sum = 0;
+        for (int j = 0; j < n; ++j)
+        {
+            sum += grid[j * n + n - j - 1];
+        }
+        sums.push_back(sum);
+
+        std::set<int> sumsUnique;
+        for (auto sum: sums)
+        {
+            sumsUnique.insert(sum);
+        }
+
+        if (sumsUnique.size() == 1)
+        {
+            break;
+        }
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            std::cout << grid[i * n + j] << " ";
+        }
+
+        std::cout << "\n";
+    }
 }
