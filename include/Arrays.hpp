@@ -62,4 +62,8 @@ std::vector<int> GeneratePrimes(int n);
 
 void ApplyPermutation(std::vector<int> perm, std::vector<int>* A_ptr);
 
+std::vector<int> NextPermutation(std::vector<int> perm);
+
+void nextPermutation(std::vector<int> &nums);
+
 #endif // ARRAYS_HPP

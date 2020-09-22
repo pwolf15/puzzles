@@ -552,3 +552,60 @@ TEST(Arrays, ApplyPermutation)
         i++;
     }
 }
+
+TEST(Arrays, NextPermutation)
+{
+    std::vector<int> perm = {1, 0, 3, 2};
+    std::vector<int> expected = { 1, 2, 0, 3};
+    std::vector<int> result = NextPermutation(perm);
+    size_t i = 0;
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    perm = { 1, 0, 2, 3, 4};
+    expected = { 1, 0, 2, 4, 3};
+    result = NextPermutation(perm);
+
+    i = 0;
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    perm = { 1, 2, 3, 4};
+    expected = { 1, 2, 4, 3};
+    result = NextPermutation(perm);
+
+    i = 0;
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    perm = { 3, 2, 1, 0};
+    expected = { };
+    result = NextPermutation(perm);
+
+    i = 0;
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    result = { 1, 2, 3, 4};
+    expected = { 1, 2, 4, 3};
+    nextPermutation(result);
+
+    i = 0;
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+}

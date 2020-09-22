@@ -947,10 +947,10 @@ void Rearrange_EPI(std::vector<int> *A_ptr)
         //     (A[i] < A[i+1] && i % 2 == 1))
 
         // iterative refinement of a brute-force solution
-        if ((A[i-1] < A[i] && i % 2 == 0) ||
-            (A[i-1] > A[i] && i % 2 == 1))
+        if ((A[i - 1] < A[i] && i % 2 == 0) ||
+            (A[i - 1] > A[i] && i % 2 == 1))
         {
-            std::swap(A[i-1], A[i]);
+            std::swap(A[i - 1], A[i]);
         }
     }
 }
@@ -1061,7 +1061,7 @@ std::vector<int> GeneratePrimes_SieveOptimized(int n)
     {
         return {};
     }
-    
+
     const int size = std::floor(0.5 * (n - 3)) + 1;
     std::vector<int> primes;
     primes.emplace_back(2);
@@ -1080,7 +1080,7 @@ std::vector<int> GeneratePrimes_SieveOptimized(int n)
 
             // Sieving from p^2, whose value is (4i^2 + 12i + 9). The index in
             // is_prime is (2i^2 + 6i + 3) because is_prime[i] represents 2i + 3
-            // 
+            //
             // Note that we need to use long long for j because p^2 might overflow.
             // p^2 = 4i^2 + 12i + 9
             // index of p^2 = 2i^2 + 6i + 3 => (2 * index + 3) = 4i^2 + 12i + 9
@@ -1102,12 +1102,12 @@ std::vector<int> GeneratePrimes(int n)
 
 // time complexity: O(n)
 // space complexity: O(n)
-void ApplyPermutation_BF(std::vector<int> perm, std::vector<int>* A_ptr)
+void ApplyPermutation_BF(std::vector<int> perm, std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     std::vector<int> permuted(A.size());
 
-    for (auto p: perm)
+    for (auto p : perm)
     {
         permuted[p] = A[p];
     }
@@ -1115,9 +1115,9 @@ void ApplyPermutation_BF(std::vector<int> perm, std::vector<int>* A_ptr)
     std::swap(permuted, A);
 }
 
-void ApplyPermutation_Optimal(std::vector<int> perm, std::vector<int>* A_ptr)
+void ApplyPermutation_Optimal(std::vector<int> perm, std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
 
     size_t i = 0;
     while (true)
@@ -1139,12 +1139,11 @@ void ApplyPermutation_Optimal(std::vector<int> perm, std::vector<int>* A_ptr)
     }
 }
 
-
 // O(n) time complexity
 // O(n) space complexity?
-void ApplyPermutation_EPI(std::vector<int> perm, std::vector<int>* A_ptr)
+void ApplyPermutation_EPI(std::vector<int> perm, std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     for (int i = 0; i < A.size(); ++i)
     {
         while (perm[i] != i)
@@ -1155,9 +1154,9 @@ void ApplyPermutation_EPI(std::vector<int> perm, std::vector<int>* A_ptr)
     }
 }
 
-void ApplyPermutation_NoMut(std::vector<int> perm, std::vector<int>* A_ptr)
+void ApplyPermutation_NoMut(std::vector<int> perm, std::vector<int> *A_ptr)
 {
-    std::vector<int>& A = *A_ptr;
+    std::vector<int> &A = *A_ptr;
     for (int i = 0; i < A.size(); ++i)
     {
         while (perm[i] != i)
@@ -1168,9 +1167,80 @@ void ApplyPermutation_NoMut(std::vector<int> perm, std::vector<int>* A_ptr)
     }
 }
 
-
-void ApplyPermutation(std::vector<int> perm, std::vector<int>* A_ptr)
+void ApplyPermutation(std::vector<int> perm, std::vector<int> *A_ptr)
 {
 
     return ApplyPermutation_Optimal(perm, A_ptr);
+}
+
+std::vector<int> NextPermutation(std::vector<int> perm)
+{
+    std::vector<int> result = perm;
+    size_t idx = 1000;
+    bool foundIdx = false;
+    for (int i = perm.size() - 1; i > 0; --i)
+    {
+        for (int j = i - 1; j >= 0; --j)
+        {
+            if (perm[j] < perm[i])
+            {
+                idx = j + 1;
+                std::swap(result[i], result[j]);
+                foundIdx = true;
+                break;
+            }
+        }
+
+        if (foundIdx)
+        {
+            break;
+        }
+    }
+
+    if (foundIdx)
+    {
+        std::sort(result.begin() + idx, result.end());
+    }
+    else
+    {
+        result = {};
+    }
+
+    return result;
+}
+
+void nextPermutation(std::vector<int> &nums)
+{
+    std::vector<int> &result = nums;
+    size_t idx = std::numeric_limits<int>::max();
+    bool foundIdx = false;
+    for (int i = nums.size() - 1; i > 0; --i)
+    {
+        for (int j = i - 1; j >= 0; --j)
+        {
+            if (result[j] < result[i])
+            {
+                idx = j + 1;
+                std::swap(result[i], result[j]);
+                foundIdx = true;
+                break;
+            }
+        }
+
+        if (foundIdx)
+        {
+            break;
+        }
+    }
+
+    if (foundIdx)
+    {
+        std::sort(result.begin() + idx, result.end());
+    }
+    else
+    {
+        result = {};
+    }
+
+    return;
 }
