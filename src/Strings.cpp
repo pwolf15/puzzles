@@ -183,3 +183,20 @@ std::string sumTwo(std::string A, std::string B)
     // }
     return "";
 }
+
+void reverseString(std::vector<char> &s)
+{
+    // std::reverse(s.begin(), s.end());
+
+    for (int i = 0; i < s.size() / 2; ++i)
+    {
+        auto temp = s[i];
+        s[i] = s[s.size() - i - 1];
+        s[s.size() - i - 1] = temp;
+    }
+
+    for (auto c : s)
+    {
+        std::cout << c << std::endl;
+    }
+}

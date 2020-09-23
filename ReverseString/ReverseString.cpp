@@ -9,38 +9,8 @@ using namespace std;
 class Solution
 {
 public:
-    void reverseString(vector<char> &s)
-    {
 
-        // std::reverse(s.begin(), s.end());
-
-        for (int i = 0; i < s.size() / 2; ++i)
-        {
-            auto temp = s[i];
-            s[i] = s[s.size() - i - 1];
-            s[s.size() - i - 1] = temp;
-        }
-
-        for (auto c : s)
-        {
-            std::cout << c << std::endl;
-        }
-    }
 };
-
-bool equals(vector<char> &a, vector<char> &b)
-{
-    bool result = true;
-    for (int i = 0; i < a.size(); ++i)
-    {
-        if (a[i] != b[i])
-        {
-            result = false;
-            break;
-        }
-    }
-    return result;
-}
 
 int main()
 {

@@ -2,6 +2,7 @@
 #define STRINGS_HPP
 
 #include <string>
+#include <vector>
 
 // Given a string, find the first non-repeating character in it and return its index. 
 // If it doesn't exist, return -1.
@@ -15,5 +16,7 @@ bool detectCapitalUse(std::string word);
 bool isPalindrome(std::string s);
 
 std::string sumTwo(std::string A, std::string B);
+
+void reverseString(std::vector<char> &s);
 
 #endif // STRINGS_HPP
