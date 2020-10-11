@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <deque>
 #include <cmath>
+#include <map>
 
 int removeDuplicates_Efficient(std::vector<int> &nums)
 {
@@ -1175,72 +1176,57 @@ void ApplyPermutation(std::vector<int> perm, std::vector<int> *A_ptr)
 
 std::vector<int> NextPermutation(std::vector<int> perm)
 {
-    std::vector<int> result = perm;
-    size_t idx = 1000;
-    bool foundIdx = false;
-    for (int i = perm.size() - 1; i > 0; --i)
-    {
-        for (int j = i - 1; j >= 0; --j)
-        {
-            if (perm[j] < perm[i])
-            {
-                idx = j + 1;
-                std::swap(result[i], result[j]);
-                foundIdx = true;
-                break;
-            }
-        }
+    std::vector<int> nums = perm;
+    std::unordered_map<int, int> swap_candidates = {};
+    int largestSwapIndex = -1;
 
-        if (foundIdx)
-        {
-            break;
-        }
-    }
-
-    if (foundIdx)
-    {
-        std::sort(result.begin() + idx, result.end());
-    }
-    else
-    {
-        result = {};
-    }
-
-    return result;
-}
-
-void nextPermutation(std::vector<int> &nums)
-{
-    std::vector<int> &result = nums;
-    size_t idx = std::numeric_limits<int>::max();
-    bool foundIdx = false;
     for (int i = nums.size() - 1; i > 0; --i)
     {
-        for (int j = i - 1; j >= 0; --j)
-        {
-            if (result[j] < result[i])
-            {
-                idx = j + 1;
-                std::swap(result[i], result[j]);
-                foundIdx = true;
-                break;
-            }
-        }
-
-        if (foundIdx)
+        if (i <= largestSwapIndex)
         {
             break;
         }
+
+        for (int j = i - 1; j >= 0; j--)
+        {
+            if (nums[i] > nums[j])
+            {
+                swap_candidates[i] = j;
+                largestSwapIndex = std::max(largestSwapIndex, j);
+                break;
+            }
+        }
     }
 
-    if (foundIdx)
+    std::map<int, int> downSelected;
+    for (auto c : swap_candidates)
     {
-        std::sort(result.begin() + idx, result.end());
+        if (c.second == largestSwapIndex)
+        {
+            downSelected[nums[c.first]] = c.first;
+        }
+    }
+
+    if (largestSwapIndex == -1)
+    {
+        return {};
+    }
+
+    std::swap(nums[largestSwapIndex], nums[downSelected.begin()->second]);
+    std::sort(nums.begin() + largestSwapIndex + 1, nums.end());
+
+    return nums;
+}
+
+void NextPermutationLC(std::vector<int> &nums)
+{
+    auto result = NextPermutation(nums);
+    if (result.empty())
+    {
+        std::sort(nums.begin(), nums.end());
     }
     else
     {
-        result = {};
+        std::swap(nums, result);
     }
-
-    return;
 }

@@ -557,8 +557,11 @@ TEST(Arrays, NextPermutation)
 {
     std::vector<int> perm = {1, 0, 3, 2};
     std::vector<int> expected = { 1, 2, 0, 3};
-    std::vector<int> result = NextPermutation(perm);
+    std::vector<int> result;
+
     size_t i = 0;
+    result = NextPermutation(perm);
+    CHECK(expected.size() == result.size());
     for (auto val: result)
     {
         CHECK_EQUAL(expected[i], result[i]);
@@ -570,6 +573,7 @@ TEST(Arrays, NextPermutation)
     result = NextPermutation(perm);
 
     i = 0;
+    CHECK(expected.size() == result.size());
     for (auto val: result)
     {
         CHECK_EQUAL(expected[i], result[i]);
@@ -581,6 +585,7 @@ TEST(Arrays, NextPermutation)
     result = NextPermutation(perm);
 
     i = 0;
+    CHECK(expected.size() == result.size());
     for (auto val: result)
     {
         CHECK_EQUAL(expected[i], result[i]);
@@ -592,15 +597,64 @@ TEST(Arrays, NextPermutation)
     result = NextPermutation(perm);
 
     i = 0;
+    CHECK(expected.size() == result.size());
     for (auto val: result)
     {
         CHECK_EQUAL(expected[i], result[i]);
         i++;
     }
 
-    result = { 1, 2, 3, 4};
+    perm = { 1, 2, 3, 4};
     expected = { 1, 2, 4, 3};
-    nextPermutation(result);
+    result = NextPermutation(perm);
+
+    i = 0;
+    CHECK(expected.size() == result.size());
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    perm = { 4, 2, 0, 2, 3, 2, 0};
+    expected = { 4, 2, 0, 3, 0, 2, 2};
+    result = NextPermutation(perm);
+
+    i = 0;
+    CHECK(expected.size() == result.size());
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    perm = { 1, 2 };
+    expected = { 2, 1};
+    result = NextPermutation(perm);
+
+    i = 0;
+    CHECK(expected.size() == result.size());
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    result = { 3, 2, 1 };
+    expected = { 1, 2, 3};
+    NextPermutationLC(result);
+
+    i = 0;
+    CHECK(expected.size() == result.size());
+    for (auto val: result)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+        i++;
+    }
+
+    result = { 4, 2, 0, 2, 3, 2, 0};
+    expected = { 4, 2, 0, 3, 0, 2, 2};
+    NextPermutationLC(result);
 
     i = 0;
     for (auto val: result)
