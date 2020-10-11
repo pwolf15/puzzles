@@ -64,6 +64,8 @@ void ApplyPermutation(std::vector<int> perm, std::vector<int>* A_ptr);
 
 std::vector<int> NextPermutation(std::vector<int> perm);
 
+std::vector<int> NextPermutationEPI(std::vector<int> perm);
+
 void NextPermutationLC(std::vector<int> &nums);
 
 #endif // ARRAYS_HPP

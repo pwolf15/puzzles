@@ -1174,7 +1174,7 @@ void ApplyPermutation(std::vector<int> perm, std::vector<int> *A_ptr)
     return ApplyPermutation_Optimal(perm, A_ptr);
 }
 
-std::vector<int> NextPermutation(std::vector<int> perm)
+std::vector<int> NextPermutation_PW(std::vector<int> perm)
 {
     std::vector<int> nums = perm;
     std::unordered_map<int, int> swap_candidates = {};
@@ -1216,6 +1216,48 @@ std::vector<int> NextPermutation(std::vector<int> perm)
     std::sort(nums.begin() + largestSwapIndex + 1, nums.end());
 
     return nums;
+}
+
+// O(n) complexity: each step is an iteration through an array
+// All additional space complexity is O(1)
+std::vector<int> NextPermutation_EPI(std::vector<int> perm)
+{
+    // 1. Find k such that p[k] < p[k + 1] and entries after index k appear in decreasing order
+    // 2. Find the smallest p[l] such that p[l] > p[k] (such an l must exist since p[k] < p[k+1])
+    // 3. Swap p[l] and p[k] (note that the sequence after position k remains in decreasing order)
+    // 4. Reverse the sequence after position k
+
+    // Find the first entry from the right that is smaller than the entry immediately after it.
+    auto inversion_point = is_sorted_until(perm.rbegin(), perm.rend());
+    if (inversion_point == perm.rend())
+    {
+        // perm is sorted in decreasing order, so it's the last permutation
+        return {};
+    }
+
+    // Swap the entry referenced by the inversion point with the smallest entry
+    // appearing after inversion_point that is greater than the entry referenced
+    // by inversion point:
+    //
+    // 1.) Find the smallest entry after inversion_point that's greater than the
+    //      entry referenced by inversion_point. Since perm must be sorted in
+    //      decreasing order after inversion_point, we can use a fast algorithm
+    //      to find this entry.
+
+    auto least_upper_bound =
+        upper_bound(perm.rbegin(), inversion_point, *inversion_point);
+
+    // 2.) Perform the swap
+    iter_swap(inversion_point, least_upper_bound);
+
+    // Reverse the subarray that follow the inversion_point.
+    reverse(perm.rbegin(), inversion_point);
+    return perm;
+}
+
+std::vector<int> NextPermutation(std::vector<int> perm)
+{
+    return NextPermutation_EPI(perm);
 }
 
 void NextPermutationLC(std::vector<int> &nums)
