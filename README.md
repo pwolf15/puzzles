@@ -1,5 +1,7 @@
 # Problem Solving through Problems
 
+## TODO: Next Permutation Variants
+
 ## Notes
 * Iterative refinement of a brute-force solution.
 
