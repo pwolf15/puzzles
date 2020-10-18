@@ -1272,3 +1272,8 @@ void NextPermutationLC(std::vector<int> &nums)
         std::swap(nums, result);
     }
 }
+
+void RandomSampling(int k, std::vector<int>* A_ptr)
+{
+    
+}

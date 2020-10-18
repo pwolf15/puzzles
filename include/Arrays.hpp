@@ -68,4 +68,6 @@ std::vector<int> NextPermutationEPI(std::vector<int> perm);
 
 void NextPermutationLC(std::vector<int> &nums);
 
+void RandomSampling(int k, std::vector<int>* A_ptr);
+
 #endif // ARRAYS_HPP
