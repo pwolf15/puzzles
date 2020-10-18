@@ -7,6 +7,10 @@
 #include <cmath>
 #include <map>
 
+// RNG
+#include <ctime>
+#include <random>
+
 int removeDuplicates_Efficient(std::vector<int> &nums)
 {
     // time complexity: O(n) where n is array length
@@ -1275,5 +1279,13 @@ void NextPermutationLC(std::vector<int> &nums)
 
 void RandomSampling(int k, std::vector<int>* A_ptr)
 {
-    
+    auto& A = *A_ptr;
+    srand(time(NULL));
+
+    // step through numbers, swap indices when found
+    for (int i = 0; i < k; ++i)
+    {
+        int index = (rand() % (A.size() - i)) + i;
+        std::swap(A[i], A[index]);
+    }
 }
