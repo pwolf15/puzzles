@@ -1294,6 +1294,7 @@ void RandomSampling_PW(int k, std::vector<int>* A_ptr)
 
 // space complexity: O(1)
 // time complexity: O(k)
+
 void RandomSampling_EPI(int k, std::vector<int>* A_ptr)
 {
     std::vector<int>& A = *A_ptr;
@@ -1303,6 +1304,13 @@ void RandomSampling_EPI(int k, std::vector<int>* A_ptr)
     {
         // Generate a random index in [i, size(A) - 1].
         
+        //     Common failings of "bad" - but common enough - rand() implementations are:
+
+        // low randomness of low-order bits;
+        // short period;
+        // low RAND_MAX;
+        // some correlation between successive extractions (in general, LCGs produce numbers that are on a limited number of hyperplanes, although this can be somehow mitigated).
+
         // why use uniform_int_distribution vs. rand(): https://stackoverflow.com/a/32860886
         // https://www.youtube.com/watch?v=LDPMpc-ENqY&feature=youtu.be
         std::swap(A[i], A[std::uniform_int_distribution<int>{i, static_cast<int>(A.size()) - 1}(seed)]);
