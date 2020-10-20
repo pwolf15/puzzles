@@ -135,3 +135,6 @@ Delete Duplicates variants p. 51
 TODO: sell buy stocks O(n log n)
 TODO: sell buy stocks twice O(n^4), O(N^2)
 TODO: compute an alternation, brute-force swap top and bottom, median solution
+
+5.12 Variant: Does rand() mod n generate a number uniformly distributed in [0, n-1]?
+- No, certain lower bit numbers have greater likelihood: https://stackoverflow.com/questions/10984974/why-do-people-say-there-is-modulo-bias-when-using-a-random-number-generator/10984975. For larger numbers, this could skew the stribution.
