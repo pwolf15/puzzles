@@ -1302,6 +1302,9 @@ void RandomSampling_EPI(int k, std::vector<int>* A_ptr)
     for (int i = 0; i < k; ++i)
     {
         // Generate a random index in [i, size(A) - 1].
+        
+        // why use uniform_int_distribution vs. rand(): https://stackoverflow.com/a/32860886
+        // https://www.youtube.com/watch?v=LDPMpc-ENqY&feature=youtu.be
         std::swap(A[i], A[std::uniform_int_distribution<int>{i, static_cast<int>(A.size()) - 1}(seed)]);
     }
 }
