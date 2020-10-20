@@ -1277,7 +1277,9 @@ void NextPermutationLC(std::vector<int> &nums)
     }
 }
 
-void RandomSampling(int k, std::vector<int>* A_ptr)
+// space complexity: O(1)
+// time complexity: O(k)
+void RandomSampling_PW(int k, std::vector<int>* A_ptr)
 {
     auto& A = *A_ptr;
     srand(time(NULL));
@@ -1288,4 +1290,23 @@ void RandomSampling(int k, std::vector<int>* A_ptr)
         int index = (rand() % (A.size() - i)) + i;
         std::swap(A[i], A[index]);
     }
+}
+
+// space complexity: O(1)
+// time complexity: O(k)
+void RandomSampling_EPI(int k, std::vector<int>* A_ptr)
+{
+    std::vector<int>& A = *A_ptr;
+    std::default_random_engine seed((std::random_device())());
+
+    for (int i = 0; i < k; ++i)
+    {
+        // Generate a random index in [i, size(A) - 1].
+        std::swap(A[i], A[std::uniform_int_distribution<int>{i, static_cast<int>(A.size()) - 1}(seed)]);
+    }
+}
+
+void RandomSampling(int k, std::vector<int>* A_ptr)
+{
+    return RandomSampling_EPI(k, A_ptr);
 }
