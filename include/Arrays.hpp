@@ -70,4 +70,9 @@ void NextPermutationLC(std::vector<int> &nums);
 
 void RandomSampling(int k, std::vector<int>* A_ptr);
 
+// Assumption: there at least k elements in the stream.
+std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
+    const std::vector<int>::const_iterator stream_end,
+    int k);
+
 #endif // ARRAYS_HPP

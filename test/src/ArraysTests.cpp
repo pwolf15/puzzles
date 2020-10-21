@@ -675,3 +675,15 @@ TEST(Arrays, RandomSampling)
         std::cout << in[i] << std::endl;
     }
 }
+
+TEST(Arrays, OnlineRandomSample)
+{
+    std::vector<int> in = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    RandomSampling(3, &in);
+
+    for (int i = 0; i < 5; i++)
+    {
+        std::cout << in[i] << std::endl;
+    }
+}

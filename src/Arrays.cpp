@@ -1321,3 +1321,12 @@ void RandomSampling(int k, std::vector<int>* A_ptr)
 {
     return RandomSampling_EPI(k, A_ptr);
 }
+
+std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
+    const std::vector<int>::const_iterator stream_end,
+    int k)
+{
+    std::vector<int> samples;
+
+    return samples;
+}
