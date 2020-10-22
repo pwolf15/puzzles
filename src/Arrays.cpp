@@ -1346,12 +1346,12 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     }
     
     i = 0;
-    for (; i < k && iter != stream_end; i++)
+    for (; iter != stream_end; iter++)
     {
-        if (rand() % 2)
+        int res = rand() % (k + 1);
+        if (res < k)
         {
-            randomSamples[i++] = *iter;
-            iter++;
+            randomSamples[res] = *iter;
         }
     }
     

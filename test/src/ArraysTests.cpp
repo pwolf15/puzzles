@@ -678,11 +678,20 @@ TEST(Arrays, RandomSampling)
 
 TEST(Arrays, OnlineRandomSample)
 {
-    std::vector<int> in = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> in = {1, 1, 1, 1, 1};
 
     int k = 3;
     std::vector<int> result = OnlineRandomSample(in.begin(), in.end(), k);
 
+    for (int i = 0; i < k && i < result.size(); i++)
+    {
+        std::cout << result[i] << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::vector<int> in2 = { 2, 3, 4, 5 };
+    result = OnlineRandomSample(in2.begin(), in2.end(), k);
     for (int i = 0; i < k && i < result.size(); i++)
     {
         std::cout << result[i] << std::endl;
