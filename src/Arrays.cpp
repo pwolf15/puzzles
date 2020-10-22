@@ -1326,11 +1326,20 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     const std::vector<int>::const_iterator stream_end,
     int k)
 {
+
+    srand(time(NULL));
+    
     std::vector<int> samples;
     for (auto iter = stream_begin; iter != stream_end; iter++)
     {
         samples.push_back(*iter);
     }
 
-    return samples;
+    for (int i = 0; i < k; ++i)
+    {
+        std::swap(samples[i], samples[rand() % (samples.size() - i) + i]);
+    }
+
+    std::vector<int> result(samples.begin(), samples.begin() + k);
+    return result;
 }
