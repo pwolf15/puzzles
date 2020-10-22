@@ -680,10 +680,11 @@ TEST(Arrays, OnlineRandomSample)
 {
     std::vector<int> in = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    RandomSampling(3, &in);
+    int k = 3;
+    std::vector<int> result = OnlineRandomSample(in.begin(), in.end(), k);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < k; i++)
     {
-        std::cout << in[i] << std::endl;
+        std::cout << result[i] << std::endl;
     }
 }

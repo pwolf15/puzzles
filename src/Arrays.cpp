@@ -1327,6 +1327,10 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     int k)
 {
     std::vector<int> samples;
+    for (auto iter = stream_begin; iter != stream_end; iter++)
+    {
+        samples.push_back(*iter);
+    }
 
     return samples;
 }
