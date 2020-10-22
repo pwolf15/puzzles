@@ -1322,24 +1322,38 @@ void RandomSampling(int k, std::vector<int>* A_ptr)
     return RandomSampling_EPI(k, A_ptr);
 }
 
+static std::vector<int> randomSamples(1000);
+static int randomSamplesSize = 0;
+
 std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
     const std::vector<int>::const_iterator stream_end,
     int k)
 {
+    // how to deal with n + 1 packet
+    // for each value, heads or tails swap
+    // else push
 
     srand(time(NULL));
+
+    int i = 0;
+    auto iter = stream_begin;
+    while (randomSamplesSize < k && iter != stream_end)
+    {
+        // append 
+        randomSamples[randomSamplesSize++] = *iter;
+        iter++;
+        i++;
+    }
     
-    std::vector<int> samples;
-    for (auto iter = stream_begin; iter != stream_end; iter++)
+    i = 0;
+    for (; i < k && iter != stream_end; i++)
     {
-        samples.push_back(*iter);
+        if (rand() % 2)
+        {
+            randomSamples[i++] = *iter;
+            iter++;
+        }
     }
-
-    for (int i = 0; i < k; ++i)
-    {
-        std::swap(samples[i], samples[rand() % (samples.size() - i) + i]);
-    }
-
-    std::vector<int> result(samples.begin(), samples.begin() + k);
-    return result;
+    
+    return randomSamples;
 }

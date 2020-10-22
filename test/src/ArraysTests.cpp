@@ -683,7 +683,7 @@ TEST(Arrays, OnlineRandomSample)
     int k = 3;
     std::vector<int> result = OnlineRandomSample(in.begin(), in.end(), k);
 
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < k && i < result.size(); i++)
     {
         std::cout << result[i] << std::endl;
     }
