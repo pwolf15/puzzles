@@ -1365,7 +1365,7 @@ std::vector<int> OnlineRandomSample_PW(std::vector<int>::const_iterator stream_b
     // for each value, heads or tails swap
     // else push
 
-    srand(time(NULL));
+    std::default_random_engine seed((std::random_device())());
 
     int i = 0;
     auto iter = stream_begin;
@@ -1380,7 +1380,7 @@ std::vector<int> OnlineRandomSample_PW(std::vector<int>::const_iterator stream_b
     i = 0;
     for (; iter != stream_end; iter++)
     {
-        int res = rand() % (k + 1);
+        int res = std::uniform_int_distribution<int>{i, static_cast<int>(k)}(seed);
         if (res < k)
         {
             randomSamples[res] = *iter;
