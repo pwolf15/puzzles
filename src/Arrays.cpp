@@ -1325,6 +1325,8 @@ void RandomSampling(int k, std::vector<int>* A_ptr)
 static std::vector<int> randomSamples(1000);
 static int randomSamplesSize = 0;
 
+// space complexity: O(n) all packets stored 
+// time complexity: O(nk) each packet is read followed by invoke to random sampling
 std::vector<int> OnlineRandomSample_BF(std::vector<int>::const_iterator stream_begin,
     const std::vector<int>::const_iterator stream_end,
     int k)
@@ -1390,9 +1392,46 @@ std::vector<int> OnlineRandomSample_PW(std::vector<int>::const_iterator stream_b
     return randomSamples;
 }
 
+std::vector<int> OnlineRandomSample_EPI(std::vector<int>::const_iterator stream_begin,
+    const std::vector<int>::const_iterator stream_end,
+    int k)
+{
+    // how to deal with n + 1 packet
+    // for each value, heads or tails swap
+    // else push
+
+    std::vector<int> running_sample;
+
+    // Storesult the first k elements.
+    for (int i = 0; i < k; ++i)
+    {
+        running_sample.emplace_back(*stream_begin++);
+    }
+
+    std::default_random_engine seed((std::random_device())());
+    // Have read the first k elements
+
+    int num_seen_so_far = k;
+    while (stream_begin != stream_end)
+    {
+        int x = *stream_begin++;
+        ++num_seen_so_far;
+        // Generate a random number in [0, num_seen_so_far - 1], and if this
+        // number is in [0, k - 1], we replace that element form the sample with 
+        // x.
+        if (const int idx_to_replace = std::uniform_int_distribution<int>{0, num_seen_so_far - 1}(seed);
+            idx_to_replace < k)
+        {
+            running_sample[idx_to_replace] = x;
+        }
+    }
+
+    return running_sample;
+}
+
 std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
     const std::vector<int>::const_iterator stream_end,
     int k)
 {
-    return OnlineRandomSample_PW(stream_begin, stream_end, k);
+    return OnlineRandomSample_EPI(stream_begin, stream_end, k);
 }
