@@ -1325,7 +1325,39 @@ void RandomSampling(int k, std::vector<int>* A_ptr)
 static std::vector<int> randomSamples(1000);
 static int randomSamplesSize = 0;
 
-std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
+std::vector<int> OnlineRandomSample_BF(std::vector<int>::const_iterator stream_begin,
+    const std::vector<int>::const_iterator stream_end,
+    int k)
+{
+    static bool initialized = false;
+    
+    std::default_random_engine seed((std::random_device())());
+
+    if (!initialized)
+    {
+        randomSamples.clear();
+    }
+
+    for (auto iter = stream_begin; iter != stream_end; iter++)
+    {
+        randomSamples.push_back(*iter);
+    }
+
+    for (int i = 0; i < k; i++)
+    {
+        std::swap(randomSamples[i], randomSamples[std::uniform_int_distribution<int>{i, static_cast<int>(randomSamples.size()) - 1}(seed)]);
+    }
+
+    std::vector<int> results;
+    for (int i = 0; i < k; i++)
+    {
+        results.push_back(randomSamples[i]);
+    }
+
+    return results;
+}
+
+std::vector<int> OnlineRandomSample_PW(std::vector<int>::const_iterator stream_begin,
     const std::vector<int>::const_iterator stream_end,
     int k)
 {
@@ -1356,4 +1388,11 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     }
     
     return randomSamples;
+}
+
+std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begin,
+    const std::vector<int>::const_iterator stream_end,
+    int k)
+{
+    return OnlineRandomSample_PW(stream_begin, stream_end, k);
 }
