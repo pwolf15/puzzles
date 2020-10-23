@@ -1392,6 +1392,8 @@ std::vector<int> OnlineRandomSample_PW(std::vector<int>::const_iterator stream_b
     return randomSamples;
 }
 
+// O(n); per element operations are O(1)
+// O(k); extra space
 std::vector<int> OnlineRandomSample_EPI(std::vector<int>::const_iterator stream_begin,
     const std::vector<int>::const_iterator stream_end,
     int k)
