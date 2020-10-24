@@ -700,7 +700,7 @@ TEST(Arrays, OnlineRandomSample)
 
 TEST(Arrays, ComputeRandomPermutation)
 {
-    std::vector<int> result = ComputeRandomPermutation(3);
+    std::vector<int> result = ComputeRandomPermutation(10);
 
     for (auto mem: result)
     {

@@ -1441,10 +1441,21 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
 std::vector<int> ComputeRandomPermutation(int n)
 {
     std::vector<int> result(n);
-
+    std::unordered_set<int> selected;
+    srand(time(NULL));
+    
     for (int i = 0; i < n; i++)
     {
-        result[i] = i;
+        while (true)
+        {
+            int val = rand() % n;
+            if (selected.find(val) == selected.end())
+            {
+                result[i] = val;
+                selected.insert(val);
+                break;
+            }
+        }
     }
 
     return result;
