@@ -1437,3 +1437,15 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
 {
     return OnlineRandomSample_EPI(stream_begin, stream_end, k);
 }
+
+std::vector<int> ComputeRandomPermutation(int n)
+{
+    std::vector<int> result(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        result[i] = i;
+    }
+
+    return result;
+}

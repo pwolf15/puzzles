@@ -75,4 +75,6 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     const std::vector<int>::const_iterator stream_end,
     int k);
 
+std::vector<int> ComputeRandomPermutation(int n);
+
 #endif // ARRAYS_HPP

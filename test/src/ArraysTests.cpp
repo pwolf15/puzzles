@@ -697,3 +697,13 @@ TEST(Arrays, OnlineRandomSample)
         std::cout << result[i] << std::endl;
     }
 }
+
+TEST(Arrays, ComputeRandomPermutation)
+{
+    std::vector<int> result = ComputeRandomPermutation(3);
+
+    for (auto mem: result)
+    {
+        std::cout << mem << std::endl;
+    }
+}
