@@ -1438,7 +1438,10 @@ std::vector<int> OnlineRandomSample(std::vector<int>::const_iterator stream_begi
     return OnlineRandomSample_EPI(stream_begin, stream_end, k);
 }
 
-std::vector<int> ComputeRandomPermutation(int n)
+// space complexity: O(n) (hash table + array)
+// time complexity: coupon collector's problem; first few values likely chosen quickly, last few not so much
+//  O (n log n)
+std::vector<int> ComputeRandomPermutation_PWBF(int n)
 {
     std::vector<int> result(n);
     std::unordered_set<int> selected;
@@ -1459,4 +1462,20 @@ std::vector<int> ComputeRandomPermutation(int n)
     }
 
     return result;
+}
+
+// space complexity: O(n), no additional storage
+// time complexity: O(n)
+std::vector<int> ComputeRandomPermutation_EPI(int n) 
+{
+    std::vector<int> permutation(n);
+    // Initializes permutation to 0, 1, 2, ..., n - 1;
+    std::iota(permutation.begin(), permutation.end(), 0);
+    RandomSampling(n, &permutation);
+    return permutation;
+}
+
+std::vector<int> ComputeRandomPermutation(int n)
+{
+    return ComputeRandomPermutation_EPI(n);
 }
