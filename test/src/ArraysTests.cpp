@@ -707,3 +707,25 @@ TEST(Arrays, ComputeRandomPermutation)
         std::cout << mem << std::endl;
     }
 }
+
+TEST(Arrays, RandomSubset)
+{
+    int n = 10;
+    int k = 5;
+
+    for (int i = 1; i <= 30; i++)
+    {
+        auto result = RandomSubset(n, k);
+        for (auto mem: result)
+        {
+            std::cout << mem << " ";
+        }
+
+        std::cout << "\t\t";
+
+        if (i % 5 == 0)
+        {
+            std::cout << std::endl;
+        }
+    }
+}

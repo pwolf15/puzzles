@@ -1479,3 +1479,71 @@ std::vector<int> ComputeRandomPermutation(int n)
 {
     return ComputeRandomPermutation_EPI(n);
 }
+
+int fact(int n) {
+
+    if (n == 0 || n == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return n * fact(n - 1);
+    }
+};
+
+std::vector<int> RandomSubset_PW(int n, int k)
+{
+    // create a hash table of all possible (there should be n possible)
+    std::vector<int> arr(n);
+    std::iota(arr.begin(), arr.end(), 0);
+    
+    // subsets
+    int numSubsets = fact(n) / (fact(n - k) * fact(k));
+    std::vector<std::vector<int>> subsets;
+
+    while (true)
+    {
+        if (subsets.size() == numSubsets)
+        {
+            break;
+        }
+
+        // get random subset
+        RandomSampling(k, &arr);
+
+        bool matches = false;
+        for (auto subset: subsets)
+        {
+            bool matching = true;
+            for (int i = 0; i < subset.size(); ++i)
+            {
+                if (subset[i] != arr[i])
+                {
+                    matching = false;
+                    break;
+                }
+            }
+
+            if (matching)
+            {
+                matches = true;
+                break;
+            }
+        }
+
+        if (!matches)
+        {
+            std::vector<int> newSubset(arr.begin(), arr.begin() + k);
+            subsets.push_back(newSubset);
+        }
+    }
+
+    int randIdx = rand() % numSubsets;
+    return subsets[randIdx];
+}
+
+std::vector<int> RandomSubset(int n, int k)
+{
+    return RandomSubset_PW(n, k);
+}
