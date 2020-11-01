@@ -1543,7 +1543,54 @@ std::vector<int> RandomSubset_PW(int n, int k)
     return subsets[randIdx];
 }
 
+// brute force => Solution 5.14 brute force
+// O(n) space, O(n) + O(k) time => offline sampling from 5.12
+// time complexity: O(k) => bounded number of ops per iteration, space complexity O(k)
+std::vector<int> RandomSubset_EPI(int n, int k)
+{
+    std::unordered_map<int, int> changed_elements;
+    std::default_random_engine seed((std::random_device())());
+    for (int i = 0; i < k; ++i)
+    {
+        // Generate a random index in [i, n - 1]
+        int rand_idx = std::uniform_int_distribution<int>{i, n - 1}(seed);
+        if (auto ptr1 = changed_elements.find(rand_idx),
+            ptr2 = changed_elements.find(i);
+            ptr1 == changed_elements.end() && ptr2 == changed_elements.end())
+        {
+            changed_elements[rand_idx] = i;
+            changed_elements[i] = rand_idx;
+        }
+        else if (ptr1 == changed_elements.end() &&
+                 ptr2 != changed_elements.end())
+        {
+            changed_elements[rand_idx] = ptr2->second;
+            ptr2->second = rand_idx;
+        }
+        else if (ptr1 != changed_elements.end() && 
+                 ptr2 == changed_elements.end())
+        {
+            changed_elements[i] = ptr1->second;
+            ptr1->second = i;
+        }
+        else
+        {
+            int temp = ptr2->second;
+            changed_elements[i] = ptr1->second;
+            changed_elements[rand_idx] = temp;
+        }
+    }
+
+    std::vector<int> result;
+    for (int i = 0; i < k; ++i)
+    {
+        result.emplace_back(changed_elements[i]);
+    }
+
+    return result;
+}
+
 std::vector<int> RandomSubset(int n, int k)
 {
-    return RandomSubset_PW(n, k);
+    return RandomSubset_EPI(n, k);
 }
