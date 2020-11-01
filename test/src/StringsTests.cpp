@@ -77,3 +77,24 @@ TEST(Strings, reverseString)
         i++;
     };
 }
+
+TEST(Strings, AddBinary)
+{
+    const std::vector<std::vector<std::string>> tests = {
+        {"0", "1"},
+        {"11", "1"},
+        {"1010", "1011"}};
+
+    const std::vector<std::string> expected = {
+        "1",
+        "100",
+        "10101"};
+
+    int i = 0;
+    for (auto test : tests)
+    {
+        auto result = addBinary(test[0], test[1]);
+        CHECK(expected[i] == result);
+        i++;
+    };
+}

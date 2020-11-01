@@ -19,4 +19,6 @@ std::string sumTwo(std::string A, std::string B);
 
 void reverseString(std::vector<char> &s);
 
+std::string addBinary(std::string a, std::string b);
+
 #endif // STRINGS_HPP
