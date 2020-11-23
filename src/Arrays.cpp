@@ -1594,3 +1594,28 @@ std::vector<int> RandomSubset(int n, int k)
 {
     return RandomSubset_EPI(n, k);
 }
+
+int NonuniformRandomNumberGeneration(const std::vector<int>& values,
+                                     const std::vector<double>& probabilities)
+{
+    // generate a value between 0 and 1
+    // step through probabilities until found value
+    std::default_random_engine seed((std::random_device())());
+
+    float result = (float)std::uniform_int_distribution<int>{0, 100}(seed) / 100;
+
+    int selectedIdx = 0;
+    float probThusFar = 0;
+    for (int i = 0; i < probabilities.size(); ++i)
+    {
+        probThusFar += probabilities[i];
+        if (probThusFar >= result)
+        {
+            break;
+        }
+
+        selectedIdx++;
+    }
+
+    return values[selectedIdx];
+}

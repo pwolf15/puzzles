@@ -79,4 +79,7 @@ std::vector<int> ComputeRandomPermutation(int n);
 
 std::vector<int> RandomSubset(int n, int k);
 
+int NonuniformRandomNumberGeneration(const std::vector<int>& values,
+                                     const std::vector<double>& probabilities);
+                                     
 #endif // ARRAYS_HPP

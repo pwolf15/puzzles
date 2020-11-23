@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 
 #include "ArraysTests.hpp"
 #include "Arrays.hpp"
@@ -727,5 +728,31 @@ TEST(Arrays, RandomSubset)
         {
             std::cout << std::endl;
         }
+    }
+}
+
+TEST(Arrays, NonuniformRandomNumberGeneration)
+{
+    std::vector<int> values = { 3, 5, 7, 11 };
+    std::vector<double> probabilities = { 9.0f / 18.0f, 6.0f / 18.0f, 2.0f / 18.0f, 1.0f / 18.0f };
+
+    std::unordered_map<int, int> appearances;
+    int numIters = 1000000;
+    for (int i = 0; i < numIters; i++)
+    {
+        int val = NonuniformRandomNumberGeneration(values, probabilities);
+        if (appearances.find(val) == appearances.end())
+        {
+            appearances[val] = 0;
+        }
+        else
+        {
+            appearances[val]++;
+        }
+    }
+
+    for (auto val: appearances)
+    {
+        std::cout << val.first << ", " << val.second<< std::endl;
     }
 }
