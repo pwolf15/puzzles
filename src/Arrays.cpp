@@ -6,6 +6,7 @@
 #include <deque>
 #include <cmath>
 #include <map>
+#include <numeric>
 
 // RNG
 #include <ctime>
@@ -1595,7 +1596,9 @@ std::vector<int> RandomSubset(int n, int k)
     return RandomSubset_EPI(n, k);
 }
 
-int NonuniformRandomNumberGeneration(const std::vector<int>& values,
+// time complexity: O(n)
+// space complexity: O(n)
+int NonuniformRandomNumberGeneration_PW(const std::vector<int>& values,
                                      const std::vector<double>& probabilities)
 {
     // generate a value between 0 and 1
@@ -1618,4 +1621,37 @@ int NonuniformRandomNumberGeneration(const std::vector<int>& values,
     }
 
     return values[selectedIdx];
+}
+
+// time complexity to compute a single value: O(n)
+// space complexity: O(n)
+// after array constructed, O(log n) to find value (binary search using upper_bound)
+int NonuniformRandomNumberGeneration_EPI(const std::vector<int>& values,
+                                     const std::vector<double>& probabilities)
+{
+    std::vector<double> prefix_sums_of_probabilities;
+    // Creating the endpoints for the intervals corresponding to the 
+    // probabilities.
+
+    std::partial_sum(std::cbegin(probabilities), std::cend(probabilities),
+        std::back_inserter(prefix_sums_of_probabilities));
+    
+    std::default_random_engine seed((std::random_device())());
+    const double uniform_0_1 =
+        std::generate_canonical<double, std::numeric_limits<double>::digits>(seed);
+
+    // find the index of the interval that uniform_0_1 lies in, which is the
+    // return value of upper_bound() minus 1
+    const int interval_idx =
+        std::distance(std::cbegin(prefix_sums_of_probabilities),
+            std::upper_bound(std::cbegin(prefix_sums_of_probabilities),
+            std::cend(prefix_sums_of_probabilities), uniform_0_1));
+
+    return values[interval_idx];
+}
+
+int NonuniformRandomNumberGeneration(const std::vector<int>& values,
+                                     const std::vector<double>& probabilities)
+{
+    return NonuniformRandomNumberGeneration_EPI(values, probabilities);
 }
