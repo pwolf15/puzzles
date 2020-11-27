@@ -1655,3 +1655,76 @@ int NonuniformRandomNumberGeneration(const std::vector<int>& values,
 {
     return NonuniformRandomNumberGeneration_EPI(values, probabilities);
 }
+
+bool IsValidSudoku(std::vector<std::vector<int>>& partial_assignment)
+{
+    for (int i = 0; i < partial_assignment.size(); ++i)
+    {
+        std::unordered_set<int> cols;
+        for (int j = 0; j < partial_assignment[0].size(); ++j)
+        {
+            int value = partial_assignment[i][j];
+            if (value == 0)
+            {
+                continue;
+            }
+            else if (cols.find(value) == cols.end())
+            {
+                cols.insert(value);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    for (int i = 0; i < partial_assignment.size(); ++i)
+    {
+        std::unordered_set<int> rows;
+        for (int j = 0; j < partial_assignment[0].size(); ++j)
+        {
+            int value = partial_assignment[j][i];
+            if (value == 0)
+            {
+                continue;
+            }
+            else if (rows.find(value) == rows.end())
+            {
+                rows.insert(value);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        std::unordered_set<int> subgrid;
+        int mRow = i / 3;
+        int mCol = i % 3;/* code */
+        for (int j = 0; j < 3; ++j)
+        {
+            for (int k = 0; k < 3; ++k)
+            {
+                int value = partial_assignment[(mRow * 3) + j][(mCol * 3) + k];
+                if (value == 0)
+                {
+                    continue;
+                }
+                else if (subgrid.find(value) == subgrid.end())
+                {
+                    subgrid.insert(value);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
