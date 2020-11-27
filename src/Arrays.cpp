@@ -1731,6 +1731,8 @@ bool IsValidSudoku_PW(std::vector<std::vector<int>>& partial_assignment)
 
 // Return true if subarray partial_assignment[start_row, end_row - 1][start_col, end_col - 1]
 // contains any duplicates in {1, 2, ...,, size(partial_assignment)}; otherwise return false.
+// time complexity: nxn grid => O(n^2) + O(n^2/(sqrt(n)^2) * (sqrt(n)^2)) = O(n^2)
+// space complexity: O(n) => bit array to check constraints
 bool HasDuplicate(const std::vector<std::vector<int>>& partial_assignment, int start_row, int end_row, int start_col, int end_col)
 {
     std::deque<bool> is_present(partial_assignment.size() + 1, false);
