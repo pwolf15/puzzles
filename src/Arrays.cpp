@@ -1794,3 +1794,71 @@ bool IsValidSudoku(std::vector<std::vector<int>>& partial_assignment)
 {
     return IsValidSudoku_EPI(partial_assignment);
 }
+
+std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix) 
+{
+    std::vector<int> spiral_order;
+
+    int i = 0;
+    int counter = 0;
+    int maxWidth = square_matrix[0].size();
+    int maxHeight = square_matrix.size();
+    while (true)
+    {
+        // top
+
+        bool noUpdates = true;
+        for (int c = i; c < maxWidth - i; c++)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[i][c]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // right
+        noUpdates = true;
+        for (int r = i + 1; r < maxHeight -i; r++)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[r][maxWidth - i - 1]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // bottom
+        noUpdates = true;
+        for (int c = maxWidth - i - 2; c >= i; c--)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[maxHeight - i - 1][c]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // left
+        noUpdates = true;
+        for (int r = maxHeight - i - 2; r >= i + 1; r--)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[r][i]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+        i++;
+    }
+
+    return spiral_order;
+}
