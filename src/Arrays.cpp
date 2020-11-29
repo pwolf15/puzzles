@@ -1795,7 +1795,7 @@ bool IsValidSudoku(std::vector<std::vector<int>>& partial_assignment)
     return IsValidSudoku_EPI(partial_assignment);
 }
 
-std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix) 
+std::vector<int> MatrixInSpiralOrder_PW(const std::vector<std::vector<int>>& square_matrix)
 {
     std::vector<int> spiral_order;
 
@@ -1861,4 +1861,50 @@ std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square
     }
 
     return spiral_order;
+}
+
+void MatrixLayerInClockwise(const std::vector<std::vector<int>>& square_matrix,
+    int offset, std::vector<int>* spiral_ordering)
+{
+    if (offset == square_matrix.size() - offset - 1)
+    {
+        // square_matrix has odd dimension, and we are at the center
+        // of suqare_matrix.
+        spiral_ordering->emplace_back(square_matrix[offset][offset]);
+        return;
+    }
+
+    for (int j = offset; j < square_matrix.size() - offset - 1; ++j)
+    {
+        spiral_ordering->emplace_back(square_matrix[offset][j]);
+    }
+    for (int i = offset; i < square_matrix.size() - offset - 1; ++i)
+    {
+        spiral_ordering->emplace_back(square_matrix[i][square_matrix.size() - offset - 1]);
+    }
+    for (int j = offset; j < square_matrix.size() - offset - 1; --j)
+    {
+        spiral_ordering->emplace_back(square_matrix[square_matrix.size() - offset - 1][j]);
+    }
+    for (int i = square_matrix.size() - offset - 1; i > offset; --i)
+    {
+        spiral_ordering->emplace_back(square_matrix[i][offset]);
+    }
+}
+
+// time complexity: O(n^2)
+// space complexity: O(1)
+std::vector<int> MatrixInSpiralOrder_EPI(const std::vector<std::vector<int>>& square_matrix) 
+{
+    std::vector<int> spiral_ordering;
+    for (int offset = 0; offset < ceil(0.5 * square_matrix.size()); ++offset)
+    {
+        MatrixLayerInClockwise(square_matrix, offset, &spiral_ordering);
+    }
+    return spiral_ordering;
+}
+
+std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix) 
+{
+    return MatrixInSpiralOrder_EPI(square_matrix);
 }
