@@ -1904,7 +1904,29 @@ std::vector<int> MatrixInSpiralOrder_EPI(const std::vector<std::vector<int>>& sq
     return spiral_ordering;
 }
 
+// time complexity: O(n^2)
+std::vector<int> MatrixInSpiralOrder_EPISingleIter(const std::vector<std::vector<int>>& square_matrix) 
+{
+    const std::array<std::array<int, 2>, 4> kShift = {{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
+    int dir = 0, x = 0, y = 0;
+    std::vector<int> spiral_ordering;
+
+    for (int i = 0; i < square_matrix.size() * square_matrix.size(); ++i) {
+        spiral_ordering.emplace_back(square_matrix[x][y]);
+        int next_x = x + kShift[dir][0], next_y = y + kShift[dir][1];
+        if (next_x < 0 || next_x >= square_matrix.size() || next_y < 0 ||
+            next_y >= square_matrix.size() || square_matrix[next_x][next_y] == 0)
+        {
+            dir = (dir + 1) % 4;
+            next_x = x + kShift[dir][0], next_y = y + kShift[dir][1];
+        }
+        x = next_x, y = next_y;
+    }
+
+    return spiral_ordering;
+}
+
 std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix) 
 {
-    return MatrixInSpiralOrder_EPI(square_matrix);
+    return MatrixInSpiralOrder_EPISingleIter(square_matrix);
 }
