@@ -236,3 +236,15 @@ void magicSquare(int n)
         std::cout << "\n";
     }
 }
+
+short CountBits(unsigned int x) 
+{
+    int numBits = 0;
+    while (x)
+    {
+        numBits += x & 1;
+        x >>= 1;
+    }
+
+    return numBits;
+}

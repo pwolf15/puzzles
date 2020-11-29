@@ -7,6 +7,12 @@ TEST_GROUP(Primitives)
  
 };
 
+TEST(Primitives, CountBits)
+{
+    CHECK_EQUAL(4, CountBits(15));
+    CHECK_EQUAL(16, CountBits(0xAAAAAAAA));
+}
+
 TEST(Primitives, AddDigits)
 {
     CHECK_EQUAL(2, addDigits(38));
