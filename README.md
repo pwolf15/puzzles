@@ -123,6 +123,8 @@ catastrophic consequences.
 | [Sorted Array to BST](include/DynamicProgramming.hpp#L13)                                 | LC #108               |
 
 
+## TODO
+
 TODO: Variants
 Four points in plane (p. 40)
 Two rectangles intersect (p. 40)
@@ -139,4 +141,6 @@ TODO: compute an alternation, brute-force swap top and bottom, median solution
 5.12 Variant: Does rand() mod n generate a number uniformly distributed in [0, n-1]?
 - No, certain lower bit numbers have greater likelihood: https://stackoverflow.com/questions/10984974/why-do-people-say-there-is-modulo-bias-when-using-a-random-number-generator/10984975. For larger numbers, this could skew the stribution.
 
-5.16 Variant TODO p. 67
+5.16 Variants p. 67
+
+5.18 variants p. 71

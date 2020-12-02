@@ -756,3 +756,120 @@ TEST(Arrays, NonuniformRandomNumberGeneration)
         std::cout << val.first << ", " << val.second<< std::endl;
     }
 }
+
+TEST(Arrays, IsValidSudokuEPI)
+{
+    std::vector<std::vector<int>> sudoku =
+        {
+            {5, 3, 0, 0, 7, 0, 0, 0, 0},
+            {6, 0, 0, 1, 9, 5, 0, 0, 0},
+            {0, 9, 8, 0, 0, 0, 0, 6, 0},
+            {8, 0, 0, 0, 6, 0, 0, 0, 3},
+            {4, 0, 0, 8, 0, 3, 0, 0, 1},
+            {7, 0, 0, 0, 2, 0, 0, 0, 6},
+            {0, 6, 0, 0, 0, 0, 2, 8, 0},
+            {0, 0, 0, 4, 1, 9, 0, 0, 5},
+            {0, 0, 0, 0, 8, 0, 0, 7, 9}};
+
+    CHECK(IsValidSudoku(sudoku));
+
+    sudoku =
+        {
+            {8, 3, 0, 0, 7, 0, 0, 0, 0},
+            {6, 0, 0, 1, 9, 5, 0, 0, 0},
+            {0, 9, 8, 0, 0, 0, 0, 6, 0},
+            {8, 0, 0, 0, 6, 0, 0, 0, 3},
+            {4, 0, 0, 8, 0, 3, 0, 0, 1},
+            {7, 0, 0, 0, 2, 0, 0, 0, 6},
+            {0, 6, 0, 0, 0, 0, 2, 8, 0},
+            {0, 0, 0, 4, 1, 9, 0, 0, 5},
+            {0, 0, 0, 0, 8, 0, 0, 7, 9}};
+
+    CHECK(!IsValidSudoku(sudoku));
+}
+
+TEST(Arrays, MatrixInSpiralOrder)
+{
+    std::vector<std::vector<int>> input =
+    {
+        { 1, 2, 3},
+        { 4, 5, 6},
+        { 7, 8, 9}
+    };
+
+    std::vector<int> out = MatrixInSpiralOrder(input);
+    for (auto& num: out)
+    {
+        std::cout << num << ",";
+    }
+
+    std::cout << std::endl;
+
+    input = 
+    {
+        { 1, 2, 3, 4},
+        { 5, 6, 7, 8},
+        { 9, 10, 11, 12},
+        { 13, 14, 15, 16}
+    };
+
+    out = MatrixInSpiralOrder(input);
+
+    for (auto& num: out)
+    {
+        std::cout << num << ",";
+    }
+
+    std::cout << std::endl;
+
+    input = 
+    {
+        {  1,  2,  3,   4,   5},
+        {  6,  7,  8,   9,  10},
+        { 11, 12, 13,  14,  15},
+        { 16, 17, 18,  19,  20},
+        { 21, 22, 23,  24,  25},
+    };
+
+    out = MatrixInSpiralOrder(input);
+
+    for (auto& num: out)
+    {
+        std::cout << num << ",";
+    }
+
+    std::cout << std::endl;
+
+
+    input = 
+    {
+        { 1, 2, 3, 4},
+        { 5, 6, 7, 8},
+        { 9, 10, 11, 12}
+    };
+
+    out = MatrixInSpiralOrder(input);
+
+    for (auto& num: out)
+    {
+        std::cout << num << ",";
+    }
+
+    std::cout << std::endl;
+
+    input = 
+    {
+        { 7 },
+        { 6 },
+        { 9 }
+    };
+
+    out = MatrixInSpiralOrder(input);
+
+    for (auto& num: out)
+    {
+        std::cout << num << ",";
+    }
+
+    std::cout << std::endl;
+}

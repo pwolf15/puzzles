@@ -5,6 +5,8 @@
 #include <vector>
 #include <stdint.h>
 
+short CountBits(unsigned int x);
+
 // Given a non-negative integer num, 
 // repeatedly add all its digits until the result has only one digit.
 int addDigits(int num);

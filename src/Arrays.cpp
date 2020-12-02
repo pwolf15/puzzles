@@ -1655,3 +1655,278 @@ int NonuniformRandomNumberGeneration(const std::vector<int>& values,
 {
     return NonuniformRandomNumberGeneration_EPI(values, probabilities);
 }
+
+bool IsValidSudoku_PW(std::vector<std::vector<int>>& partial_assignment)
+{
+    for (int i = 0; i < partial_assignment.size(); ++i)
+    {
+        std::unordered_set<int> cols;
+        for (int j = 0; j < partial_assignment[0].size(); ++j)
+        {
+            int value = partial_assignment[i][j];
+            if (value == 0)
+            {
+                continue;
+            }
+            else if (cols.find(value) == cols.end())
+            {
+                cols.insert(value);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    for (int i = 0; i < partial_assignment.size(); ++i)
+    {
+        std::unordered_set<int> rows;
+        for (int j = 0; j < partial_assignment[0].size(); ++j)
+        {
+            int value = partial_assignment[j][i];
+            if (value == 0)
+            {
+                continue;
+            }
+            else if (rows.find(value) == rows.end())
+            {
+                rows.insert(value);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        std::unordered_set<int> subgrid;
+        int mRow = i / 3;
+        int mCol = i % 3;/* code */
+        for (int j = 0; j < 3; ++j)
+        {
+            for (int k = 0; k < 3; ++k)
+            {
+                int value = partial_assignment[(mRow * 3) + j][(mCol * 3) + k];
+                if (value == 0)
+                {
+                    continue;
+                }
+                else if (subgrid.find(value) == subgrid.end())
+                {
+                    subgrid.insert(value);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+// Return true if subarray partial_assignment[start_row, end_row - 1][start_col, end_col - 1]
+// contains any duplicates in {1, 2, ...,, size(partial_assignment)}; otherwise return false.
+// time complexity: nxn grid => O(n^2) + O(n^2/(sqrt(n)^2) * (sqrt(n)^2)) = O(n^2)
+// space complexity: O(n) => bit array to check constraints
+bool HasDuplicate(const std::vector<std::vector<int>>& partial_assignment, int start_row, int end_row, int start_col, int end_col)
+{
+    std::deque<bool> is_present(partial_assignment.size() + 1, false);
+    for (int i = start_row; i < end_row; ++i)
+    {
+        for (int j = start_col; j < end_col; ++j)
+        {
+            if (partial_assignment[i][j] != 0 &&
+                is_present[partial_assignment[i][j]]) 
+            {
+                return true;
+            }
+            is_present[partial_assignment[i][j]] = true;
+        }
+    }
+    return false;
+}
+
+// Check if a partially filled matrix has any conflicts.
+bool IsValidSudoku_EPI(std::vector<std::vector<int>>& partial_assignment)
+{
+    // Check row constraints.
+    for (int i = 0; i < partial_assignment.size(); ++i)
+    {
+        if (HasDuplicate(partial_assignment, i, i + 1, 0, partial_assignment.size()))
+        {
+            return false;
+        }
+    }
+
+    // Check column constraints.
+    for (int j = 0; j < partial_assignment.size(); ++j)
+    {
+        if (HasDuplicate(partial_assignment, 0, partial_assignment.size(), j, j + 1))
+        {
+            return false;
+        }
+    }
+
+    // Check region constraints.
+    int region_size = sqrt(partial_assignment.size());
+    for (int I = 0; I < region_size; ++I)
+    {
+        for (int J = 0; J < region_size; ++J)
+        {
+            if (HasDuplicate(partial_assignment, region_size * I,
+                region_size * (I + 1), region_size * J,
+                region_size * (J + 1)))
+            {
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+bool IsValidSudoku(std::vector<std::vector<int>>& partial_assignment)
+{
+    return IsValidSudoku_EPI(partial_assignment);
+}
+
+std::vector<int> MatrixInSpiralOrder_PW(const std::vector<std::vector<int>>& square_matrix)
+{
+    std::vector<int> spiral_order;
+
+    int i = 0;
+    int counter = 0;
+    int maxWidth = square_matrix[0].size();
+    int maxHeight = square_matrix.size();
+    while (true)
+    {
+        // top
+
+        bool noUpdates = true;
+        for (int c = i; c < maxWidth - i; c++)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[i][c]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // right
+        noUpdates = true;
+        for (int r = i + 1; r < maxHeight -i; r++)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[r][maxWidth - i - 1]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // bottom
+        noUpdates = true;
+        for (int c = maxWidth - i - 2; c >= i; c--)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[maxHeight - i - 1][c]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+
+        // left
+        noUpdates = true;
+        for (int r = maxHeight - i - 2; r >= i + 1; r--)
+        {
+            noUpdates = false;
+            spiral_order.push_back(square_matrix[r][i]);
+        }
+
+        if (noUpdates)
+        {
+            break;
+        }
+        i++;
+    }
+
+    return spiral_order;
+}
+
+void MatrixLayerInClockwise(const std::vector<std::vector<int>>& square_matrix,
+    int offset, std::vector<int>* spiral_ordering)
+{
+    if (offset == square_matrix.size() - offset - 1)
+    {
+        // square_matrix has odd dimension, and we are at the center
+        // of suqare_matrix.
+        spiral_ordering->emplace_back(square_matrix[offset][offset]);
+        return;
+    }
+
+    for (int j = offset; j < square_matrix.size() - offset - 1; ++j)
+    {
+        spiral_ordering->emplace_back(square_matrix[offset][j]);
+    }
+    for (int i = offset; i < square_matrix.size() - offset - 1; ++i)
+    {
+        spiral_ordering->emplace_back(square_matrix[i][square_matrix.size() - offset - 1]);
+    }
+    for (int j = offset; j < square_matrix.size() - offset - 1; --j)
+    {
+        spiral_ordering->emplace_back(square_matrix[square_matrix.size() - offset - 1][j]);
+    }
+    for (int i = square_matrix.size() - offset - 1; i > offset; --i)
+    {
+        spiral_ordering->emplace_back(square_matrix[i][offset]);
+    }
+}
+
+// time complexity: O(n^2)
+// space complexity: O(1)
+std::vector<int> MatrixInSpiralOrder_EPI(const std::vector<std::vector<int>>& square_matrix) 
+{
+    std::vector<int> spiral_ordering;
+    for (int offset = 0; offset < ceil(0.5 * square_matrix.size()); ++offset)
+    {
+        MatrixLayerInClockwise(square_matrix, offset, &spiral_ordering);
+    }
+    return spiral_ordering;
+}
+
+// time complexity: O(n^2)
+std::vector<int> MatrixInSpiralOrder_EPISingleIter(const std::vector<std::vector<int>>& square_matrix) 
+{
+    const std::array<std::array<int, 2>, 4> kShift = {{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
+    int dir = 0, x = 0, y = 0;
+    std::vector<int> spiral_ordering;
+
+    for (int i = 0; i < square_matrix.size() * square_matrix.size(); ++i) {
+        spiral_ordering.emplace_back(square_matrix[x][y]);
+        int next_x = x + kShift[dir][0], next_y = y + kShift[dir][1];
+        if (next_x < 0 || next_x >= square_matrix.size() || next_y < 0 ||
+            next_y >= square_matrix.size() || square_matrix[next_x][next_y] == 0)
+        {
+            dir = (dir + 1) % 4;
+            next_x = x + kShift[dir][0], next_y = y + kShift[dir][1];
+        }
+        x = next_x, y = next_y;
+    }
+
+    return spiral_ordering;
+}
+
+std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix) 
+{
+    return MatrixInSpiralOrder_EPISingleIter(square_matrix);
+}
