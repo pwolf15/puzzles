@@ -189,11 +189,53 @@ int numValidPasswords(std::string filename)
     return numValid;
 }
 
+bool checkPos(std::string slope, int& curPos, int& row)
+{
+    if (curPos >= slope.size())
+    {
+        curPos = curPos % slope.size();
+    }
+
+    bool isTree = slope[curPos] == '#';
+    curPos += 3;
+    row++;
+    return isTree;
+}
+
+int countTrees(std::string filename)
+{
+    int numTrees = 0;
+    std::vector<std::string> slopes;
+    std::string line;
+
+    std::ifstream infile(filename);
+    if (!infile.good())
+    {
+        std::cout << "Could not open file." << std::endl;
+        return numTrees;
+    }
+
+    int curPos = 0;
+    int row = 0;
+    while (getline(infile, line))
+    {
+        slopes.push_back(line);
+        if (checkPos(line, curPos, row))
+        {
+            numTrees++;
+        }
+    }
+
+    std::cout << "Num trees: " << numTrees << std::endl;
+    return numTrees;
+}
+
 int main()
 {
     // computeProduct2("../day1.txt");
     // computeProduct3("../day1.txt");
     // numValidPasswords("../day2.txt");
+    countTrees("../day3.txt");
 
     return 0;
 }
