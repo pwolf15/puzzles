@@ -220,7 +220,7 @@ int countTrees(std::vector<std::string> slopes, int curXPos, int curYPos, int sl
     }
 
     std::cout << "Num trees: " << numTrees << std::endl;
-    
+
     return numTrees;
 }
 
@@ -255,12 +255,118 @@ int countTrees(std::string filename)
     return numTrees;
 }
 
+struct Passport
+{
+    std::vector<std::string> lines;
+};
+
+#include <unordered_map>
+
+bool isValidPassport(Passport passport)
+{
+    std::unordered_map<std::string, int> fields;
+    fields["byr"] = 0;
+    fields["iyr"] = 0;
+    fields["eyr"] = 0;
+    fields["hgt"] = 0;
+    fields["hcl"] = 0;
+    fields["ecl"] = 0;
+    fields["pid"] = 0;
+
+    std::string passportString = "";
+    for (auto line: passport.lines)
+    {
+        passportString += line;
+        passportString += " ";
+    }
+
+    // std::cout << passportString << std::endl;
+    for (auto& field: fields)
+    {
+        if (passportString.find(field.first) == std::string::npos)
+        {
+            std::cout << field.first << std::endl << std::endl;
+            std::cout << passportString << std::endl;
+            return false;
+        }
+        else
+        {
+            field.second++;
+        }
+    }
+
+    for (auto field: fields)
+    {
+        if (field.second > 1) return false;
+    }
+
+    return true;
+}
+
+int countValidPassports(std::string filename)
+{
+    int numPassports = 0;
+    std::string line;
+
+    std::ifstream infile(filename);
+    if (!infile.good())
+    {
+        std::cout << "Could not open file." << std::endl;
+        return numPassports;
+    }
+
+    bool isPassport = false;
+    int blankLines = 0;
+    std::vector<Passport> passports;
+    std::vector<std::string> lines;
+
+    while (getline(infile, line))
+    {
+        if (line == "") 
+        {
+            Passport passport;
+            std::copy(lines.begin(), lines.end(), std::back_inserter(passport.lines));
+            passports.push_back(passport);
+            lines.clear();
+            blankLines++;
+            continue;
+        }
+
+        lines.push_back(line);
+    }
+
+    Passport passport;
+    std::copy(lines.begin(), lines.end(), std::back_inserter(passport.lines));
+    passports.push_back(passport);
+    lines.clear();
+    blankLines++;
+
+    int i = 0;
+    for (auto passport: passports)
+    {
+        if (isValidPassport(passport)) {
+            numPassports++;
+        }
+        else
+        {
+                        std::cout << "i: " << i << std::endl;
+        }
+        
+        i++;
+    }
+
+    std::cout << "Number of passports: " << numPassports << std::endl;
+
+    return numPassports;
+}
+
 int main()
 {
     // computeProduct2("../day1.txt");
     // computeProduct3("../day1.txt");
     // numValidPasswords("../day2.txt");
-    countTrees("../day3.txt");
+    // countTrees("../day3.txt");
+    countValidPassports("../day4.txt");
 
     return 0;
 }
