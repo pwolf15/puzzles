@@ -202,6 +202,28 @@ bool checkPos(std::string slope, int& curPos, int& row)
     return isTree;
 }
 
+int countTrees(std::vector<std::string> slopes, int curXPos, int curYPos, int slopeX, int slopeY)
+{
+    int numTrees = 0;
+
+    while (curYPos < slopes.size())
+    {
+        if (curXPos >= slopes[0].size())
+        {
+            curXPos = curXPos % slopes[0].size();
+        }
+
+        if (slopes[curYPos][curXPos] == '#') numTrees++;
+
+        curXPos += slopeX;
+        curYPos += slopeY;
+    }
+
+    std::cout << "Num trees: " << numTrees << std::endl;
+    
+    return numTrees;
+}
+
 int countTrees(std::string filename)
 {
     int numTrees = 0;
@@ -220,13 +242,16 @@ int countTrees(std::string filename)
     while (getline(infile, line))
     {
         slopes.push_back(line);
-        if (checkPos(line, curPos, row))
-        {
-            numTrees++;
-        }
     }
 
-    std::cout << "Num trees: " << numTrees << std::endl;
+    long long product = 1;
+    product *= countTrees(slopes, 0, 0, 3, 1);
+    product *= countTrees(slopes, 0, 0, 1, 1);
+    product *= countTrees(slopes, 0, 0, 5, 1);
+    product *= countTrees(slopes, 0, 0, 7, 1);
+    product *= countTrees(slopes, 0, 0, 1, 2);
+
+    std::cout << "Num trees: " << product << std::endl;
     return numTrees;
 }
 
