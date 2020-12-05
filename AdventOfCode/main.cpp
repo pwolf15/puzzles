@@ -262,6 +262,105 @@ struct Passport
 
 #include <unordered_map>
 
+bool validateField(std::string field, std::string value, std::string units = "")
+{
+    bool valid = true;
+    if (field == "byr")
+    {
+        int valueInt = std::stoi(value);
+        if (valueInt >= 1920 && valueInt <= 2002)
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+        
+    }
+    else if (field == "iyr")
+    {
+        int valueInt = std::stoi(value);
+        if (valueInt >= 2010 && valueInt <= 2020)
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+    }
+    else if (field == "eyr")
+    {
+        int valueInt = std::stoi(value);
+        if (valueInt >= 2020 && valueInt <= 2030)
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+    }
+    else if (field == "hgt")
+    {
+        int valueInt = std::stoi(value);
+        if (units == "cm" && (valueInt >= 150 && valueInt <= 193))
+        {
+            valid = true;
+        }
+        else if (units == "in" && (valueInt >= 59 && valueInt <= 76))
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+    }
+    else if (field == "hcl")
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (isdigit(value[i]) || value[i] == 'a' || value[i] == 'b' ||
+                value[i] == 'c' || value[i] == 'd' || value[i] == 'e' ||
+                value[i] == 'f')
+            {
+                valid = true;
+            }
+            else
+            {
+                valid = false;
+                break;
+            }
+        }
+    }
+    else if (field == "ecl")
+    {
+        if (value == "amb" || value == "blu" || value == "brn" ||
+            value == "gry" || value == "grn" || value == "hzl" || value == "oth")
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+    }
+    else if (field == "pid")
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (!isdigit(value[i]))
+            {
+                valid = false;
+            }
+        }
+    }
+
+    return valid;
+}
+
 bool isValidPassport(Passport passport)
 {
     std::unordered_map<std::string, int> fields;
@@ -285,12 +384,50 @@ bool isValidPassport(Passport passport)
     {
         if (passportString.find(field.first) == std::string::npos)
         {
-            std::cout << field.first << std::endl << std::endl;
-            std::cout << passportString << std::endl;
             return false;
         }
         else
         {
+            std::string passportField = field.first;
+            std::string value = "";
+            std::string units = "";
+            // std::cout << "idx: " <<  << std::endl;
+            int startIdx = passportString.find(field.first);
+            int fieldLen = field.first.size() + 1;
+            int valLength = 4;
+
+            int valueLen = 0;
+            
+            if (passportField == "byr" || passportField == "eyr" || passportField == "iyr")
+            {
+                value = passportString.substr(passportString.find(field.first) + 4, 4);
+            }
+            else if (passportField == "hgt")
+            {
+                int startIdx = passportString.find(field.first) + 4;
+                if ((startIdx + 3) >= passportString.size()) { return false; }
+
+                int endIdx = passportString[startIdx + 3] == 'c' ? 3 : 2;
+                value = passportString.substr(startIdx, endIdx);
+
+                units = passportString.substr(startIdx + endIdx, 2);
+            }
+            else if (passportField == "hcl")
+            {
+                value = passportString.substr(passportString.find(field.first) + 5, 6);
+            }
+            else if (passportField == "ecl")
+            {
+                value = passportString.substr(passportString.find(field.first) + 4, 3);
+            }
+            else if (passportField =="pid")
+            {
+                value = passportString.substr(passportString.find(field.first) + 4, 9);
+                if (passportString[passportString.find(field.first) + 4 + 9] != ' ') { return false; }
+            }
+
+            if (!validateField(passportField, value, units)) { return false; }
+    
             field.second++;
         }
     }
@@ -347,11 +484,7 @@ int countValidPassports(std::string filename)
         if (isValidPassport(passport)) {
             numPassports++;
         }
-        else
-        {
-                        std::cout << "i: " << i << std::endl;
-        }
-        
+
         i++;
     }
 
