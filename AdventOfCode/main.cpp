@@ -549,6 +549,17 @@ int getHighestSeatId(std::string filename)
         highestId = seatIds[seatIds.size() - 1];
     }
 
+    int counter = 0;
+    for (int i = 8; i < highestId; i++)
+    {
+        auto seat = seatIds[counter++];
+        std::cout << "seat id: " << seat << ", i " << i << std::endl;
+        if (seat != i)
+        {
+            std::cout << "Not equal: " << seat << "!= " << i << std::endl;
+        }
+
+    }
     std::cout << "Highest seat id: " << highestId << std::endl;
 
     return highestId;
