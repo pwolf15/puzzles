@@ -493,13 +493,75 @@ int countValidPassports(std::string filename)
     return numPassports;
 }
 
+int getSeatId(std::string seat)
+{
+    int id = 0;
+    int row = 0;
+    int col = 0;
+    int numRows = 7;
+    int numCols = 3;
+    for (int i = 0; i < seat.size(); i++)
+    {
+        if (numRows)
+        {
+            int mult = seat[i] == 'B' ? 1 : 0;
+            row += mult << --numRows;
+        }
+        else if (numCols)
+        {
+            int mult = seat[i] == 'R' ? 1 : 0;
+            col += mult << --numCols;
+        }
+    }
+
+    id = row * 8 + col;
+    std::cout << "row: " << row << ", " << "col: " << col << ", " << "seat: " << seat << ", " << "ID: " << id << std::endl;
+
+    return id;
+}
+
+int getHighestSeatId(std::string filename)
+{
+    int highestId = 0;
+    std::string line;
+
+    std::ifstream infile(filename);
+    if (!infile.good())
+    {
+        std::cout << "Could not open file." << std::endl;
+        return highestId;
+    }
+
+    std::vector<int> seatIds;
+    std::vector<std::string> lines;
+
+    while (getline(infile, line))
+    {
+        lines.push_back(line);
+        seatIds.push_back(getSeatId(line));
+    }
+
+
+    std::sort(seatIds.begin(), seatIds.end());
+
+    if (seatIds.size())
+    {
+        highestId = seatIds[seatIds.size() - 1];
+    }
+
+    std::cout << "Highest seat id: " << highestId << std::endl;
+
+    return highestId;
+}
+
 int main()
 {
     // computeProduct2("../day1.txt");
     // computeProduct3("../day1.txt");
     // numValidPasswords("../day2.txt");
     // countTrees("../day3.txt");
-    countValidPassports("../day4.txt");
+    // countValidPassports("../day4.txt");
+    getHighestSeatId("../day5.txt");
 
     return 0;
 }
