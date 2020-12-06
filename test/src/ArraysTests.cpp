@@ -894,4 +894,23 @@ TEST(Arrays, RotateMatrix)
 
         std::cout << std::endl;
     }
+
+    std::cout << std::endl;
+
+    input =
+    {
+        { 1, 2},
+        { 3, 4},
+    };
+
+    RotateMatrix(&input);
+    for (size_t i = 0; i < input.size(); ++i)
+    {
+        for (size_t j = 0; j < input[0].size(); ++j)
+        {
+            std::cout << input[i][j] << " ";
+        }
+
+        std::cout << std::endl;
+    }
 }
