@@ -1960,9 +1960,9 @@ void RotateMatrix_InPlace(std::vector<std::vector<int>>* square_matrix_ptr)
 {
     std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
 
-    for (int j = 0; j < floor(sqrt(square_matrix.size())); ++j)
+    for (int j = 0; j < square_matrix.size() / 2; ++j)
     {
-        for (int i = 0; i < (square_matrix.size() - 1) / (j + 1); ++i)
+        for (int i = 0; i < (square_matrix.size() - 1 - j * 2); ++i)
         {
             int temp0 = square_matrix[j][i + j];
             int temp1 = square_matrix[i + j][square_matrix.size() - 1 - j];
