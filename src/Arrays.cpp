@@ -1931,6 +1931,8 @@ std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square
     return MatrixInSpiralOrder_EPISingleIter(square_matrix);
 }
 
+// space complexity: O(n^2)
+// time complexity: O(n^2)
 void RotateMatrix_BF(std::vector<std::vector<int>>* square_matrix_ptr)
 {
     std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
@@ -1956,6 +1958,8 @@ void RotateMatrix_BF(std::vector<std::vector<int>>* square_matrix_ptr)
     std::swap(result, square_matrix);
 }
 
+// space complexity: O(1)
+// time complexity: O(n^2)
 void RotateMatrix_InPlace(std::vector<std::vector<int>>* square_matrix_ptr)
 {
     std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
