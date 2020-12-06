@@ -1930,3 +1930,33 @@ std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square
 {
     return MatrixInSpiralOrder_EPISingleIter(square_matrix);
 }
+
+void RotateMatrix_BF(std::vector<std::vector<int>>* square_matrix_ptr)
+{
+    std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
+    std::vector<std::vector<int>> result;
+    for (int i = 0; i < square_matrix.size(); ++i) 
+    {
+        std::vector<int> new_row;
+        result.push_back(new_row);
+        for (int j = 0; j < square_matrix.size(); ++j)
+        {
+            result[i].push_back(0);
+        }
+    }
+
+    for (int i = 0; i < square_matrix.size(); ++i)
+    {
+        for (int j = 0; j < square_matrix.size(); ++j)
+        {
+            result[j][square_matrix.size() - 1 - i] = square_matrix[i][j];
+        }
+    }
+
+    std::swap(result, square_matrix);
+}
+
+void RotateMatrix(std::vector<std::vector<int>>* square_matrix_ptr)
+{
+    RotateMatrix_BF(square_matrix_ptr);
+}

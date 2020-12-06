@@ -873,3 +873,25 @@ TEST(Arrays, MatrixInSpiralOrder)
 
     std::cout << std::endl;
 }
+
+TEST(Arrays, RotateMatrix)
+{
+    std::vector<std::vector<int>> input =
+    {
+        { 1, 2, 3, 4},
+        { 5, 6, 7, 8},
+        { 9, 10, 11, 12},
+        { 13, 14, 15, 16}
+    };
+
+    RotateMatrix(&input);
+    for (size_t i = 0; i < input.size(); ++i)
+    {
+        for (size_t j = 0; j < input[0].size(); ++j)
+        {
+            std::cout << input[i][j] << " ";
+        }
+
+        std::cout << std::endl;
+    }
+}

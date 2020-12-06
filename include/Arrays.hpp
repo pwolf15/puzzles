@@ -86,4 +86,6 @@ bool IsValidSudoku(std::vector<std::vector<int>>& partial_assignment);
 
 std::vector<int> MatrixInSpiralOrder(const std::vector<std::vector<int>>& square_matrix);
 
+void RotateMatrix(std::vector<std::vector<int>>* square_matrix_ptr);
+
 #endif // ARRAYS_HPP
