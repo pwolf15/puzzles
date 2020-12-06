@@ -145,3 +145,4 @@ TODO: compute an alternation, brute-force swap top and bottom, median solution
 
 5.18 variants p. 71
 5.19 Variants p.74
+5.20 variant p. 75

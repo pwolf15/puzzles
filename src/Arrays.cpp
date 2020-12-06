@@ -1994,7 +1994,7 @@ std::vector<std::vector<int>> GeneratePascalTriangle_PW(int num_rows)
     {
         return rows;
     }
-    
+
     std::vector<int> seed = { 1 };
     rows.push_back(seed);
     
@@ -2017,9 +2017,26 @@ std::vector<std::vector<int>> GeneratePascalTriangle_PW(int num_rows)
     }
 
     return rows;
+
+}
+
+// time complexity: O(1 + 2 + ... + n) = O(n(n + 1)/2) = O(n^2)
+// space compexity: O(n^2), same reason)
+std::vector<std::vector<int>> GeneratePascalTriangle_EPI(int num_rows)
+{
+    std::vector<std::vector<int>> pascal_triangle;
+    for (int i = 0; i < num_rows; ++i) {
+        std::vector<int> curr_row;
+        for (int j = 0; j <= i; ++j) {
+            // Sets this entry to the sum of the two above adjacent entries if they exist.
+            curr_row.emplace_back(0 < j && j < i ? pascal_triangle.back()[j - 1] + pascal_triangle.back()[j] : 1);
+        }
+        pascal_triangle.emplace_back(curr_row);
+    }
+    return pascal_triangle;
 }
 
 std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows)
 {
-    return GeneratePascalTriangle_PW(num_rows);
+    return GeneratePascalTriangle_EPI(num_rows);
 }
