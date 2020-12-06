@@ -1960,17 +1960,20 @@ void RotateMatrix_InPlace(std::vector<std::vector<int>>* square_matrix_ptr)
 {
     std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
 
-    for (int i = 0; i < square_matrix.size() - 1; ++i)
+    for (int j = 0; j < floor(sqrt(square_matrix.size())); ++j)
     {
-        int temp0 = square_matrix[0][i];
-        int temp1 = square_matrix[i][square_matrix.size() - 1];
-        int temp2 = square_matrix[square_matrix.size() - 1][square_matrix.size() - 1 - i];
-        int temp3 = square_matrix[square_matrix.size() - 1 - i][0];
-        
-        square_matrix[i][square_matrix.size() - 1] = temp0;
-        square_matrix[square_matrix.size() - 1][square_matrix.size() - 1 - i] = temp1;
-        square_matrix[square_matrix.size() - 1 - i][0] = temp2;
-        square_matrix[0][i] = temp3;
+        for (int i = 0; i < (square_matrix.size() - 1) / (j + 1); ++i)
+        {
+            int temp0 = square_matrix[j][i + j];
+            int temp1 = square_matrix[i + j][square_matrix.size() - 1 - j];
+            int temp2 = square_matrix[square_matrix.size() - 1 - j][square_matrix.size() - 1 - i - j];
+            int temp3 = square_matrix[square_matrix.size() - 1 - i - j][j];
+            std::cout << "temps: " << temp0 << ", " << temp1 << ", " << temp2 << ", " << temp3 << std::endl;
+            square_matrix[i + j][square_matrix.size() - 1 - j] = temp0;
+            square_matrix[square_matrix.size() - 1 - j][square_matrix.size() - 1 - i - j] = temp1;
+            square_matrix[square_matrix.size() - 1 - i - j][j] = temp2;
+            square_matrix[j][i + j] = temp3;
+        }
     }
 }
 
