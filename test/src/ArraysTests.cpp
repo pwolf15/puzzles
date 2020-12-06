@@ -985,3 +985,20 @@ TEST(Arrays, RotateMatrix)
     RotatedMatrix matrix(&input);
     std::cout << "First: " << matrix.ReadIntry(0, 0) << std::endl;
 }
+
+TEST(Arrays, GeneratePascalTriangle)
+{
+    std::vector<std::vector<int>> results = GeneratePascalTriangle(20);
+
+    int i = 1;
+    for (auto result: results)
+    {
+        std::cout << "Row[" << i << "]: ";
+        for (auto col: result)
+        {
+            std::cout << col << " ";
+        }
+        std::cout << std::endl;
+        i++;
+    }
+}

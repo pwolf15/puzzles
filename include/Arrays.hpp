@@ -105,4 +105,6 @@ private:
     std::vector<std::vector<int>>& square_matrix_;
 };
 
+std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows);
+
 #endif // ARRAYS_HPP

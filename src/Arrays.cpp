@@ -1985,3 +1985,41 @@ void RotateMatrix(std::vector<std::vector<int>>* square_matrix_ptr)
 {
     RotateMatrix_InPlace(square_matrix_ptr);
 }
+
+std::vector<std::vector<int>> GeneratePascalTriangle_PW(int num_rows)
+{
+    std::vector<std::vector<int>> rows;
+
+    if (num_rows == 0)
+    {
+        return rows;
+    }
+    
+    std::vector<int> seed = { 1 };
+    rows.push_back(seed);
+    
+    for (size_t i = 1; i < num_rows; i++)
+    {
+        int row_length = i + 1;
+        std::vector<int> new_row(row_length);
+
+        // initialize end points
+        new_row[0] = 1;
+        new_row[row_length - 1] = 1;
+        for (int j = 1; j < row_length - 1; j++)
+        {
+            int firstOp = rows[i - 1][j - 1] ;
+            int secondOp = rows[i - 1][j];
+            new_row[j] =  firstOp + secondOp;
+        }
+
+        rows.push_back(new_row);
+    }
+
+    return rows;
+}
+
+std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows)
+{
+    return GeneratePascalTriangle_PW(num_rows);
+}
