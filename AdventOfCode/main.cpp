@@ -565,6 +565,92 @@ int getHighestSeatId(std::string filename)
     return highestId;
 }
 
+#include <unordered_map>
+
+int getGroupCount(std::string group, int numMembers)
+{
+    int groupCount = 0;
+    std::cout << group << std::endl;
+    std::unordered_map<char, int> groups;
+    for (auto c: group)
+    {
+        if (groups.find(c) == groups.end())
+        {
+            groups[c] = 1;
+        }
+        else
+        {
+            groups[c]++;
+        }  
+    }
+
+    for (auto group: groups)
+    {
+        if (group.second == numMembers)
+        {
+            groupCount++;
+        }
+    }
+
+    return groupCount;
+}
+
+int getCustomCount(std::string filename)
+{
+    int customCount = 0;
+    std::string line;
+
+    std::ifstream infile(filename);
+    if (!infile.good())
+    {
+        std::cout << "Could not open file." << std::endl;
+        return customCount;
+    }
+
+    std::vector<std::string> lines;
+    int numGroups = 0;
+    int totalGroupCount = 0;
+
+    while (getline(infile, line))
+    {
+        lines.push_back(line);
+
+        if (line == "") 
+        {
+            std::string currentGroup;
+            for (auto line: lines)
+            {
+                currentGroup += line;
+            }
+            int groupCount = getGroupCount(currentGroup, lines.size() - 1);
+            std::cout << "Num members: " << lines.size() << std::endl;
+            std::cout << "groupCount: " << groupCount << std::endl;
+            totalGroupCount += groupCount;
+            numGroups++;
+            lines.clear();
+            continue;
+        }
+    }
+
+    // last group
+    std::string currentGroup;
+    for (auto line: lines)
+    {
+        currentGroup += line;
+    }
+    int groupCount = getGroupCount(currentGroup, lines.size());
+    std::cout << "groupCount: " << groupCount << std::endl;
+    totalGroupCount += groupCount;
+    numGroups++;
+    lines.clear();
+
+    std::cout << "Total groupCount: " << totalGroupCount << std::endl;
+
+    std::cout << "Num groups: " << numGroups << std::endl;
+
+    return customCount;
+}
+
 int main()
 {
     // computeProduct2("../day1.txt");
@@ -572,7 +658,8 @@ int main()
     // numValidPasswords("../day2.txt");
     // countTrees("../day3.txt");
     // countValidPassports("../day4.txt");
-    getHighestSeatId("../day5.txt");
+    // getHighestSeatId("../day5.txt");
+    getCustomCount("../day6.txt");
 
     return 0;
 }
