@@ -1956,7 +1956,25 @@ void RotateMatrix_BF(std::vector<std::vector<int>>* square_matrix_ptr)
     std::swap(result, square_matrix);
 }
 
+void RotateMatrix_InPlace(std::vector<std::vector<int>>* square_matrix_ptr)
+{
+    std::vector<std::vector<int>>& square_matrix = *square_matrix_ptr;
+
+    for (int i = 0; i < square_matrix.size() - 1; ++i)
+    {
+        int temp0 = square_matrix[0][i];
+        int temp1 = square_matrix[i][square_matrix.size() - 1];
+        int temp2 = square_matrix[square_matrix.size() - 1][square_matrix.size() - 1 - i];
+        int temp3 = square_matrix[square_matrix.size() - 1 - i][0];
+        
+        square_matrix[i][square_matrix.size() - 1] = temp0;
+        square_matrix[square_matrix.size() - 1][square_matrix.size() - 1 - i] = temp1;
+        square_matrix[square_matrix.size() - 1 - i][0] = temp2;
+        square_matrix[0][i] = temp3;
+    }
+}
+
 void RotateMatrix(std::vector<std::vector<int>>* square_matrix_ptr)
 {
-    RotateMatrix_BF(square_matrix_ptr);
+    RotateMatrix_InPlace(square_matrix_ptr);
 }
