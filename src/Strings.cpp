@@ -251,3 +251,39 @@ std::string addBinary(std::string a, std::string b)
     std::reverse(result.begin(), result.end());
     return result;
 }
+
+// space complexity: O(1)
+// time complexity: O(N)
+bool IsPalindromic_PW(const std::string& s)
+{
+    for (int i = 0; i < s.size() / 2; ++i)
+    {
+        if (s[i] != s[s.size() - 1 - i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// space complexity: O(1)
+// time complexity: O(N)
+bool IsPalindromic_EPI(const std::string& s)
+{
+    for (int i = 0, j = s.size() - 1; i < j; ++i, --j)
+    {
+        if (s[i] != s[j])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// space complexity: O(1)
+// time complexity: O(N)
+bool IsPalindromic(const std::string& s)
+{
+    return IsPalindromic_PW(s);
+}
