@@ -49,7 +49,7 @@ std::vector<std::string> split(std::string s, std::regex r)
   return splits;
 }
 
-void addNewBag(std::unordered_map<std::string, std::vector<std::string>>& bags, std::string rule)
+void addNewBag(std::unordered_map<std::string, std::vector<std::string>>& bags, std::unordered_map<std::string, std::vector<int>>& bagSubtotals, std::unordered_map<std::string, int>& bagCounts, std::string rule)
 {
     std::regex regEx("bag");
     std::vector<std::string> results = split(rule, regEx);
@@ -57,12 +57,22 @@ void addNewBag(std::unordered_map<std::string, std::vector<std::string>>& bags, 
     bags[results[0]] = {};
 
     std::vector<std::string> colors;
+    std::vector<int> counts;
+
+    if (rule.find("no other bags") != std::string::npos)
+    {
+        std::cout << results[0] << ": no other bags" << std::endl;
+        bagCounts[results[0]] = 0;
+        return;
+    }
 
     for (size_t i = 1; i < results.size() - 1; ++i)
     {
         std::string color;
         int numSpaces = 0;
         std::string result = results[i];
+        std::string bagCount;
+
         for (size_t j = result.size() - 1; j >= 0; j--)
         {
             if (result[j] == ' ')
@@ -70,18 +80,37 @@ void addNewBag(std::unordered_map<std::string, std::vector<std::string>>& bags, 
                 numSpaces++;
             }
 
-            if (numSpaces > 2)
-            {
+            if (numSpaces > 3)
+            {  
                 break;
             }
-            color += result[j];
+            else if (numSpaces > 2)
+            {
+                bagCount = result[j];
+            }
+            else
+            {
+                color += result[j];
+            }
         }
+
+        counts.push_back(std::stoi(bagCount));
 
         std::reverse(color.begin(), color.end());
         trim(color);
 
         colors.push_back(color);
     }
+
+    std::cout << results[0] << ": ";
+    for (size_t i = 0; i < counts.size(); ++i)
+    {
+        std::cout << counts[i] << " " << colors[i] << " | ";
+    }
+
+    bagSubtotals[results[0]] = counts;
+
+    std::cout << std::endl;
 
     bags[results[0]] = colors;
 }
@@ -109,6 +138,8 @@ int computeNumBags(std::string filename)
 
     std::vector<std::string> lines;
     std::unordered_map<std::string, std::vector<std::string>> bags;
+    std::unordered_map<std::string, std::vector<int>> bagSubtotals;
+    std::unordered_map<std::string, int> bagCounts;
     std::unordered_set<std::string> bagsWithGold;
     bagsWithGold.insert("shiny gold");
     int prevNumBags = 0;
@@ -117,32 +148,72 @@ int computeNumBags(std::string filename)
     while (getline(infile, line))
     {
         lines.push_back(line);
-        addNewBag(bags, line);
+        addNewBag(bags, bagSubtotals, bagCounts, line);
     }
+
+    // while (true)
+    // {
+
+    //     for (auto bag: bags)
+    //     {
+    //         for (auto subBag: bag.second)
+    //         {
+    //             if (bagsWithGold.contains(subBag))
+    //             {
+    //                 bagsWithGold.insert(bag.first);
+    //             }
+    //         }
+    //     }
+
+    //     curNumBags = bagsWithGold.size();
+
+    //     if (prevNumBags == curNumBags)
+    //     {
+    //         break;
+    //     }
+
+    //     prevNumBags = curNumBags;
+    // }
 
     while (true)
     {
-
         for (auto bag: bags)
         {
+            bool foundAll = true;
+            int count = 0;
+            size_t i = 0;
             for (auto subBag: bag.second)
             {
-                if (bagsWithGold.contains(subBag))
+                if (bagCounts.find(subBag) == bagCounts.end())
                 {
-                    bagsWithGold.insert(bag.first);
+                    foundAll = false;
+                    break;
                 }
+                else
+                {
+                    std::vector<int> counts = bagSubtotals.find(bag.first)->second;
+                    count += counts[i++] * (bagCounts[subBag] + 1);
+                    std::cout << "count: " << bagCounts[subBag] << std::endl;
+                }
+            }
+
+            std::cout << "i: " << i << std::endl;
+
+            if (foundAll)
+            {
+                std::cout << "Found all: " << std::endl;
+                bagCounts[bag.first] = count;
             }
         }
 
-        curNumBags = bagsWithGold.size();
-
-        if (prevNumBags == curNumBags)
+        if (bags.size() == bagCounts.size())
         {
             break;
         }
-
-        prevNumBags = curNumBags;
     }
+
+    std::cout << "Bag counts size: " << bagCounts.size() << std::endl;
+    std::cout << "Bag total: " << bagCounts["shiny gold"] << std::endl;
 
     std::cout << "Num bags: " << bags.size() << std::endl;
     std::cout << "Num gold bags: " << curNumBags - 1<< std::endl;
