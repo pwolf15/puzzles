@@ -98,3 +98,12 @@ TEST(Strings, AddBinary)
         i++;
     };
 }
+
+TEST(Strings, IsPalindromic)
+{
+    CHECK(IsPalindromic(""));
+    CHECK(IsPalindromic("racecar"));
+    CHECK(!IsPalindromic("racec"));
+    CHECK(IsPalindromic("a"));
+    CHECK(IsPalindromic("aa"));
+};

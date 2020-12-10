@@ -21,4 +21,6 @@ void reverseString(std::vector<char> &s);
 
 std::string addBinary(std::string a, std::string b);
 
+bool IsPalindromic(const std::string& s);
+
 #endif // STRINGS_HPP

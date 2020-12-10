@@ -146,3 +146,16 @@ TODO: compute an alternation, brute-force swap top and bottom, median solution
 5.18 variants p. 71
 5.19 Variants p.74
 5.20 variant p. 75
+
+## Strings
+
+* how are they represented?
+* comparison
+* copying
+* joining
+* splitting
+* often brute-force solutions use O(N) space, subtler solutions use string itself and reduce space complexity to O(1)
+* writing from the front is slow, try the back.
+* append, push_back, pop_back, insert, substr, compare
+* performs well for operations from the back, worse for at middle
+* comparison operators
