@@ -72,20 +72,25 @@ int find_accumulator(std::vector<Instruction> instructions)
     }
 }
 
-int find_accumulator_terminates(std::vector<Instruction> instructions)
+std::pair<int, bool> find_accumulator_terminates(std::vector<Instruction> instructions)
 {
     int counter = 0;
     int accumulator = 0;
     std::unordered_set<int> visited_instructions;
-    std::stack<int> last_visited;
 
     while (true)
     {
+        if (counter >= instructions.size())
+        {
+            std::cout << "HERE2" << std::endl;
+            std::cout << "Accumulator: " << accumulator << std::endl;
+            break;
+        }
+
         Instruction instruction = instructions[counter];
         if ((visited_instructions.find(counter) != visited_instructions.end()))
         {
-            std::cout << last_visited.top() << std::endl;
-            return accumulator;
+            return { false, accumulator };
         }
 
         visited_instructions.insert(counter);
@@ -103,14 +108,12 @@ int find_accumulator_terminates(std::vector<Instruction> instructions)
 
             case Op::NOP:
             {
-                last_visited.push(counter);
                 counter++;
             }
             break;
 
             case Op::JMP:
             {
-                last_visited.push(counter);
                 int dir = instruction.arg[0] == '+' ? 1 : -1;
                 int val = std::stoi(instruction.arg.substr(1));
                 counter += dir * val;
@@ -118,6 +121,8 @@ int find_accumulator_terminates(std::vector<Instruction> instructions)
             break;
         }
     }
+
+    return { true, accumulator };
 }
 
 int main()
@@ -141,7 +146,39 @@ int main()
         return instruction;
     });
 
-    std::cout << "Accumulator: " << find_accumulator_terminates(instructions) << std::endl;
+    for (int i = 0; i < instructions.size(); ++i)
+    {
+        std::pair<bool, int> result = find_accumulator_terminates(instructions);
+        if (result.first)
+        {
+            break;
+        }
+
+        Instruction test;
+        test.arg = instructions[i].arg;
+        Instruction temp = instructions[i];
+        if (instructions[i].op == Op::NOP) 
+        {
+            test.op = Op::JMP;
+        }
+        else if (instructions[i].op == Op::JMP)
+        {
+            test.op = Op::NOP;
+        }
+
+        instructions[i] = test;
+        result = find_accumulator_terminates(instructions);
+        // if (result.first)
+        // {
+        //     break;
+        // }
+        // else
+        // {
+            instructions[i] = temp;
+        //}       
+    }
+
+    std::cout << "HERE!" << std::endl;
 
     return 0;
 }
