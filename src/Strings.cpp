@@ -308,3 +308,30 @@ int StringToInt(const std::string& s)
 
     return total * sign;
 }
+
+std::string IntToString(int i)
+{
+    int factor = 0;
+    std::string result = "";
+    if (i == 0)
+    {
+        return "0";
+    }
+    
+    while (i)
+    {
+        int dig = i % 10;
+        char c = dig + '0';
+        result += c;
+        i /= 10;
+    }
+
+    if (i < 0)
+    {
+        result += '-';
+    }
+
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}

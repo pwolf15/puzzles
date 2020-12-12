@@ -115,3 +115,9 @@ TEST(Strings, StringToInt)
     CHECK_EQUAL(314, StringToInt("314"));
     CHECK_EQUAL(-314, StringToInt("-314"));
 }
+
+TEST(Strings, IntToString)
+{
+    CHECK_EQUAL("0", IntToString(0));
+    CHECK_EQUAL("314", IntToString(314));
+}

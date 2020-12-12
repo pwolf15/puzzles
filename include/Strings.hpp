@@ -25,4 +25,6 @@ bool IsPalindromic(const std::string& s);
 
 int StringToInt(const std::string& s);
 
+std::string IntToString(int i);
+
 #endif // STRINGS_HPP
