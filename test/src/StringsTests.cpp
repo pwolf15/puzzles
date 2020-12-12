@@ -107,3 +107,11 @@ TEST(Strings, IsPalindromic)
     CHECK(IsPalindromic("a"));
     CHECK(IsPalindromic("aa"));
 };
+
+TEST(Strings, StringToInt)
+{
+    CHECK_EQUAL(0, StringToInt("0"));
+    CHECK_EQUAL(1, StringToInt("1"));
+    CHECK_EQUAL(314, StringToInt("314"));
+    CHECK_EQUAL(-314, StringToInt("-314"));
+}

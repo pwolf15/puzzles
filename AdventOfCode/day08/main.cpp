@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <fstream>
 #include <unordered_set>
+#include <stack>
 
 std::vector<std::string> get_lines(std::string filename)
 {
@@ -71,6 +72,54 @@ int find_accumulator(std::vector<Instruction> instructions)
     }
 }
 
+int find_accumulator_terminates(std::vector<Instruction> instructions)
+{
+    int counter = 0;
+    int accumulator = 0;
+    std::unordered_set<int> visited_instructions;
+    std::stack<int> last_visited;
+
+    while (true)
+    {
+        Instruction instruction = instructions[counter];
+        if ((visited_instructions.find(counter) != visited_instructions.end()))
+        {
+            std::cout << last_visited.top() << std::endl;
+            return accumulator;
+        }
+
+        visited_instructions.insert(counter);
+
+        switch (instruction.op)
+        {
+            case Op::ACC:
+            {
+                int val = std::stoi(instruction.arg.substr(1));
+                int sign = instruction.arg[0] == '+' ? 1 : -1;
+                accumulator += sign * val;
+                counter++;
+            }
+            break;
+
+            case Op::NOP:
+            {
+                last_visited.push(counter);
+                counter++;
+            }
+            break;
+
+            case Op::JMP:
+            {
+                last_visited.push(counter);
+                int dir = instruction.arg[0] == '+' ? 1 : -1;
+                int val = std::stoi(instruction.arg.substr(1));
+                counter += dir * val;
+            }
+            break;
+        }
+    }
+}
+
 int main()
 {
     std::string line;
@@ -92,7 +141,7 @@ int main()
         return instruction;
     });
 
-    std::cout << "Accumulator: " << find_accumulator(instructions) << std::endl;
+    std::cout << "Accumulator: " << find_accumulator_terminates(instructions) << std::endl;
 
     return 0;
 }

@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 int firstUniqueChar_brute(std::string s)
 {
@@ -286,4 +287,24 @@ bool IsPalindromic_EPI(const std::string& s)
 bool IsPalindromic(const std::string& s)
 {
     return IsPalindromic_PW(s);
+}
+
+int StringToInt(const std::string& s)
+{
+    if (s.empty())
+    {
+        return 0;
+    }
+
+    int sign            = s[0] == '-' ? -1 : 1;
+    int total           = 0;
+    int start_offset    = s.size() - 1;
+    int end_offset      = sign == -1 ? 1 : 0;
+    for (int i = start_offset; i >= end_offset; i--)
+    {
+        int dig = s[i] - '0';
+        total += pow(10, start_offset - i) * dig;
+    }
+
+    return total * sign;
 }
