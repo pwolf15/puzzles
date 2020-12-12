@@ -291,7 +291,7 @@ bool IsPalindromic(const std::string& s)
 
 // time complexity: O(N)
 // space complexity: O(1)
-int StringToInt(const std::string& s)
+int StringToInt_PW(const std::string& s)
 {
     if (s.empty())
     {
@@ -311,11 +311,24 @@ int StringToInt(const std::string& s)
     return total * sign;
 }
 
+// time complexity: O(N)
+// space complexity: O(1)
+int StringToInt_EPI(const std::string& s)
+{
+    return (s[0] == '-' ? -1 : 1) * std::accumulate(std::begin(s) + (s[0] == '-'), std::end(s), 0, [](int running_sum, char c) {
+        return running_sum * 10 + c - '0';
+    });
+}
+
+int StringToInt(const std::string& s)
+{
+    return StringToInt_EPI(s);
+}
+
 // time complexity: O(2*N)
 // space complexity: O(1)
-std::string IntToString(int i)
+std::string IntToString_PW(int i)
 {
-    int factor = 0;
     std::string result = "";
     if (i == 0)
     {
@@ -338,4 +351,28 @@ std::string IntToString(int i)
     std::reverse(result.begin(), result.end());
 
     return result;
+}
+
+// time complexity: O(2*N)
+// space complexity: O(1)
+std::string IntToString_EPI(int x)
+{
+    bool is_negative = false;
+    if (x < 0) {
+        is_negative = true;
+    }
+
+    std::string s;
+    do {
+        s += '0' + abs(x % 10);
+        x /= 10;
+    } while (x);
+
+    s += is_negative ? "-" : "";
+    return { std::rbegin(s), std::rend(s) };
+}
+
+std::string IntToString(int x)
+{
+    return IntToString_EPI(x);
 }
