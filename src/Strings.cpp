@@ -289,6 +289,8 @@ bool IsPalindromic(const std::string& s)
     return IsPalindromic_PW(s);
 }
 
+// time complexity: O(N)
+// space complexity: O(1)
 int StringToInt(const std::string& s)
 {
     if (s.empty())
@@ -309,6 +311,8 @@ int StringToInt(const std::string& s)
     return total * sign;
 }
 
+// time complexity: O(2*N)
+// space complexity: O(1)
 std::string IntToString(int i)
 {
     int factor = 0;
@@ -317,7 +321,7 @@ std::string IntToString(int i)
     {
         return "0";
     }
-    
+
     while (i)
     {
         int dig = i % 10;
