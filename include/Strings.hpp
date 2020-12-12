@@ -27,4 +27,6 @@ int StringToInt(const std::string& s);
 
 std::string IntToString(int i);
 
+std::string ConvertBase(const std::string& num_as_string, int b1, int b2);
+
 #endif // STRINGS_HPP

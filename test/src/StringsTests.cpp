@@ -121,3 +121,11 @@ TEST(Strings, IntToString)
     CHECK_EQUAL("0", IntToString(0));
     CHECK_EQUAL("314", IntToString(314));
 }
+
+TEST(Strings, ConvertBase)
+{
+    CHECK_EQUAL("1A7", ConvertBase("615", 7, 13));
+    CHECK_EQUAL("615", ConvertBase("1A7", 13, 7));
+    CHECK_EQUAL("65536", ConvertBase("362032", 7, 10));
+    CHECK_EQUAL("362032", ConvertBase("65536", 10, 7));
+}

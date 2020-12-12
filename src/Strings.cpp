@@ -376,3 +376,37 @@ std::string IntToString(int x)
 {
     return IntToString_EPI(x);
 }
+
+std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
+{
+    // convert to base-10
+    int base10 = 0;
+
+    auto char_to_int = [](char c) {
+        return isdigit(c) ? c - '0' : c - 55;
+    };
+
+    auto int_to_char = [](int i) {
+        return i < 10 ? i + '0': i + 55;
+    };
+
+    for (int i = num_as_string.size() - 1; i >= 0; --i)
+    {
+        int mult = pow(b1, num_as_string.size() - 1 - i);
+        int digit = char_to_int(num_as_string[i]);
+        base10 += mult * digit;
+    }
+
+    std::string result = "";
+    while (base10)
+    {
+        int digit = base10 % b2;
+        base10 /= b2;
+        char c = int_to_char(digit);
+        result += c;
+    }
+
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}
