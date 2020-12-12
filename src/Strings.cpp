@@ -377,7 +377,9 @@ std::string IntToString(int x)
     return IntToString_EPI(x);
 }
 
-std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
+// time complexity: O(n(1 + logb2 b1)): n multiply-and-adds to get from x from s; logb2 x multiply and adds to get the result
+// space complexity: O(1)
+std::string ConvertBase_PW(const std::string& num_as_string, int b1, int b2)
 {
     // convert to base-10
     int base10 = 0;
@@ -390,7 +392,8 @@ std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
         return i < 10 ? i + '0': i + 55;
     };
 
-    for (int i = num_as_string.size() - 1; i >= 0; --i)
+    int start_offset = num_as_string[0] == '-' ? 1 : 0;
+    for (int i = num_as_string.size() - 1; i >= start_offset; --i)
     {
         int mult = pow(b1, num_as_string.size() - 1 - i);
         int digit = char_to_int(num_as_string[i]);
@@ -406,7 +409,38 @@ std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
         result += c;
     }
 
+    result += start_offset ? "-" : "";
+
     std::reverse(result.begin(), result.end());
 
     return result;
+}
+
+std::string ConstructFromBase(int num_as_int, int base) 
+{
+    return num_as_int == 0 ? ""
+                            : ConstructFromBase(num_as_int / base, base) +
+                                (char)(num_as_int % base >= 10
+                                    ? 'A' + num_as_int % base - 10
+                                    : '0' + num_as_int % base);
+}
+
+// time complexity: O(n(1 + logb2 b1))
+// space complexity: O(1)
+std::string ConvertBase_EPI(const std::string& num_as_string, int b1, int b2)
+{
+    bool is_negative = num_as_string.front() == '-';
+    int num_as_int = 
+        std::accumulate(std::begin(num_as_string) + is_negative, std::end(num_as_string), 0, 
+            [b1](int x, char c) {
+                return x * b1 + (isdigit(c) ? c - '0' : c - 'A' + 10);
+            });
+
+    return (is_negative ? "-" : "") +
+        (num_as_int == 0 ? "0" : ConstructFromBase(num_as_int, b2));
+}
+
+std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
+{
+    return ConvertBase_EPI(num_as_string, b1, b2);
 }

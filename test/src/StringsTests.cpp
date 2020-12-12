@@ -128,4 +128,5 @@ TEST(Strings, ConvertBase)
     CHECK_EQUAL("615", ConvertBase("1A7", 13, 7));
     CHECK_EQUAL("65536", ConvertBase("362032", 7, 10));
     CHECK_EQUAL("362032", ConvertBase("65536", 10, 7));
+    CHECK_EQUAL("-362032", ConvertBase("-65536", 10, 7));
 }
