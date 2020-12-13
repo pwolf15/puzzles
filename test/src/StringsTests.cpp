@@ -130,3 +130,19 @@ TEST(Strings, ConvertBase)
     CHECK_EQUAL("362032", ConvertBase("65536", 10, 7));
     CHECK_EQUAL("-362032", ConvertBase("-65536", 10, 7));
 }
+
+TEST(Strings, SSDecodeColID)
+{
+    CHECK_EQUAL(1, SSDecodeColID("A"));
+    CHECK_EQUAL(27, SSDecodeColID("AA"));
+    CHECK_EQUAL(4, SSDecodeColID("D"));
+    CHECK_EQUAL(702, SSDecodeColID("ZZ"));
+}
+
+TEST(Strings, SSDecodeColIDBase0)
+{
+    // CHECK_EQUAL(0, SSDecodeColIDBase0("A"));
+    // CHECK_EQUAL(26, SSDecodeColIDBase0("AA"));
+    // CHECK_EQUAL(3, SSDecodeColIDBase0("D"));
+    // CHECK_EQUAL(650, SSDecodeColIDBase0("ZZ"));
+}

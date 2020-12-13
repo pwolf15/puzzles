@@ -29,4 +29,8 @@ std::string IntToString(int i);
 
 std::string ConvertBase(const std::string& num_as_string, int b1, int b2);
 
+int SSDecodeColID(const std::string& col);
+
+int SSDecodeColIDBase0(const std::string& col);
+
 #endif // STRINGS_HPP

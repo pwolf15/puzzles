@@ -444,3 +444,41 @@ std::string ConvertBase(const std::string& num_as_string, int b1, int b2)
 {
     return ConvertBase_EPI(num_as_string, b1, b2);
 }
+
+// time complexity: O(N)
+// space complexity: O(1)
+int SSDecodeColID_PW(const std::string& col)
+{
+    int colVal = 0;
+    int fact = 1;
+    for (int i = col.size() - 1; i >= 0; i--)
+    {
+        int val = col[i] - 'A' + 1;
+        colVal += val * fact;
+        fact *= 26;
+    }
+
+    return colVal;
+}
+
+// space complexity: O(1)
+// time complexity: O(N)
+int SSDecodeColID_EPI(const std::string& col)
+{
+    return std::accumulate(std::begin(col), std::end(col), 0, [](int result, char c) {
+        return result * 26 + c - 'A' + 1;
+    });
+}
+
+int SSDecodeColID(const std::string& col)
+{
+    return SSDecodeColID_EPI(col);
+}
+
+int SSDecodeColIDBase0(const std::string& col)
+{
+    int idx = 0;
+    return std::accumulate(std::begin(col), std::end(col), 0, [&](int result, char c) {
+        return result + ((col.size() - 1 - idx++) * 26) * (c - 'A' + 1);
+    });
+}
