@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <unordered_map>
 
 std::vector<std::string> get_lines(std::string filename)
 {
@@ -25,6 +26,53 @@ std::vector<std::string> get_lines(std::string filename)
     }
 
     return lines;
+}
+
+std::unordered_map<int, long long> cache;
+
+long long get_good_results(std::vector<int> arr, int idx, std::vector<int> indices)
+{
+    long long good = 0;
+
+    if (idx + 1 >= arr.size())
+    {
+        // for (auto i: indices)
+        // {
+        //     std::cout << arr[i] << ",";
+        // }
+        std::cout << "\n";
+        return true;
+    }
+
+    for (int i = idx + 1; i < arr.size(); ++i)
+    {
+        int diff = arr[i] - arr[idx];
+        if (diff >= 1 && diff <= 3)
+        {
+            std::vector<int> indices2;
+            for (auto i: indices)
+            {
+                indices2.push_back(i);
+            }
+            indices2.push_back(i);
+           
+            long long results = 0;
+            if (cache.find(i) == cache.end())
+            {
+                results = get_good_results(arr, i, indices2);
+                cache[i] = results;
+            }
+            else
+            {
+                /* code */
+                results = cache.find(i)->second;
+            }
+            
+            good += results;
+        }
+    }
+
+    return good;
 }
 
 int main()
@@ -59,6 +107,11 @@ int main()
     std::cout << "Diff one: " << diffOne << std::endl;
     std::cout << "Diff three: " << diffThree << std::endl;
     std::cout << "Product: " << product << std::endl;
+
+    std::vector<int> arr = joltages;
+    std::vector<int> indices = { 0 };
+    long long good_results = get_good_results(arr, 0, indices);
+    std::cout << "Good results: " << good_results << std::endl;
 
     std::cout << "Num lines: " << lines.size() << std::endl;
     std::cout << "Num joltages: " << joltages.size() << std::endl;
