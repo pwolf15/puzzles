@@ -94,6 +94,158 @@ int countAdjacent(const std::vector<std::vector<Symbol>>& chairs, int i, int j)
     return count;
 }
 
+int countVisible(const std::vector<std::vector<Symbol>>& chairs, int i, int j)
+{
+    int count = 0;
+
+    // diagonal
+    int l = j - 1;
+    for (int k = i - 1; k >= 0; --k)
+    {
+        if (!isValid(chairs, k, l))
+        {
+            break;
+        }
+        else
+        {
+            if (chairs[k][l] == Symbol::OCCUPIED)
+            {
+                count++;
+                break;
+            }
+            else if (chairs[k][l] == Symbol::EMPTY)
+            {
+                break;
+            }
+        }
+        l--;
+    }
+
+    l = j + 1;
+    for (int k = i - 1; k >= 0; --k)
+    {
+        if (!isValid(chairs, k, l))
+        {
+            break;
+        }
+        else
+        {
+            if (chairs[k][l] == Symbol::OCCUPIED)
+            {
+                count++;
+                break;
+            }
+            else if (chairs[k][l] == Symbol::EMPTY)
+            {
+                break;
+            }
+        }
+        l++;
+    }
+
+    l = j - 1;
+    for (int k = i + 1; k < chairs.size(); ++k)
+    {
+        if (!isValid(chairs, k, l))
+        {
+            break;
+        }
+        else
+        {
+            if (chairs[k][l] == Symbol::OCCUPIED)
+            {
+                count++;
+                break;
+            }
+            else if (chairs[k][l] == Symbol::EMPTY)
+            {
+                break;
+            }
+        }
+        l--;
+    }
+
+    l = j + 1;
+    for (int k = i + 1; k < chairs.size(); ++k)
+    {
+        if (!isValid(chairs, k, l))
+        {
+            break;
+        }
+        else
+        {
+            if (chairs[k][l] == Symbol::OCCUPIED)
+            {
+                count++;
+                break;
+            }
+            else if (chairs[k][l] == Symbol::EMPTY)
+            {
+                break;
+            }
+        }
+        l++;
+    }
+
+    l = i;
+    for (int k = j - 1; k >= 0; --k)
+    {
+        if (chairs[l][k] == Symbol::OCCUPIED)
+        {
+            count++;
+            break;
+        }
+        else if (chairs[l][k] == Symbol::EMPTY)
+        {
+            break;
+        }
+    }
+
+    l = i;
+    for (int k = j + 1; k < chairs[l].size(); ++k)
+    {
+        if (chairs[l][k] == Symbol::OCCUPIED)
+        {
+            count++;
+            break;
+        }
+        else if (chairs[l][k] == Symbol::EMPTY)
+        {
+            break;
+        }
+    }
+
+    l = j;
+    for (int k = i - 1; k >= 0; --k)
+    {
+        if (chairs[k][l] == Symbol::OCCUPIED)
+        {
+            count++;
+            break;
+        }
+        else if (chairs[k][l] == Symbol::EMPTY)
+        {
+            break;
+        }
+    }
+
+    l = j;
+    for (int k = i + 1; k < chairs.size(); ++k)
+    {
+        if (chairs[k][l] == Symbol::OCCUPIED)
+        {
+            count++;
+            break;
+        }
+        else if (chairs[k][l] == Symbol::EMPTY)
+        {
+            break;
+        }
+    }
+
+    return count;
+}
+
 void step(std::vector<std::vector<Symbol>>& chairs)
 {
     std::vector<std::vector<Symbol>> chairs_next;
@@ -103,11 +255,11 @@ void step(std::vector<std::vector<Symbol>>& chairs)
         chairs_next.push_back(new_row);
         for (int j = 0; j < chairs[i].size(); ++j)
         {
-            if (chairs[i][j] == Symbol::EMPTY && (countAdjacent(chairs, i, j) == 0))
+            if (chairs[i][j] == Symbol::EMPTY && (countVisible(chairs, i, j) == 0))
             {
                 chairs_next[i].push_back(Symbol::OCCUPIED);
             }
-            else if (chairs[i][j] == Symbol::OCCUPIED && (countAdjacent(chairs, i, j) >= 4))
+            else if (chairs[i][j] == Symbol::OCCUPIED && (countVisible(chairs, i, j) >= 5))
             {
                 chairs_next[i].push_back(Symbol::EMPTY);
             }
@@ -160,6 +312,7 @@ int main()
         return symbols;
     });
 
+    std::cout << "Count: " << countVisible(chairs, 3, 3) << std::endl;
     simulate(chairs);
 
     std::cout << "Adjacent: " << countAdjacent(chairs, 6, 7) << std::endl;
