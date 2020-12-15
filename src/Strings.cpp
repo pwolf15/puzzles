@@ -482,3 +482,34 @@ int SSDecodeColIDBase0(const std::string& col)
         return result + ((col.size() - 1 - idx++) * 26) * (c - 'A' + 1);
     });
 }
+
+// space complexity: O(N)
+// time complexity: O(N)
+int ReplaceAndRemove(int size, char s[])
+{
+    char t[size * 2];
+    int counter = 0;
+    for (int i = 0; i < size; ++i)
+    {
+        if (s[i] == 'a')
+        {
+            t[counter++] = 'd';
+            t[counter++] = 'd';
+        }
+        else if (s[i] == 'b')
+        {
+            continue;
+        }
+        else
+        {
+            t[counter++] = s[i];
+        }
+    }
+
+    for (int i = 0; i < counter; ++i)
+    {
+        s[i] = t[i];
+    }
+
+    return counter;
+}

@@ -146,3 +146,14 @@ TEST(Strings, SSDecodeColIDBase0)
     // CHECK_EQUAL(3, SSDecodeColIDBase0("D"));
     // CHECK_EQUAL(650, SSDecodeColIDBase0("ZZ"));
 }
+
+TEST(Strings, ReplaceAndRemove)
+{
+    char str[20] = { 'a', 'b', 'a', 'c', 'b', 'c', 'a' };
+    CHECK_EQUAL(5, ReplaceAndRemove(4, str));
+    char exp[20] = { 'd', 'd', 'd', 'd', 'c', 'd', 'd' };
+    for (int i = 0; i < 5; ++i)
+    {
+        CHECK_EQUAL(exp[i], str[i]);
+    }
+}
