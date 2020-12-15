@@ -163,6 +163,109 @@ int computeManhattanDistance(std::vector<Instruction> instructions)
     return 0;
 }
 
+int computeManhattanDistance2(std::vector<Instruction> instructions)
+{
+    int ver     = 0;
+    int hor     = 0;
+    int verW    = 1;
+    int horW    = 10;
+    int dir     = OpCode::EAST;
+
+    for (size_t i = 0; i < instructions.size(); ++i)
+    {
+        Instruction instruction = instructions[i];
+        switch (instruction.op)
+        {
+            case OpCode::FORWARD:
+            {
+                ver += instruction.arg * verW;
+                hor += instruction.arg * horW;
+            }
+            break;
+
+            case OpCode::RIGHT:
+            {
+                if (instruction.arg == 90)
+                {
+                    int temp = verW;
+                    verW = -horW;
+                    horW = temp;
+
+                    std::cout << "Ver: " << verW << std::endl;
+                    std::cout << "Hor: " << horW << std::endl;
+                }
+                else if (instruction.arg == 180)
+                {
+                    verW = -verW;
+                    horW = -horW;
+                }
+                else if (instruction.arg == 270)
+                {
+                    int temp = verW;
+                    verW = horW;
+                    horW = -temp;
+                }
+            }
+            break;
+
+            case OpCode::LEFT:
+            {
+                if (instruction.arg == 90)
+                {
+                    int temp = verW;
+                    verW = horW;
+                    horW = -temp;
+
+                    std::cout << "Ver: " << verW << std::endl;
+                    std::cout << "Hor: " << horW << std::endl;
+                }
+                else if (instruction.arg == 180)
+                {
+                    verW = -verW;
+                    horW = -horW;
+                }
+                else if (instruction.arg == 270)
+                {
+                    int temp = verW;
+                    verW = -horW;
+                    horW = temp;
+                }
+            }
+            break;
+
+            case OpCode::EAST:
+            {
+                horW += instruction.arg;
+            }
+            break;
+
+            case OpCode::WEST:
+            {
+                horW -= instruction.arg;
+            }
+            break;
+
+            case OpCode::NORTH:
+            {
+                verW += instruction.arg;
+            }
+            break;
+
+            case OpCode::SOUTH:
+            {
+                verW -= instruction.arg;
+            }
+            break;
+        }
+    }
+
+    std::cout << "Vertical: " << ver << std::endl;
+    std::cout << "Horizontal: " << hor << std::endl;
+    std::cout << "Manhattan distance: " << std::abs(ver) + std::abs(hor) << std::endl;
+
+    return 0;
+}
+
 int main()
 {
     std::vector<std::string> lines = get_lines("../day12.txt");
@@ -201,7 +304,7 @@ int main()
         return i;
     });
 
-    computeManhattanDistance(instructions);
+    computeManhattanDistance2(instructions);
 
     std::cout << "Num instructions: " << instructions.size() << std::endl;
     std::cout << "Num lines: " << lines.size() << std::endl;
