@@ -485,7 +485,7 @@ int SSDecodeColIDBase0(const std::string& col)
 
 // space complexity: O(N)
 // time complexity: O(N)
-int ReplaceAndRemove(int size, char s[])
+int ReplaceAndRemove_BF(int size, char s[])
 {
     char t[size * 2];
     int counter = 0;
@@ -512,4 +512,64 @@ int ReplaceAndRemove(int size, char s[])
     }
 
     return counter;
+}
+
+// space complexity: O(N)
+// time complexity: O(N)
+int ReplaceAndRemove_PW(int size, char s[])
+{
+    int counter = 0;
+
+    for (int i = 0; i < size; ++i)
+    {
+        if (s[i] == 'a') 
+        {
+            counter += 2;
+        }
+        else if (s[i] == 'b')
+        {
+            // do nothing
+        }
+        else
+        {
+            counter++;
+        }
+    }
+
+    for (int i = 0; i < counter; ++i)
+    {
+        if (s[i] == 'a')
+        {
+            s[i] = 'd';
+            int temp = s[i];
+            for (int j = i + 1; j < counter; ++j)
+            {
+                if (s[j] == 'b')
+                {
+                    s[j] = temp;
+                    break;
+                }
+                else
+                {
+                    int temp2 = s[j];
+                    s[j] = temp;
+                    temp = temp2;
+                }
+            }
+        }
+        else if (s[i] == 'b')
+        {
+            for (int j = i + 1; j < counter; ++j)
+            {
+                s[j - 1] = s[j];
+            }
+        }
+    }
+
+    return counter;
+}
+
+int ReplaceAndRemove(int size, char s[])
+{
+    return ReplaceAndRemove_PW(size, s);
 }

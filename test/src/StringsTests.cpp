@@ -149,11 +149,22 @@ TEST(Strings, SSDecodeColIDBase0)
 
 TEST(Strings, ReplaceAndRemove)
 {
-    char str[20] = { 'a', 'b', 'a', 'c', 'b', 'c', 'a' };
-    CHECK_EQUAL(5, ReplaceAndRemove(4, str));
-    char exp[20] = { 'd', 'd', 'd', 'd', 'c', 'd', 'd' };
-    for (int i = 0; i < 5; ++i)
     {
-        CHECK_EQUAL(exp[i], str[i]);
+        char str[20] = { 'a', 'b', 'a', 'c', 'b', 'c', 'a' };
+        CHECK_EQUAL(5, ReplaceAndRemove(4, str));
+        char exp[20] = { 'd', 'd', 'd', 'd', 'c', 'd', 'd' };
+        for (int i = 0; i < 5; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
     }
+    {
+        char str[6] = { 'a', 'b', 'c', 'b', 'c', 'c' };
+        CHECK_EQUAL(5, ReplaceAndRemove(6, str));
+        char exp[5] = { 'd', 'd', 'c', 'c', 'c' };
+        for (int i = 0; i < 5; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }  
 }
