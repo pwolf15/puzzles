@@ -167,4 +167,90 @@ TEST(Strings, ReplaceAndRemove)
             CHECK_EQUAL(exp[i], str[i]);
         }
     }  
+    {
+        char str[3] = { 'b', 'c', 'c' };
+        CHECK_EQUAL(2, ReplaceAndRemove(3, str));
+        char exp[2] = { 'c', 'c' };
+        for (int i = 0; i < 2; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[4] = { 'b', 'c', 'c', 'a' };
+        CHECK_EQUAL(4, ReplaceAndRemove(4, str));
+        char exp[4] = { 'c', 'c', 'd', 'd' };
+        for (int i = 0; i < 4; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[2] = { 'a', 'a' };
+        CHECK_EQUAL(2, ReplaceAndRemove(1, str));
+        char exp[2] = { 'd', 'd' };
+        for (int i = 0; i < 2; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[1] = { 'b' };
+        CHECK_EQUAL(0, ReplaceAndRemove(1, str));
+    }
+    {
+        char str[1] = { 'c' };
+        CHECK_EQUAL(1, ReplaceAndRemove(1, str));
+        char exp[1] = { 'c' };
+        for (int i = 0; i < 1; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[4] = { 'a', 'a', 'a', 'a' };
+        CHECK_EQUAL(4, ReplaceAndRemove(2, str));
+        char exp[4] = { 'd', 'd', 'd', 'd' };
+        for (int i = 0; i < 4; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[2] = { 'a', 'b' };
+        CHECK_EQUAL(2, ReplaceAndRemove(2, str));
+        char exp[2] = { 'd', 'd' };
+        for (int i = 0; i < 2; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[3] = { 'a', 'c' };
+        CHECK_EQUAL(3, ReplaceAndRemove(2, str));
+        char exp[3] = { 'd', 'd', 'c'};
+        for (int i = 0; i < 3; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[2] = { 'b', 'a' };
+        CHECK_EQUAL(2, ReplaceAndRemove(2, str));
+        char exp[2] = { 'd', 'd'};
+        for (int i = 0; i < 2; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+    {
+        char str[4] = { 'c', 'b', 'b', 'c' };
+        CHECK_EQUAL(2, ReplaceAndRemove(4, str));
+        char exp[2] = { 'c', 'c' };
+        for (int i = 0; i < 2; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
+
 }

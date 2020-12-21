@@ -561,6 +561,11 @@ int ReplaceAndRemove_PW(int size, char s[])
         {
             for (int j = i + 1; j < counter; ++j)
             {
+                if (s[j] == 'a')
+                {
+                    s[j] = 'd';
+                    break;
+                }
                 s[j - 1] = s[j];
             }
         }
