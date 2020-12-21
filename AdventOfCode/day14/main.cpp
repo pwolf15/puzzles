@@ -100,12 +100,51 @@ void get_instructions(std::vector<std::string> lines, std::vector<InstructionSet
     load_instructions.clear();
 }
 
+void load_values(const std::vector<InstructionSet>& instruction_set, std::unordered_map<uint64_t, uint64_t>& mem)
+{
+    for (auto instruction: instruction_set)
+    {
+        auto bit_mask = instruction.bit_mask;
+        auto bit_mask_value = instruction.bit_mask_value;
+        for (auto load: instruction.load_instructions)
+        {
+            uint64_t val = 0;
+            if (mem.find(load.addr) != mem.end())
+            {
+                val = mem.find(load.addr)->second;
+            }
+            
+            val = (load.val & ~bit_mask) | bit_mask_value;
+            mem[load.addr] = val;
+        }
+
+
+        // std::cout << std::bitset<64>(bit_mask) << std::endl;
+        // std::cout << std::bitset<64>(bit_mask_value) << std::endl;
+
+        // for (auto addr: mem)
+        // {
+        //     std::cout << "Addr: " << addr.first << ", " << addr.second << std::endl;
+        // }
+    }
+}
+
 int main()
 {
     std::vector<std::string> lines = get_lines("../day14.txt");
     std::vector<InstructionSet> instruction_set;
     get_instructions(lines, instruction_set);
+    std::unordered_map<uint64_t, uint64_t> mem;
+    load_values(instruction_set, mem);
 
+    uint64_t sum = 0;
+    for (auto addr: mem)
+    {
+        std::cout << "Addr: " << addr.first << ", " << addr.second << std::endl;
+        sum += addr.second;
+    }
+
+    std::cout << "Sum: " << sum << std::endl;
     std::cout << "Num lines: " << lines.size() << std::endl;
     std::cout << "Num instruction set: " << instruction_set.size() << std::endl;
 
