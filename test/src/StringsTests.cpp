@@ -262,3 +262,11 @@ TEST(Strings, ReplaceAndRemove)
         }
     }
 }
+
+TEST(Strings, IsPalindromeEPI)
+{
+    CHECK(IsPalindrome("racecar"));
+    CHECK(IsPalindrome("A man, a plan, a canal, Panama."));
+    CHECK(IsPalindrome("Able was I, ere I saw Elba!"));
+    CHECK(!IsPalindrome("Ray a Ray!"));
+}

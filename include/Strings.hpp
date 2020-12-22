@@ -35,4 +35,6 @@ int SSDecodeColIDBase0(const std::string& col);
 
 int ReplaceAndRemove(int size, char s[]);
 
+bool IsPalindrome(const std::string& s);
+
 #endif // STRINGS_HPP

@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <bitset>
+#include <map>
 
 std::vector<std::string> get_lines(std::string filename)
 {
@@ -30,7 +31,7 @@ std::vector<std::string> get_lines(std::string filename)
     return lines;
 }
 
-void initialize_grid(std::vector<std::vector<std::vector<char>>>& grid, const std::vector<std::string>& lines)
+void initialize_grid(std::map<int, std::vector<std::vector<char>>>& grid, const std::vector<std::string>& lines)
 {
     std::vector<std::vector<char>> layer;
     for (auto line: lines)
@@ -44,14 +45,20 @@ void initialize_grid(std::vector<std::vector<std::vector<char>>>& grid, const st
         layer.push_back(row);
     }
 
-    grid.push_back(layer);
+    grid[0] = layer;
+}
+
+void step(std::map<int, std::vector<std::vector<char>>>& grid)
+{
+    int counter = 0;
+    
 }
 
 int main()
 {
     std::vector<std::string> lines = get_lines("../day17.txt");
 
-    std::vector<std::vector<std::vector<char>>> grid;
+    std::map<int, std::vector<std::vector<char>>> grid;
     initialize_grid(grid, lines);
 
     for (auto row: grid[0])
@@ -63,7 +70,7 @@ int main()
 
         std::cout << std::endl;
     }
-    
+
     std::cout << "Grid size: " << grid.size() << std::endl;
     std::cout << "Num lines: " << lines.size() << std::endl;
 

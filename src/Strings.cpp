@@ -656,3 +656,33 @@ int ReplaceAndRemove(int size, char s[])
 {
     return ReplaceAndRemove_EPI(size, s);
 }
+
+bool IsPalindrome_BF(const std::string& s)
+{
+    std::string transformed;
+    std::copy_if(s.begin(), s.end(), std::back_inserter(transformed), [](char c) {
+        return isalpha(c);
+    });
+    
+    std::string lower;
+    std::transform(transformed.begin(), transformed.end(), std::back_inserter(lower), [](char c) {
+        return std::tolower(c);
+    });
+
+    std::swap(lower, transformed);
+    std::cout << transformed << std::endl;
+
+    for (int i = 0; i < transformed.size(); ++i)
+    {
+        if (transformed[i] != transformed[transformed.size() - 1 - i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+bool IsPalindrome(const std::string& s)
+{
+    return IsPalindrome_BF(s);
+}
