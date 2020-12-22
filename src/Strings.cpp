@@ -682,7 +682,36 @@ bool IsPalindrome_BF(const std::string& s)
 
     return true;
 }
+
+bool IsPalindrome_Linear(const std::string s)
+{
+    int i = 0;
+    int j = s.size() - 1;
+    while (i < j)
+    {
+        if (!std::isalpha(s[i]))
+        {
+            i++;
+        }
+        else if (!std::isalpha(s[j]))
+        {
+            j--;
+        }
+        else if (std::tolower(s[i]) != std::tolower(s[j]))
+        {
+            return false;
+        }
+        else
+        {
+            i++;
+            j--;
+        }
+    }
+
+    return true;
+}
+
 bool IsPalindrome(const std::string& s)
 {
-    return IsPalindrome_BF(s);
+    return IsPalindrome_Linear(s);
 }
