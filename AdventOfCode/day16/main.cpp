@@ -11,62 +11,159 @@
 #include <unordered_map>
 #include <bitset>
 
-void get_seq(std::vector<int>& start_seq, int limit)
+std::vector<std::string> get_lines(std::string filename)
 {
-    int counter = start_seq.size() + 1;
-    std::unordered_map<int, std::vector<int>> found_nums;
-    
-    // initialize
-    for (int i = 0; i < start_seq.size(); ++i)
+    std::vector<std::string> lines;
+    std::ifstream infile(filename);
+    if (!infile.good())
     {
-        std::vector<int> appearances;
-        appearances.push_back(i + 1);
-        found_nums[start_seq[i]] = appearances;
+        std::cout << "Could not open file." << std::endl;
+        return lines;
     }
 
-    while (counter <= limit)
+    std::string line;
+    while (getline(infile, line))
     {
-        int prev_num = start_seq[start_seq.size() - 1];
-        std::vector<int>& appearances = found_nums.find(prev_num)->second;
-        if (appearances.size() == 1)
-        {
-            start_seq.push_back(0);
-            found_nums[0].push_back(counter);
-        }
-        else
-        {
-            int diff = appearances[appearances.size() - 1] - appearances[appearances.size() - 2];
-            start_seq.push_back(diff);
-            if (found_nums.find(diff) == found_nums.end())
-            {
-                std::vector<int> new_appearances;
-                new_appearances.push_back(counter);
-                found_nums[diff] = new_appearances;
-            }
-            else
-            {
-                std::vector<int>& appearances = found_nums.find(diff)->second;
-                appearances.push_back(counter);
-            }
-        }
+        lines.push_back(line);
+    }
+
+    return lines;
+}
+
+struct Range
+{
+    int lower;
+    int upper;
+};
+
+Range get_range(const std::string& rule)
+{
+    Range r;
+    r.lower = std::stoi(rule.substr(0, rule.find("-")));
+    r.upper = std::stoi(rule.substr(rule.find("-") + 1));
+
+    return r;
+}
+
+void get_rules(const std::vector<std::string>& lines, std::vector<Range>& ranges)
+{
+    int counter = 0;
+    for (auto line: lines)
+    {
+        if (line == "")
+            break;
+
+        Range r1, r2;
+        std::string rules = line.substr(line.find(":") + 1);
+        std::string rule1 = rules.substr(0, rules.find("or") - 1);
+        std::string rule2 = rules.substr(rules.find("or") + 2);
+        r1 = get_range(rule1);
+        r2 = get_range(rule2);
+        ranges.push_back(r1);
+        ranges.push_back(r2);
 
         counter++;
     }
+
+    std::cout << "Rules: " << counter << std::endl;
+}
+
+struct Ticket 
+{
+    std::vector<int> values;
+};
+
+std::vector<int> get_ticket_values(const std::string& line)
+{
+    std::vector<int> ticket_values;
+
+    std::string l = line;
+    while (true)
+    {
+        auto value = (l.substr(0, l.find(",")));
+        auto valueInt = std::stoi(value);
+        auto pos = l.find(",");
+
+        ticket_values.push_back(valueInt);
+        if (pos == std::string::npos)
+            break;
+
+        l = l.substr(pos + 1);
+    }
+
+    return ticket_values;
+}
+
+void get_tickets(const std::vector<std::string>& lines, std::vector<Ticket>& tickets)
+{
+    bool foundTickets = false;
+    for (auto line: lines)
+    {
+        if (line == "nearby tickets:")
+        {
+            foundTickets = true;
+            continue;
+        }
+
+        if (foundTickets)
+        {
+            Ticket ticket;
+            ticket.values = get_ticket_values(line);
+            tickets.push_back(ticket);
+        }
+    }
+}
+
+bool is_valid_value(const std::vector<Range>& ranges, int value)
+{
+    bool valid = false;
+
+    for (auto range: ranges)
+    {
+        if (value >= range.lower && value <= range.upper)
+        {
+            valid = true;
+            break;
+        }
+    }
+
+    return valid;
+}
+
+std::vector<int> get_invalid_values(const std::vector<Range>& ranges, const std::vector<Ticket>& tickets)
+{
+    std::vector<int> invalid_values;
+    for (auto ticket: tickets)
+    {
+        for (auto value: ticket.values)
+        {
+            if (!is_valid_value(ranges, value))
+            {
+                invalid_values.push_back(value);
+            }
+        }
+    }
+
+    return invalid_values;
 }
 
 int main()
 {
-    std::vector<int> start_seq = { 14,1,17,0,3,20 };
-    get_seq(start_seq, 2020);
+    std::vector<std::string> lines = get_lines("../day16.txt");
+    std::vector<Range> ranges;
+    std::vector<Ticket> tickets;
 
-    int turn = 0;
-    for (auto num: start_seq)
+    get_rules(lines, ranges);
+    get_tickets(lines, tickets);
+    std::vector<int> invalid_values = get_invalid_values(ranges, tickets);
+
+    std::cout << "Sum: " << std::accumulate(invalid_values.begin(), invalid_values.end(), 0) << std::endl;
+    for (auto value: invalid_values)
     {
-        std::cout << "Turn " << turn + 1 << ": " << num << std::endl;
-        turn++;
+        // std::cout << value << std::endl;
     }
-
-    std::cout << "Seq size: " << start_seq.size() << std::endl;
+    std::cout << "First: " << invalid_values.size() << std::endl;
+    std::cout << "Num lines: " << lines.size() << std::endl;
 
     return 0;
 }
