@@ -252,5 +252,13 @@ TEST(Strings, ReplaceAndRemove)
             CHECK_EQUAL(exp[i], str[i]);
         }
     }
-
+    {
+        char str[4] = { 'a', 'b', 'b', 'a' };
+        CHECK_EQUAL(4, ReplaceAndRemove(4, str));
+        char exp[4] = { 'd', 'd', 'd', 'd' };
+        for (int i = 0; i < 4; ++i)
+        {
+            CHECK_EQUAL(exp[i], str[i]);
+        }
+    }
 }

@@ -514,64 +514,63 @@ int ReplaceAndRemove_BF(int size, char s[])
     return counter;
 }
 
-// space complexity: O(N)
-// time complexity: O(N)
+// space complexity: O(1)
+// time complexity: O(2*N + N^2)
 int ReplaceAndRemove_PW(int size, char s[])
 {
-    int counter = 0;
+    int a_count = 0;
+    int b_count = 0;
+    int non_b_count = 0;
 
-    for (int i = 0; i < size; ++i)
+    // count a's and b's
+    for (int i = 0; i < size; i++)
     {
-        if (s[i] == 'a') 
-        {
-            counter += 2;
-        }
-        else if (s[i] == 'b')
+        if (s[i] == 'a') a_count++;
+        if (s[i] == 'b') b_count++;
+    }
+
+    non_b_count = size - b_count;
+
+    // remove b's
+    int counter1 = 0, counter2 = 0;
+    while (counter1 < size)
+    {
+        if (s[counter1] == 'b')
         {
             // do nothing
         }
         else
         {
-            counter++;
+            s[counter2++] = s[counter1];
         }
+
+        counter1++;
     }
 
-    for (int i = 0; i < counter; ++i)
+    // double d's
+    counter1 = 0;
+    int used_a_count = 0;
+    while (counter1 < (non_b_count + a_count))
     {
-        if (s[i] == 'a')
+        if (s[counter1] == 'a')
         {
-            s[i] = 'd';
-            int temp = s[i];
-            for (int j = i + 1; j < counter; ++j)
+            s[counter1++] = 'd';
+            counter2 = counter1;
+            char prev = 'd';
+            used_a_count++;
+            while (counter2 < (non_b_count + used_a_count))
             {
-                if (s[j] == 'b')
-                {
-                    s[j] = temp;
-                    break;
-                }
-                else
-                {
-                    int temp2 = s[j];
-                    s[j] = temp;
-                    temp = temp2;
-                }
+                char cur = s[counter2];
+                s[counter2] = prev;
+                prev = cur;
+                counter2++;
             }
         }
-        else if (s[i] == 'b')
-        {
-            for (int j = i + 1; j < counter; ++j)
-            {
-                if (s[j] == 'a')
-                {
-                    s[j] = 'd';
-                    break;
-                }
-                s[j - 1] = s[j];
-            }
-        }
+
+        counter1++;
     }
 
-    return counter;
+    return non_b_count + a_count;
 }
 
 int ReplaceAndRemove(int size, char s[])
