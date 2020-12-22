@@ -573,7 +573,50 @@ int ReplaceAndRemove_PW(int size, char s[])
     return non_b_count + a_count;
 }
 
+// space complexity: O(1)
+// time complexity: O(N)
+int ReplaceAndRemove_PWLinear(int size, char s[])
+{
+    // remove b's, get new size
+    int counter1 = 0, counter2 = 0, a_count = 0;
+    while (counter1 < size)
+    {
+        if (s[counter1] == 'b')
+        {
+            // do nothing
+        }
+        else
+        {
+            if (s[counter1] == 'a') a_count++;
+            s[counter2++] = s[counter1];
+        }
+
+        counter1++;
+    }
+
+    int new_size = counter2 + a_count;
+    
+    // double d's
+    counter1 = counter2 - 1;
+    counter2 = new_size - 1;
+    while (counter2 >= 0)
+    {
+        if (s[counter1] == 'a')
+        {
+            s[counter2--] = 'd';
+            s[counter2--] = 'd';
+            counter1--;
+        }
+        else
+        {
+            s[counter2--] = s[counter1--];
+        }
+    }
+
+    return new_size;
+}
+
 int ReplaceAndRemove(int size, char s[])
 {
-    return ReplaceAndRemove_PW(size, s);
+    return ReplaceAndRemove_PWLinear(size, s);
 }
