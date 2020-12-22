@@ -616,7 +616,43 @@ int ReplaceAndRemove_PWLinear(int size, char s[])
     return new_size;
 }
 
+// space complexity: O(1)
+// time complexity: O(N)
+int ReplaceAndRemove_EPI(int size, char s[])
+{
+    // Forward iteration: remove 'b's and count the number of 'a's
+    int write_idx = 0, a_count = 0;
+    for (int i = 0; i < size; ++i)
+    {
+        if (s[i] != 'b')
+        {
+            s[write_idx++] = s[i];
+        }
+        if (s[i] == 'a')
+            ++a_count;
+    }
+    
+    // Backward iteration: replace 'a's with 'dd's starting frm the end.
+    int cur_idx = write_idx - 1;
+    write_idx = write_idx + a_count - 1;
+    const int final_size = write_idx + 1;
+    while (cur_idx >= 0)
+    {
+        if (s[cur_idx] == 'a')
+        {
+            s[write_idx--] = 'd';
+            s[write_idx--] = 'd';
+        }
+        else
+        {
+            s[write_idx--] = s[cur_idx];
+        }
+        --cur_idx;
+    }
+    return final_size;
+}
+
 int ReplaceAndRemove(int size, char s[])
 {
-    return ReplaceAndRemove_PWLinear(size, s);
+    return ReplaceAndRemove_EPI(size, s);
 }
