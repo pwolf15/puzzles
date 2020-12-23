@@ -109,43 +109,88 @@ std::vector<std::vector<char>> get_new_layer(std::vector<std::vector<char>> laye
 
 void update_grid(std::map<int, std::vector<std::vector<char>>>& grid)
 {
-    std::vector<std::vector<char>> old_layer_resized;
-    std::vector<std::vector<char>> old_layer = grid.find(0)->second;
-    old_layer_resized = get_new_layer(old_layer);
-    grid[0] = old_layer_resized;
+    std::map<int, std::vector<std::vector<char>>> new_grid;
+    for (auto& layer: grid)
+    {
+        std::vector<std::vector<char>> old_layer_resized;
+        std::vector<std::vector<char>> old_layer = layer.second;
+        old_layer_resized = get_new_layer(old_layer);
+
+        if (grid.find(layer.first - 1) == grid.end())
+        {
+            std::vector<std::vector<char>> new_layer;
+            for (int i = 0; i < old_layer_resized.size(); ++i)
+            {
+                std::vector<char> new_layer_row;
+                for (int j = 0; j < old_layer_resized[0].size(); ++j)
+                {
+                    new_layer_row.push_back('.');
+                }
+                new_layer.push_back(new_layer_row);
+            }
+            new_grid[layer.first - 1] = new_layer;
+        }
+        if (grid.find(layer.first + 1) == grid.end())
+        {
+            std::vector<std::vector<char>> new_layer;
+            for (int i = 0; i < old_layer_resized.size(); ++i)
+            {
+                std::vector<char> new_layer_row;
+                for (int j = 0; j < old_layer_resized[0].size(); ++j)
+                {
+                    new_layer_row.push_back('.');
+                }
+                new_layer.push_back(new_layer_row);
+            }
+            new_grid[layer.first + 1] = new_layer;
+        }
+
+        std::swap(layer.second, old_layer_resized);
+
+        new_grid[layer.first] = layer.second;
+    }
+
+    std::swap(new_grid, grid);
 }
 
 void step(std::map<int, std::vector<std::vector<char>>>& grid)
 {
     int counter = 0;
 
-    std::vector<std::vector<char>> new_layer;
     update_grid(grid);
-    std::vector<std::vector<char>> layer = grid[0];
+    
+    std::map<int, std::vector<std::vector<char>>> new_grid;
 
-    for (int i = 0; i < layer.size(); i++)
+    int i = -1;
+    for (auto& layerPair: grid)
     {
-        std::vector<char> new_layer_row;
-        for (int j = 0; j < layer[0].size(); j++)
+        std::vector<std::vector<char>> new_layer;
+        auto& layer = layerPair.second;
+        for (int i = 0; i < layer.size(); i++)
         {
-            int cube_count = count_cubes(grid, j, i, 0);
-            if (layer[i][j] == '#' && (cube_count == 2 || cube_count == 3))
+            std::vector<char> new_layer_row;
+            for (int j = 0; j < layer[0].size(); j++)
             {
-                new_layer_row.push_back('#');
+                int cube_count = count_cubes(grid, j, i, layerPair.first);
+                if (layer[i][j] == '#' && (cube_count == 2 || cube_count == 3))
+                {
+                    new_layer_row.push_back('#');
+                }
+                else if (layer[i][j] == '.' && cube_count == 3)
+                {
+                    new_layer_row.push_back('#');
+                }
+                else
+                {
+                    new_layer_row.push_back('.');
+                }
             }
-            else if (layer[i][j] == '.' && cube_count == 3)
-            {
-                new_layer_row.push_back('#');
-            }
-            else
-            {
-                new_layer_row.push_back('.');
-            }
+            new_layer.push_back(new_layer_row);
         }
-        new_layer.push_back(new_layer_row);
+        new_grid[layerPair.first] = new_layer;
     }
 
-    grid[0] = new_layer;
+    std::swap(new_grid, grid);
 }
 
 void print_layer(std::vector<std::vector<char>> layer)
@@ -161,6 +206,34 @@ void print_layer(std::vector<std::vector<char>> layer)
     }
 }
 
+void print_grid(const std::map<int, std::vector<std::vector<char>>>& grid)
+{
+    for (auto layer: grid)
+    {
+        std::cout << "z=" << layer.first << std::endl;
+        print_layer(layer.second);
+    }
+    
+    std::cout << std::endl;
+}
+
+int count_active(const std::map<int, std::vector<std::vector<char>>>& grid)
+{
+    int count = 0;
+    for (auto layer: grid)
+    {
+        for (auto row: layer.second)
+        {
+            for (auto col: row)
+            {
+                if (col == '#') count++;
+            }
+        }
+    }
+
+    return count;
+}
+
 int main()
 {
     std::vector<std::string> lines = get_lines("../day17.txt");
@@ -168,11 +241,18 @@ int main()
     std::map<int, std::vector<std::vector<char>>> grid;
     initialize_grid(grid, lines);
 
-    print_layer(grid[0]);
+    for (int i = 0; i < 6; ++i)
+    {
+        std::cout << "Turn #:" << i + 1 << std::endl;
+        // print_grid(grid);
+        step(grid);
+    }
 
-    step(grid);
+    std::cout << "Num active: " << count_active(grid) << std::endl;
 
-    print_layer(grid[0]);
+    // step(grid);
+    
+    // print_layer(grid[0]);
 
     std::cout << "Grid size: " << grid.size() << std::endl;
     std::cout << "Num lines: " << lines.size() << std::endl;
