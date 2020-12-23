@@ -37,4 +37,8 @@ int ReplaceAndRemove(int size, char s[]);
 
 bool IsPalindrome(const std::string& s);
 
+void ReverseWords(std::string * s);
+
+std::string ReverseWordsLC(std::string s);
+
 #endif // STRINGS_HPP

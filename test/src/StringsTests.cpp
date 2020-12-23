@@ -1,5 +1,7 @@
 #include "CppUTest/TestHarness.h"
 
+#include <iostream>
+
 #include "Strings.hpp"
 
 TEST_GROUP(Strings)
@@ -269,4 +271,43 @@ TEST(Strings, IsPalindromeEPI)
     CHECK(IsPalindrome("A man, a plan, a canal, Panama."));
     CHECK(IsPalindrome("Able was I, ere I saw Elba!"));
     CHECK(!IsPalindrome("Ray a Ray!"));
+}
+
+TEST(Strings, ReverseWords)
+{
+    std::string words = "Bob likes Alice";
+    ReverseWords(&words);
+    CHECK_EQUAL("Alice likes Bob", words);
+
+    words = "Alice likes Bob";
+    ReverseWords(&words);
+    CHECK_EQUAL("Bob likes Alice", words);
+
+    words = "b";
+    ReverseWords(&words);
+    CHECK_EQUAL("b", words);
+
+    words = "Bob";
+    ReverseWords(&words);
+    CHECK_EQUAL("Bob", words);
+
+    words = "";
+    ReverseWords(&words);
+    CHECK_EQUAL("", words);
+
+    words = " ";
+    ReverseWords(&words);
+    CHECK_EQUAL(" ", words);
+
+    words = " Bob";
+    ReverseWords(&words);
+    CHECK_EQUAL("Bob ", words);
+
+    words = " Bob ";
+    ReverseWords(&words);
+    CHECK_EQUAL(" Bob ", words);
+
+    words = " Bob ";
+    words = ReverseWordsLC(words);
+    CHECK_EQUAL("Bob", words);
 }

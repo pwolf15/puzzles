@@ -744,3 +744,120 @@ bool IsPalindrome(const std::string& s)
 {
     return IsPalindrome_EPI(s);
 }
+
+// space complexity: O(1)
+// time complexity: O(N)
+void ReverseWords_PW(std::string * s)
+{
+    std::string& str = *s;
+
+    // reverse characters in string to get correct ordering of strings
+    int i = 0, j = str.size() - 1;
+    while (i < j)
+    {
+        std::swap(str[i++], str[j--]);
+    }
+
+    // reverse characters in each word
+    i = 0, j = 0;
+    while (j < str.size())
+    {
+        while (str[j] == ' ' && j < str.size()) j++;
+
+        if (j >= str.size()) break;
+
+        i = j;
+        while (str[j] != ' ' && j < str.size()) j++;
+
+        int counter = j;
+        j--;
+
+        while (i < j) std::swap(str[i++], str[j--]);
+        j = counter;
+    }
+}
+
+// space complexity: O(1)
+// time complexity: O(N)
+void ReverseWords_EPI(std::string * s)
+{
+    // First, reverse the whole string
+    std::reverse(std::begin(*s), std::end(*s));
+
+    size_t start = 0, finish;
+    while ((finish = s->find(" ", start)) != std::string::npos)
+    {
+        // Reverses each word in the string
+        std::reverse(std::begin(*s) + start, std::begin(*s) + finish);
+        start = finish + 1;
+    }
+
+    // // Reverses the last word
+    std::reverse(std::begin(*s) + start, std::end(*s));
+}
+
+
+void ReverseWords(std::string * s)
+{
+    return ReverseWords_EPI(s);
+}
+
+std::string ReverseWordsLC(std::string s)
+{
+    std::string str = s;
+
+    // reverse characters in string to get correct ordering of strings
+
+    int i = 0, j = str.size() - 1;
+    int spacesRight = 0;
+    while (j > i)
+    {
+        if (str[j--] == ' ')
+        {
+            spacesRight++;
+        }
+        else 
+        {
+            break;
+        }
+    }
+    j = str.size() - 1 - spacesRight;
+    int spacesLeft = 0;
+    while (i < j)
+    {
+        if (str[i++] == ' ')
+        {
+            spacesLeft++;
+        }
+        else 
+        {
+            break;
+        }
+    }
+
+    i = 0, j = str.size() - 1 - spacesRight;
+    while (i < j)
+    {
+        std::swap(str[i++], str[j--]);
+    }
+
+    // reverse characters in each word
+    i = 0, j = 0;
+    while (j < (str.size() - spacesRight))
+    {
+        while (str[j] == ' ' && (j < (str.size() - spacesRight))) j++;
+
+        if (j >= str.size()) break;
+
+        i = j;
+        while (str[j] != ' ' && (j < (str.size() - spacesRight))) j++;
+
+        int counter = j;
+        j--;
+        
+        while (i < j) std::swap(str[i++], str[j--]);
+        j = counter;
+    }
+
+    return str.substr(0, str.size() - (spacesRight + spacesLeft));
+}
