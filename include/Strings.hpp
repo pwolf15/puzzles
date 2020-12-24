@@ -41,4 +41,6 @@ void ReverseWords(std::string * s);
 
 std::string ReverseWordsLC(std::string s);
 
+std::string LookAndSay(int n);
+
 #endif // STRINGS_HPP

@@ -861,3 +861,95 @@ std::string ReverseWordsLC(std::string s)
 
     return str.substr(0, str.size() - (spacesRight + spacesLeft));
 }
+
+int GetNextInSeq(int n)
+{
+    int curNum = n % 10;
+    int prevNum = curNum;
+    int curCount = 1;
+    n /= 10;
+    int mult = 1;
+    int num = 0;
+    while (true)
+    {
+        if (!n) break;
+
+        // std::cout << "CurNum: " << curNum << std::endl;
+        // std::cout << "Prev num: " << prevNum << std::endl;
+        // std::cout << "n: " << n << std::endl;
+        // std::cout << "Cur count: " << curCount << std::endl;
+        // std::cout << "Num: " << num << std::endl;
+
+        prevNum = curNum;
+        curNum = n % 10;
+        n /= 10;
+        if (curNum == prevNum)
+        {
+            curCount++;
+        }
+        else 
+        {
+            num += prevNum * mult;
+            mult *= 10;
+            num += curCount * mult;
+            mult *= 10;
+            curCount = 1;
+        }
+    }
+
+                num += curNum * mult;
+                mult *= 10;
+                num += curCount * mult;
+                curCount = 1;
+    
+    return num;
+}
+
+// O(2^N * N + N), number of digits is at most 2 times number of digits (last N for string conversion)
+// time complexity: O(N^2), could be reduced by caching
+// space complexity: O(1)
+std::string LookAndSay_PW(int n)
+{
+    if (n == 1) return std::to_string(n);
+
+    int seed = 1;
+    for (int i = 1; i < n; ++i)
+    {
+        seed = GetNextInSeq(seed);
+    }
+
+    return std::to_string(seed);
+}
+
+std::string NextNumber(const std::string& s)
+{
+    std::string result;
+    for (int i = 0; i < std::size(s); ++i)
+    {
+        int count = 1;
+        while (i + 1 < std::size(s) && s[i] == s[i + 1])
+        {
+            ++i, ++count;
+        }
+        result += std::to_string(count) + s[i];
+    }
+    return result;
+}
+
+// each successive number can have at most twice as many digits as the previous number
+// this happens when all digits are different
+// maximum length number has length of no more than 2^N
+// O(N*2^N)
+std::string LookAndSay_EPI(int n)
+{
+    std::string s = "1";
+    for (int i = 1; i < n; ++i) {
+        s = NextNumber(s);
+    }
+    return s;
+}
+
+std::string LookAndSay(int n)
+{
+    return LookAndSay_EPI(n);
+}

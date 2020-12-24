@@ -311,3 +311,15 @@ TEST(Strings, ReverseWords)
     words = ReverseWordsLC(words);
     CHECK_EQUAL("Bob", words);
 }
+
+TEST(Strings, LookAndSay)
+{
+    CHECK_EQUAL("1", LookAndSay(1));
+    CHECK_EQUAL("11", LookAndSay(2));
+    CHECK_EQUAL("21", LookAndSay(3));
+    CHECK_EQUAL("1211", LookAndSay(4));
+    CHECK_EQUAL("111221", LookAndSay(5));
+    CHECK_EQUAL("312211", LookAndSay(6));
+    CHECK_EQUAL("13112221", LookAndSay(7));
+    CHECK_EQUAL("1113213211", LookAndSay(8));
+}
