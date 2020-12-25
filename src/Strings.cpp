@@ -953,3 +953,89 @@ std::string LookAndSay(int n)
 {
     return LookAndSay_EPI(n);
 }
+
+// space complexity: O(1)
+// time complexity: O(N)
+int RomanToInteger_PW(const std::string& s)
+{
+    int sum = 0;
+    char prev = ' ';
+    for (int i = 0; i < s.size(); ++i)
+    {
+        switch (s[i])
+        {
+            case 'I':
+                sum += 1;
+                break;
+            case 'V':
+                sum += 5;
+                if (prev == 'I') sum--;
+                break;
+            case 'X':
+                sum += 10;
+                if (prev == 'I') sum -= 2;
+                else if (prev == 'V') sum -= 10;
+                break;
+            case 'L':
+                sum += 50;
+                if (prev == 'I') sum -= 2;
+                else if (prev == 'V') sum -= 10;
+                else if (prev == 'X') sum -= 20;
+                break;
+            case 'C':
+                sum += 100;
+                if (prev == 'I') sum -= 2;
+                else if (prev == 'V') sum -= 10;
+                else if (prev == 'X') sum -= 20;
+                else if (prev == 'L') sum -= 100;
+                break;
+            case 'D':
+                sum += 500;
+                if (prev == 'I') sum -= 2;
+                else if (prev == 'V') sum -= 10;
+                else if (prev == 'X') sum -= 20;
+                else if (prev == 'L') sum -= 100;
+                else if (prev == 'C') sum -= 200;
+                break;
+            case 'M':
+                sum += 1000;
+                if (prev == 'I') sum -= 2;
+                else if (prev == 'V') sum -= 10;
+                else if (prev == 'X') sum -= 20;
+                else if (prev == 'L') sum -= 100;
+                else if (prev == 'C') sum -= 200;
+                else if (prev == 'D') sum -= 1000;
+                break;
+        }
+
+        prev = s[i];
+    }
+
+    return sum;
+}
+
+int RomanToInteger_EPI(const std::string& s)
+{
+    std::unordered_map<char, int> T = {{'I', 1}, { 'V', 5}, {'X', 10}, {'L', 50},
+                                       {'C', 100}, {'D', 500}, {'M', 1000}};
+
+    int sum = T[s.back()];
+    for (int i = s.length() - 2; i >= 0; --i)
+    {
+        if (T[s[i]] < T[s[i + 1]])
+        {
+            sum -= T[s[i]];
+        }
+        else
+        {
+            sum += T[s[i]];
+        }
+    }
+
+    return sum;
+}
+
+int RomanToInteger(const std::string& s)
+{
+    return RomanToInteger_EPI(s);
+}

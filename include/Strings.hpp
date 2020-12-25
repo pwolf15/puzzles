@@ -43,4 +43,6 @@ std::string ReverseWordsLC(std::string s);
 
 std::string LookAndSay(int n);
 
+int RomanToInteger(const std::string& s);
+
 #endif // STRINGS_HPP

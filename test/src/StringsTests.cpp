@@ -323,3 +323,17 @@ TEST(Strings, LookAndSay)
     CHECK_EQUAL("13112221", LookAndSay(7));
     CHECK_EQUAL("1113213211", LookAndSay(8));
 }
+
+TEST(Strings, RomanToInteger)
+{
+    CHECK_EQUAL(1, RomanToInteger("I"));
+    CHECK_EQUAL(5, RomanToInteger("V"));
+    CHECK_EQUAL(10, RomanToInteger("X"));
+    CHECK_EQUAL(50, RomanToInteger("L"));
+    CHECK_EQUAL(100, RomanToInteger("C"));
+    CHECK_EQUAL(500, RomanToInteger("D"));
+    CHECK_EQUAL(1000, RomanToInteger("M"));
+    CHECK_EQUAL(59, RomanToInteger("XXXXXIIIIIIIII"));
+    CHECK_EQUAL(59, RomanToInteger("LVIIII"));
+    CHECK_EQUAL(59, RomanToInteger("LIX"));
+}
