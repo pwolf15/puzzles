@@ -117,7 +117,6 @@ void get_tiles(const std::vector<std::string>& lines, std::vector<Tile>& tiles)
             tile.y = 0;
             tiles.push_back(tile);
             tile_contents.clear();
-            print_tile(tile);
         }
         else
         {
@@ -130,7 +129,6 @@ void get_tiles(const std::vector<std::string>& lines, std::vector<Tile>& tiles)
     tile.y = 0;
     tiles.push_back(tile);
     tile_contents.clear();
-    print_tile(tile);
 }
 
 Tile flip(Tile tile)
@@ -157,86 +155,91 @@ Tile flip(Tile tile)
     return flipped;
 }
 
-void reorder(std::vector<Tile> tiles)
+std::vector<std::vector<int>> initialize_image(int size)
 {
     std::vector<std::vector<int>> image;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < size; i++)
     {
         std::vector<int> image_row;
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < size; j++)
         {
             image_row.push_back(-1);
         }
         image.push_back(image_row);
     }
-    
-    while (true)
+
+    return image;
+}
+
+bool is_valid(int x, int y, int w, int h)
+{
+    return (x < w && x >= 0) && (y < h && y >= 0);
+}
+
+bool get_next_tile(int x, int y, int& next_x, int& next_y)
+{
+    if (is_valid(x + 1, y, 3, 3))
     {
-        for (auto tile: tiles)
-        {
-            std::unordered_map<int, Tile> remaining_tiles;
-            for (auto t: tiles)
-            {
-                remaining_tiles[t.id] = t;
-            }
-            
-            remaining_tiles.erase(tile.id);
-            image[0][0] = tile.id;
-
-            // try right
-            bool foundRight = false;
-            for (auto r: remaining_tiles)
-            {
-                if (r.second.edges.left == tile.edges.right)
-                {
-                    std::cout << "Found possible right: " << tile.id << std::endl;
-                    image[0][1] = r.second.id;
-                    remaining_tiles.erase(r.second.id);
-                    foundRight = true; 
-                    break;
-                }
-                else
-                {
-                    std::cout << tile.edges.right << "!=" << r.second.edges.left << std::endl;
-                }
-            }
-
-            if (!foundRight)
-            {
-                std::cout << "No match for " << tile.id << "!" << std::endl;
-                Tile flipped = flip(tile);
-                print_tile(flipped);
-            }
-
-            tile = flip(tile);
-            image[0][0] = tile.id;
-
-            // try right
-            foundRight = false;
-            for (auto r: remaining_tiles)
-            {
-                if (r.second.edges.left == tile.edges.right)
-                {
-                    std::cout << "Found possible right: " << r.second.id << std::endl;
-                    image[0][1] = r.second.id;
-                    remaining_tiles.erase(r.second.id);
-                    foundRight = true; 
-                    break;
-                }
-                else
-                {
-                    std::cout << tile.edges.right << "!=" << r.second.edges.left << std::endl;
-                }
-            }
-
-            exit(1);
-
-            std::cout << "Size: " << remaining_tiles.size() << std::endl;
-        }
-
-        break;
+        next_x = x + 1;
+        next_y = y;
+        return true;
     }
-    
+    if (is_valid(0, y + 1, 3, 3))
+    {
+        next_x = 0;
+        next_y = y + 1;
+        return true;
+    }
+    return false;
+}   
+
+bool test_config(std::vector<std::vector<int>>& current_image, int x, int y, std::unordered_map<int, Tile>& remaining_tiles)
+{
+    int next_x, next_y;
+    while (get_next_tile(x, y, next_x, next_y))
+    {
+        std::cout << "(x,y): " << next_x << ", " << next_y << std::endl;
+        x = next_x;
+        y = next_y;
+    }
+
+    return true;
+
+    // // top
+    // if (is_valid(x, y - 1))
+    // {
+
+    // }
+
+    // // bottom
+    // if (is_valid(x, y + 1))
+    // {
+
+    // }
+
+    // // right
+    // if (is_valid(x + 1, y))
+    // {
+
+    // }
+
+    // // left
+    // if (is_valid(x + 1, y))
+    // {
+
+    // }
+}
+
+void find_correct_order(std::vector<Tile> tiles)
+{
+    std::vector<std::vector<int>> image = initialize_image(3);
+    std::unordered_map<int, Tile> remaining_tiles;
+    for (auto tile: tiles)
+    {
+        remaining_tiles[tile.id] = tile;
+    }
+
+    test_config(image, 0, 0, remaining_tiles);
 }
 
 int main()
@@ -244,7 +247,7 @@ int main()
     std::vector<std::string> lines = get_lines("../day20.txt");
     std::vector<Tile> tiles;
     get_tiles(lines, tiles);
-    reorder(tiles);
+    find_correct_order(tiles);
 
 
     std::cout << "Num lines: " << lines.size() << std::endl;
