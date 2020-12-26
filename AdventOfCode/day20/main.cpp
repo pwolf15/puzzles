@@ -12,6 +12,7 @@
 #include <bitset>
 #include <map>
 #include <regex>
+#include <queue>
 
 std::vector<std::string> get_lines(std::string filename)
 {
@@ -193,41 +194,56 @@ bool get_next_tile(int x, int y, int& next_x, int& next_y)
     return false;
 }   
 
-bool test_config(std::vector<std::vector<int>>& current_image, int x, int y, std::unordered_map<int, Tile>& remaining_tiles)
+bool validate_image(const std::vector<std::vector<int>>& current_image, const std::unordered_map<int, Tile>& tiles)
 {
-    int next_x, next_y;
-    while (get_next_tile(x, y, next_x, next_y))
+    for (int i = 0; i < current_image.size(); ++i)
     {
-        std::cout << "(x,y): " << next_x << ", " << next_y << std::endl;
-        x = next_x;
-        y = next_y;
+        for (int j = 0; j < current_image[0].size(); ++j)
+        {
+
+        }
     }
 
     return true;
+}
 
-    // // top
-    // if (is_valid(x, y - 1))
+static int count = 0;
+
+bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pair<int, int>> pos_queue, std::unordered_map<int, Tile> remaining_tiles, const std::unordered_map<int, Tile>& tiles)
+{
+    // int nextX, nextY;
+    // get_next_tile(x, y, nextX, intY);
+
+    // for (auto tile: remaining_tiles)
     // {
+    //     image[x][y] = tile.first;
 
+    //     if (test_config(image, nextX, nextY, tile.first, remaining_tiles)) break;
     // }
 
-    // // bottom
-    // if (is_valid(x, y + 1))
-    // {
+    ++count;
 
-    // }
+    if (pos_queue.empty()) { return true; }
 
-    // // right
-    // if (is_valid(x + 1, y))
-    // {
+    std::pair<int, int> pos = pos_queue.front();
+    pos_queue.pop();
 
-    // }
+    for (auto tilePair: remaining_tiles)
+    {
+        current_image[std::get<0>(pos)][std::get<1>(pos)] = tilePair.first;
+        auto remaining_tiles_new = remaining_tiles;
+        remaining_tiles_new.erase(tilePair.first);
 
-    // // left
-    // if (is_valid(x + 1, y))
-    // {
+        if (validate_image(current_image, tiles))
+        {
+            test_config(current_image, pos_queue, remaining_tiles, tiles);
+        }
+        break;
+    }
 
-    // }
+    if (count % 100000 == 0) { std::cout << "Counts: " << count << std::endl; }
+
+    return false;
 }
 
 void find_correct_order(std::vector<Tile> tiles)
@@ -238,8 +254,30 @@ void find_correct_order(std::vector<Tile> tiles)
     {
         remaining_tiles[tile.id] = tile;
     }
+    std::unordered_map<int, Tile> tile_map = remaining_tiles;
 
-    test_config(image, 0, 0, remaining_tiles);
+    // 1. start with 0, 0
+    // 2. try assuming first tile is 0, 0
+    // 3. try second tile (if matches with all current tiles, advance to next item)
+    // 4. if next tile fails, go back, try rotating/flipping tile
+
+    int x = 0;
+    int y = 0;
+    int nextX, nextY;
+    std::queue<std::pair<int, int>> pos_queue;
+    pos_queue.push({0, 0});
+
+    while (get_next_tile(x, y, nextX, nextY))
+    {
+        pos_queue.push({ nextX, nextY });
+        x = nextX;
+        y = nextY;
+    }
+
+    std::cout << "Tiles: " << tiles.size() << std::endl;
+    test_config(image, pos_queue, remaining_tiles, tile_map);
+
+    std::cout << "Counts: " << count << std::endl;
 }
 
 int main()
@@ -248,7 +286,6 @@ int main()
     std::vector<Tile> tiles;
     get_tiles(lines, tiles);
     find_correct_order(tiles);
-
 
     std::cout << "Num lines: " << lines.size() << std::endl;
     std::cout << "Num tiles: " << tiles.size() << std::endl;
