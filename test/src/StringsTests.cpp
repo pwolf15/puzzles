@@ -337,3 +337,16 @@ TEST(Strings, RomanToInteger)
     CHECK_EQUAL(59, RomanToInteger("LVIIII"));
     CHECK_EQUAL(59, RomanToInteger("LIX"));
 }
+
+TEST(Strings, GetValidIpAddress)
+{
+    std::vector<std::string> segments = { "192", "168", "1", "1" };
+    auto results = GetValidIpAddress("19216811");
+    CHECK_EQUAL(results.size(), segments.size());
+    for (size_t i = 0; i < results.size(); ++i)
+    {
+        CHECK_EQUAL(results[i], segments[i]);
+    }
+    GetValidIpAddress("19216810");
+    GetValidIpAddress("25625610");
+}

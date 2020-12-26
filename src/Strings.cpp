@@ -1041,3 +1041,66 @@ int RomanToInteger(const std::string& s)
 {
     return RomanToInteger_EPI(s);
 }
+
+bool isValidSegment(const std::string& s, int remSegments, int remSize)
+{
+    if (!(s.size() <= 3 && s.size() >= 1))
+    {
+        return false;
+    }
+    else if (s.size() > 1 && s[0] == '0')
+    {
+        return false;
+    }
+    else if (remSize < remSegments)
+    {
+        return false;
+    }
+    else if (std::stoi(s) > 255)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+std::vector<std::string> GetValidIpAddress(const std::string& s)
+{
+    std::vector<std::string> segments;
+    int remSegments = 3;
+    std::string segStr;
+    for (size_t i = 0; i < s.size(); i++)
+    {
+        segStr += s[i];
+        if (isValidSegment(segStr, remSegments, s.size() - i))
+        {
+            // continue
+        }
+        else
+        {
+            segments.push_back(segStr.substr(0, segStr.size() - 1));
+            segStr = s[i];
+            remSegments--;
+        }
+    }
+
+    if (isValidSegment(segStr, remSegments, 0))
+    {
+        segments.push_back(segStr);
+    }
+    else
+    {
+        segments.push_back(segStr.substr(0, 1));
+        segStr = s[s.size() - 1];
+        remSegments--;
+        segments.push_back(segStr);
+        remSegments--;
+    }
+
+    for (auto segment: segments)
+    {
+        std::cout << "Segment: " << segment << std::endl;
+    }
+
+    return segments;
+}
