@@ -98,6 +98,20 @@ void print_tile(const Tile& tile)
     std::cout << "Left: " << std::bitset<10>(tile.edges.left) << std::endl << std::endl;
 }
 
+void print_image(const std::vector<std::vector<int>> image)
+{
+    for (size_t i = 0; i < image.size(); ++i)
+    {
+        for (size_t j = 0; j < image[0].size(); ++j)
+        {
+            std::cout << image[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+
 void get_tiles(const std::vector<std::string>& lines, std::vector<Tile>& tiles)
 {
     std::vector<std::string> tile_contents;
@@ -194,13 +208,59 @@ bool get_next_tile(int x, int y, int& next_x, int& next_y)
     return false;
 }   
 
-bool validate_image(const std::vector<std::vector<int>>& current_image, const std::unordered_map<int, Tile>& tiles)
+bool validate_image(const std::vector<std::vector<int>>& current_image, std::unordered_map<int, Tile> tiles)
 {
+    bool valid = true;
     for (int i = 0; i < current_image.size(); ++i)
     {
         for (int j = 0; j < current_image[0].size(); ++j)
         {
+            // ecah direction
+            std::vector<std::pair<int, int>> offsets = {{1, 0}, { -1, 0}, { 0, 1 }, { 0, - 1}};
 
+            int tileId = current_image[i][j];
+            if (tileId == -1) continue;
+
+            Tile tile = tiles[tileId];
+
+            for (auto offset: offsets)
+            {
+                int pos_x = j + std::get<0>(offset);
+                int pos_y = i + std::get<1>(offset);
+
+                if (is_valid(pos_x, pos_y, 3, 3))
+                {
+                    if (current_image[pos_y][pos_x] == -1) continue;
+                    
+                    int neighborTileId = current_image[pos_y][pos_x];
+                    Tile neighorTile   = tiles[neighborTileId];
+                    int neighbor_top = neighorTile.edges.top;
+                    int neighbor_bottom = neighorTile.edges.bottom;
+                    int neighbor_left = neighorTile.edges.left;
+                    int neighbor_right = neighorTile.edges.right;
+
+                    if (pos_x == 1 && pos_y == 0)
+                    {
+                        if (neighbor_left != tile.edges.right) return false;
+                    }
+                    else if (pos_x == -1 && pos_y == 0)
+                    {
+                        if (neighbor_right != tile.edges.left) return false;
+                    }
+                    else if (pos_x == 0 && pos_y == 1)
+                    {
+                        if (neighbor_bottom != tile.edges.top) return false;
+                    }
+                    else if (pos_x == 0 && pos_y == -1)
+                    {
+                        if (neighbor_top != tile.edges.bottom) return false;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
         }
     }
 
@@ -228,17 +288,23 @@ bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pa
     std::pair<int, int> pos = pos_queue.front();
     pos_queue.pop();
 
+    bool valid = true;
+
     for (auto tilePair: remaining_tiles)
     {
         current_image[std::get<0>(pos)][std::get<1>(pos)] = tilePair.first;
         auto remaining_tiles_new = remaining_tiles;
         remaining_tiles_new.erase(tilePair.first);
 
+        // std::cout << "Remaining tiles: " << remaining_tiles_new.size() << std::endl;
+
         if (validate_image(current_image, tiles))
         {
-            test_config(current_image, pos_queue, remaining_tiles, tiles);
+            print_image(current_image);
+            test_config(current_image, pos_queue, remaining_tiles_new, tiles);
         }
-        break;
+
+        // else if validate image flipped
     }
 
     if (count % 100000 == 0) { std::cout << "Counts: " << count << std::endl; }
