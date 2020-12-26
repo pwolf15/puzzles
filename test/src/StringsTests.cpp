@@ -340,13 +340,25 @@ TEST(Strings, RomanToInteger)
 
 TEST(Strings, GetValidIpAddress)
 {
-    std::vector<std::string> segments = { "192", "168", "1", "1" };
-    auto results = GetValidIpAddress("19216811");
-    CHECK_EQUAL(results.size(), segments.size());
-    for (size_t i = 0; i < results.size(); ++i)
+    std::vector<std::string> expected = 
     {
-        CHECK_EQUAL(results[i], segments[i]);
+        "1.92.168.11",
+        "19.2.168.11",
+        "19.21.68.11",
+        "19.216.8.11",
+        "19.216.81.1",
+        "192.1.68.11",
+        "192.16.8.11",
+        "192.16.81.1",
+        "192.168.1.1"
+    };
+
+    auto results = GetValidIpAddress("19216811");
+    size_t i = 0;
+    CHECK_EQUAL(expected.size(), results.size());
+    for (auto result: results)
+    {
+        CHECK_EQUAL(expected[i], result);
+        i++;
     }
-    GetValidIpAddress("19216810");
-    GetValidIpAddress("25625610");
 }

@@ -1042,17 +1042,13 @@ int RomanToInteger(const std::string& s)
     return RomanToInteger_EPI(s);
 }
 
-bool isValidSegment(const std::string& s, int remSegments, int remSize)
+bool isValidSegment(const std::string& s)
 {
     if (!(s.size() <= 3 && s.size() >= 1))
     {
         return false;
     }
     else if (s.size() > 1 && s[0] == '0')
-    {
-        return false;
-    }
-    else if (remSize < remSegments)
     {
         return false;
     }
@@ -1066,41 +1062,40 @@ bool isValidSegment(const std::string& s, int remSegments, int remSize)
 
 std::vector<std::string> GetValidIpAddress(const std::string& s)
 {
-    std::vector<std::string> segments;
-    int remSegments = 3;
-    std::string segStr;
-    for (size_t i = 0; i < s.size(); i++)
+    std::vector<std::string> addresses;
+
+    std::string seg1 = "", seg2 = "", seg3 = "", seg4 = "";
+    for (int i = 0; i < 3 && i < s.size(); i++)
     {
-        segStr += s[i];
-        if (isValidSegment(segStr, remSegments, s.size() - i))
+        int remSize = s.size();
+        seg1 += s[i];
+        if (!isValidSegment(seg1)) continue;
+
+        for (int j = i + 1; j < i + 4 && j < s.size(); j++)
         {
-            // continue
+            remSize = s.size() - seg1.size();
+            seg2 += s[j];
+            if (!isValidSegment(seg2)) continue;
+
+            for (int k = j + 1; k < j + 4 && k < s.size(); k++)
+            {
+                seg3 += s[k];
+                if (!isValidSegment(seg3)) continue;
+
+                for (int l = k + 1; l < k + 4 && l < s.size(); l++)
+                {
+                    seg4 += s[l];
+                   
+                    if (!isValidSegment(seg4)) continue;
+                    if ((seg1.size() + seg2.size() + seg3.size() + seg4.size()) != s.size()) continue;
+                    addresses.push_back(seg1 + "." + seg2 + "." + seg3 + "." + seg4);
+                }
+                seg4 = "";
+            }
+            seg3 = "";
         }
-        else
-        {
-            segments.push_back(segStr.substr(0, segStr.size() - 1));
-            segStr = s[i];
-            remSegments--;
-        }
+        seg2 = "";
     }
 
-    if (isValidSegment(segStr, remSegments, 0))
-    {
-        segments.push_back(segStr);
-    }
-    else
-    {
-        segments.push_back(segStr.substr(0, 1));
-        segStr = s[s.size() - 1];
-        remSegments--;
-        segments.push_back(segStr);
-        remSegments--;
-    }
-
-    for (auto segment: segments)
-    {
-        std::cout << "Segment: " << segment << std::endl;
-    }
-
-    return segments;
+    return addresses;
 }
