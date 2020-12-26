@@ -269,7 +269,7 @@ bool validate_image(const std::vector<std::vector<int>>& current_image, std::uno
 
 static int count = 0;
 
-bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pair<int, int>> pos_queue, std::unordered_map<int, Tile> remaining_tiles, const std::unordered_map<int, Tile>& tiles)
+bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pair<int, int>> pos_queue, std::unordered_map<int, Tile> remaining_tiles, std::unordered_map<int, Tile> tiles)
 {
     // int nextX, nextY;
     // get_next_tile(x, y, nextX, intY);
@@ -301,7 +301,23 @@ bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pa
         if (validate_image(current_image, tiles))
         {
             print_image(current_image);
-            test_config(current_image, pos_queue, remaining_tiles_new, tiles);
+            valid = test_config(current_image, pos_queue, remaining_tiles_new, tiles);
+            if (valid)
+            {
+                break;
+            }
+        }
+
+        auto flipped = flip(tilePair.second);
+        tiles[tilePair.first] = flipped;
+        if (validate_image(current_image, tiles))
+        {
+            print_image(current_image);
+            valid = test_config(current_image, pos_queue, remaining_tiles_new, tiles);
+            if (valid)
+            {
+                break;
+            }
         }
 
         // else if validate image flipped
