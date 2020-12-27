@@ -357,7 +357,7 @@ TEST(Strings, GetValidIpAddress)
     size_t i = 0;
     CHECK_EQUAL(expected.size(), results.size());
     for (auto result: results)
-    {
+    {;
         CHECK_EQUAL(expected[i], result);
         i++;
     }

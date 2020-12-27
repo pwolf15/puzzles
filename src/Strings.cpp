@@ -1064,37 +1064,30 @@ std::vector<std::string> GetValidIpAddress(const std::string& s)
 {
     std::vector<std::string> addresses;
 
-    std::string seg1 = "", seg2 = "", seg3 = "", seg4 = "";
     for (int i = 0; i < 3 && i < s.size(); i++)
     {
-        int remSize = s.size();
-        seg1 += s[i];
-        if (!isValidSegment(seg1)) continue;
-
+        if (!isValidSegment(s.substr(0, i + 1))) continue;
         for (int j = i + 1; j < i + 4 && j < s.size(); j++)
         {
-            remSize = s.size() - seg1.size();
-            seg2 += s[j];
-            if (!isValidSegment(seg2)) continue;
-
+            if (!isValidSegment(s.substr(i + 1, j - i))) continue;
             for (int k = j + 1; k < j + 4 && k < s.size(); k++)
             {
-                seg3 += s[k];
-                if (!isValidSegment(seg3)) continue;
-
+                if (!isValidSegment(s.substr(j + 1, k - j))) continue;
                 for (int l = k + 1; l < k + 4 && l < s.size(); l++)
                 {
-                    seg4 += s[l];
-                   
-                    if (!isValidSegment(seg4)) continue;
-                    if ((seg1.size() + seg2.size() + seg3.size() + seg4.size()) != s.size()) continue;
-                    addresses.push_back(seg1 + "." + seg2 + "." + seg3 + "." + seg4);
+                    if (!isValidSegment(s.substr(k + 1, l - k)) || l < s.size() - 1)
+                    {
+                        continue;
+                    }
+
+                    addresses.push_back(
+                        s.substr(0, i + 1) + "." + 
+                        s.substr(i + 1, j - i) + "." + 
+                        s.substr(j + 1, k - j) + "." + 
+                        s.substr(k + 1, l - k));
                 }
-                seg4 = "";
             }
-            seg3 = "";
         }
-        seg2 = "";
     }
 
     return addresses;
