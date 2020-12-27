@@ -1060,7 +1060,8 @@ bool isValidSegment(const std::string& s)
     return true;
 }
 
-std::vector<std::string> GetValidIpAddress(const std::string& s)
+// O(1) time complexity since total number of IP addresses is constant (2^32)
+std::vector<std::string> GetValidIpAddress_PW(const std::string& s)
 {
     std::vector<std::string> addresses;
 
@@ -1091,4 +1092,47 @@ std::vector<std::string> GetValidIpAddress(const std::string& s)
     }
 
     return addresses;
+}
+
+bool IsValidPart(const std::string& s)
+{
+    if (std::size(s) > 3) {
+        return false;
+    }
+    // "00", "000", "01", etc. are not valid, but "0" is valid.
+    if (s.front() == '0' && std::size(s) > 1) {
+        return false;
+    }
+    int val = std::stoi(s);
+    return val <= 255 && val >= 0;
+}
+
+// O(1) time complexity since total number of IP addresses is constant (2^32)
+std::vector<std::string> GetValidIpAddress_EPI(const std::string& s)
+{
+    std::vector<std::string> result;
+    for (int i = 1; i < 4 && i < std::size(s); ++i) {
+        if (const std::string first = s.substr(0, i); IsValidPart(first)) {
+            for (size_t j = 1; i + j < std::size(s) && j < 4; ++j) {
+                const std::string second = s.substr(i, j);
+                if (IsValidPart(second)) {
+                    for (size_t k = 1; i + j + k < std::size(s) && k < 4; ++k) {
+                        const std::string third = s.substr(i + j, k),
+                                     fourth = s.substr(i + j + k);
+                        if (IsValidPart(third) && IsValidPart(fourth)) {
+                            result.emplace_back(first + "." + second + "." + third + "." + 
+                                fourth);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+std::vector<std::string> GetValidIpAddress(const std::string& s)
+{
+    return GetValidIpAddress_EPI(s);
 }
