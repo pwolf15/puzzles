@@ -302,133 +302,93 @@ static int count = 0;
 
 bool test_config(std::vector<std::vector<int>> current_image, std::queue<std::pair<int, int>> pos_queue, std::unordered_map<int, Tile> remaining_tiles, std::unordered_map<int, Tile>& tiles)
 {
-    // int nextX, nextY;
-    // get_next_tile(x, y, nextX, intY);
-
-    // for (auto tile: remaining_tiles)
-    // {
-    //     image[x][y] = tile.first;
-
-    //     if (test_config(image, nextX, nextY, tile.first, remaining_tiles)) break;
-    // }
-
     ++count;
 
+    // if positions queue empty, return
     if (pos_queue.empty()) { return true; }
 
+    print_image(current_image);
+
+    // grab first position off the queue
     std::pair<int, int> pos = pos_queue.front();
-    // std::cout << "Pos: " << std::get<0>(pos) << " " << std::get<1>(pos) << std::endl;
-    // print_image(current_image);
-
-                    if (current_image[2][1] == 1489)
-    {
-        // for (auto tilePair: remaining_tiles)
-        // {
-        //     std::cout << "Tile: " << tilePair.first << std::endl;
-        // }
-        std::cout << "HERE!" << std::endl;
-    }
-
     pos_queue.pop();
+
+    int pos_x = std::get<0>(pos);
+    int pos_y = std::get<1>(pos);
 
     bool valid = false;
 
+    auto temp_tiles = tiles;
+
+    // for each remaining tile, try inserting it at the current position
     for (auto tilePair: remaining_tiles)
     {
-        current_image[std::get<1>(pos)][std::get<0>(pos)] = tilePair.first;
-        auto temp = tilePair.second;
+        int tileId  = tilePair.first;
+        Tile tile   = tilePair.second;
+        Tile temp   = tile;
 
-        // std::cout << "(" << std::get<0>(pos) << "," << std::get<1>(pos) << ")" << std::endl;
-        auto remaining_tiles_new = remaining_tiles;
-        remaining_tiles_new.erase(tilePair.first);
+        current_image[pos_y][pos_x] = tileId;
 
+        // create a copy of the remaining tiles array
+        //  remove the current tile
+        auto rem_tiles = remaining_tiles;
+        rem_tiles.erase(tileId);
+
+        // rotate 4 possible orientations
         for (int i = 0; i < 4; ++i)
         {
-
-            // std::cout << "Remaining tiles: " << remaining_tiles_new.size() << std::endl;
-            if (validate_image(current_image, tiles))
+            // try default rotation
+            auto tiles_copy = tiles;
+            if (validate_image(current_image, tiles_copy))
             {
-
-                // print_image(current_image);
-                valid = test_config(current_image, pos_queue, remaining_tiles_new, tiles);
-
+                valid = test_config(current_image, pos_queue, rem_tiles, tiles_copy);
 
                 if (valid)
                 {
+                    std::swap(tiles, tiles_copy);
                     break;
                 }
             }
 
-            auto flipped = flipx(tiles[tilePair.first]);
-            tiles[tilePair.first] = flipped;
-
-            if (validate_image(current_image, tiles))
+            // try flip operation
+            auto flipped = flipx(tile);
+            tiles_copy = tiles;
+            tiles_copy[tileId] = flipped;
+            if (validate_image(current_image, tiles_copy))
             {
-                if (tilePair.first == 3079)
-                {
-                    // std::cout << "Pos: " << std::get<0>(pos) << " " << std::get<1>(pos) << std::endl;
-                    // print_image(current_image);
-                    // print_tile(flipped);
-
-                    // for (auto tile: remaining_tiles_new)
-                    // {
-                    //     std::cout << "tile: " << tile.first << std::endl;
-                    //     if (tile.first == 3079)
-                    //     {
-                    //         print_tile(tile.second);
-                    //     }
-                    // }
-                }
-
-                valid = test_config(current_image, pos_queue, remaining_tiles_new, tiles);
+                valid = test_config(current_image, pos_queue, rem_tiles, tiles_copy);
                 if (valid)
                 {
+                    std::swap(tiles, tiles_copy);
                     break;
                 }
             }
 
-            flipped = flipy(temp);
-            tiles[tilePair.first] = flipped;
-            if (validate_image(current_image, tiles))
+            flipped = flipy(tile);
+            tiles_copy = tiles;
+            tiles_copy[tileId] = flipped;
+            if (validate_image(current_image, tiles_copy))
             {
-                if (tilePair.first == 3079)
-                {
-                    // std::cout << "Pos: " << std::get<0>(pos) << " " << std::get<1>(pos) << std::endl;
-                    // print_image(current_image);
-                    // print_tile(flipped);
-
-                    // for (auto tile: remaining_tiles_new)
-                    // {
-                    //     std::cout << "tile: " << tile.first << std::endl;
-                    //     if (tile.first == 3079)
-                    //     {
-                    //         print_tile(tile.second);
-                    //     }
-                    // }
-                }
-
-                valid = test_config(current_image, pos_queue, remaining_tiles_new, tiles);
+                valid = test_config(current_image, pos_queue, rem_tiles, tiles_copy);
                 if (valid)
                 {
+                    std::swap(tiles, tiles_copy);
                     break;
                 }
             }
 
-            if (valid)
-            {
-                break;
-            }
-
-            auto rotated = rotate(temp);
-            tiles[tilePair.first] = rotated;
+            tile = rotate(tile);
+            tiles[tileId] = tile;
         }
 
         if (valid)
         {
             return true;
         }
-        tiles[tilePair.first] = temp;
-        // else if validate image flipped
+        else
+        {
+            tiles = temp_tiles;
+        }
     }
 
     if (count % 100000 == 0) { std::cout << "Counts: " << count << std::endl; }
