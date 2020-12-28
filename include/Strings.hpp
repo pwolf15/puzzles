@@ -49,4 +49,6 @@ std::vector<std::string> GetValidIpAddress(const std::string& s);
 
 std::string SnakeString(const std::string& s);
 
+std::string ZigZagString(const std::string& s);
+
 #endif // STRINGS_HPP

@@ -1200,3 +1200,8 @@ std::string SnakeString(const std::string& s)
 {
     return SnakeString_EPI(s);
 }
+
+std::string ZigZagString(const std::string& s)
+{
+    return "";
+}
