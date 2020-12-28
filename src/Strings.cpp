@@ -1136,3 +1136,39 @@ std::vector<std::string> GetValidIpAddress(const std::string& s)
 {
     return GetValidIpAddress_EPI(s);
 }
+
+std::string SnakeString(const std::string& s)
+{
+    std::string snake = "";
+
+    // row 0
+    std::cout << std::string(1, ' ');
+    for (int i = 1; i < s.size(); i += 4)
+    {
+        std::cout << s[i] << std::string(3, ' ');
+        snake += s[i];
+    }
+
+    std::cout << std::endl;
+
+    // row 1
+    for (int i = 0; i < s.size(); i += 2)
+    {
+        std::cout << s[i] << std::string(1, ' ');
+        snake += s[i];
+    }
+
+    std::cout << std::endl;
+
+    // row 2
+    std::cout << std::string(3, ' ');
+    for (int i = 3; i < s.size(); i += 4)
+    {
+        std::cout << s[i] << std::string(3, ' ');
+        snake += s[i];
+    }
+
+    std::cout << std::endl;
+
+    return snake;
+}

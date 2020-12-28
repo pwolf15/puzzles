@@ -362,3 +362,9 @@ TEST(Strings, GetValidIpAddress)
         i++;
     }
 }
+
+TEST(Strings, SnakeString)
+{
+    CHECK_EQUAL("e lHloWrdlo!", SnakeString("Hello World!"));
+    CHECK_EQUAL("ymstklM aei arc ofn PiW!", SnakeString("My name is Patrick Wolf!"));
+}
