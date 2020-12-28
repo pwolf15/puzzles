@@ -1137,38 +1137,66 @@ std::vector<std::string> GetValidIpAddress(const std::string& s)
     return GetValidIpAddress_EPI(s);
 }
 
-std::string SnakeString(const std::string& s)
+// time complexity: O(n), each of three iterations takes O(n) time
+std::string SnakeString_PW(const std::string& s)
 {
     std::string snake = "";
 
     // row 0
-    std::cout << std::string(1, ' ');
+    // std::cout << std::string(1, ' ');
     for (int i = 1; i < s.size(); i += 4)
     {
-        std::cout << s[i] << std::string(3, ' ');
+        // std::cout << s[i] << std::string(3, ' ');
         snake += s[i];
     }
 
-    std::cout << std::endl;
+    // std::cout << std::endl;
 
     // row 1
     for (int i = 0; i < s.size(); i += 2)
     {
-        std::cout << s[i] << std::string(1, ' ');
+        // std::cout << s[i] << std::string(1, ' ');
         snake += s[i];
     }
 
-    std::cout << std::endl;
+    // std::cout << std::endl;
 
     // row 2
-    std::cout << std::string(3, ' ');
+    // std::cout << std::string(3, ' ');
     for (int i = 3; i < s.size(); i += 4)
     {
-        std::cout << s[i] << std::string(3, ' ');
+        // std::cout << s[i] << std::string(3, ' ');
         snake += s[i];
     }
 
-    std::cout << std::endl;
+    // std::cout << std::endl;
 
     return snake;
+}
+
+// time complexity: O(n), each of three iterations takes O(n) time
+std::string SnakeString_EPI(const std::string& s)
+{
+    std::string result = "";
+
+    // Outputs the first row, i.e., s[1], s[5], s[9], ...
+    for (int i = 1; i < std::size(s); i += 4) {
+        result += s[i];
+    }
+
+    // Outputs the second row, i.e., s[0], s[2], s[4], ...
+    for (int i = 0; i < std::size(s); i += 2) {
+        result += s[i];
+    }
+
+    // Outputs the third row, i.e., s[3], s[7], s[11], ...
+    for (int i = 3; i < std::size(s); i += 4) {
+        result += s[i];
+    }
+    return result;
+}
+
+std::string SnakeString(const std::string& s)
+{
+    return SnakeString_EPI(s);
 }
