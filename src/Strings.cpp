@@ -1208,7 +1208,7 @@ std::string ZigZagString(const std::string& s)
 
 // time complexity: O(N)
 // space complexity: O(1)
-std::string Encode(const std::string& s)
+std::string Encode_PW(const std::string& s)
 {
     if (s.empty()) return s;
 
@@ -1236,17 +1236,69 @@ std::string Encode(const std::string& s)
 
 // time complexity: O(N)
 // space complexity: O(1)
-std::string Decode(const std::string& s)
+std::string Decode_PW(const std::string& s)
 {
     std::string result = "";
-    for (int i = 0; i < s.size(); i += 2)
+    std::string lenStr = "";
+    for (int i = 0; i < s.size(); ++i)
     {
-        int count = s[i] - '0';
-        char c = s[i + 1];
-        for (int j = 0; j < count; ++j)
+        if (isdigit(s[i]))
         {
-            result += c;
+            lenStr += s[i];
+        }
+        else
+        {
+            size_t len = std::stoi(lenStr);
+            for (int j = 0; j < len; ++j)
+            {
+                result += s[i];
+            }
+            lenStr = "";
         }
     }
     return result;
+}
+
+// time complexity: O(N)
+// space complexity: O(1)
+std::string Encode_EPI(const std::string& s)
+{
+    std::string result = "";
+    for (int i = 1, count = 1; i <= std::size(s); ++i) {
+        if (i == std::size(s) || s[i] != s[i - 1]) {
+            // Found new character so write the count of the previous character
+            result += std::to_string(count) + s[i - 1];
+            count = 1;
+        } else {    // s[i] == s[i - 1].
+            ++count;
+        }
+    }
+    return result;
+}
+
+// time complexity: O(N)
+// space complexity: O(1)
+std::string Decode_EPI(const std::string& s)
+{
+    int count = 0;
+    std::string result = "";
+    for (const char& c: s) {
+        if (isdigit(c)) {
+            count = count * 10 + c - '0';
+        } else {
+            result.append(count, c);
+            count = 0;
+        }
+    }
+    return result;
+}
+
+std::string Encode(const std::string& s)
+{
+    return Encode_EPI(s);
+}
+
+std::string Decode(const std::string& s)
+{
+    return Decode_EPI(s);
 }

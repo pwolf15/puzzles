@@ -379,4 +379,6 @@ TEST(Strings, RLE)
     CHECK_EQUAL("3e4f2e", Encode("eeeffffee"));
     CHECK_EQUAL("aaaabcccaa", Decode("4a1b3c2a"));
     CHECK_EQUAL("eeeffffee", Decode("3e4f2e"));
+    CHECK_EQUAL("aaaaaaaaaa", Decode("10a"));
+    CHECK_EQUAL("10a1b", Encode("aaaaaaaaaab"));
 }
