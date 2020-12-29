@@ -1205,3 +1205,48 @@ std::string ZigZagString(const std::string& s)
 {
     return "";
 }
+
+// time complexity: O(N)
+// space complexity: O(1)
+std::string Encode(const std::string& s)
+{
+    if (s.empty()) return s;
+
+    std::string result = "";
+    char c = s[0];
+    size_t len = 1;
+
+    for (size_t i = 1; i < s.size(); ++i)
+    {
+        if (s[i] == c)
+        {
+            ++len;
+        }
+        else
+        {
+            result += std::to_string(len) + c;
+            c = s[i];
+            len = 1;
+        }
+    }
+
+    result += std::to_string(len) + c;
+    return result;
+}
+
+// time complexity: O(N)
+// space complexity: O(1)
+std::string Decode(const std::string& s)
+{
+    std::string result = "";
+    for (int i = 0; i < s.size(); i += 2)
+    {
+        int count = s[i] - '0';
+        char c = s[i + 1];
+        for (int j = 0; j < count; ++j)
+        {
+            result += c;
+        }
+    }
+    return result;
+}

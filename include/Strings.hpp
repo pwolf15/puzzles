@@ -51,4 +51,8 @@ std::string SnakeString(const std::string& s);
 
 std::string ZigZagString(const std::string& s);
 
+std::string Encode(const std::string& s);
+
+std::string Decode(const std::string& s);
+
 #endif // STRINGS_HPP

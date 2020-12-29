@@ -372,3 +372,11 @@ TEST(Strings, SnakeString)
 TEST(Strings, ZigZagString)
 {
 }
+
+TEST(Strings, RLE)
+{
+    CHECK_EQUAL("4a1b3c2a", Encode("aaaabcccaa"));
+    CHECK_EQUAL("3e4f2e", Encode("eeeffffee"));
+    CHECK_EQUAL("aaaabcccaa", Decode("4a1b3c2a"));
+    CHECK_EQUAL("eeeffffee", Decode("3e4f2e"));
+}
