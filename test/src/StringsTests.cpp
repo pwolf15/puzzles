@@ -382,3 +382,11 @@ TEST(Strings, RLE)
     CHECK_EQUAL("aaaaaaaaaa", Decode("10a"));
     CHECK_EQUAL("10a1b", Encode("aaaaaaaaaab"));
 }
+
+TEST(Strings, FindStr)
+{
+    CHECK_EQUAL(1, findStr("scart", "car"));
+    CHECK_EQUAL(0, findStr("", ""));
+    CHECK_EQUAL(-1, findStr("aaa", "aaaa"));
+    CHECK_EQUAL(0, findStr("a", "a"));
+}

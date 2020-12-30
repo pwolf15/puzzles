@@ -1302,3 +1302,48 @@ std::string Decode(const std::string& s)
 {
     return Decode_EPI(s);
 }
+
+// space complexity: O(1)
+// time complexity: O(N^2)
+int findStr(const std::string& s, const std::string& t)
+{
+    bool foundStr = false;
+    int foundIdx = -1;
+
+    if (t.empty()) { return 0; }
+
+    for (size_t i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == t[0])
+        {
+            if (i + t.size() > s.size())
+            {
+                foundStr = false;
+                break;
+            }
+
+            foundStr = true;
+            int j = 1;
+            for (; j < t.size() && (j + i) < s.size(); ++j)
+            {
+                if (s[i + j] == t[j])
+                {
+                    continue;
+                }
+                else
+                {
+                    foundStr = false;
+                    break;
+                }
+            }
+
+            if (foundStr)
+            {
+                foundIdx = i;
+                return foundIdx;
+            }
+        }
+    }
+
+    return foundIdx;
+}

@@ -55,4 +55,6 @@ std::string Encode(const std::string& s);
 
 std::string Decode(const std::string& s);
 
+int findStr(const std::string& s, const std::string& t);
+
 #endif // STRINGS_HPP
