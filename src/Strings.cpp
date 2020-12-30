@@ -1305,18 +1305,18 @@ std::string Decode(const std::string& s)
 
 // space complexity: O(1)
 // time complexity: O(N^2)
-int findStr(const std::string& s, const std::string& t)
+int findStr_PW(const std::string& s, const std::string& t)
 {
     bool foundStr = false;
     int foundIdx = -1;
 
     if (t.empty()) { return 0; }
 
-    for (size_t i = 0; i < s.size(); ++i)
+    for (size_t i = 0; i < t.size(); ++i)
     {
-        if (s[i] == t[0])
+        if (t[i] == s[0])
         {
-            if (i + t.size() > s.size())
+            if (i + s.size() > t.size())
             {
                 foundStr = false;
                 break;
@@ -1324,9 +1324,9 @@ int findStr(const std::string& s, const std::string& t)
 
             foundStr = true;
             int j = 1;
-            for (; j < t.size() && (j + i) < s.size(); ++j)
+            for (; j < s.size() && (j + i) < t.size(); ++j)
             {
-                if (s[i + j] == t[j])
+                if (t[i + j] == s[j])
                 {
                     continue;
                 }
@@ -1346,4 +1346,45 @@ int findStr(const std::string& s, const std::string& t)
     }
 
     return foundIdx;
+}
+
+// Returns the index of the first character of the substring if found, -1 otherwise.
+int findStr_RobinKarp(const std::string& s, const std::string& t)
+{
+    if (std::size(s) > std::size(t)) {
+        return -1; // s is not a substring of t
+    }
+
+    const int kBase = 26;
+    int t_hash = 0, s_hash = 0;  // Hash codes for the substring of t and s.
+    int power_s = 1;             // KBase^|s-1|.
+    for (int i = 0; i < std::size(s); ++i) {
+        power_s = i ? power_s * kBase : 1;
+        t_hash = t_hash * kBase + t[i];
+        s_hash = s_hash * kBase + s[i];
+    }
+
+    for (int i = std::size(s); i < std::size(t); ++i) {
+        // Checks the two substrings are actually equal or not, to protect against
+        // hash collision.
+        if (t_hash == s_hash && !t.compare(i - std::size(s), std::size(s), s)) {
+            return i - size(s);
+        }
+
+        // Uses rolling hash to compute the new hash code
+        t_hash -= t[i - std::size(s)] * power_s;
+        t_hash = t_hash * kBase + t[i];
+    }
+
+    // Tries to match s and t[size(t) - size(s), size(t) - 1]
+    if (t_hash == s_hash && t.compare(std::size(t) - std::size(s), std::size(s), s) == 0) {
+        return std::size(t) - std::size(s);
+    }
+
+    return -1; // s is not a substring of t;
+}
+
+int findStr(const std::string& s, const std::string& t)
+{
+    return findStr_RobinKarp(s, t);
 }

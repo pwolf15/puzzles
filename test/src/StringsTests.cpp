@@ -385,8 +385,9 @@ TEST(Strings, RLE)
 
 TEST(Strings, FindStr)
 {
-    CHECK_EQUAL(1, findStr("scart", "car"));
+    CHECK_EQUAL(1, findStr("car", "scart"));
     CHECK_EQUAL(0, findStr("", ""));
-    CHECK_EQUAL(-1, findStr("aaa", "aaaa"));
+    CHECK_EQUAL(-1, findStr("aaaa", "aaa"));
     CHECK_EQUAL(0, findStr("a", "a"));
+    CHECK_EQUAL(1, findStr("abs", "cabs"));
 }
