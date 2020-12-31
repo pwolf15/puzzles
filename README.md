@@ -160,10 +160,26 @@ TODO: compute an alternation, brute-force swap top and bottom, median solution
 * performs well for operations from the back, worse for at middle
 * comparison operators
 
-## Linked liss
-
-* O(1) constant insertion/deletion time 
-* O(n) lookup time
+TODO:
 Rabin-Karp,
 KMP,
 Boyer-Moore implementations for find str
+
+## Linked lists
+
+* O(1) constant insertion/deletion time 
+* O(n) lookup time
+* List problems often have a simple brute-force solution that uses O(n) space, but a subtler solution that uses the existing list nodes to reduce space complexity.
+* Very often, a problem on lists is conceptually simple, and is more about cleanly coding what's specified, rather than designing an algorithm.
+* Consider using a dummy head (sometimes referred to as a sentinel) to avoid having to check for empty lists. This simplifies code, and makes bugs less likely.
+* It's easy to forget to update next (and previous for double linked list) for the head and tail.
+* Algorithms operating on singly linked lists often benefit from using two iterators, one ahead of the other, or one advancing quicker than the other.
+
+### Know your linked list libraries.
+
+* list, forward_list. list is a doubly-linked list; forward_list is singly-linked.
+* push_front, emplace_front, pop_front, push_back, emplace_back, pop_back
+* To transfer elements from list to another, use splice_after.
+* splice, reverse, sort.
+* Reverse the order of elements with reverse().
+* Use sort() to sort lists.
