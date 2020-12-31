@@ -1348,11 +1348,17 @@ int findStr_PW(const std::string& s, const std::string& t)
     return foundIdx;
 }
 
+// time complexity: O(M + N) with good hashing algorithm
+// space compexity: O(1)
 // Returns the index of the first character of the substring if found, -1 otherwise.
 int findStr_RobinKarp(const std::string& s, const std::string& t)
 {
     if (std::size(s) > std::size(t)) {
         return -1; // s is not a substring of t
+    }
+
+    if (s.empty()) {
+        return 0;
     }
 
     const int kBase = 26;

@@ -1,6 +1,8 @@
 #ifndef LINKEDLISTS_HPP
 #define LINKEDLISTS_HPP
 
+#include <memory>
+
 struct ListNode
 {
     int val;
@@ -10,8 +12,21 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+template <typename T>
+struct ListNodeEPI
+{
+    T data;
+    std::shared_ptr<ListNodeEPI<T>> next;
+};
+
 ListNode *reverseList(ListNode *head);
 
 bool isPalindrome(ListNode* head);
+
+std::shared_ptr<ListNodeEPI<int>> SearchList(std::shared_ptr<ListNodeEPI<int>> L, int key);
+
+void InsertAfter(const std::shared_ptr<ListNodeEPI<int>>& node, const std::shared_ptr<ListNodeEPI<int>>& new_node);
+
+void DeleteAfter(const std::shared_ptr<ListNodeEPI<int>>& node);
 
 #endif // LINKEDLISTS_HPP

@@ -159,3 +159,11 @@ TODO: compute an alternation, brute-force swap top and bottom, median solution
 * append, push_back, pop_back, insert, substr, compare
 * performs well for operations from the back, worse for at middle
 * comparison operators
+
+## Linked liss
+
+* O(1) constant insertion/deletion time 
+* O(n) lookup time
+Rabin-Karp,
+KMP,
+Boyer-Moore implementations for find str

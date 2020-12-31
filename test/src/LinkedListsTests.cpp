@@ -104,3 +104,57 @@ TEST(LinkedLists, isPalindrome)
         i++;
     }
 };
+
+
+TEST(LinkedLists, SearchList)
+{
+    std::shared_ptr<ListNodeEPI<int>> head = std::make_shared<ListNodeEPI<int>>();
+    head->data = 1;
+    head->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->data = 2;
+    head->next->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->next->data = 3;
+
+    std::shared_ptr<ListNodeEPI<int>> result = SearchList(head, 2);
+    CHECK(result != nullptr);
+    CHECK_EQUAL(2, result->data);
+};
+
+
+TEST(LinkedLists, InsertAfter)
+{
+    std::shared_ptr<ListNodeEPI<int>> head = std::make_shared<ListNodeEPI<int>>();
+    head->data = 1;
+    head->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->data = 2;
+    head->next->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->next->data = 3;
+
+    std::shared_ptr<ListNodeEPI<int>> newNode1 = std::make_shared<ListNodeEPI<int>>();
+    newNode1->data = 4;
+
+    InsertAfter(head->next, newNode1);
+    CHECK_EQUAL(4, head->next->next->data);
+
+    std::shared_ptr<ListNodeEPI<int>> newNode2 = std::make_shared<ListNodeEPI<int>>();
+    newNode2->data = 5;
+    
+    InsertAfter(head->next->next->next, newNode2);
+    CHECK_EQUAL(5, head->next->next->next->next->data);
+};
+
+TEST(LinkedLists, DeleteAfter)
+{
+    std::shared_ptr<ListNodeEPI<int>> head = std::make_shared<ListNodeEPI<int>>();
+    head->data = 1;
+    head->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->data = 2;
+    head->next->next = std::make_shared<ListNodeEPI<int>>();
+    head->next->next->data = 3;
+
+    DeleteAfter(head);
+    CHECK_EQUAL(3, head->next->data);
+
+    DeleteAfter(head);
+    CHECK(head->next == nullptr);
+};
