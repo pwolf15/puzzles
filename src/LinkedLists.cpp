@@ -1,6 +1,7 @@
 #include  "LinkedLists.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
 
 ListNode *reverseList(ListNode *head)
 {
@@ -49,6 +50,27 @@ bool isPalindrome(ListNode* head)
     }
 
     return isPal;
+}
+
+std::shared_ptr<ListNodeEPI<int>> createList(const std::vector<int>& vec)
+{
+    std::shared_ptr<ListNodeEPI<int>> head = nullptr;
+    std::shared_ptr<ListNodeEPI<int>> cur = head;
+
+    if (vec.empty()) return head;
+
+    head = std::make_shared<ListNodeEPI<int>>();
+    head->data = vec[0];
+    cur = head;
+
+    for (int i = 1; i < vec.size(); ++i)
+    {
+        cur->next = std::make_shared<ListNodeEPI<int>>();
+        cur->next->data = vec[i];
+        cur = cur->next; 
+    }
+
+    return head;
 }
 
 std::shared_ptr<ListNodeEPI<int>> SearchList_PW(std::shared_ptr<ListNodeEPI<int>> L, int key)
@@ -128,4 +150,74 @@ void DeleteAfter_EPI(const std::shared_ptr<ListNodeEPI<int>>& node)
 void DeleteAfter(const std::shared_ptr<ListNodeEPI<int>>& node)
 {
     return DeleteAfter_EPI(node);
+}
+
+// space complexity: O(1)
+// time complexity: O(n + m), where n and m length of L1 and L2
+std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists_PW(std::shared_ptr<ListNodeEPI<int>> L1, std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    if (!L1) return L2;
+    if (!L2) return L1;
+
+    auto left = L1->data <= L2->data ? L1 : L2;
+    auto right = L1 == left ? L2 : L1;
+    std::shared_ptr<ListNodeEPI<int>> merged = left;
+    auto prev = left;
+
+    while (true)
+    {
+        // advance left ptr until left's data less than right      
+        while (left && left->data <= right->data)
+        {
+            prev = left;
+            left = left->next;
+        }
+
+        // if left exhausted during search, break
+        if (!left)
+        {
+            break;
+        }
+
+        // else, right data less than left, swap ptrs, advance dummy ptr
+        auto temp = right;
+        right = left;
+        left = temp;
+
+        prev->next = left;
+    }
+
+    // only way to reach here is that left has been exhausted
+    prev->next = right;
+
+    return merged;
+}
+
+void AppendNode(std::shared_ptr<ListNodeEPI<int>> *node, std::shared_ptr<ListNodeEPI<int>> *tail)
+{
+    (*tail)->next = *node;
+    *tail = *node;
+    *node = (*node)->next;
+}
+
+// space complexity: O(1)
+// time complexity: O(n + m), where n and m length of L1 and L2
+std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists_EPI(std::shared_ptr<ListNodeEPI<int>> L1, std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    // Creates a placeholder for the result.
+    std::shared_ptr<ListNodeEPI<int>> dummy_head(new ListNodeEPI<int>);
+    auto tail = dummy_head;
+
+    while (L1 && L2) {
+        AppendNode(L1->data <= L2->data ? &L1 : &L2, &tail);
+    }
+
+    // Appends the remaining nodes of L1 or L2.
+    tail->next = L1 ? L1 : L2;
+    return dummy_head->next;
+}
+
+std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists(std::shared_ptr<ListNodeEPI<int>> L1, std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    return MergeTwoSortedLists_EPI(L1, L2);
 }

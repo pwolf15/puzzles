@@ -158,3 +158,45 @@ TEST(LinkedLists, DeleteAfter)
     DeleteAfter(head);
     CHECK(head->next == nullptr);
 };
+
+TEST(LinkedLists, MergeLists)
+{
+    std::shared_ptr<ListNodeEPI<int>> L1 = std::make_shared<ListNodeEPI<int>>();
+    L1->data = 2;
+    L1->next = std::make_shared<ListNodeEPI<int>>();
+    L1->next->data = 5;
+    L1->next->next = std::make_shared<ListNodeEPI<int>>();
+    L1->next->next->data = 7;
+
+    std::shared_ptr<ListNodeEPI<int>> L2 = std::make_shared<ListNodeEPI<int>>();
+    L2->data = 3;
+    L2->next = std::make_shared<ListNodeEPI<int>>();
+    L2->next->data = 11;
+
+    std::vector<int> values = { 2, 3, 5, 7, 11 };
+    std::shared_ptr<ListNodeEPI<int>> cur = MergeTwoSortedLists(L1, L2);
+
+    int i = 0;
+    CHECK(cur != nullptr);
+    while (cur)
+    {
+        CHECK_EQUAL(values[i], cur->data);
+        cur = cur->next;
+        i++;
+    }
+
+    CHECK_EQUAL(values.size(), i);
+
+    L1 = createList({ 2, 5, 7});
+    L2 = createList({ 3, 11 });
+    cur = MergeTwoSortedLists(L1, L2);
+
+    i = 0;
+    CHECK(cur != nullptr);
+    while (cur)
+    {
+        CHECK_EQUAL(values[i], cur->data);
+        cur = cur->next;
+        i++;
+    }
+};

@@ -2,6 +2,7 @@
 #define LINKEDLISTS_HPP
 
 #include <memory>
+#include <vector>
 
 struct ListNode
 {
@@ -23,10 +24,14 @@ ListNode *reverseList(ListNode *head);
 
 bool isPalindrome(ListNode* head);
 
+std::shared_ptr<ListNodeEPI<int>> createList(const std::vector<int>& vec);
+
 std::shared_ptr<ListNodeEPI<int>> SearchList(std::shared_ptr<ListNodeEPI<int>> L, int key);
 
 void InsertAfter(const std::shared_ptr<ListNodeEPI<int>>& node, const std::shared_ptr<ListNodeEPI<int>>& new_node);
 
 void DeleteAfter(const std::shared_ptr<ListNodeEPI<int>>& node);
+
+std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists(std::shared_ptr<ListNodeEPI<int>> L1, std::shared_ptr<ListNodeEPI<int>> l2);
 
 #endif // LINKEDLISTS_HPP
