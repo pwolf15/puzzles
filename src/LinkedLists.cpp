@@ -222,6 +222,8 @@ std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists(std::shared_ptr<ListNodeEP
     return MergeTwoSortedLists_EPI(L1, L2);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::shared_ptr<ListNodeEPI<int>> ReverseSublist_PW(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish)
 {
     auto dummy_head = std::make_shared<ListNodeEPI<int>>();
@@ -255,7 +257,29 @@ std::shared_ptr<ListNodeEPI<int>> ReverseSublist_PW(std::shared_ptr<ListNodeEPI<
     return dummy_head->next;
 }
 
+// time complexity: O(n), where n is length of list O(f), where f is fth node
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> ReverseSublist_EPI(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish)
+{
+    auto dummy_head = std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{0, L});
+    auto sublist_head = dummy_head;
+    int k = 1;
+    while(k++ < start) {
+        sublist_head = sublist_head->next;
+    }
+
+    // Reverses sublist.
+    auto sublist_iter = sublist_head->next;
+    while (start++ < finish) {
+        auto temp = sublist_iter->next;
+        sublist_iter->next = temp->next;
+        temp->next = sublist_head->next;
+        sublist_head->next = temp;
+    }
+    return dummy_head->next;
+}
+
 std::shared_ptr<ListNodeEPI<int>> ReverseSublist(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish)
 {
-    return ReverseSublist_PW(L, start, finish);
+    return ReverseSublist_EPI(L, start, finish);
 }
