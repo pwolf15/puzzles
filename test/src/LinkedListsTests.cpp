@@ -200,3 +200,31 @@ TEST(LinkedLists, MergeLists)
         i++;
     }
 };
+
+TEST(LinkedLists, ReverseSublist)
+{
+    std::shared_ptr<ListNodeEPI<int>> L = createList({ 11, 7, 5, 3, 2});
+    std::vector<int> values = { 11, 3, 5, 7, 2 };
+
+    int i = 0;
+    auto cur = ReverseSublist(L, 2, 4);
+    CHECK(cur != nullptr);
+    while (cur)
+    {
+        CHECK_EQUAL(values[i], cur->data);
+        cur = cur->next;
+        i++;
+    }
+
+    i = 0;
+    L = createList({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+    values = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+    cur = ReverseSublist(L, 1, 10);
+    CHECK(cur != nullptr);
+    while (cur)
+    {
+        CHECK_EQUAL(values[i], cur->data);
+        cur = cur->next;
+        i++;
+    }
+};

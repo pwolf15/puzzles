@@ -221,3 +221,41 @@ std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists(std::shared_ptr<ListNodeEP
 {
     return MergeTwoSortedLists_EPI(L1, L2);
 }
+
+std::shared_ptr<ListNodeEPI<int>> ReverseSublist_PW(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish)
+{
+    auto dummy_head = std::make_shared<ListNodeEPI<int>>();
+    dummy_head->next = L;
+
+    // tail points at last element in sub-list
+    auto tail = dummy_head;
+    auto prev = tail;
+
+    // move prev to point at element before start node
+    int i = 0;
+    while (i < start)
+    {
+        i++;
+        prev = tail;
+        tail = tail->next;
+    }
+
+    // continuouslly shift first in sub-list with current tail
+    while (i < finish)
+    {
+        i++;
+        auto prevHead = prev->next;
+        prev->next = tail->next;
+        auto prevDummyTail = tail->next->next;
+        prev->next->next = prevHead;
+
+        tail->next = prevDummyTail;
+    }
+
+    return dummy_head->next;
+}
+
+std::shared_ptr<ListNodeEPI<int>> ReverseSublist(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish)
+{
+    return ReverseSublist_PW(L, start, finish);
+}

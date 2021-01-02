@@ -34,4 +34,6 @@ void DeleteAfter(const std::shared_ptr<ListNodeEPI<int>>& node);
 
 std::shared_ptr<ListNodeEPI<int>> MergeTwoSortedLists(std::shared_ptr<ListNodeEPI<int>> L1, std::shared_ptr<ListNodeEPI<int>> l2);
 
+std::shared_ptr<ListNodeEPI<int>> ReverseSublist(std::shared_ptr<ListNodeEPI<int>> L, int start, int finish);
+
 #endif // LINKEDLISTS_HPP
