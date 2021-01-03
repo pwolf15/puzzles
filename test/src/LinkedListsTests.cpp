@@ -228,3 +228,27 @@ TEST(LinkedLists, ReverseSublist)
         i++;
     }
 };
+
+TEST(LinkedLists, HasCycle)
+{
+    std::shared_ptr<ListNodeEPI<int>> L = std::make_shared<ListNodeEPI<int>>();
+    L->data = 3;
+    L->next = std::make_shared<ListNodeEPI<int>>();
+    L->next->data = 2;
+    L->next->next = std::make_shared<ListNodeEPI<int>>();
+    L->next->next->data = 0;
+    L->next->next->next = std::make_shared<ListNodeEPI<int>>();
+    L->next->next->next->data = -4;
+    L->next->next->next->next = L->next;
+
+    auto cycleStart = HasCycle(L);
+    CHECK(cycleStart == L->next);
+
+    // cleanup memory
+    L->next->next->next->next = nullptr;
+
+    L->next = nullptr;
+
+    cycleStart = HasCycle(L);
+    CHECK(cycleStart == nullptr);
+};

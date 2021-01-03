@@ -283,3 +283,58 @@ std::shared_ptr<ListNodeEPI<int>> ReverseSublist(std::shared_ptr<ListNodeEPI<int
 {
     return ReverseSublist_EPI(L, start, finish);
 }
+
+bool CycleCheck(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    auto slow = head;
+    auto fast = head;
+
+    bool hasCycle = false;
+    while (slow != nullptr && fast != nullptr)
+    {
+        fast = fast->next;
+        slow = slow->next;
+
+        if (fast && fast->next)
+        {
+            fast = fast->next;
+        }
+
+        if (fast == slow)
+        {
+            if (fast == head) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    return hasCycle;
+}
+
+// time complexity: O(2N * N) = O(N^2), for each, we are doing the cycle check. Cycle check is 2N
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> HasCycle_PW(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    auto dummy_head = std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{0, head});
+    while (dummy_head != nullptr && dummy_head->next != nullptr)
+    {
+        if (CycleCheck(dummy_head->next))
+        {
+            return dummy_head->next;
+        }
+       
+        dummy_head = dummy_head->next;
+    }
+
+    return nullptr;
+}
+
+std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    return HasCycle_PW(head);
+}
