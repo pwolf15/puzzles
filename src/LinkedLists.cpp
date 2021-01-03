@@ -295,10 +295,20 @@ bool CycleCheck(const std::shared_ptr<ListNodeEPI<int>>& head)
         fast = fast->next;
         slow = slow->next;
 
-        if (fast && fast->next)
+        if (!fast)
+        {
+            break;
+        }
+        
+        if (!fast->next)
+        {
+            break;
+        }
+        else 
         {
             fast = fast->next;
         }
+
 
         if (fast == slow)
         {
