@@ -183,3 +183,8 @@ Boyer-Moore implementations for find str
 * splice, reverse, sort.
 * Reverse the order of elements with reverse().
 * Use sort() to sort lists.
+
+### TODO.
+
+Implement variants
+Implement test for cyclicity using hash map (7.3)
