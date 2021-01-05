@@ -38,4 +38,7 @@ std::shared_ptr<ListNodeEPI<int>> ReverseSublist(std::shared_ptr<ListNodeEPI<int
 
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head);
 
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1);
+
 #endif // LINKEDLISTS_HPP

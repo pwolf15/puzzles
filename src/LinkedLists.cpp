@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <unordered_map>
+#include <unordered_set>
 
 ListNode *reverseList(ListNode *head)
 {
@@ -346,4 +348,40 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_PW(const std::shared_ptr<ListNodeEPI<
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
     return HasCycle_PW(head);
+}
+
+// time complexity: O(m + l), where m is length of l0 and l is length of l1
+// space complexity: O(m)
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    std::unordered_set<std::shared_ptr<ListNodeEPI<int>>> nodes;
+    std::shared_ptr<ListNodeEPI<int>> commonNode;
+
+    auto cur = l0;
+    while (cur != nullptr)
+    {
+        nodes.insert(cur);
+        cur = cur->next;
+    }
+
+    cur = l1;
+    while (cur != nullptr)
+    {
+        auto it = nodes.find(cur);
+        if (it != nodes.end())
+        {
+            commonNode = *it;
+            break;
+        }
+        cur = cur->next;
+    }
+
+    return commonNode;
+}
+
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    return OverlappingNoCycleLists_PW(l0, l1);
 }
