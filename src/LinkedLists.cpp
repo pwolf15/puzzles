@@ -345,9 +345,34 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_PW(const std::shared_ptr<ListNodeEPI<
     return nullptr;
 }
 
+// time complexity: O(N)
+// space complexity: O(N)
+std::shared_ptr<ListNodeEPI<int>> HasCycle_BF(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    std::unordered_set<std::shared_ptr<ListNodeEPI<int>>> nodes;
+    auto cur = head;
+
+    while (cur != nullptr)
+    {
+        auto it = nodes.find(cur);
+        if (it == nodes.end())
+        {
+            nodes.insert(cur);
+        }
+        else
+        {
+            return *it;
+        }
+
+        cur = cur->next;
+    }
+
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
-    return HasCycle_PW(head);
+    return HasCycle_BF(head);
 }
 
 // time complexity: O(m + l), where m is length of l0 and l is length of l1
