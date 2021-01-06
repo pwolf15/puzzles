@@ -257,8 +257,36 @@ TEST(LinkedLists, OverlappingNoCycleLists)
 {
     std::shared_ptr<ListNodeEPI<int>> l0 = createList({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
     std::shared_ptr<ListNodeEPI<int>> l1 = createList({ 0, 1, 2, 3});
-    l1->next->next->next->next = l0->next->next->next->next->next;
+
     auto result = OverlappingNoCycleLists(l0, l1);
+    CHECK(result == nullptr);
+
+    // add overlap
+    l1->next->next->next->next = l0->next->next->next->next->next;
+
+    result = OverlappingNoCycleLists(l0, l1);
     CHECK(result != nullptr);
     CHECK(result->data == 5);
+};
+
+TEST(LinkedLists, OverlappingCycleLists)
+{
+    std::shared_ptr<ListNodeEPI<int>> l0 = createList({ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+    std::shared_ptr<ListNodeEPI<int>> l1 = createList({ 0, 1, 2, 3});
+
+    // add cycle
+    l0->next->next->next->next->next->next->next->next->next->next = l0->next;
+
+    auto result = OverlappingCycleLists(l0, l1);
+    CHECK(result == nullptr);
+
+    // add overlap
+    l1->next->next->next->next = l0->next->next->next->next->next;
+
+    result = OverlappingCycleLists(l0, l1);    
+    CHECK(result != nullptr);
+    CHECK(result->data == 5);
+
+    // remove cycle
+    l0->next->next->next->next->next->next->next->next->next->next = nullptr;
 };

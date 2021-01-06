@@ -410,3 +410,57 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNo
 {
     return OverlappingNoCycleLists_PW(l0, l1);
 }
+
+
+// time complexity: O(m + l), where m is length of l0 and l is length of l1
+// space complexity: O(m)
+std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    std::unordered_set<std::shared_ptr<ListNodeEPI<int>>> nodes;
+    std::shared_ptr<ListNodeEPI<int>> commonNode;
+
+    auto cur = l0;
+    while (cur != nullptr)
+    {
+        if (nodes.find(cur) != nodes.end())
+        {
+            break;
+        }
+
+        nodes.insert(cur);
+        cur = cur->next;
+    }
+
+    cur = l1;
+    std::unordered_set<std::shared_ptr<ListNodeEPI<int>>> nodes_l1;
+    while (cur != nullptr)
+    {
+        auto it = nodes.find(cur);
+        if (it != nodes.end())
+        {
+            commonNode = *it;
+            break;
+        }
+
+        nodes.insert(cur);
+
+        it = nodes_l1.find(cur);
+        if (it != nodes_l1.end())
+        {
+            // hit cycle
+            return nullptr;
+        }
+        
+        nodes_l1.insert(cur);
+        cur = cur->next;
+    }
+
+    return commonNode;
+}
+
+std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    return OverlappingCycleLists_PW(l0, l1);
+}

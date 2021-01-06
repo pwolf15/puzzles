@@ -41,4 +41,7 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int
 std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1);
 
+std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1);
+
 #endif // LINKEDLISTS_HPP
