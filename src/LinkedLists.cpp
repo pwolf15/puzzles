@@ -370,9 +370,44 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_BF(const std::shared_ptr<ListNodeEPI<
     return nullptr;
 }
 
+// time complexity: O(N^2)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> HasCycle_BF2(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    std::unordered_set<std::shared_ptr<ListNodeEPI<int>>> nodes;
+    auto cur = head;
+
+    int count = 0;
+
+    // for each node, step through as many nodes seen thus far
+    //  if we see the same node twice, you've hit the start
+    //  return the start of the cycle
+    for (auto i = head; i != nullptr; i = i->next)
+    {
+        count++;
+        auto cur2 = head;
+        int curCount = 0;
+        for (auto j = 0; j < count; ++j)
+        {
+            if (cur2 == i)
+            {
+                curCount++;
+                if (curCount == 2)
+                {
+                    return cur2;
+                }
+            }
+
+            cur2 = cur2->next;
+        }
+    }
+
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
-    return HasCycle_BF(head);
+    return HasCycle_BF2(head);
 }
 
 // time complexity: O(m + l), where m is length of l0 and l is length of l1
