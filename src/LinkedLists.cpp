@@ -497,7 +497,7 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_EPI(const std::shared_ptr<ListNodeEPI
             return iter; // iter is the start of the cycle
         }
     }
-    return nullptr;
+    return nullptr; // No cycle.
 }
 
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
