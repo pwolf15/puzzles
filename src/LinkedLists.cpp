@@ -410,12 +410,14 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_BF2(const std::shared_ptr<ListNodeEPI
 std::shared_ptr<ListNodeEPI<int>> HasCycle_PW2(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
     if (!head) { return head; }
-    
+
     auto slow = head, fast = head->next;
 
-    // it will only ever take at most two iterations of full cycle for nodes to equal each other, why?
-    //  each iteration increases distance between nodes k + i
-    //  nodes will hit when i == distance
+    // fast iterator will catch up with slow iterator (Floyd's algorithm)
+    // If there is a cycle, when both pointers are in cycle, the fast iterator
+    // will increase its distance by 1 with each iteration. By at least the last step of slow iterator's first
+    // step through cycle, it will have caught up with the slow iterator. (Think tortoise and hare).
+
     while (fast && fast->next)
     {
         if (slow == fast)
@@ -459,9 +461,47 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_PW2(const std::shared_ptr<ListNodeEPI
     return nullptr;
 }
 
+// time complexity: O(N)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> HasCycle_EPI(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    if (!head) { return head; }
+
+    std::shared_ptr<ListNodeEPI<int>> fast = head, slow = head;
+
+    while (fast && fast->next)
+    {
+        slow = slow->next, fast = fast->next->next;
+        if (slow == fast) {
+
+            // There is a cycle, so let's calculate the cycle length.
+            int cycle_len = 0;
+            do {
+                ++cycle_len;
+                fast = fast->next;
+            } while (slow != fast);
+
+            // Finds the start of the cycle.
+            auto cycle_len_advanced_iter = head;
+            while (cycle_len--) {
+                cycle_len_advanced_iter = cycle_len_advanced_iter->next;
+            }
+
+            auto iter = head;
+            // Both iterats advance in tandem.
+            while (iter != cycle_len_advanced_iter) {
+                iter = iter->next;
+                cycle_len_advanced_iter = cycle_len_advanced_iter->next;
+            }
+            return iter; // iter is the start of the cycle
+        }
+    }
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
-    return HasCycle_PW2(head);
+    return HasCycle_EPI(head);
 }
 
 // time complexity: O(m + l), where m is length of l0 and l is length of l1
