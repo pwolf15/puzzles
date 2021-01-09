@@ -22,7 +22,8 @@ add_executable(RunTests
     src/DynamicProgrammingTests.cpp
     src/DesignTests.cpp
     src/TreesTests.cpp
+    src/RecursionTests.cpp
     src/test.cpp
 )
 
-target_link_libraries(RunTests Arrays Primitives Strings LinkedLists DynamicProgramming Design Trees ${CPPUTEST_LDFLAGS})
+target_link_libraries(RunTests Arrays Primitives Strings LinkedLists DynamicProgramming Design Trees Recursion ${CPPUTEST_LDFLAGS})

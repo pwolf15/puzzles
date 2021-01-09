@@ -188,3 +188,15 @@ Boyer-Moore implementations for find str
 
 Implement variants
 Implement test for cyclicity using hash map (7.3)
+
+## Recursion
+
+* An approach to problem solving where the solution partially depends on solutins to smaller instances of related problems.
+* Common use-cases: input expressed as recursive rules e.g recursive grammar, searching, enumeration, divide-and-conquer, and decomposition. 
+* Two ingredients to solving recursion
+1. Identifying base csaes.
+2. Ensuring progress
+* Divide-and-conquer: decompose a problem into two or more smaller independent subproblems of the same kind, ntil it gets to instances that are simple enough to be solved directly. E.g. mergesort, quicksort.
+* Divide-and-conquer are subset of recursion. Also included are problems with single sub-problem (binary search), non-independent sub-problems (dynamic programming), and sub-problems of different type (regex expresison matching). Sometimes, iterative solutions are used instead of recursion to reduce space complexity and improve runtime.
+
+### Current 7.8, 15.1, 16.1

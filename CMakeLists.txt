@@ -63,5 +63,6 @@ add_library(LinkedLists         src/LinkedLists.cpp)
 add_library(DynamicProgramming  src/DynamicProgramming.cpp)
 add_library(Design              src/Design.cpp)
 add_library(Trees               src/Trees.cpp)
+add_library(Recursion           src/Recursion.cpp)
 
 add_subdirectory(test)
