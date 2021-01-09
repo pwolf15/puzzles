@@ -198,5 +198,11 @@ Implement test for cyclicity using hash map (7.3)
 2. Ensuring progress
 * Divide-and-conquer: decompose a problem into two or more smaller independent subproblems of the same kind, ntil it gets to instances that are simple enough to be solved directly. E.g. mergesort, quicksort.
 * Divide-and-conquer are subset of recursion. Also included are problems with single sub-problem (binary search), non-independent sub-problems (dynamic programming), and sub-problems of different type (regex expresison matching). Sometimes, iterative solutions are used instead of recursion to reduce space complexity and improve runtime.
+* Recursion is especially suitable when the input is expressed using recursive rules. such as computer grammar.
+* Recursion is a good choice for search, enumeration, and divide-and-conquer.
+* Use recursion as an alternative to deeply nested iteration loops. For example, recursion is much better when you have an undefined number of levels, such as the IP address problem generalized to k substrings.
+* If you are asked to remove recursion from a problem, consider mimicking the call stack with a stack data structure.
+* Recursion can be easily removed from a tail-recursive program by using a while-loop -- no stack is needed. (Optimizing compilers do this.)
+* If a recursive function may end up being called with the same arguments more than once, ache the results -- this is the idea behind Dynamic Programming.
 
 ### Current 7.8, 15.1, 16.1
