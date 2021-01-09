@@ -554,10 +554,65 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW2(std::shared_ptr<Li
     return nullptr;
 }
 
+// time complexity: O(m + l), where m is length of l0 and l is length of l1
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW3(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    // get sizes of each list
+    int len0 = 0;
+    for (auto i = l0; i != nullptr; i = i->next)
+    {
+        len0++;
+    }
+
+    int len1 = 0;
+    for (auto i = l1; i != nullptr; i = i->next)
+    {
+        len1++;
+    }
+
+    // if one list larger than the other
+    //  advance it until lists the same size
+    // reasoning: if lists same size, we can just advance each one node
+    // at a time simultaneously. There must be an intersection at some common node.
+    if (len0 > len1)
+    {
+        for (int i = 0; i < len0 - len1; ++i)
+        {
+            l0 = l0->next;
+        }
+
+        len0 = len1;
+    }
+    else if (len1 > len0)
+    {
+        for (int i = 0; i < len1 - len0; ++i)
+        {
+            l1 = l1->next;
+        }
+
+        len1 = len0;
+    }
+
+    for (int i = 0; i < len0; ++i)
+    {
+        if (l0 == l1)
+        {
+            return l0;
+        }
+
+        l0 = l0->next;
+        l1 = l1->next;
+    }
+
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingNoCycleLists_PW2(l0, l1);
+    return OverlappingNoCycleLists_PW3(l0, l1);
 }
 
 
