@@ -461,7 +461,8 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_PW2(const std::shared_ptr<ListNodeEPI
     return nullptr;
 }
 
-// time complexity: O(N)
+// F = number of nodes to ethe start of the cycle, C = number of nodes in cycle, n = number of nodes
+// time complexity: O(F) + O(C) = O(n) => O(F) for both pointers to reach the cycle and O(C) for them to overlap once the slower one enters
 // space complexity: O(1)
 std::shared_ptr<ListNodeEPI<int>> HasCycle_EPI(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
