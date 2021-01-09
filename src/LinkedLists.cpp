@@ -594,3 +594,10 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNode
 {
     return OverlappingCycleLists_PW(l0, l1);
 }
+
+// Assumes node_to_delete is not tail.
+void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete)
+{
+    node_to_delete->data = node_to_delete->next->data;
+    node_to_delete->next = node_to_delete->next->next;
+}

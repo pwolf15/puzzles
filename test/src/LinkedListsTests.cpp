@@ -293,3 +293,19 @@ TEST(LinkedLists, OverlappingCycleLists)
     // remove cycle
     l0->next->next->next->next->next->next->next->next->next->next = nullptr;
 };
+
+TEST(LinkedLists, DeletionFromList)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 1, 2, 3});
+
+    // delete node in middle
+    DeletionFromList(l->next);
+    CHECK_EQUAL(3, l->next->data);
+
+    l = createList({ 1, 2, 3 });
+
+    // delete head
+    DeletionFromList(l);
+    CHECK_EQUAL(2, l->data);
+};
+
