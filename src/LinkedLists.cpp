@@ -609,10 +609,41 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW3(std::shared_ptr<Li
     return nullptr;
 }
 
+int Length(std::shared_ptr<ListNodeEPI<int>> L) {
+    int length = 0;
+    while (L) {
+        ++length, L = L->next;
+    }
+    return length;
+}
+
+// Advances L by k steps.
+void AdvanceListByK(int k, std::shared_ptr<ListNodeEPI<int>>* L) {
+    while (k--) {
+        *L = (*L)->next;
+    }
+}
+
+// time complexity: O(m + l), where m is length of l0 and l is length of l1
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_EPI(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    int l0_len = Length(l0), l1_len = Length(l1);
+
+    // Advances the longer list to get equal length lists.
+    AdvanceListByK(std::abs(l0_len - l1_len), l0_len > l1_len ? &l0 : &l1);
+
+    while (l0 && l1 && l0 != l1) {
+        l0 = l0->next, l1 = l1->next;
+    }
+    return l0; // nullptr implies there is no overlap between l0 and l1
+}
+
 std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingNoCycleLists_PW3(l0, l1);
+    return OverlappingNoCycleLists_EPI(l0, l1);
 }
 
 
