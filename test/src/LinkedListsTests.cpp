@@ -251,6 +251,9 @@ TEST(LinkedLists, HasCycle)
 
     cycleStart = HasCycle(L);
     CHECK(cycleStart == nullptr);
+
+    cycleStart = HasCycle(nullptr);
+    CHECK(cycleStart == nullptr);
 };
 
 TEST(LinkedLists, OverlappingNoCycleLists)

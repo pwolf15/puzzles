@@ -405,9 +405,63 @@ std::shared_ptr<ListNodeEPI<int>> HasCycle_BF2(const std::shared_ptr<ListNodeEPI
     return nullptr;
 }
 
+// time complexity: O(N)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> HasCycle_PW2(const std::shared_ptr<ListNodeEPI<int>>& head)
+{
+    if (!head) { return head; }
+    
+    auto slow = head, fast = head->next;
+
+    // it will only ever take at most two iterations of full cycle for nodes to equal each other, why?
+    //  each iteration increases distance between nodes k + i
+    //  nodes will hit when i == distance
+    while (fast && fast->next)
+    {
+        if (slow == fast)
+        {
+            // get length of cycle
+            int cycleLen = 1;
+            fast = fast->next;
+            while (fast != slow) 
+            {
+                fast = fast->next;
+                cycleLen++;
+            }
+
+            // return to stsart
+            slow = head;
+            fast = head;
+
+            // iterate fast ptr to cycle length
+            while (cycleLen)
+            {
+                fast = fast->next;
+                cycleLen--;
+            }
+
+            // because fast ptr is cycleLen nodes ahead,
+            //    by the time you reach this condition, fast will have iterated a cycle
+            while (slow != fast)
+            {
+                slow = slow->next;
+                fast = fast->next;
+                            
+            }
+
+            return slow;
+        }
+
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> HasCycle(const std::shared_ptr<ListNodeEPI<int>>& head)
 {
-    return HasCycle_BF2(head);
+    return HasCycle_PW2(head);
 }
 
 // time complexity: O(m + l), where m is length of l0 and l is length of l1
