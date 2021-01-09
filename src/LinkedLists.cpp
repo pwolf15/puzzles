@@ -535,10 +535,29 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW(std::shared_ptr<Lis
     return commonNode;
 }
 
+// time complexity: O(m * l), where m is length of l0 and l is length of l1
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists_PW2(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    for (auto i = l0; i != nullptr; i = i->next)
+    {
+        for (auto j = l1; j != nullptr; j = j->next)
+        {
+            if (i == j)
+            {
+                return i;
+            }
+        }
+    }
+
+    return nullptr;
+}
+
 std::shared_ptr<ListNodeEPI<int>> OverlappingNoCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingNoCycleLists_PW(l0, l1);
+    return OverlappingNoCycleLists_PW2(l0, l1);
 }
 
 
