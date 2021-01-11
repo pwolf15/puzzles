@@ -694,10 +694,20 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW(std::shared_ptr<ListN
     return commonNode;
 }
 
+// time complexity: O(m + l), where m is length of l0 and l is length of l1
+// space complexity: O(m)
+std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW2(std::shared_ptr<ListNodeEPI<int>> l0, 
+    std::shared_ptr<ListNodeEPI<int>> l1)
+{
+    
+    
+    return commonNode;
+}
+
 std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingCycleLists_PW(l0, l1);
+    return OverlappingCycleLists_PW2(l0, l1);
 }
 
 // Assumes node_to_delete is not tail.
