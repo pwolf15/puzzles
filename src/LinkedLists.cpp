@@ -699,15 +699,13 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW(std::shared_ptr<ListN
 std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW2(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    
-    
-    return commonNode;
+    return nullptr;
 }
 
 std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingCycleLists_PW2(l0, l1);
+    return OverlappingCycleLists_PW(l0, l1);
 }
 
 // Assumes node_to_delete is not tail.

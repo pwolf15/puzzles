@@ -1002,3 +1002,22 @@ TEST(Arrays, GeneratePascalTriangle)
         i++;
     }
 }
+
+TEST(Arrays, GeneratePascalRow)
+{
+    int count = 2;
+    for (int j = 0; j <= 10; j++)
+    {
+        std::vector<int> result = GeneratePascalRow(j);
+
+        if (!result.size()) continue;
+        
+        std::cout << result[0];
+        for (int i = 1; i < result.size(); ++i)
+        {
+            std::cout << "," << result[i];
+        }
+
+        std::cout << std::endl;
+    }
+}

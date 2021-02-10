@@ -107,4 +107,6 @@ private:
 
 std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows);
 
+std::vector<int> GeneratePascalRow(int num_rows);
+
 #endif // ARRAYS_HPP

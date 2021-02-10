@@ -2061,3 +2061,29 @@ std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows)
 {
     return GeneratePascalTriangle_EPI(num_rows);
 }
+
+// space complexity: O(N), where N is number or rows
+// time complexity: O(N^2) = O(N + (N - 1) + (N - 2))
+std::vector<int> GeneratePascalRow(int num_rows)
+{
+    // size of vector == num_rows
+
+    if (num_rows <= 0) return {};
+    std::vector<int> row(num_rows);
+
+    row[0] = 1;
+    for (int i = 1; i <= num_rows; ++i)
+    {
+        row[0] = 1;
+        row[i - 1] = 1;
+        int prev = row[0];
+        for (int j = 1; j < i - 1; ++j)
+        {
+            int temp = row[j];
+            row[j] = prev + row[j];
+            prev = temp;           
+        }
+    }
+
+    return row;
+}
