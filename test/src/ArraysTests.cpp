@@ -1011,7 +1011,7 @@ TEST(Arrays, GeneratePascalRow)
         std::vector<int> result = GeneratePascalRow(j);
 
         if (!result.size()) continue;
-        
+
         std::cout << result[0];
         for (int i = 1; i < result.size(); ++i)
         {
@@ -1019,5 +1019,18 @@ TEST(Arrays, GeneratePascalRow)
         }
 
         std::cout << std::endl;
+    }
+}
+
+
+TEST(Arrays, RunningSum)
+{
+    std::vector<int> input = {1, 2, 3, 4};
+    std::vector<int> expected = { 1, 3, 6, 10};
+
+    auto result = runningSum(input);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
     }
 }

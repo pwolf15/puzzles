@@ -109,4 +109,6 @@ std::vector<std::vector<int>> GeneratePascalTriangle(int num_rows);
 
 std::vector<int> GeneratePascalRow(int num_rows);
 
+std::vector<int> runningSum(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

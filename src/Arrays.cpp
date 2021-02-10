@@ -12,6 +12,9 @@
 #include <ctime>
 #include <random>
 
+// functional
+#include <functional>
+
 int removeDuplicates_Efficient(std::vector<int> &nums)
 {
     // time complexity: O(n) where n is array length
@@ -2086,4 +2089,47 @@ std::vector<int> GeneratePascalRow(int num_rows)
     }
 
     return row;
+}
+
+std::vector<int> runningSum_PW1(std::vector<int>& nums)
+{
+    std::vector<int> result(nums.size());
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        for (int j = 0; j <= i; ++j)
+        {
+            result[i] += nums[j];
+        }
+    }
+
+    return result;
+}
+
+std::vector<int> runningSum_PW2(std::vector<int>& nums)
+{
+    std::vector<int> result;
+    std::copy(nums.begin(), nums.end(), std::back_inserter(result));
+    std::partial_sum(result.begin(), result.end(), result.begin(), std::plus<int>());
+    return result;
+}
+
+std::vector<int> runningSum_PW3(std::vector<int>& nums)
+{
+    std::partial_sum(nums.begin(), nums.end(), nums.begin(), std::plus<int>());
+    return nums;
+}
+
+std::vector<int> runningSum_PW4(std::vector<int>& nums)
+{
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        nums[i] += nums[i - 1];
+    }
+
+    return nums;
+}
+
+std::vector<int> runningSum(std::vector<int>& nums)
+{
+    return runningSum_PW4(nums);
 }
