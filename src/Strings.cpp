@@ -109,9 +109,30 @@ bool isAnagram_PW2(std::string s, std::string t)
     return true;
 }
 
+// time complexity: O(s + t)
+// space complexity: O(1)
+bool isAnagram_PW3(std::string s, std::string t)
+{
+    char alph[26] = {0};
+    
+    for (auto c: s)
+    {
+        alph[c - 'a']++;
+    }
+    for (auto c: t)
+    {
+        alph[c - 'a']--;
+    }
+    for (auto d: alph)
+    {
+        if (d != 0) return false;
+    }
+    return true;
+}
+
 bool isAnagram(std::string s, std::string t)
 {
-    return isAnagram_PW2(s, t);
+    return isAnagram_PW3(s, t);
 }
 
 bool detectCapitalUse(std::string word)
