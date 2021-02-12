@@ -59,11 +59,59 @@ int firstUniqChar(std::string s)
     return firstUniqueChar_brute(s);
 }
 
-bool isAnagram(std::string s, std::string t)
+// space complexity: O(1)
+// time complexity: O(s log s + t log t)
+bool isAnagram_PW(std::string s, std::string t)
 {
     std::sort(s.begin(), s.end());
     std::sort(t.begin(), t.end());
     return s == t;
+}
+
+// time complexity: O(s + t)
+// space complexity: O(s)
+bool isAnagram_PW2(std::string s, std::string t)
+{
+    std::unordered_map<char, int> counts;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (counts.find(s[i]) == counts.end())
+        {
+            counts[s[i]] = 1;
+        }
+        else
+        {
+            counts[s[i]]++;
+        }
+    }
+
+    for (int i = 0; i < t.size(); ++i)
+    {
+        if (counts.find(t[i]) == counts.end())
+        {
+            return false;
+        }
+        else
+        {
+            counts[t[i]]--;
+            if (counts[t[i]] == 0)
+            {
+                counts.erase(t[i]);
+            }
+        }
+    }
+
+    if (counts.size() != 0)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool isAnagram(std::string s, std::string t)
+{
+    return isAnagram_PW2(s, t);
 }
 
 bool detectCapitalUse(std::string word)
