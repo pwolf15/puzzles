@@ -1040,3 +1040,24 @@ TEST(Arrays, NumIdenticalPairs)
     std::vector<int> vec = {1, 1, 1, 1};
     CHECK_EQUAL(6, numIdenticalPairs(vec));
 }
+
+TEST(Arrays, IsBoomerang)
+{
+    std::vector<std::vector<int>> vec = {{1,1},{2,3},{3,2}};
+    // CHECK(isBoomerang(vec));
+
+    // vec = {{1,1},{2,2},{3,3}};
+    // CHECK(!isBoomerang(vec));
+
+    // vec = {{0,0},{1,1},{1,1}};
+    // CHECK(!isBoomerang(vec));
+
+    // vec = {{0,0},{0,2},{2,1}};
+    // CHECK(isBoomerang(vec));
+
+    // vec = {{0,1},{0,1},{2,1}};
+    // CHECK(!isBoomerang(vec));
+
+    vec = {{0,1},{2,1},{0,0}};
+    CHECK(isBoomerang(vec));
+}

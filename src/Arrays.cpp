@@ -2181,3 +2181,43 @@ int numIdenticalPairs(std::vector<int>& nums)
 {
     return numIdenticalPairs_PW2(nums);
 }
+
+bool isBoomerang(std::vector<std::vector<int>>& points)
+{
+    auto point0 = points[0];
+    auto point1 = points[1];
+    auto point2 = points[2];
+
+    auto samePoint = [](std::vector<int> p1, std::vector<int> p2) {
+        return p1[0] == p2[0] && p1[1] == p2[1];
+    };
+    auto undefinedSlope = [](std::vector<int> p1, std::vector<int> p2) {
+        return (p2[0] - p1[0]) == 0;
+    };
+    auto slope = [](std::vector<int> p1, std::vector<int> p2) {
+        return (float)(p2[1] - p1[1]) / (float)(p2[0] - p1[0]);
+    };
+
+    if (samePoint(point0, point1) || samePoint(point0, point2) || samePoint(point1, point2))
+    {
+        return false;
+    }
+    else if (undefinedSlope(point0, point1) && undefinedSlope(point1, point2))
+    {
+        return false;
+    }
+    else if (undefinedSlope(point0, point1))
+    {
+        return true;
+    }
+    else if (undefinedSlope(point1, point2))
+    {
+        return true;
+    }
+    else 
+    {
+        return slope(point1, point2) != slope(point0, point1);
+    }
+
+    return false;
+}

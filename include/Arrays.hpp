@@ -113,4 +113,6 @@ std::vector<int> runningSum(std::vector<int>& nums);
 
 int numIdenticalPairs(std::vector<int>& nums);
 
+bool isBoomerang(std::vector<std::vector<int>>& points);
+
 #endif // ARRAYS_HPP
