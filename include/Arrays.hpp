@@ -111,4 +111,6 @@ std::vector<int> GeneratePascalRow(int num_rows);
 
 std::vector<int> runningSum(std::vector<int>& nums);
 
+int numIdenticalPairs(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

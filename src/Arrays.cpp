@@ -2133,3 +2133,51 @@ std::vector<int> runningSum(std::vector<int>& nums)
 {
     return runningSum_PW4(nums);
 }
+
+// space complexity: O(1)
+// time complexity: O(N^2)
+int numIdenticalPairs_PW(std::vector<int>& nums)
+{
+    int numPairs = 0;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        for (int j = i + 1; j < nums.size(); ++j)
+        {
+            if (nums[i] == nums[j])
+            {
+                numPairs++;
+            }
+        }
+    }
+    return numPairs;
+}
+
+// space complexity: O(1)
+// time complexity: O(2*N)
+int numIdenticalPairs_PW2(std::vector<int>& nums)
+{
+    std::unordered_map<int, int> counts;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        counts[nums[i]]++;
+    }
+
+    int numPairs = 0;
+    for (auto pair: counts)
+    {
+        int count = pair.second;
+
+        // number of pairs for a given number is equal to to sum of arithmetic sequence
+        // think 1,1,1,1 => 3 + 2 + 1
+        // 3, 3, 3 => 2 + 1
+        // 5, 5, 5, 5, 5 => 4 + 3 + 2 + 1 = ((5) * (4)) / 2
+        numPairs += (count) * (count - 1) / 2;
+    }
+
+    return numPairs;
+}
+
+int numIdenticalPairs(std::vector<int>& nums)
+{
+    return numIdenticalPairs_PW2(nums);
+}

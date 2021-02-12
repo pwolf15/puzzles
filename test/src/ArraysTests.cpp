@@ -1034,3 +1034,9 @@ TEST(Arrays, RunningSum)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, NumIdenticalPairs)
+{
+    std::vector<int> vec = {1, 1, 1, 1};
+    CHECK_EQUAL(6, numIdenticalPairs(vec));
+}
