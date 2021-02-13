@@ -66,3 +66,9 @@ TEST(Primitives, MagicSquare)
     magicSquare(3);
     // magicSquare(4);
 }
+
+TEST(Primitives,NumSteps)
+{
+    CHECK_EQUAL(6, numSteps(14));
+    // magicSquare(4);
+}

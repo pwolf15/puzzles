@@ -26,4 +26,6 @@ bool isPowerOfFour(int n);
 
 void magicSquare(int n);
 
+int numSteps(int n);
+
 #endif // PRIMITIVES_HPP

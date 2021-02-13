@@ -248,3 +248,23 @@ short CountBits(unsigned int x)
 
     return numBits;
 }
+
+
+int numSteps(int n)
+{
+    int num_steps = 0;
+    while (n)
+    {
+        num_steps++;
+        if (n % 2 == 0)
+        {
+            n /= 2;
+        }
+        else
+        {
+            n -= 1;
+        }
+    }
+
+    return num_steps;
+}
