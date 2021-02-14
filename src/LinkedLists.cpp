@@ -695,17 +695,42 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW(std::shared_ptr<ListN
 }
 
 // time complexity: O(m + l), where m is length of l0 and l is length of l1
-// space complexity: O(m)
-std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_PW2(std::shared_ptr<ListNodeEPI<int>> l0, 
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_EPI(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return nullptr;
+    // case analysis
+    // 1. both neither have cycles => use OverlappingNoCycleLists solution.
+    // 2. one has a cycle, the other does not => they can't overlap.
+    // 3. both have cycles => cycle must be identical
+    //  traverse cycle of first list
+    //  if we reach head of first list, there is no overlap
+    //  otherwise return 
+
+    // Store the start of cycle if any.
+    auto root0 = HasCycle(l0), root1 = HasCycle(l1);
+
+    if (!root0 && !root1) {
+        // Both lists don't have cycles
+        return OverlappingNoCycleLists(l0, l1);
+    } else if ((root0 && !root1) || (!root0 && root1)) {
+        // One list has cycle, and one list has no cycle.
+        return nullptr;
+    }
+
+    // Both lists have cycles.
+    auto temp = root1;
+    do {
+        temp = temp->next;
+    } while (temp != root0 && temp != root1);
+    
+    return temp == root0 ? root1 : nullptr;
 }
 
 std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNodeEPI<int>> l0, 
     std::shared_ptr<ListNodeEPI<int>> l1)
 {
-    return OverlappingCycleLists_PW(l0, l1);
+    return OverlappingCycleLists_EPI(l0, l1);
 }
 
 // Assumes node_to_delete is not tail.
