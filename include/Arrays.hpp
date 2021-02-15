@@ -115,4 +115,6 @@ int numIdenticalPairs(std::vector<int>& nums);
 
 bool isBoomerang(std::vector<std::vector<int>>& points);
 
+std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k);
+
 #endif // ARRAYS_HPP

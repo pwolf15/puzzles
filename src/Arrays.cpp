@@ -2221,3 +2221,35 @@ bool isBoomerang(std::vector<std::vector<int>>& points)
 
     return false;
 }
+
+std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k)
+{
+    std::vector<std::pair<int, int>> rows;
+    for (int i = 0; i < mat.size(); ++i)
+    {
+        int num_soldiers = std::count_if(mat[i].begin(), mat[i].end(), [](int i) {
+            return i == 1;
+        });
+
+        auto p = std::make_pair(i, num_soldiers);
+        rows.push_back(p);
+    }
+
+    std::sort(rows.begin(), rows.end(), [](auto a, auto b) {
+
+        if (a.second == b.second) 
+        {
+            return a.first < b.first;
+        }
+
+        return a.second < b.second;
+    });
+    
+    std::vector<int> ordered_rows(k);
+    for (int i = 0; i < k; ++i)
+    {
+        ordered_rows[i] = rows[i].first;
+    }
+
+    return ordered_rows;
+}
