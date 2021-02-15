@@ -65,11 +65,11 @@ fn gen_list(arr: &mut[i32]) -> Option<Box<ListNode>> {
         return None
     }
 
-    let l = Some(Box::new(ListNode::new(0)));
-    let mut head = l.unwrap().next;
+    // generate list using provided array
+    let dummy = Some(Box::new(ListNode::new(0)));
+    let mut head = dummy.unwrap().next;
 
     for i in arr {
-        println!("{}", i);
         head = Some(Box::new(ListNode::new(*i)));
         head = head.unwrap().next;
     }
