@@ -59,17 +59,40 @@ fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Opti
     return l2;
 }
 
+fn gen_list(arr: &mut[i32]) -> Option<Box<ListNode>> {
+
+    if arr.len() == 0 {
+        return None
+    }
+
+    let l = Some(Box::new(ListNode::new(0)));
+    let mut head = l.unwrap().next;
+
+    for i in arr {
+        println!("{}", i);
+        head = Some(Box::new(ListNode::new(*i)));
+        head = head.unwrap().next;
+    }
+
+    return head;
+}
+
 fn main() {
-    println!("Hello, world!");
-    println!("{}", count_segments("Hello, world!".to_string()));
-    println!("{}", count_segments("welcome to the jungle".to_string()));
-    println!("{}", count_segments("".to_string()));
-    println!("{}", count_segments("hello".to_string()));
-    println!("{}", num_steps(14));
+    // println!("Hello, world!");
+    // println!("{}", count_segments("Hello, world!".to_string()));
+    // println!("{}", count_segments("welcome to the jungle".to_string()));
+    // println!("{}", count_segments("".to_string()));
+    // println!("{}", count_segments("hello".to_string()));
+    // println!("{}", num_steps(14));
 
     let list: Option<Box<ListNode>> = Some(Box::new(ListNode::new(23)));
     let list2: Option<Box<ListNode>> = Some(Box::new(ListNode::new(23)));
-    let result = add_two_numbers(list, list2);
+
+    // generate list from vector array
+    let list = gen_list(&mut [10, 11, 12, 13, 14]);
     // println!("{}", list.unwrap().val);
-    println!("{}", result.unwrap().val);
+
+    let result = add_two_numbers(list, list2);
+    // println!("{}", result.unwrap().val);
+
 }
