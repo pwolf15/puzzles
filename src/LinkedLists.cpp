@@ -723,7 +723,7 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists_EPI(std::shared_ptr<List
     do {
         temp = temp->next;
     } while (temp != root0 && temp != root1);
-    
+
     return temp == root0 ? root1 : nullptr;
 }
 
@@ -740,4 +740,9 @@ void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete)
 {
     node_to_delete->data = node_to_delete->next->data;
     node_to_delete->next = node_to_delete->next->next;
+}
+
+std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
+{
+    return nullptr;
 }

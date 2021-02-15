@@ -46,4 +46,6 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNode
 
 void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete);
 
+std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEPI<int>>& L, int k);
+
 #endif // LINKEDLISTS_HPP
