@@ -30,6 +30,11 @@ def numberOfSteps (num):
 
     return steps
 
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 print(countSegments("welcome to the jungle"))
 print(countSegments("Hello, my name is John"))
@@ -38,3 +43,13 @@ print(numberOfSteps(1))
 print(numberOfSteps(14))
 print(numberOfSteps(7))
 print(numberOfSteps(6))
+
+        
+l1 = ListNode(1)
+l2 = ListNode(2)
+print(l1.val)
+print(l2.val)
+l1.next = l2
+while l1:
+    print(l1.val)
+    l1 = l1.next
