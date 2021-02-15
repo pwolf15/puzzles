@@ -36,6 +36,19 @@ class ListNode(object):
         self.val = val
         self.next = next
 
+def gen_list(l1):
+    dummy = ListNode(0)
+    head = dummy.next
+    head = ListNode(l1[0])
+    print("len: " + str(len(l1)))
+    for el in l1:
+        print("HERE!")
+        head.next = ListNode(el)
+        # head = head.next
+    print(head)
+    return head
+
+
 print(countSegments("welcome to the jungle"))
 print(countSegments("Hello, my name is John"))
 print(addStrings("12", "23"))
@@ -50,6 +63,10 @@ l2 = ListNode(2)
 print(l1.val)
 print(l2.val)
 l1.next = l2
+while l1:
+    print(l1.val)
+    l1 = l1.next
+l1 = gen_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 while l1:
     print(l1.val)
     l1 = l1.next
