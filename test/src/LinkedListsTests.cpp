@@ -309,3 +309,42 @@ TEST(LinkedLists, DeletionFromList)
     CHECK_EQUAL(2, l->data);
 };
 
+TEST(LinkedLists, RemoveKthLast)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 1, 2, 3});
+
+    // remove kth from last
+    l = RemoveKthLast(l, 2);
+
+    CHECK(l);
+
+    CHECK_EQUAL(1, l->data);
+    CHECK_EQUAL(3, l->next->data);
+
+    l = createList({ 1, 2, 3});
+
+    // remove kth from last
+    l = RemoveKthLast(l, 1);
+
+    CHECK(l);
+
+    CHECK_EQUAL(1, l->data);
+    CHECK_EQUAL(2, l->next->data);
+
+    l = createList({ 1 });
+
+    // remove kth from last
+    l = RemoveKthLast(l, 1);
+
+    CHECK(!l);
+
+    l = createList({ 1, 2 });
+
+    // remove kth from last
+    l = RemoveKthLast(l, 2);
+
+    CHECK(l);
+
+    CHECK_EQUAL(2, l->data);
+};
+

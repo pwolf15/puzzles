@@ -742,7 +742,33 @@ void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete)
     node_to_delete->next = node_to_delete->next->next;
 }
 
+std::shared_ptr<ListNodeEPI<int>> RemoveKthLast_PW(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
+{
+    auto h1 = L;
+    auto h2 = h1;
+    auto head = L;
+
+    // 1->2, k = 2
+    // 
+    for (int i = 0; i <= k; ++i)
+    {
+        if (h1 == nullptr) return nullptr;
+
+        h1 = h1->next;
+    }
+
+    while (h1 != nullptr)
+    {
+        h1 = h1->next;
+        h2 = h2->next;
+    }
+
+    h2->next = h2->next->next;
+
+    return head;
+}
+
 std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
 {
-    return nullptr;
+    return RemoveKthLast_PW(L, k);
 }
