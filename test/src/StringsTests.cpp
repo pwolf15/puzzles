@@ -391,3 +391,17 @@ TEST(Strings, FindStr)
     CHECK_EQUAL(0, findStr("a", "a"));
     CHECK_EQUAL(1, findStr("abs", "cabs"));
 }
+
+TEST(Strings, LetterCasePermutation)
+{
+    std::string input = "a1b2";
+    std::vector<std::string> expected = {"a1b2","a1B2","A1b2","A1B2"};
+    std::vector<std::string> result = letterCasePermutation(input);
+
+    CHECK_EQUAL(expected.size(), result.size());
+
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

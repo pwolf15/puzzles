@@ -1463,3 +1463,24 @@ int findStr(const std::string& s, const std::string& t)
 {
     return findStr_RobinKarp(s, t);
 }
+
+std::vector<std::string> permRest(std::vector<std::string>& rest)
+{
+    if (rest.size() == 0)
+    {
+        return {};
+    }
+    else {
+        if (isalpha(rest[0]))
+        {
+            std::vector<std::string> new_rest;
+            std::copy(new_rest.begin(), new_rest.end(), rest.begin() + 1);
+            auto result = std
+        }
+    }
+}
+
+std::vector<std::string> letterCasePermutation(std::string S)
+{
+    
+}
