@@ -2253,3 +2253,42 @@ std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k)
 
     return ordered_rows;
 }
+
+bool isOneBitCharacter(std::vector<int>& bits)
+{   
+    // 1, 1, 0      => last character must be 0
+    // 1, 1, 1, 0   => last character must be 10
+    int i = 0;
+    bool iActive = false;
+    for (; i < bits.size() - 1; i++)
+    {
+        if (bits[i] == 1)
+        {
+            if (iActive)
+            {
+                iActive = false;
+            }
+            else
+            {
+                iActive = true;
+            }
+        }
+        else
+        { 
+            if (iActive)
+            {
+                iActive = false;
+            }
+        }
+    }
+
+    // zero
+    if (!iActive)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

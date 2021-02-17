@@ -117,4 +117,6 @@ bool isBoomerang(std::vector<std::vector<int>>& points);
 
 std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k);
 
+bool isOneBitCharacter(std::vector<int>& bits);
+
 #endif // ARRAYS_HPP

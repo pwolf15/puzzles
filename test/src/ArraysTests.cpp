@@ -1090,3 +1090,11 @@ TEST(Arrays, KWeakestRows)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, IsOneBitCharacter)
+{
+    std::vector<int> input = {1, 1, 0};
+    CHECK(isOneBitCharacter(input));
+    input = { 1, 1, 1, 0 };
+    CHECK(!isOneBitCharacter(input));
+}
