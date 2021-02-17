@@ -59,4 +59,6 @@ int findStr(const std::string& s, const std::string& t);
 
 std::vector<std::string> letterCasePermutation(std::string S);
 
+std::string addStrings(std::string num1, std::string num2);
+
 #endif // STRINGS_HPP

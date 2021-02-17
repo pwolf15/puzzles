@@ -1499,3 +1499,38 @@ std::vector<std::string> letterCasePermutation(std::string S)
 {
     return permRest(S);
 }
+
+std::string addStrings(std::string num1, std::string num2)
+{
+    std::string larger = num1.size() >= num2.size() ? num1 : num2;
+    std::string smaller = num1.size() < num2.size() ? num1 : num2;
+    int carry = 0;
+    std::string sumStr = "";
+    for (int i = 0; i < smaller.size(); ++i)
+    {
+        int op1 =  num1[num1.size() - i - 1] - '0';
+        int op2 =  num2[num2.size() - i - 1] - '0';
+        int sum = (op1 + op2 + carry) % 10;
+        char sumCh = sum + '0';
+        sumStr = sumCh + sumStr;
+        carry = (op1 + op2 + carry) / 10;
+    }
+    
+    for (int i = smaller.size(); i < larger.size(); ++i)
+    {
+        int op1 = larger[larger.size() - i - 1] - '0';
+        int op2 = 0;
+        int sum = (op1 + op2 + carry) % 10;
+        char sumCh = sum + '0';
+        sumStr = sumCh + sumStr;
+        carry = (op1 + op2 + carry) / 10;
+    }
+
+    if (carry)
+    {
+        char sumCh = carry + '0';
+        sumStr = sumCh + sumStr;
+    }
+
+    return sumStr;
+}

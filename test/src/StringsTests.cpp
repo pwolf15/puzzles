@@ -405,3 +405,21 @@ TEST(Strings, LetterCasePermutation)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Strings, AddStrings)
+{
+    std::string op1 = "123";
+    std::string op2 = "456";
+    std::string sum = addStrings(op1, op2);
+    CHECK(sum == "579");
+
+    op1 = "789";
+    op2 = "456";
+    sum = addStrings(op1, op2);
+    CHECK(sum == "1245");
+
+    op1 = "99";
+    op2 = "9";
+    sum = addStrings(op1, op2);
+    CHECK(sum == "108");
+}
