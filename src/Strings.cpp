@@ -1464,23 +1464,38 @@ int findStr(const std::string& s, const std::string& t)
     return findStr_RobinKarp(s, t);
 }
 
-std::vector<std::string> permRest(std::vector<std::string>& rest)
+std::vector<std::string> permRest(std::string rest)
 {
     if (rest.size() == 0)
     {
-        return {};
+        return {""};
     }
     else {
+        std::vector<std::string> new_result;
+        auto result = permRest(rest.substr(1));
         if (isalpha(rest[0]))
         {
-            std::vector<std::string> new_rest;
-            std::copy(new_rest.begin(), new_rest.end(), rest.begin() + 1);
-            auto result = std
+            for (auto combo: result)
+            {
+                new_result.push_back(std::tolower(rest[0], std::locale()) + combo);
+                new_result.push_back(std::toupper(rest[0], std::locale()) + combo);
+            }
+            // std::copy(new_rest.begin(), new_rest.end(), rest.begin() + 1);
+            // auto result = std
         }
+        else
+        {
+            for (auto combo: result)
+            {
+                new_result.push_back(rest[0] + combo);
+            }
+        }
+
+        return new_result;
     }
 }
 
 std::vector<std::string> letterCasePermutation(std::string S)
 {
-    
+    return permRest(S);
 }

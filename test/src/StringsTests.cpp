@@ -395,7 +395,7 @@ TEST(Strings, FindStr)
 TEST(Strings, LetterCasePermutation)
 {
     std::string input = "a1b2";
-    std::vector<std::string> expected = {"a1b2","a1B2","A1b2","A1B2"};
+    std::vector<std::string> expected = {"a1b2","A1b2","a1B2","A1B2"};
     std::vector<std::string> result = letterCasePermutation(input);
 
     CHECK_EQUAL(expected.size(), result.size());
