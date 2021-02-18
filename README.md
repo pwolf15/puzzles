@@ -206,3 +206,12 @@ Implement test for cyclicity using hash map (7.3)
 * If a recursive function may end up being called with the same arguments more than once, ache the results -- this is the idea behind Dynamic Programming.
 
 ### Current 7.8, 15.1, 16.1
+
+#
+
+``` sml
+- use "linked_lists.ml";
+[opening linked_lists.ml]
+datatype 'a linkedlist = Cons of 'a * 'a linkedlist | Empty
+val it = () : unit
+```

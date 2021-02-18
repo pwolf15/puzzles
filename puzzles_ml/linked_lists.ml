@@ -1,0 +1,6 @@
+(* linked list definition *)
+datatype intlist = Nil | Cons of (int * intlist)
+val list1 = Nil 		(* the empty list:  []*)
+val list2 = Cons(1,Nil) 	(* the list containing just 1:  [1] *)
+val list3 = Cons(2,Cons(1,Nil)) (* the list [2,1] *)
+val list4 = Cons(2,list2)       (* also the list [2,1] *)
