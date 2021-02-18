@@ -748,21 +748,33 @@ std::shared_ptr<ListNodeEPI<int>> RemoveKthLast_PW(const std::shared_ptr<ListNod
     auto h2 = h1;
     auto head = L;
 
-    // 1->2, k = 2
-    // 
-    for (int i = 0; i <= k; ++i)
+    // advance h1 k nodes
+    //  to find kth from last node
+    for (int i = 0; i < k; ++i)
     {
-        if (h1 == nullptr) return nullptr;
-
         h1 = h1->next;
     }
 
+    // if h1 is nullptr, that means that
+    //  node to remove is the 1st node
+    if (h1 == nullptr)
+    {
+        head = h2->next;
+        return head;
+    }
+
+    // otherwise, advance h1 1 node
+    //  we want h2->next to point to node to remove
+    h1 = h1->next;
+
+    // advance both pointers to the end
     while (h1 != nullptr)
     {
         h1 = h1->next;
         h2 = h2->next;
     }
 
+    // remove the node of interest
     h2->next = h2->next->next;
 
     return head;
