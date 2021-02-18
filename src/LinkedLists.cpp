@@ -742,6 +742,8 @@ void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete)
     node_to_delete->next = node_to_delete->next->next;
 }
 
+// space complexity: O(1)
+// time complexity: O(N)
 std::shared_ptr<ListNodeEPI<int>> RemoveKthLast_PW(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
 {
     auto h1 = L;
@@ -780,7 +782,24 @@ std::shared_ptr<ListNodeEPI<int>> RemoveKthLast_PW(const std::shared_ptr<ListNod
     return head;
 }
 
+std::shared_ptr<ListNodeEPI<int>> RemoveKthLast_EPI(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
+{
+    auto dummy_head = std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{0, L});
+    auto first = dummy_head->next;
+    while (k--) {
+        first = first->next;
+    }
+
+    auto second = dummy_head;
+    while (first) {
+        second = second->next, first = first->next;
+    }
+    // second points to the (k+1)-th last node, deletes its successor
+    second->next = second->next->next;
+    return dummy_head->next;
+}
+
 std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEPI<int>>& L, int k)
 {
-    return RemoveKthLast_PW(L, k);
+    return RemoveKthLast_EPI(L, k);
 }
