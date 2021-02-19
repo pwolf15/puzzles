@@ -863,7 +863,9 @@ int length(std::shared_ptr<ListNodeEPI<int>> l)
     return length;
 }
 
-std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListNodeEPI<int>> L, int k)
+// time complexity: O(n)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList_PW(std::shared_ptr<ListNodeEPI<int>> L, int k)
 {
     auto p1 = L;
     int count = 0;
@@ -875,7 +877,7 @@ std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListN
     k = k % len; 
 
     if (k == 0) return L;
-    
+
     while (count < (len - k))
     {
         p1 = p1->next;
@@ -897,4 +899,44 @@ std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListN
     p2->next = L;
     newTail->next = nullptr;
     return newHead;
+}
+
+std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList_EPI(std::shared_ptr<ListNodeEPI<int>> L, int k)
+{
+    if (L == nullptr) {
+        return L;
+    }
+
+    // Computes the length of L and the tail.
+    auto tail = L;
+    int n = 1;
+    while (tail->next) {
+        ++n, tail = tail->next;
+    }
+    k %= n;
+    if (k == 0) {
+        return L;
+    }
+
+    tail->next = L; // Makes a cycle by connecting the tail to the head.
+    int steps_to_new_head = n - k;
+    auto new_tail = tail;
+
+    // goes to tail
+    //  determines steps to new head from current head
+    //  identifies new_tail, assigns new head as new_tail->next
+    //  nulls next ptr of new_tail
+    // original head becomes kth node
+    // (n-kth) node becomes head
+    while (steps_to_new_head--) {
+        new_tail = new_tail->next;
+    }
+    auto new_head = new_tail->next;
+    new_tail->next = nullptr;
+    return new_head;
+}
+
+std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListNodeEPI<int>> L, int k)
+{
+    return CyclicallyRightShiftList_EPI(L, k);
 }
