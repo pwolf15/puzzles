@@ -1536,7 +1536,7 @@ std::string addStrings(std::string num1, std::string num2)
 }
 
 // time complexity: O(n)
-// space complexity: O(1)
+// space complexity: O(n)
 bool buddyStrings(std::string A, std::string B)
 {
     if (A.size() != B.size() || A.empty())
