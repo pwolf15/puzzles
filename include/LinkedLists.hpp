@@ -24,6 +24,8 @@ ListNode *reverseList(ListNode *head);
 
 bool isPalindrome(ListNode* head);
 
+int length(std::shared_ptr<ListNodeEPI<int>> l);
+
 std::shared_ptr<ListNodeEPI<int>> createList(const std::vector<int>& vec);
 
 std::shared_ptr<ListNodeEPI<int>> SearchList(std::shared_ptr<ListNodeEPI<int>> L, int key);
@@ -47,5 +49,7 @@ std::shared_ptr<ListNodeEPI<int>> OverlappingCycleLists(std::shared_ptr<ListNode
 void DeletionFromList(const std::shared_ptr<ListNodeEPI<int>>& node_to_delete);
 
 std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEPI<int>>& L, int k);
+
+std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNodeEPI<int>>& L);
 
 #endif // LINKEDLISTS_HPP

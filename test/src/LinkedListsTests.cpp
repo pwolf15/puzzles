@@ -348,3 +348,49 @@ TEST(LinkedLists, RemoveKthLast)
     CHECK_EQUAL(2, l->data);
 };
 
+TEST(LinkedLists, RemoveDuplicates)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 1, 1, 2, 2, 3, 3});
+    std::vector<int> expected = { 1, 2, 3 };
+
+    l = RemoveDuplicates(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({ 1, 2, 3});
+    expected = { 1, 2, 3 };
+
+    l = RemoveDuplicates(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = nullptr;
+    expected = { };
+
+    l = RemoveDuplicates(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({1,1,2,3,3});
+    expected = { 1, 2, 3};
+
+    l = RemoveDuplicates(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+};

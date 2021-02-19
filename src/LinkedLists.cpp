@@ -803,3 +803,38 @@ std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEP
 {
     return RemoveKthLast_EPI(L, k);
 }
+
+std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    auto first = L;
+    auto second = first;
+
+    while (second != nullptr)
+    {
+        if (second->data != first->data)
+        {
+            first->next = second;
+            first = second;
+        }
+
+        second = second->next;
+    }
+
+    if (first && first->next != nullptr)
+    {
+        first->next = nullptr;
+    }
+
+    return L;
+}
+
+int length(std::shared_ptr<ListNodeEPI<int>> l)
+{
+    int length = 0;
+    while (l != nullptr)
+    {
+        l = l->next;
+        length++;
+    }
+    return length;
+}
