@@ -2292,3 +2292,50 @@ bool isOneBitCharacter(std::vector<int>& bits)
         return false;
     }
 }
+
+std::vector<int> addToArrayForm(std::vector<int>& A, int K)
+{
+    int carry = 0;
+    std::vector<int> result;
+    int i;
+    for (i = 0; K != 0 && i < A.size(); ++i)
+    {
+        int op1 = K % 10;
+        int op2 = A[A.size() - i - 1];
+        int sum = (carry + op1 + op2);
+        carry = sum / 10;
+        sum = sum % 10;
+        K /= 10;
+
+        result.push_back(sum);
+    }
+
+    // if K still has characters
+    while (K)
+    {
+        int sum = carry + K % 10;
+        carry = sum / 10;
+        sum = sum % 10;
+        result.push_back(sum);
+        K /= 10;
+    }
+
+    // if A still has characters
+    while (i < A.size())
+    {
+        int sum = carry + A[A.size() - i - 1] % 10;
+        carry = sum / 10;
+        sum = sum % 10;
+        result.push_back(sum);
+        i++;
+    }
+
+    if (carry)
+    {
+        result.push_back(carry);
+    }
+    
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}

@@ -119,4 +119,6 @@ std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k);
 
 bool isOneBitCharacter(std::vector<int>& bits);
 
+std::vector<int> addToArrayForm(std::vector<int>& A, int K);
+
 #endif // ARRAYS_HPP

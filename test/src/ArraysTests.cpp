@@ -1098,3 +1098,39 @@ TEST(Arrays, IsOneBitCharacter)
     input = { 1, 1, 1, 0 };
     CHECK(!isOneBitCharacter(input));
 }
+
+TEST(Arrays, AddToArrayForm)
+{
+    std::vector<int> input = { 1, 2, 0, 0 };
+    std::vector<int> expected = { 1, 2, 3, 4 };
+    int k = 34;
+
+    std::vector<int> result = addToArrayForm(input, k);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    input = { 1, 2, 0, 1 };
+    expected = { 1, 3, 0, 0 };
+    k = 99;
+
+    result = addToArrayForm(input, k);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    input = { 2, 1, 5};
+    expected = { 1, 0, 2, 1 };
+    k = 806;
+
+    result = addToArrayForm(input, k);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }  
+}
