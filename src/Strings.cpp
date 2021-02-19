@@ -1534,3 +1534,63 @@ std::string addStrings(std::string num1, std::string num2)
 
     return sumStr;
 }
+
+// time complexity: O(n)
+// space complexity: O(1)
+bool buddyStrings(std::string A, std::string B)
+{
+    if (A.size() != B.size() || A.empty())
+    {
+        return false;
+    }
+
+    int first = -1;
+    int second = -1;
+    std::unordered_map<char, int> counts;
+    for (int i = 0; i < A.size(); ++i)
+    {
+        counts[A[i]]++;
+        if (A[i] != B[i])
+        {
+            if (first > 0 && second > 0)
+            {
+                // more than 1 swap (possibly) required
+                return false;
+            }
+            else if (first == -1)
+            {
+                first = i;
+            }
+            else 
+            {
+                second = i;
+                std::swap(A[first], A[second]);
+
+                if (A[first] != B[first] || A[second] != B[second])
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (first != -1 && second == -1)
+    {
+        return false;
+    }
+
+    if (first == -1 || second == -1)
+    {
+
+        for (auto pair: counts)
+        {
+            if (pair.second > 1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    return true;
+}

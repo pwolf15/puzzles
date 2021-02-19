@@ -61,4 +61,6 @@ std::vector<std::string> letterCasePermutation(std::string S);
 
 std::string addStrings(std::string num1, std::string num2);
 
+bool buddyStrings(std::string A, std::string B);
+
 #endif // STRINGS_HPP

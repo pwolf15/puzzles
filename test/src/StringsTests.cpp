@@ -423,3 +423,26 @@ TEST(Strings, AddStrings)
     sum = addStrings(op1, op2);
     CHECK(sum == "108");
 }
+
+TEST(Strings, BuddyStrings)
+{
+    std::string str1 = "ab";
+    std::string str2 = "ba";
+    CHECK(buddyStrings(str1, str2));
+
+    str1 = "ab";
+    str2 = "ab";
+    CHECK(!buddyStrings(str1, str2));
+
+    str1 = "aa";
+    str2 = "aa";
+    CHECK(buddyStrings(str1, str2));
+
+    str1 = "aaaaaaabc";
+    str2 = "aaaaaaacb";
+    CHECK(buddyStrings(str1, str2));
+
+    str1 = "abac";
+    str2 = "abad";
+    CHECK(!buddyStrings(str1, str2));
+}
