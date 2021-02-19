@@ -804,7 +804,9 @@ std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEP
     return RemoveKthLast_EPI(L, k);
 }
 
-std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNodeEPI<int>>& L)
+// time complexity: O(n)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates_PW(const std::shared_ptr<ListNodeEPI<int>>& L)
 {
     auto first = L;
     auto second = first;
@@ -826,6 +828,28 @@ std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNod
     }
 
     return L;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates_EPI(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    auto iter = L;
+    while (iter) {
+        // Uses next_distinct to find the next distinct value.
+        auto next_distinct = iter->next;
+        while (next_distinct && next_distinct->data == iter->data) {
+            next_distinct = next_distinct->next;
+        }
+        iter->next = next_distinct;
+        iter = next_distinct;
+    }
+    return L;
+}
+
+std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    return RemoveDuplicates_EPI(L);
 }
 
 int length(std::shared_ptr<ListNodeEPI<int>> l)
