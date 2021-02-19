@@ -121,4 +121,6 @@ bool isOneBitCharacter(std::vector<int>& bits);
 
 std::vector<int> addToArrayForm(std::vector<int>& A, int K);
 
+int arrayPairSum(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

@@ -1134,3 +1134,16 @@ TEST(Arrays, AddToArrayForm)
         CHECK_EQUAL(expected[i], result[i]);
     }  
 }
+
+TEST(Arrays, ArrayPairSum)
+{
+    std::vector<int> input = { 1,4,3,2 };
+    int expected = 4;
+    int result = arrayPairSum(input);
+    CHECK_EQUAL(expected, result);
+
+    input = { 6,2,6,5,1,2 };
+    expected = 9;
+    result = arrayPairSum(input);
+    CHECK_EQUAL(expected, result);
+}
