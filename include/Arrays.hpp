@@ -123,4 +123,6 @@ std::vector<int> addToArrayForm(std::vector<int>& A, int K);
 
 int arrayPairSum(std::vector<int>& nums);
 
+int findContentChildren(std::vector<int>& g, std::vector<int>& s);
+
 #endif // ARRAYS_HPP

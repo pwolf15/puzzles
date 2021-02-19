@@ -1147,3 +1147,21 @@ TEST(Arrays, ArrayPairSum)
     result = arrayPairSum(input);
     CHECK_EQUAL(expected, result);
 }
+
+TEST(Arrays, FindContentChildren)
+{
+    std::vector<int> g = {1, 2, 3}, s = {1, 1};
+    int expected = 1;
+    int content = findContentChildren(g, s);
+    CHECK_EQUAL(expected, content);
+
+    g = {1,2}, s = {1,2,3};
+    expected = 2;
+    content = findContentChildren(g, s);
+    CHECK_EQUAL(expected, content);
+
+    g = {10,9,8,7}, s = {5,6,7,8};
+    expected = 2;
+    content = findContentChildren(g, s);
+    CHECK_EQUAL(expected, content);
+}

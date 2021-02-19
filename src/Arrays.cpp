@@ -2357,3 +2357,25 @@ int arrayPairSum(std::vector<int>& nums)
 
     return sum;
 }
+
+// time complexity: O(g log g + s log s + s)
+// space complexity: O(1)
+int findContentChildren(std::vector<int>& g, std::vector<int>& s)
+{
+    int j = 0;
+    int total = 0;
+
+    std::sort(g.begin(), g.end());
+    std::sort(s.begin(), s.end());
+
+    for (int i = 0; i < s.size() && j < g.size(); ++i)
+    {
+        if (s[i] >= g[j])
+        {
+            j++;
+            total++;
+        }
+    }
+
+    return total;
+}
