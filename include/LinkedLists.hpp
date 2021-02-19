@@ -52,4 +52,6 @@ std::shared_ptr<ListNodeEPI<int>> RemoveKthLast(const std::shared_ptr<ListNodeEP
 
 std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNodeEPI<int>>& L);
 
+std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListNodeEPI<int>> L, int k);
+
 #endif // LINKEDLISTS_HPP

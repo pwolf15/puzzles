@@ -394,3 +394,51 @@ TEST(LinkedLists, RemoveDuplicates)
         l = l->next;
     }
 };
+
+TEST(LinkedLists, CyclicallyRightShiftList)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 2, 3, 5, 3, 2});
+    std::vector<int> expected = { 5, 3, 2, 2, 3};
+
+    l = CyclicallyRightShiftList(l, 3);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({ 1, 2, 3, 4, 5 });
+    expected = { 5, 1, 2, 3, 4};
+
+    l = CyclicallyRightShiftList(l, 1);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({0,1,2});
+    expected = { 2, 0, 1};
+
+    l = CyclicallyRightShiftList(l, 4);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+
+    l = createList({});
+    expected = {};
+
+    l = CyclicallyRightShiftList(l, 0);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }   
+};

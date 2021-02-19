@@ -862,3 +862,39 @@ int length(std::shared_ptr<ListNodeEPI<int>> l)
     }
     return length;
 }
+
+std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListNodeEPI<int>> L, int k)
+{
+    auto p1 = L;
+    int count = 0;
+    auto newTail = p1;
+
+    if (L == nullptr) return L;
+    
+    auto len = length(L);
+    k = k % len; 
+
+    if (k == 0) return L;
+    
+    while (count < (len - k))
+    {
+        p1 = p1->next;
+        if (count >= 1)
+        {
+            newTail = newTail->next;
+        }
+        
+        count++;
+    }
+
+    auto p2 = p1;
+    auto newHead = p1;
+    std::cout << "val: " << p1->data << std::endl;
+    while (p2->next != nullptr)
+    {
+        p2 = p2->next;
+    }
+    p2->next = L;
+    newTail->next = nullptr;
+    return newHead;
+}
