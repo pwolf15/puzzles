@@ -2379,3 +2379,83 @@ int findContentChildren(std::vector<int>& g, std::vector<int>& s)
 
     return total;
 }
+
+// time complexity: O(n + n) for time to find pawn, plus time to iterate possible pieces
+// space complexity: O(1)
+int numRookCaptures(std::vector<std::vector<char>>& board)
+{
+    int rookRow = 0;
+    int rookCol = 0;
+    for (int i = 0; i < board.size(); ++i)
+    {
+        for (int j = 0; j < board.size(); ++j)
+        {
+            if (board[i][j] == 'R')
+            {
+                rookRow = i;
+                rookCol = j;
+                break;
+            }
+        }
+    }
+
+    int pawnCount = 0;
+
+    // top
+    for (int i = rookRow; i >= 0; i--)
+    {
+        if (board[i][rookCol] == 'p')
+        {
+            pawnCount++;
+            break;
+        }
+        else if (board[i][rookCol] == 'B')
+        {
+            break;
+        }
+    }
+
+    // bottom
+    for (int i = rookRow; i < board.size(); ++i)
+    {
+        if (board[i][rookCol] == 'p')
+        {
+            pawnCount++;
+            break;
+        }
+        else if (board[i][rookCol] == 'B')
+        {
+            break;
+        }
+    }
+
+    // left
+    for (int i = rookCol; i >= 0; --i)
+    {
+        if (board[rookRow][i] == 'p')
+        {
+            pawnCount++;
+            break;
+        }
+        else if (board[rookRow][i] == 'B')
+        {
+            break;
+        }
+    }
+
+    // right
+    for (int i = rookCol; i < board.size(); ++i)
+    {
+        if (board[rookRow][i] == 'p')
+        {
+            pawnCount++;
+            break;
+        }
+        else if (board[rookRow][i] == 'B')
+        {
+            break;
+        }
+    }
+
+    return pawnCount;
+}

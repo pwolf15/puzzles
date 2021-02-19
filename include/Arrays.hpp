@@ -125,4 +125,6 @@ int arrayPairSum(std::vector<int>& nums);
 
 int findContentChildren(std::vector<int>& g, std::vector<int>& s);
 
+int numRookCaptures(std::vector<std::vector<char>>& board);
+
 #endif // ARRAYS_HPP

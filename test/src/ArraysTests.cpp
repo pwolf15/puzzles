@@ -1165,3 +1165,22 @@ TEST(Arrays, FindContentChildren)
     content = findContentChildren(g, s);
     CHECK_EQUAL(expected, content);
 }
+
+TEST(Arrays, NumRookCaptures)
+{
+    std::vector<std::vector<char>> board = 
+        {
+            {'.','.','.','.','.','.','.','.'},
+            {'.','.','.','p','.','.','.','.'},
+            {'.','.','.','p','.','.','.','.'},
+            {'p','p','.','R','.','p','B','.'},
+            {'.','.','.','.','.','.','.','.'},
+            {'.','.','.','B','.','.','.','.'},
+            {'.','.','.','p','.','.','.','.'},
+            {'.','.','.','.','.','.','.','.'}
+        };
+    int expected = 3;
+    int result = numRookCaptures(board);
+    CHECK_EQUAL(expected, result);
+
+}
