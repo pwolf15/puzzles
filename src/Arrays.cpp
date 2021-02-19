@@ -2293,6 +2293,8 @@ bool isOneBitCharacter(std::vector<int>& bits)
     }
 }
 
+// time complexity: O(n + n log n)
+// space complexity: O(n)
 std::vector<int> addToArrayForm(std::vector<int>& A, int K)
 {
     int carry = 0;
@@ -2340,6 +2342,9 @@ std::vector<int> addToArrayForm(std::vector<int>& A, int K)
     return result;
 }
 
+
+// time complexity: O(n log n + n)
+// space complexity: O(1)
 int arrayPairSum(std::vector<int>& nums)
 {
     std::sort(nums.begin(), nums.end());
