@@ -269,6 +269,8 @@ int numSteps(int n)
     return num_steps;
 }
 
+// time complexity: O(n / 2)
+// space complexity: O(1)
 bool checkPerfectNumber(int num)
 {
     int sum = 0;

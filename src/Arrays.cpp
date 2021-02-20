@@ -2461,6 +2461,8 @@ int numRookCaptures(std::vector<std::vector<char>>& board)
     return pawnCount;
 }
 
+// time complexity: O(n log n + n)
+// space complexity: O(n)
 int thirdMax(std::vector<int>& nums)
 {
     std::set<int> unique_nums;
