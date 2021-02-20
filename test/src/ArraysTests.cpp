@@ -1207,4 +1207,9 @@ TEST(Arrays, ThirdMax)
     expected = 5;
     result = thirdMax(nums);
     CHECK_EQUAL(expected, result);
+
+    nums = {1,2,-2147483648};
+    expected = -2147483648;
+    result = thirdMax(nums);
+    CHECK_EQUAL(expected, result);
 }

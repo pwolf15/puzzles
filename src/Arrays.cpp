@@ -2505,7 +2505,100 @@ int thirdMax_PW2(std::vector<int>& nums)
     }
 }
 
+// space complexity: O(1)
+// time complexity: O(n + n log n)
+int thirdMax_PW3(std::vector<int>& nums)
+{
+    std::sort(nums.begin(), nums.end());
+    auto first = nums[0],
+         second = first,
+         third = first;
+    
+    int count = 1;
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        if (nums[i] > first)
+        {
+            third = second;
+            second = first;
+            first = nums[i];
+            count++;
+        }
+        else if (nums[i] > second && nums[i] != first)
+        {
+            third = second;
+            second = nums[i];
+            count++;
+        }
+        else if (nums[i] > third && nums[i] != first && nums[i] != second)
+        {
+            third = nums[i];
+            count++;
+        }
+    }
+
+    if (count < 3)
+    {
+        return first;
+    }
+    else 
+    {
+        return third;
+    }
+}
+
+// space complexity: O(1)
+// time complexity: O(n + n log n)
+int thirdMax_PW4(std::vector<int>& nums)
+{
+    auto first = std::numeric_limits<int>::min(),
+         second = first,
+         third = first;
+    
+    int count = 0;
+    bool minFlag = false;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] > first)
+        {
+            third = second;
+            second = first;
+            first = nums[i];
+            count++;
+        }
+        else if (nums[i] > second && nums[i] != first)
+        {
+            third = second;
+            second = nums[i];
+            count++;
+        }
+        else if (nums[i] > third && nums[i] != first && nums[i] != second)
+        {
+            third = nums[i];
+            count++;
+        }
+        else if (nums[i] == std::numeric_limits<int>::min())
+        {
+            minFlag = true;
+        }
+    }
+
+    if (minFlag) 
+    {
+        count++;
+    }
+    
+    if (count < 3)
+    {
+        return first;
+    }
+    else 
+    {
+        return third;
+    }
+}
+
 int thirdMax(std::vector<int>& nums)
 {
-    return thirdMax_PW2(nums);
+    return thirdMax_PW4(nums);
 }
