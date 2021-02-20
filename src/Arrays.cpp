@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <unordered_set>
+#include <set>
 #include <unordered_map>
 #include <deque>
 #include <cmath>
@@ -2458,4 +2459,28 @@ int numRookCaptures(std::vector<std::vector<char>>& board)
     }
 
     return pawnCount;
+}
+
+int thirdMax(std::vector<int>& nums)
+{
+    std::set<int> unique_nums;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        unique_nums.insert(nums[i]);
+    }
+
+    auto iter = unique_nums.end();
+    if (unique_nums.size() < 3)
+    {
+        return *(--iter);
+    }
+    else 
+    {
+        int count = 3;
+        while (count--)
+        {
+            iter--;
+        }
+        return *(iter);
+    }
 }

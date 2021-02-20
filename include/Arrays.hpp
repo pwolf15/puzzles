@@ -127,4 +127,6 @@ int findContentChildren(std::vector<int>& g, std::vector<int>& s);
 
 int numRookCaptures(std::vector<std::vector<char>>& board);
 
+int thirdMax(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

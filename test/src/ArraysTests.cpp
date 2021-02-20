@@ -1184,3 +1184,27 @@ TEST(Arrays, NumRookCaptures)
     CHECK_EQUAL(expected, result);
 
 }
+
+TEST(Arrays, ThirdMax)
+{
+    std::vector<int> nums = { 1, 2, 3 };
+    int expected = 1;
+    int result = 0;
+    result = thirdMax(nums);
+    CHECK_EQUAL(expected, result);
+
+    nums = { 1, 2 };
+    expected = 2;
+    result = thirdMax(nums);
+    CHECK_EQUAL(expected, result);
+
+    nums = { 1, 2, 2, 3 };
+    expected = 1;
+    result = thirdMax(nums);
+    CHECK_EQUAL(expected, result);
+
+    nums = { 5, 2, 2 };
+    expected = 5;
+    result = thirdMax(nums);
+    CHECK_EQUAL(expected, result);
+}
