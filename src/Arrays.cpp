@@ -2548,7 +2548,7 @@ int thirdMax_PW3(std::vector<int>& nums)
 }
 
 // space complexity: O(1)
-// time complexity: O(n + n log n)
+// time complexity: O(n)
 int thirdMax_PW4(std::vector<int>& nums)
 {
     auto first = std::numeric_limits<int>::min(),
@@ -2587,7 +2587,7 @@ int thirdMax_PW4(std::vector<int>& nums)
     {
         count++;
     }
-    
+
     if (count < 3)
     {
         return first;
