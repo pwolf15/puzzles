@@ -2463,7 +2463,7 @@ int numRookCaptures(std::vector<std::vector<char>>& board)
 
 // time complexity: O(n log n + n)
 // space complexity: O(n)
-int thirdMax(std::vector<int>& nums)
+int thirdMax_BF(std::vector<int>& nums)
 {
     std::set<int> unique_nums;
     for (int i = 0; i < nums.size(); ++i)
@@ -2485,4 +2485,27 @@ int thirdMax(std::vector<int>& nums)
         }
         return *(iter);
     }
+}
+
+// space complexity: O(1)
+// time complexity: O(n log n + n log n + n)
+int thirdMax_PW2(std::vector<int>& nums)
+{
+    std::sort(nums.begin(), nums.end());
+    auto last = std::unique(nums.begin(), nums.end());
+    nums.erase(last, nums.end());
+    
+    if (nums.size() < 3)
+    {
+        return nums[nums.size() - 1];
+    }
+    else
+    {
+        return nums[nums.size() - 3];
+    }
+}
+
+int thirdMax(std::vector<int>& nums)
+{
+    return thirdMax_PW2(nums);
 }
