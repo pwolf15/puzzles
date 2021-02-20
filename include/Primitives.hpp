@@ -28,4 +28,6 @@ void magicSquare(int n);
 
 int numSteps(int n);
 
+bool checkPerfectNumber(int num);
+
 #endif // PRIMITIVES_HPP

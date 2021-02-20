@@ -72,3 +72,14 @@ TEST(Primitives,NumSteps)
     CHECK_EQUAL(6, numSteps(14));
     // magicSquare(4);
 }
+
+TEST(Primitives, CheckPerfectNumber)
+{
+    CHECK(checkPerfectNumber(28));
+    CHECK(!checkPerfectNumber(29));
+    CHECK(checkPerfectNumber(6));
+    CHECK(checkPerfectNumber(496));
+    CHECK(checkPerfectNumber(8128));
+    CHECK(!checkPerfectNumber(2));
+    CHECK(!checkPerfectNumber(1));
+}

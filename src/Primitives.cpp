@@ -268,3 +268,38 @@ int numSteps(int n)
 
     return num_steps;
 }
+
+bool checkPerfectNumber(int num)
+{
+    int sum = 0;
+    for (int i = 1; i <= sqrt(num); i++)
+    {
+        if (num % i == 0)
+        {
+            int div1 = i;
+            int div2 = num / i;
+
+            if (div1 == 1 && div2 == num)
+            {
+                // only add 1, if num != 1
+                if (div2 != div1)
+                {
+                    sum += 1;
+                }
+            }
+            else if (div1 != div2)
+            {
+                // only add unique divisors
+                sum += div1;
+                sum += div2;
+            }
+            else
+            {
+                // if div1 == div2, only add div1
+                sum += div1;
+            }
+        }
+    }
+
+    return sum == num;
+}
