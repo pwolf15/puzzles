@@ -63,4 +63,6 @@ std::string addStrings(std::string num1, std::string num2);
 
 bool buddyStrings(std::string A, std::string B);
 
+std::string convertToTitle(int n);
+
 #endif // STRINGS_HPP

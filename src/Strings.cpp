@@ -1594,3 +1594,17 @@ bool buddyStrings(std::string A, std::string B)
 
     return true;
 }
+
+std::string convertToTitle(int n)
+{
+    std::string title = "";
+
+    while (n)
+    {   
+        char c = (char)(((n - 1) % 26) + 65);
+        title = c + title;
+        n = (n - 1) / 26;
+    }
+
+    return title;
+}

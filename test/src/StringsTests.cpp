@@ -446,3 +446,26 @@ TEST(Strings, BuddyStrings)
     str2 = "abad";
     CHECK(!buddyStrings(str1, str2));
 }
+
+TEST(Strings, ConvertToTitle)
+{
+    int col = 1;
+    std::string expected = "A";
+    std::string result = convertToTitle(col);
+    CHECK_EQUAL(expected, result);
+
+    expected = "Z";
+    col = 26;
+    result = convertToTitle(col);
+    CHECK_EQUAL(expected, result);
+
+    expected = "AB";
+    col = 28;
+    result = convertToTitle(col);
+    CHECK_EQUAL(expected, result);
+
+    expected = "ZY";
+    col = 701;
+    result = convertToTitle(col);
+    CHECK_EQUAL(expected, result);
+}
