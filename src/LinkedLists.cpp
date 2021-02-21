@@ -971,6 +971,8 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_PW(const std::shared_ptr<ListNode
     return L;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_EPI(const std::shared_ptr<ListNodeEPI<int>>& L)
 {
     if (L == nullptr) {
