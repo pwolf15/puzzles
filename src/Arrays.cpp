@@ -2602,3 +2602,31 @@ int thirdMax(std::vector<int>& nums)
 {
     return thirdMax_PW4(nums);
 }
+
+bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
+{
+    std::vector<int> toBeTaken(flowerbed.size());
+    for (int i = 0; i < flowerbed.size(); ++i)
+    {   
+        // is left valid, check taken, or to be taken
+        if (flowerbed[i])
+        {
+            continue;
+        }
+        if ((i - 1 < 0 || ((i-1) >= 0 && !(flowerbed[i-1] || toBeTaken[i - 1]))) &&
+            (i + 1 >= flowerbed.size() || ((i+1) < flowerbed.size() && !(flowerbed[i+1] || toBeTaken[i + 1]))))
+        {
+            toBeTaken[i] = 1;
+        }
+        else
+        {
+            toBeTaken[i] = 0;
+        }
+    }
+
+    int maxCount = std::count_if(toBeTaken.begin(), toBeTaken.end(), [](int i) {
+        return i == 1;
+    });
+
+    return maxCount >= n;
+}

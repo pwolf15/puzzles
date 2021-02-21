@@ -1213,3 +1213,31 @@ TEST(Arrays, ThirdMax)
     result = thirdMax(nums);
     CHECK_EQUAL(expected, result);
 }
+
+TEST(Arrays, CanPlaceFlowers)
+{
+    std::vector<int> nums = { 1, 0, 0, 0, 1};
+
+    int numFlowers = 1;
+    bool result = canPlaceFlowers(nums, numFlowers);
+    CHECK(result);
+
+    numFlowers = 2;
+    result = canPlaceFlowers(nums, numFlowers);
+    CHECK(!result);
+
+    nums = {1,0,1,0,1,0,1};
+    numFlowers = 1;
+    result = canPlaceFlowers(nums, numFlowers);
+    CHECK(!result);   
+
+    nums = {0,0,1,0,1};
+    numFlowers = 1;
+    result = canPlaceFlowers(nums, numFlowers);
+    CHECK(result);   
+
+    nums = {1,0,0,0,1,0,0};
+    numFlowers = 2;
+    result = canPlaceFlowers(nums, numFlowers);
+    CHECK(result);   
+}

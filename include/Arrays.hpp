@@ -129,4 +129,6 @@ int numRookCaptures(std::vector<std::vector<char>>& board);
 
 int thirdMax(std::vector<int>& nums);
 
+bool canPlaceFlowers(std::vector<int>& flowerbed, int n);
+
 #endif // ARRAYS_HPP
