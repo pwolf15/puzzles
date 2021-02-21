@@ -54,4 +54,6 @@ std::shared_ptr<ListNodeEPI<int>> RemoveDuplicates(const std::shared_ptr<ListNod
 
 std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListNodeEPI<int>> L, int k);
 
+std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI<int>>& L);
+
 #endif // LINKEDLISTS_HPP

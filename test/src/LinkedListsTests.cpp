@@ -442,3 +442,39 @@ TEST(LinkedLists, CyclicallyRightShiftList)
         l = l->next;
     }   
 };
+
+TEST(LinkedLists, EvenOddMerge)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 0, 1, 2, 3, 4});
+    std::vector<int> expected = { 0, 2, 4, 1, 3};
+
+    l = EvenOddMerge(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({ 0, 1, 2, 3});
+    expected = { 0, 2, 1, 3};
+
+    l = EvenOddMerge(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+
+    l = createList({ });
+    expected = { };
+
+    l = EvenOddMerge(l);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+};

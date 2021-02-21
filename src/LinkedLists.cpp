@@ -940,3 +940,43 @@ std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListN
 {
     return CyclicallyRightShiftList_EPI(L, k);
 }
+
+// time complexity: O(n)
+// space complexity: O(1)
+std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_PW(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    if (L == nullptr) {
+        return L;
+    }
+
+    auto p1 = L;        // tail of evens
+    auto p2 = L->next;  // start of "rest"
+    auto startOdd = p2;
+
+    while (p2 && p2->next)
+    {
+        // move successor node of "rest" to tail of evens
+        p1->next = p2->next;
+        p2->next = p1->next->next;
+
+        // advance tail of evens
+        // advance head of "rest"
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+
+    auto cur = L;
+    while (cur != nullptr)
+    {
+        cur = cur->next;
+    }
+
+    p1->next = startOdd;
+
+    return L;
+}
+
+std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    return EvenOddMerge_PW(L);
+}
