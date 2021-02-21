@@ -2605,7 +2605,7 @@ int thirdMax(std::vector<int>& nums)
 
 // time complexity: O(2 * n)
 // space comlexity: O(n)
-bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
+bool canPlaceFlowers_PW1(std::vector<int>& flowerbed, int n)
 {
     std::vector<int> toBeTaken(flowerbed.size());
     for (int i = 0; i < flowerbed.size(); ++i)
@@ -2631,4 +2631,40 @@ bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
     });
 
     return maxCount >= n;
+}
+
+// time complexity: O(n)
+// space comlexity: O(1)
+bool canPlaceFlowers_PW2(std::vector<int>& flowerbed, int n)
+{
+    int maxCount = 0;
+    for (int i = 0; i < flowerbed.size(); ++i)
+    {   
+        // is left valid, check taken, or to be taken
+        if (flowerbed[i])
+        {
+            continue;
+        }
+        else if (
+            (i - 1 < 0 || !(flowerbed[i-1])) &&
+            (i + 1 >= flowerbed.size() || !flowerbed[i+1])
+        )
+        {
+            flowerbed[i] = 1;
+            maxCount++;
+        }
+        else
+        {
+            // do nothing
+        }
+    }
+
+    return maxCount >= n;
+}
+
+// time complexity: O(2 * n)
+// space comlexity: O(n)
+bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
+{
+    return canPlaceFlowers_PW2(flowerbed, n);
 }
