@@ -2603,6 +2603,8 @@ int thirdMax(std::vector<int>& nums)
     return thirdMax_PW4(nums);
 }
 
+// time complexity: O(2 * n)
+// space comlexity: O(n)
 bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
 {
     std::vector<int> toBeTaken(flowerbed.size());
