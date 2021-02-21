@@ -965,12 +965,6 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_PW(const std::shared_ptr<ListNode
         p2 = p2->next;
     }
 
-    auto cur = L;
-    while (cur != nullptr)
-    {
-        cur = cur->next;
-    }
-
     // append both lists
     p1->next = startOdd;
 
