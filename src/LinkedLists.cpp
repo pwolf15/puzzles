@@ -971,12 +971,36 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_PW(const std::shared_ptr<ListNode
         cur = cur->next;
     }
 
+    // append both lists
     p1->next = startOdd;
 
     return L;
 }
 
+std::shared_ptr<ListNodeEPI<int>> EvenOddMerge_EPI(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    if (L == nullptr) {
+        return L;
+    }
+
+    auto even_dummy_head = std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{0, nullptr});
+    auto odd_dummy_head = std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{0, nullptr});
+    std::array<std::shared_ptr<ListNodeEPI<int>>, 2> tails = {even_dummy_head, odd_dummy_head};
+
+    int turn = 0;
+    for (auto iter = L; iter; iter = iter->next) {
+        tails[turn]->next = iter;
+        tails[turn] = tails[turn]->next;
+        turn ^= 1; // Alternate between even and odd
+    }
+
+    tails[1]->next = nullptr;
+    tails[0]->next = odd_dummy_head->next;
+
+    return even_dummy_head->next;
+}
+
 std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI<int>>& L)
 {
-    return EvenOddMerge_PW(L);
+    return EvenOddMerge_EPI(L);
 }
