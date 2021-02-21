@@ -1595,6 +1595,8 @@ bool buddyStrings(std::string A, std::string B)
     return true;
 }
 
+// time complexity: O(log n)
+// space complexity: O(log n)
 std::string convertToTitle(int n)
 {
     std::string title = "";
