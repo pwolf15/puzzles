@@ -1003,7 +1003,7 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI
 
 // time O(4*n): 1. get to end, 2. copy list, 3. traverse half new list 4. traverse second half new list
 // space O(n): need to create copy of list
-bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
+bool IsLinkedListPalindromic_PW(const std::shared_ptr<ListNodeEPI<int>>& L)
 {
     // advance to end
     auto p1 = L;
@@ -1047,4 +1047,53 @@ bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
     }
 
     return true;
+}
+
+std::shared_ptr<ListNodeEPI<int>> ReverseList(std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    auto head = L;
+
+    auto tail = head;
+    while (tail && tail->next)
+    {
+        tail = tail->next;
+    }
+
+    auto newHead = tail;
+    while (head != newHead)
+    {
+        auto temp = tail->next;
+        tail->next = head;
+        head = head->next;
+        tail->next->next = temp;
+    }
+    return newHead;
+}
+
+// time O(n)
+// space O(1)
+bool IsLinkedListPalindromic_EPI(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    // Finds the second half of L.
+    std::shared_ptr<ListNodeEPI<int>> slow = L, fast = L;
+    while (fast && fast->next)
+    {
+        fast = fast->next->next, slow = slow->next;
+    }
+
+    // Compares the first half and the reversed second half lists.
+    auto first_half_iter = L, second_half_iter = ReverseList(slow);
+    while (second_half_iter && first_half_iter) {
+        if (second_half_iter->data != first_half_iter->data) {
+            return false;
+        }
+        second_half_iter = second_half_iter->next;
+        first_half_iter = first_half_iter->next;
+    }
+    return true;
+}
+
+bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    return IsLinkedListPalindromic_EPI(L);
 }
