@@ -1000,3 +1000,49 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI
 {
     return EvenOddMerge_EPI(L);
 }
+
+bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
+{
+    // advance to end
+    auto p1 = L;
+    auto p2 = L;
+
+    while (p1 && p1->next)
+    {
+        p1 = p1->next;
+    }
+
+    auto end = p1;
+
+    while (p2 != end)
+    {
+        auto temp = p1->next;
+        p1->next = std::make_shared<ListNodeEPI<int>>();
+        p1->next->data = p2->data;
+        p1->next->next = temp;
+        p2 = p2->next;
+    }
+
+    auto p6 = L;
+
+    while (p6)
+    {
+        p6 = p6->next;
+    }
+
+    // traverse
+    auto p4 = L;
+    auto p5 = end;
+    while (p4 != end && p5 != nullptr)
+    {
+        if (p4->data != p5->data)
+        {
+            return false;
+        }
+
+        p4 = p4->next;
+        p5 = p5->next;
+    }
+
+    return true;
+}

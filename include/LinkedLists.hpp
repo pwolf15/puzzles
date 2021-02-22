@@ -56,4 +56,6 @@ std::shared_ptr<ListNodeEPI<int>> CyclicallyRightShiftList(std::shared_ptr<ListN
 
 std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI<int>>& L);
 
+bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L);
+
 #endif // LINKEDLISTS_HPP

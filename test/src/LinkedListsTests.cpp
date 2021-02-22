@@ -478,3 +478,18 @@ TEST(LinkedLists, EvenOddMerge)
         l = l->next;
     }
 };
+
+TEST(LinkedLists, IsLinkedListPalindromic)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 2, 3, 5, 3, 2});
+    CHECK(IsLinkedListPalindromic(l));
+
+    l = createList({ 2, 3, 2});
+    CHECK(IsLinkedListPalindromic(l));
+
+    l = createList({ 1 });
+    CHECK(IsLinkedListPalindromic(l));
+
+    l = createList({ 1, 2, 3});
+    CHECK(!IsLinkedListPalindromic(l));
+};
