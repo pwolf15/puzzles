@@ -1001,6 +1001,8 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI
     return EvenOddMerge_EPI(L);
 }
 
+// time O(4*n): 1. get to end, 2. copy list, 3. traverse half new list 4. traverse second half new list
+// space O(n): need to create copy of list
 bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
 {
     // advance to end
