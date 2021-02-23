@@ -2720,12 +2720,38 @@ bool validMountainArray_PW1(std::vector<int>& arr)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool validMountainArray_PW2(std::vector<int>& arr)
 {
-    return false;
+    if (arr.size() < 3)
+    {
+        return false;
+    }
+
+    int i = 1;
+
+    // walk up
+    while (i < arr.size() && arr[i] > arr[i - 1])
+    {
+        i++;
+    }
+
+    if (i == 1 || i == arr.size())
+    {
+        return false;
+    }
+
+    // walk down
+    while (i < arr.size() && arr[i] < arr[i - 1])
+    {
+        i++;
+    }
+
+    return i == arr.size();
 }
 
 bool validMountainArray(std::vector<int>& arr)
 {
-    return validMountainArray_PW1(arr);
+    return validMountainArray_PW2(arr);
 }
