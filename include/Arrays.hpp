@@ -133,4 +133,6 @@ bool canPlaceFlowers(std::vector<int>& flowerbed, int n);
 
 bool validMountainArray(std::vector<int>& arr);
 
+bool hasGroupsSizeX(std::vector<int>& deck);
+
 #endif // ARRAYS_HPP

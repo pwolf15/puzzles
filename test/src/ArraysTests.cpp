@@ -1276,3 +1276,30 @@ TEST(Arrays, ValidMountainArray)
     result = validMountainArray(nums);
     CHECK(!result);
 }
+
+TEST(Arrays, HasGroupsSizeX)
+{
+    std::vector<int> nums = {1,2,3,4,4,3,2,1};
+    bool result = hasGroupsSizeX(nums);
+    CHECK(result);
+
+    nums = {1,1,1,2,2,2,3,3};
+    result = hasGroupsSizeX(nums);
+    CHECK(!result);
+
+    nums = {1};
+    result = hasGroupsSizeX(nums);
+    CHECK(!result);
+
+    nums = {1,1};
+    result = hasGroupsSizeX(nums);
+    CHECK(result);
+
+    nums = {1,1,2,2,2,2};
+    result = hasGroupsSizeX(nums);
+    CHECK(result);
+
+    nums = {1,1,1,1,2,2,2,2,2,2};
+    result = hasGroupsSizeX(nums);
+    CHECK(result);
+}

@@ -2755,3 +2755,43 @@ bool validMountainArray(std::vector<int>& arr)
 {
     return validMountainArray_PW2(arr);
 }
+
+void factors(int num, std::map<int, int>& fs)
+{
+    for (int i = 1; i <= num; ++i)
+    {
+        if (num % i == 0 && i >= 2)
+        {
+            fs[i]++;
+        }
+    }
+}
+
+// space complexity: O(n)
+// time complexity: O(n)
+bool hasGroupsSizeX(std::vector<int>& deck)
+{
+    std::unordered_map<int, int> count;
+    for (int i = 0; i < deck.size(); ++i)
+    {
+        count[deck[i]]++;
+    }
+
+    // get set of factors for all card counts
+    std::map<int, int> fs;
+    for (auto pair: count)
+    {
+        factors(pair.second, fs);
+    }
+
+    // find the gcd, this represents number of cards in each group
+    for (auto it = fs.rbegin(); it != fs.rend(); it++)
+    {
+        if (it->second == count.size())
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
