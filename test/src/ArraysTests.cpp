@@ -1241,3 +1241,38 @@ TEST(Arrays, CanPlaceFlowers)
     result = canPlaceFlowers(nums, numFlowers);
     CHECK(result);   
 }
+
+TEST(Arrays, ValidMountainArray)
+{
+    std::vector<int> nums = { 2,1 };
+    bool result = validMountainArray(nums);
+    CHECK(!result);
+
+    nums = { 3,5,5 };
+    result = validMountainArray(nums);
+    CHECK(!result);
+
+    nums = { 0,3,2,1 };
+    result = validMountainArray(nums);
+    CHECK(result);
+
+    nums = { 9,8,7,6,5,4,3,2,1,0 };
+    result = validMountainArray(nums);
+    CHECK(!result);    
+
+    nums = {1,3,2};
+    result = validMountainArray(nums);
+    CHECK(result); 
+
+    nums = {2,0,2};
+    result = validMountainArray(nums);
+    CHECK(!result);  
+
+    nums = {4,4,3,2,1};
+    result = validMountainArray(nums);
+    CHECK(!result);
+
+    nums = {1,1,1,1,1,1,1,2,1};
+    result = validMountainArray(nums);
+    CHECK(!result);
+}

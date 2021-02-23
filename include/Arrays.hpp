@@ -131,4 +131,6 @@ int thirdMax(std::vector<int>& nums);
 
 bool canPlaceFlowers(std::vector<int>& flowerbed, int n);
 
+bool validMountainArray(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

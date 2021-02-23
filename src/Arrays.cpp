@@ -2668,3 +2668,62 @@ bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
 {
     return canPlaceFlowers_PW2(flowerbed, n);
 }
+
+bool validMountainArray_PW1(std::vector<int>& arr)
+{
+    enum class SearchState
+    {
+        NONE,
+        ASCENT,
+        FOUND_PEAK,
+        DESCENT
+    };
+
+    SearchState state = SearchState::ASCENT;
+    int curMax = arr[0];
+    int ascentSize = 0;
+    int curMin = std::numeric_limits<int>::max();
+
+    if (arr.size() < 3)
+    {
+        return false;
+    }
+    
+    for (int i = 1; i < arr.size(); ++i)
+    {
+        if (state == SearchState::ASCENT && arr[i] > arr[i - 1])
+        {
+            ascentSize++;
+            continue;
+        }
+        else if (state == SearchState::ASCENT && arr[i] < arr[i - 1])
+        {
+            state = SearchState::DESCENT;
+        }
+        else if (state == SearchState::ASCENT && arr[i] == arr[i - 1])
+        {
+            return false;
+        }
+        else if (state == SearchState::DESCENT && arr[i] >= arr[i - 1])
+        {
+            return false;
+        }
+    }
+
+    if (state != SearchState::DESCENT || !ascentSize)
+    {
+        return false;
+    }
+    
+    return true;
+}
+
+bool validMountainArray_PW2(std::vector<int>& arr)
+{
+    return false;
+}
+
+bool validMountainArray(std::vector<int>& arr)
+{
+    return validMountainArray_PW1(arr);
+}
