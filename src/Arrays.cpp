@@ -2669,6 +2669,8 @@ bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
     return canPlaceFlowers_PW2(flowerbed, n);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool validMountainArray_PW1(std::vector<int>& arr)
 {
     enum class SearchState
