@@ -1100,7 +1100,7 @@ bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
 
 // time complexity: O(n)
 // space complexity: O(1)
-std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
+std::shared_ptr<ListNodeEPI<int>> ListPivoting_PW(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
 {
     std::shared_ptr<ListNodeEPI<int>> greater_than(new ListNodeEPI<int>);
     std::shared_ptr<ListNodeEPI<int>> less_than(new ListNodeEPI<int>); 
@@ -1136,4 +1136,29 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
     equal_to->next = gt->next;
 
     return newHead;
+}
+
+std::shared_ptr<ListNodeEPI<int>> ListPivoting_EPI(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
+{
+    std::shared_ptr<ListNodeEPI<int>> less_head(new ListNodeEPI<int>),
+        equal_head(new ListNodeEPI<int>), greater_head(new ListNodeEPI<int>); 
+    std::shared_ptr<ListNodeEPI<int>> less_iter = less_head, equal_iter = equal_head,
+                                      greater_iter = greater_head;
+    // Populates the three lists.
+    std::shared_ptr<ListNodeEPI<int>> iter = l;
+    while (iter) {
+        AppendNode(&iter, iter->data < x 
+                            ? &less_iter 
+                            : iter->data == x ? &equal_iter : &greater_iter);
+    }
+    // Combines the three lists.
+    greater_iter->next = nullptr;
+    equal_iter->next = greater_head->next;
+    less_iter->next = equal_head->next;
+    return less_head->next;
+}
+
+std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
+{
+    return ListPivoting_EPI(l, x);
 }
