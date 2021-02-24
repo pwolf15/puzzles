@@ -58,4 +58,6 @@ std::shared_ptr<ListNodeEPI<int>> EvenOddMerge(const std::shared_ptr<ListNodeEPI
 
 bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L);
 
+std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI<int>>& l, int x);
+
 #endif // LINKEDLISTS_HPP

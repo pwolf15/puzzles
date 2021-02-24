@@ -493,3 +493,18 @@ TEST(LinkedLists, IsLinkedListPalindromic)
     l = createList({ 1, 2, 3});
     CHECK(!IsLinkedListPalindromic(l));
 };
+
+TEST(LinkedLists, ListPivoting)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 3, 2, 2, 11, 7, 5, 11 });
+    std::vector<int> expected = { 3, 2, 2, 5, 7, 11, 11 };
+
+    l = ListPivoting(l, 7);
+    CHECK_EQUAL(expected.size(), length(l));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], l->data);
+        l = l->next;
+    }
+};
+
