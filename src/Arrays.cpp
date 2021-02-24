@@ -2796,6 +2796,8 @@ bool hasGroupsSizeX(std::vector<int>& deck)
     return false;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 double average(std::vector<int>& salary)
 {
     int max = std::numeric_limits<int>::min();
