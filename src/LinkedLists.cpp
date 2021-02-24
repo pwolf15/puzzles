@@ -1138,6 +1138,8 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting_PW(const std::shared_ptr<ListNode
     return newHead;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::shared_ptr<ListNodeEPI<int>> ListPivoting_EPI(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
 {
     std::shared_ptr<ListNodeEPI<int>> less_head(new ListNodeEPI<int>),
