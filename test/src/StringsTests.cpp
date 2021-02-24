@@ -469,3 +469,9 @@ TEST(Strings, ConvertToTitle)
     result = convertToTitle(col);
     CHECK_EQUAL(expected, result);
 }
+
+TEST(Strings, DefangIPAddr)
+{
+    CHECK_EQUAL("1[.]1[.]1[.]1", defangIPaddr("1.1.1.1"));
+    CHECK_EQUAL("255[.]100[.]50[.]0", defangIPaddr("255.100.50.0"));
+}

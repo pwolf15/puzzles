@@ -1610,3 +1610,40 @@ std::string convertToTitle(int n)
 
     return title;
 }
+
+// time complexity: O(1)
+// space complexity: O(n)
+std::string defangIPaddr_PW1(std::string address)
+{
+    std::string defanged;
+    for (int i = 0; i < address.size(); ++i)
+    {
+        if (address[i] == '.')
+        {
+            defanged += "[.]";
+        }
+        else
+        {
+            defanged += address[i];
+        }
+    }
+
+    return defanged;
+}
+
+std::string defangIPaddr_PW2(std::string address)
+{
+    size_t pos = address.find(".");
+    while(pos != std::string::npos) 
+    {
+        address.replace(pos, 1, "[.]");
+        pos = address.find(".", pos + 3);
+    }
+
+    return address;
+}
+
+std::string defangIPaddr(std::string address)
+{
+    return defangIPaddr_PW2(address);
+}

@@ -65,4 +65,6 @@ bool buddyStrings(std::string A, std::string B);
 
 std::string convertToTitle(int n);
 
+std::string defangIPaddr(std::string address);
+
 #endif // STRINGS_HPP
