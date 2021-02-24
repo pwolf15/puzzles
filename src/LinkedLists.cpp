@@ -1098,6 +1098,8 @@ bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L)
     return IsLinkedListPalindromic_EPI(L);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI<int>>& l, int x)
 {
     std::shared_ptr<ListNodeEPI<int>> greater_than(new ListNodeEPI<int>);
@@ -1128,7 +1130,7 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
         }
         p = p->next;
     }
-    
+
     auto newHead = lt->next;
     less_than->next = et->next;
     equal_to->next = gt->next;
