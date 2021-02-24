@@ -135,4 +135,6 @@ bool validMountainArray(std::vector<int>& arr);
 
 bool hasGroupsSizeX(std::vector<int>& deck);
 
+double average(std::vector<int>& salary);
+
 #endif // ARRAYS_HPP

@@ -1303,3 +1303,18 @@ TEST(Arrays, HasGroupsSizeX)
     result = hasGroupsSizeX(nums);
     CHECK(result);
 }
+
+TEST(Arrays, Average)
+{
+    std::vector<int> nums = {4000,3000,1000,2000};
+    CHECK_EQUAL(2500.00000, average(nums));
+
+    nums = {1000,2000,3000};
+    CHECK_EQUAL(2000.00000, average(nums));
+
+    nums = { 6000,5000,4000,3000,2000,1000};
+    CHECK_EQUAL(3500.00000, average(nums));
+
+    nums = { 8000,9000,2000,3000,6000,1000 };
+    CHECK_EQUAL(4750.00000, average(nums));
+}

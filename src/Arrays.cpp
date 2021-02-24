@@ -2795,3 +2795,29 @@ bool hasGroupsSizeX(std::vector<int>& deck)
 
     return false;
 }
+
+double average(std::vector<int>& salary)
+{
+    int max = std::numeric_limits<int>::min();
+    int min = std::numeric_limits<int>::max();
+    int sum = 0;
+
+    for (int i = 0; i < salary.size(); ++i)
+    {
+        if (salary[i] > max)
+        {
+            max = salary[i];
+        }
+        if (salary[i] < min)
+        {
+            min = salary[i];
+        }
+
+        sum += salary[i];
+    }
+
+    sum -= max;
+    sum -= min;
+
+    return (double)sum / (double)(salary.size() - 2);
+}
