@@ -1631,6 +1631,8 @@ std::string defangIPaddr_PW1(std::string address)
     return defanged;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::string defangIPaddr_PW2(std::string address)
 {
     size_t pos = address.find(".");
