@@ -1165,6 +1165,8 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
     return ListPivoting_EPI(l, x);
 }
 
+// time complexity: O(1)
+// space complexity: O(n)
 std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
     std::shared_ptr<ListNodeEPI<int>> L2)
 {
