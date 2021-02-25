@@ -1,5 +1,8 @@
 #include "Trees.hpp"
 #include <limits>
+#include <iostream>
+#include <queue>
+#include <numeric>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -34,4 +37,42 @@ bool isValidBSTUtil(TreeNode* root, long int min, long int max)
 bool isValidBST(TreeNode *root)
 {
     return isValidBSTUtil(root, std::numeric_limits<long int>::min(), std::numeric_limits<long int>::max());
+}
+
+std::vector<double> averageOfLevels(TreeNode* root)
+{
+    std::queue<TreeNode*> nodes;
+    std::vector<double> averages;
+
+    nodes.push(root);
+    while (!nodes.empty())
+    {
+        std::queue<TreeNode*> new_nodes;
+        std::vector<long long> level;
+
+        while (!nodes.empty())
+        {
+            auto top = nodes.front();
+            nodes.pop();
+            level.push_back(top->val);
+            if (top->left)
+            {
+                new_nodes.push(top->left);
+            }
+            if (top->right)
+            {
+                new_nodes.push(top->right);
+            }
+        }
+
+        if (!level.empty())
+        {
+            long long sum = std::accumulate(level.begin(), level.end(), 0.0);
+            averages.push_back(sum / (double)level.size());
+        }
+
+        std::swap(new_nodes, nodes);
+    }
+    
+    return averages;
 }

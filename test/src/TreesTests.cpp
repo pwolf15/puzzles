@@ -55,3 +55,36 @@ TEST(Trees, IsValidBST)
 
     deleteTree(node);
 };
+
+TEST(Trees, AverageOfLevels)
+{
+    TreeNode* node = new TreeNode(3);
+    node->left = new TreeNode(9);
+    node->right = new TreeNode(20);
+    node->right->left = new TreeNode(15);
+    node->right->right = new TreeNode(7);
+
+    std::vector<double> expected = { 3, 14.5, 11 };
+    auto result = averageOfLevels(node);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+
+    node = new TreeNode(2147483647);
+    node->left = new TreeNode(2147483647);
+    node->right = new TreeNode(2147483647);
+
+    expected = { 2147483647, 2147483647 };
+    result = averageOfLevels(node);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+};

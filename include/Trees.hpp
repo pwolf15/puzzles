@@ -13,3 +13,5 @@ struct TreeNode
 TreeNode *sortedArrayToBST(std::vector<int> &nums);
 
 bool isValidBST(TreeNode *root);
+
+std::vector<double> averageOfLevels(TreeNode* root);
