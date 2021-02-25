@@ -6,6 +6,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <stack>
 
 int firstUniqueChar_brute(std::string s)
 {
@@ -1648,4 +1649,55 @@ std::string defangIPaddr_PW2(std::string address)
 std::string defangIPaddr(std::string address)
 {
     return defangIPaddr_PW2(address);
+}
+
+bool backspaceCompare(std::string S, std::string T)
+{
+    std::stack<char> a;
+    std::string sResult, tResult;
+    for (auto c: S)
+    {
+        if (c == '#' && !a.empty())
+        {
+            a.pop();
+        }
+        else if (c == '#')
+        {
+            continue;
+        }
+        else
+        {
+            a.push(c);
+        }
+    }
+
+    while (!a.empty())
+    {
+        sResult += a.top();
+        a.pop();
+    }
+
+    for (auto c: T)
+    {
+        if (c == '#' && !a.empty())
+        {
+            a.pop();
+        }
+        else if (c == '#')
+        {
+            continue;
+        }
+        else
+        {
+            a.push(c);
+        }
+    }
+
+    while (!a.empty())
+    {
+        tResult += a.top();
+        a.pop();
+    }
+
+    return sResult == tResult;
 }

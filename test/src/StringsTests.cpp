@@ -475,3 +475,12 @@ TEST(Strings, DefangIPAddr)
     CHECK_EQUAL("1[.]1[.]1[.]1", defangIPaddr("1.1.1.1"));
     CHECK_EQUAL("255[.]100[.]50[.]0", defangIPaddr("255.100.50.0"));
 }
+
+TEST(Strings, BackspaceCompare)
+{
+    CHECK(backspaceCompare("ab#c", "ad#c"));
+    CHECK(backspaceCompare("ab##", "c#d#"));
+    CHECK(backspaceCompare("a##c", "#a#c"));
+    CHECK(!backspaceCompare("a#c", "b"));
+    CHECK(backspaceCompare("y#fo##f", "y#f#o##f"));
+}

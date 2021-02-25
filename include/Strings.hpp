@@ -67,4 +67,6 @@ std::string convertToTitle(int n);
 
 std::string defangIPaddr(std::string address);
 
+bool backspaceCompare(std::string S, std::string T);
+
 #endif // STRINGS_HPP
