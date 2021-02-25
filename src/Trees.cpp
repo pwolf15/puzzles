@@ -39,6 +39,8 @@ bool isValidBST(TreeNode *root)
     return isValidBSTUtil(root, std::numeric_limits<long int>::min(), std::numeric_limits<long int>::max());
 }
 
+// space complexity: O(n)
+// time complexity: O(n)
 std::vector<double> averageOfLevels(TreeNode* root)
 {
     std::queue<TreeNode*> nodes;
