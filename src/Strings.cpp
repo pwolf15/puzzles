@@ -1651,6 +1651,8 @@ std::string defangIPaddr(std::string address)
     return defangIPaddr_PW2(address);
 }
 
+// time complexity: O(3*(len(s) + len(T))), traverse once each to append to stack, traverse once to append to string, traverse once to compare
+// space complexity: O(3 * n), stack must match size of longest string, also size of actual strings
 bool backspaceCompare(std::string S, std::string T)
 {
     std::stack<char> a;
