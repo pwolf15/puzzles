@@ -1164,3 +1164,58 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
 {
     return ListPivoting_EPI(l, x);
 }
+
+std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
+    std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    std::shared_ptr<ListNodeEPI<int>> L3 = std::make_shared<ListNodeEPI<int>>();
+    auto head = L3;
+    int carry = 0;
+    int sum = 0;
+    while (L1 && L2)
+    {
+        sum = L1->data + L2->data + carry;
+        carry = sum / 10;
+        sum %= 10;
+        L3->next = std::make_shared<ListNodeEPI<int>>();
+        L3->next->data = sum;
+        L1 = L1->next;
+        L2 = L2->next;
+        L3 = L3->next;
+    }
+
+    if (L1)
+    {
+        while (L1)
+        {
+            sum = L1->data + carry;
+            carry = sum / 10;
+            sum %= 10;
+            L3->next = std::make_shared<ListNodeEPI<int>>();
+            L3->next->data = sum;
+            L1 = L1->next;
+            L3 = L3->next;
+        }
+    }
+    else if (L2)
+    {
+        while (L2)
+        {
+            sum = L2->data + carry;
+            carry = sum / 10;
+            sum %= 10;
+            L3->next = std::make_shared<ListNodeEPI<int>>();
+            L3->next->data = sum;
+            L2 = L2->next;
+            L3 = L3->next;
+        }
+    }
+    
+    if (carry)
+    {
+        L3->next = std::make_shared<ListNodeEPI<int>>();
+        L3->next->data = carry;
+    }
+
+    return head->next;
+}

@@ -60,4 +60,7 @@ bool IsLinkedListPalindromic(const std::shared_ptr<ListNodeEPI<int>>& L);
 
 std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI<int>>& l, int x);
 
+std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
+    std::shared_ptr<ListNodeEPI<int>> L2);
+
 #endif // LINKEDLISTS_HPP

@@ -508,3 +508,42 @@ TEST(LinkedLists, ListPivoting)
     }
 };
 
+TEST(LinkedLists, AddTwoNumbers)
+{
+    std::shared_ptr<ListNodeEPI<int>> l1 = createList({ 3, 1, 4 });
+    std::shared_ptr<ListNodeEPI<int>> l2 = createList({ 7, 0, 9 });
+    std::vector<int> expected = { 0, 2, 3, 1 };
+
+    auto result = AddTwoNumbers(l1, l2);
+    CHECK_EQUAL(expected.size(), length(result));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result->data);
+        result = result->next;
+    }
+
+    l1 = createList({ 2, 4, 3 });
+    l2 = createList({ 5, 6, 4 });
+    expected = { 7, 0, 8 };
+
+    result = AddTwoNumbers(l1, l2);
+    CHECK_EQUAL(expected.size(), length(result));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result->data);
+        result = result->next;
+    }
+
+    l1 = createList({ 9,9,9,9,9,9,9 });
+    l2 = createList({ 9,9,9,9 });
+    expected = { 8, 9, 9, 9, 0, 0, 0, 1 };
+
+    result = AddTwoNumbers(l1, l2);
+    CHECK_EQUAL(expected.size(), length(result));
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result->data);
+        result = result->next;
+    }
+};
+
