@@ -41,7 +41,7 @@ bool isValidBST(TreeNode *root)
 
 // space complexity: O(n)
 // time complexity: O(n)
-std::vector<double> averageOfLevels(TreeNode* root)
+std::vector<double> averageOfLevels_PW(TreeNode* root)
 {
     std::queue<TreeNode*> nodes;
     std::vector<double> averages;
@@ -77,4 +77,54 @@ std::vector<double> averageOfLevels(TreeNode* root)
     }
     
     return averages;
+}
+
+// space complexity: O(n)
+// time complexity: O(n)
+std::vector<double> averageOfLevels_PW2(TreeNode* root)
+{
+    std::queue<TreeNode*> nodes;
+    std::vector<double> averages;
+    double sum = 0;
+    int count = 0;
+
+    nodes.push(root);
+    while (!nodes.empty())
+    {
+        std::queue<TreeNode*> new_nodes;
+        std::vector<long long> level;
+        sum = 0;
+        count = 0;
+
+        while (!nodes.empty())
+        {
+            auto top = nodes.front();
+            sum += top->val;
+            count++;
+
+            nodes.pop();
+            if (top->left)
+            {
+                new_nodes.push(top->left);
+            }
+            if (top->right)
+            {
+                new_nodes.push(top->right);
+            }
+        }
+
+        if (count)
+        {
+            averages.push_back(sum / (double)count);
+        }
+
+        std::swap(new_nodes, nodes);
+    }
+    
+    return averages;
+}
+
+std::vector<double> averageOfLevels(TreeNode* root)
+{
+    return averageOfLevels_PW2(root);
 }
