@@ -69,4 +69,6 @@ std::string defangIPaddr(std::string address);
 
 bool backspaceCompare(std::string S, std::string T);
 
+std::string convertToBase7(int num);
+
 #endif // STRINGS_HPP

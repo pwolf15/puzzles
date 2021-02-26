@@ -484,3 +484,10 @@ TEST(Strings, BackspaceCompare)
     CHECK(!backspaceCompare("a#c", "b"));
     CHECK(backspaceCompare("y#fo##f", "y#f#o##f"));
 }
+
+TEST(Strings, ConvertToBase7)
+{
+    CHECK_EQUAL("202", convertToBase7(100));
+    CHECK_EQUAL("-10", convertToBase7(-7));
+    CHECK_EQUAL("0", convertToBase7(0));
+}

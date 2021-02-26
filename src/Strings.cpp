@@ -1703,3 +1703,26 @@ bool backspaceCompare(std::string S, std::string T)
 
     return sResult == tResult;
 }
+
+std::string convertToBase7(int num)
+{
+    std::string s = "";
+    std::string sign = num < 0 ? "-" : "";
+    num = std::abs(num);
+
+    if (!num)
+    {
+        return "0";
+    }
+    
+    while (num)
+    {
+        std::string c = std::to_string(num % 7);
+        s = c + s;
+        num /= 7;
+    }
+
+    s = sign + s;
+
+    return s;
+}
