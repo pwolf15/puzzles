@@ -2,6 +2,7 @@
 #define ARRAYS_HPP
 
 #include <vector>
+#include <string>
 
 // Given a sorted array nums,
 //  remove the duplicates in-place such that
@@ -136,5 +137,7 @@ bool validMountainArray(std::vector<int>& arr);
 bool hasGroupsSizeX(std::vector<int>& deck);
 
 double average(std::vector<int>& salary);
+
+int calPoints(std::vector<std::string>& ops);
 
 #endif // ARRAYS_HPP

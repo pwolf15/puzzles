@@ -1318,3 +1318,10 @@ TEST(Arrays, Average)
     nums = { 8000,9000,2000,3000,6000,1000 };
     CHECK_EQUAL(4750.00000, average(nums));
 }
+
+TEST(Arrays, CalPoints)
+{
+    std::vector<std::string> input = {"5","2","C","D","+"};
+    int expected = 30;
+    CHECK_EQUAL(expected, calPoints(input));
+}

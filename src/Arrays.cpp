@@ -2823,3 +2823,31 @@ double average(std::vector<int>& salary)
 
     return (double)sum / (double)(salary.size() - 2);
 }
+
+int calPoints(std::vector<std::string>& ops)
+{
+    std::vector<int> records;
+    for (auto op: ops)
+    {
+        if (op == "C")
+        {
+            records.pop_back();
+        }
+        else if (op == "+")
+        {
+            int i = records.size() - 1;
+            records.push_back(records[i] + records[i - 1]);
+        }
+        else if (op == "D")
+        {
+            int i = records.size() - 1;
+            records.push_back(records[i] * 2);
+        }
+        else
+        {
+            records.push_back(std::stoi(op));
+        }
+    }
+
+    return std::accumulate(records.begin(), records.end(), 0);
+}
