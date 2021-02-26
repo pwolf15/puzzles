@@ -2824,6 +2824,8 @@ double average(std::vector<int>& salary)
     return (double)sum / (double)(salary.size() - 2);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int calPoints(std::vector<std::string>& ops)
 {
     std::vector<int> records;
