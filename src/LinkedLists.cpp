@@ -1165,9 +1165,9 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
     return ListPivoting_EPI(l, x);
 }
 
-// time complexity: O(1)
+// time complexity: O(n)
 // space complexity: O(n)
-std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
+std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers_PW(std::shared_ptr<ListNodeEPI<int>> L1,
     std::shared_ptr<ListNodeEPI<int>> L2)
 {
     std::shared_ptr<ListNodeEPI<int>> L3 = std::make_shared<ListNodeEPI<int>>();
@@ -1220,4 +1220,29 @@ std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>
     }
 
     return head->next;
+}
+
+// time complexity: O(n+m)
+// space complexity: O(max(n, m))
+std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers_EPI(std::shared_ptr<ListNodeEPI<int>> L1,
+    std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    std::shared_ptr<ListNodeEPI<int>> dummy_head(new ListNodeEPI<int>);
+    auto place_iter = dummy_head;
+    int carry = 0;
+    while (L1 || L2 || carry) {
+        int val = carry + (L1 ? L1->data : 0) + (L2 ? L2->data : 0);
+        L1 = L1 ? L1->next : nullptr;
+        L2 = L2 ? L2->next : nullptr;
+        place_iter->next =
+            std::make_shared<ListNodeEPI<int>>(ListNodeEPI<int>{val % 10, nullptr});
+        carry = val / 10, place_iter = place_iter->next;
+    }
+    return dummy_head->next;
+}
+
+std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
+    std::shared_ptr<ListNodeEPI<int>> L2)
+{
+    return AddTwoNumbers_EPI(L1, L2);
 }
