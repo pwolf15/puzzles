@@ -1704,6 +1704,8 @@ bool backspaceCompare(std::string S, std::string T)
     return sResult == tResult;
 }
 
+// time complexity: O(log n)
+// space complexity: O(n)
 std::string convertToBase7(int num)
 {
     std::string s = "";
@@ -1714,7 +1716,7 @@ std::string convertToBase7(int num)
     {
         return "0";
     }
-    
+
     while (num)
     {
         std::string c = std::to_string(num % 7);
