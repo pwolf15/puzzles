@@ -2853,3 +2853,44 @@ int calPoints(std::vector<std::string>& ops)
 
     return std::accumulate(records.begin(), records.end(), 0);
 }
+
+int maxProfit(std::vector<int>& prices)
+{
+    int profit = 0;
+    if (prices.empty())
+    {
+        return 0;
+    }
+    int curMin = prices[0];
+    int curMax = prices[0];
+    int maxIdx = 0, minIdx = 0;
+    for (int i = 0; i < prices.size(); ++i)
+    {
+        if (prices[i] < curMax && maxIdx > minIdx)
+        {
+            profit += curMax - curMin;
+            curMin = prices[i];
+            curMax = prices[i];
+            maxIdx = i;
+            minIdx = i;
+        }
+        else if (prices[i] < curMin)
+        {
+            curMin = prices[i];
+            curMax = prices[i];
+            minIdx = i;
+        }
+        else if (prices[i] > curMax)
+        {
+            curMax = prices[i];
+            maxIdx = i;
+        }
+    }
+
+    if (maxIdx > minIdx)
+    {
+        profit += curMax - curMin;
+    }
+
+    return profit;
+}

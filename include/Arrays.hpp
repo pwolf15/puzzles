@@ -140,4 +140,6 @@ double average(std::vector<int>& salary);
 
 int calPoints(std::vector<std::string>& ops);
 
+int maxProfit(std::vector<int>& prices);
+
 #endif // ARRAYS_HPP

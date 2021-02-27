@@ -1325,3 +1325,21 @@ TEST(Arrays, CalPoints)
     int expected = 30;
     CHECK_EQUAL(expected, calPoints(input));
 }
+
+
+TEST(Arrays, MaxProfit)
+{
+    std::vector<int> input = {7,1,5,3,6,4};
+    int expected = 7;
+    CHECK_EQUAL(expected, maxProfit(input));
+
+    input = {1,2,3,4,5};
+    expected = 4;
+    CHECK_EQUAL(expected, maxProfit(input));
+
+    input = {7,6,4,3,1};
+    expected = 0;
+    CHECK_EQUAL(expected, maxProfit(input));
+}
+
+
