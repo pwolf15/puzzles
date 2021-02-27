@@ -337,6 +337,8 @@ int binaryGap(int n)
     return maxDistance;
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 bool hasAlternatingBits(int n)
 {
     bool alternates = true;
