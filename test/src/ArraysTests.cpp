@@ -1342,4 +1342,43 @@ TEST(Arrays, MaxProfit)
     CHECK_EQUAL(expected, maxProfit(input));
 }
 
+TEST(Arrays, PrefixesDivBy5)
+{
+    std::vector<int> input = {0, 1, 1};
+    std::vector<bool> expected = {true,false,false};
+    std::vector<bool> results = prefixesDivBy5(input);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < results.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    input = {1,1,1};
+    expected = {false,false,false};
+    results = prefixesDivBy5(input);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < results.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    input = {0,1,1,1,1,1};
+    expected = {true,false,false,false,true,false};
+    results = prefixesDivBy5(input);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < results.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    input = {1,1,1,0,1};
+    expected = {false,false,false,false,false};
+    results = prefixesDivBy5(input);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < results.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+}
+
 

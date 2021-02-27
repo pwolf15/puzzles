@@ -142,4 +142,6 @@ int calPoints(std::vector<std::string>& ops);
 
 int maxProfit(std::vector<int>& prices);
 
+std::vector<bool> prefixesDivBy5(std::vector<int>& A);
+
 #endif // ARRAYS_HPP

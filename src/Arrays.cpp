@@ -2896,3 +2896,17 @@ int maxProfit(std::vector<int>& prices)
 
     return profit;
 }
+
+std::vector<bool> prefixesDivBy5(std::vector<int>& A)
+{
+    std::vector<bool> results;
+    int num = 0;
+    for (int i = 0; i < A.size(); ++i)
+    {
+        num <<= 1;
+        num += A[i];
+        results.push_back(num % 5 == 0);
+    }
+    
+    return results;
+}
