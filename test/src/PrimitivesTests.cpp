@@ -92,3 +92,12 @@ TEST(Primitives, BinaryGap)
     CHECK_EQUAL(0, binaryGap(8));
     CHECK_EQUAL(0, binaryGap(1));
 }
+
+TEST(Primitives, HasAlternatingBits)
+{
+    CHECK(hasAlternatingBits(5));
+    CHECK(!hasAlternatingBits(7));
+    CHECK(!hasAlternatingBits(11));
+    CHECK(hasAlternatingBits(10));
+    CHECK(!hasAlternatingBits(3));
+}

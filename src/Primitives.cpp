@@ -336,3 +336,23 @@ int binaryGap(int n)
 
     return maxDistance;
 }
+
+bool hasAlternatingBits(int n)
+{
+    bool alternates = true;
+    int prevBit = n % 2;
+    n /= 2;
+    while (n)
+    {
+        if (n % 2 == prevBit)
+        {
+            alternates = false;
+            break;
+        }
+
+        prevBit = n % 2;
+        n /= 2;
+    }
+
+    return alternates;
+}

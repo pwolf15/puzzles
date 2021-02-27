@@ -32,4 +32,6 @@ bool checkPerfectNumber(int num);
 
 int binaryGap(int n);
 
+bool hasAlternatingBits(int n);
+
 #endif // PRIMITIVES_HPP
