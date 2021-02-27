@@ -2854,6 +2854,8 @@ int calPoints(std::vector<std::string>& ops)
     return std::accumulate(records.begin(), records.end(), 0);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maxProfit(std::vector<int>& prices)
 {
     int profit = 0;
