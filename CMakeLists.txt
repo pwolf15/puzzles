@@ -64,5 +64,6 @@ add_library(DynamicProgramming  src/DynamicProgramming.cpp)
 add_library(Design              src/Design.cpp)
 add_library(Trees               src/Trees.cpp)
 add_library(Recursion           src/Recursion.cpp)
+add_library(Stacks              src/Stacks.cpp)
 
 add_subdirectory(test)

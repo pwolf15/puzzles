@@ -184,6 +184,14 @@ Boyer-Moore implementations for find str
 * Reverse the order of elements with reverse().
 * Use sort() to sort lists.
 
+
+## Stacks and Queues
+
+* stacks: last-in, first-out semantics
+* queues: first-in, first-out sematnics
+* stacks: push, pop, peek
+* applications for stacks: parsing
+
 ### TODO.
 
 Implement variants
