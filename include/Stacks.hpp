@@ -3,5 +3,6 @@
 
 #include "LinkedLists.hpp"
 
+void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head);
 
 #endif // STACKS_HPP

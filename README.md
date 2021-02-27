@@ -191,6 +191,9 @@ Boyer-Moore implementations for find str
 * queues: first-in, first-out sematnics
 * stacks: push, pop, peek
 * applications for stacks: parsing
+* top, push/emplace, pop
+* top/pop throw exceptions with empty stack
+* 
 
 ### TODO.
 
