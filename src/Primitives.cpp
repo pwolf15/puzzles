@@ -306,6 +306,8 @@ bool checkPerfectNumber(int num)
     return sum == num;
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
 int binaryGap(int n)
 {
     int maxDistance = 0;
