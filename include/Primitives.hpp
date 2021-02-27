@@ -30,4 +30,6 @@ int numSteps(int n);
 
 bool checkPerfectNumber(int num);
 
+int binaryGap(int n);
+
 #endif // PRIMITIVES_HPP

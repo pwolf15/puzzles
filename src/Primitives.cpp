@@ -305,3 +305,32 @@ bool checkPerfectNumber(int num)
 
     return sum == num;
 }
+
+int binaryGap(int n)
+{
+    int maxDistance = 0;
+    int curDistance = 0;
+    int lastOne     = -1;
+    int index       = 0;
+    while (n)
+    {
+        if (n % 2) 
+        {
+            if (lastOne == -1) 
+            {
+                lastOne = index;
+            }
+            else 
+            {
+                curDistance = (index - lastOne);
+                lastOne = index;
+                maxDistance = std::max(maxDistance, curDistance);
+            }
+        }
+
+        n /= 2;
+        index++;
+    }
+
+    return maxDistance;
+}

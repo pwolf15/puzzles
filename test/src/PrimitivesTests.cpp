@@ -83,3 +83,12 @@ TEST(Primitives, CheckPerfectNumber)
     CHECK(!checkPerfectNumber(2));
     CHECK(!checkPerfectNumber(1));
 }
+
+TEST(Primitives, BinaryGap)
+{
+    CHECK_EQUAL(2, binaryGap(22));
+    CHECK_EQUAL(2, binaryGap(5));
+    CHECK_EQUAL(1, binaryGap(6));
+    CHECK_EQUAL(0, binaryGap(8));
+    CHECK_EQUAL(0, binaryGap(1));
+}
