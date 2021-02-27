@@ -144,4 +144,6 @@ int maxProfit(std::vector<int>& prices);
 
 std::vector<bool> prefixesDivBy5(std::vector<int>& A);
 
+int search(std::vector<int>& nums, int target);
+
 #endif // ARRAYS_HPP

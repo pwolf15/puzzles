@@ -1381,4 +1381,11 @@ TEST(Arrays, PrefixesDivBy5)
     }
 }
 
+TEST(Arrays, Search)
+{
+    std::vector<int> input = {-1,0,3,5,9,12};
+    CHECK_EQUAL(4, search(input, 9));
 
+    input = {-1,0,3,5,9,12};
+    CHECK_EQUAL(-1, search(input, 2));
+}

@@ -2910,3 +2910,34 @@ std::vector<bool> prefixesDivBy5(std::vector<int>& A)
     
     return results;
 }
+
+
+// space comlexity: O(n * log n)
+// time complexity: O(log n)
+int search(std::vector<int>& nums, int target)
+{
+    if (nums.size() == 1 && nums[0] != target)
+    {
+        return -1;
+    }   
+    else if (nums[nums.size() / 2] == target)
+    {
+        return nums.size() / 2;
+    }
+    else if (nums[nums.size() / 2] > target)
+    {
+        std::vector<int> lesser;
+        std::copy(nums.begin(), nums.begin() + nums.size() / 2, std::back_inserter(lesser));
+        int idx = search(lesser, target);
+        if (idx == -1) return -1;
+        return idx;
+    }
+    else
+    {
+        std::vector<int> greater;
+        std::copy(nums.begin() + nums.size() / 2, nums.end(), std::back_inserter(greater));
+        int idx = search(greater, target);
+        if (idx == -1) return -1;
+        return nums.size() / 2 + idx;
+    }
+}
