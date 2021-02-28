@@ -2897,6 +2897,8 @@ int maxProfit(std::vector<int>& prices)
     return profit;
 }
 
+// time complexity: O(1)
+// space complexity: O(n)
 std::vector<bool> prefixesDivBy5(std::vector<int>& A)
 {
     std::vector<bool> results;
@@ -2906,6 +2908,7 @@ std::vector<bool> prefixesDivBy5(std::vector<int>& A)
         num <<= 1;
         num += A[i];
         results.push_back(num % 5 == 0);
+        num %= 5;
     }
     
     return results;
