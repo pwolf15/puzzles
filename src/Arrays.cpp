@@ -2908,6 +2908,12 @@ std::vector<bool> prefixesDivBy5(std::vector<int>& A)
         num <<= 1;
         num += A[i];
         results.push_back(num % 5 == 0);
+
+        // confusing part, how does it work? Walk through a few examples.
+        //  main idea: effect of multiplying x by 2, adding 1 will have same relationship to 5, as x mod 5
+        //  example: x = 7, x mod 5 = 2, x * 2 + 1 = 15 (divisible by 5), x mod 5 * 2 + 1 = 5 (divisible by 5)
+        //  example: x = 4, x mod 3 = 1, x * 2 + 1 = 9 (divisible by 3), x mod 3 * 2 + 1 = 3 (divisible by 3)
+          
         num %= 5;
     }
     
