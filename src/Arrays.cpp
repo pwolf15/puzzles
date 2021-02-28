@@ -2914,7 +2914,7 @@ std::vector<bool> prefixesDivBy5(std::vector<int>& A)
 
 // space comlexity: O(n * log n)
 // time complexity: O(log n)
-int search(std::vector<int>& nums, int target)
+int search_PW1(std::vector<int>& nums, int target)
 {
     if (nums.size() == 1 && nums[0] != target)
     {
@@ -2940,4 +2940,39 @@ int search(std::vector<int>& nums, int target)
         if (idx == -1) return -1;
         return nums.size() / 2 + idx;
     }
+}
+
+int search_recurse(std::vector<int>& nums, int target, int l, int r)
+{
+    int index = (r - l) / 2 + l;
+    if (r <= l)
+    {
+        return nums[l] == target ? l : -1;
+    }
+    else if (nums[index] == target)
+    {
+        return index;
+    }
+    else if (nums[index] > target)
+    {
+        return search_recurse(nums, target, l, index - 1);
+    }
+    else 
+    {
+        return search_recurse(nums, target, index + 1, r);
+    }
+}
+
+// space comlexity: O(1)
+// time complexity: O(log n)
+int search_PW2(std::vector<int>& nums, int target)
+{
+    return search_recurse(nums, target, 0, nums.size() - 1);
+}
+
+// space comlexity: O(n * log n)
+// time complexity: O(log n)
+int search(std::vector<int>& nums, int target)
+{
+    return search_PW2(nums, target);
 }

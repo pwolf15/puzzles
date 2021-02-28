@@ -1388,4 +1388,19 @@ TEST(Arrays, Search)
 
     input = {-1,0,3,5,9,12};
     CHECK_EQUAL(-1, search(input, 2));
+
+    input = {2, 5};
+    CHECK_EQUAL(0, search(input, 2));
+
+    input = { -1, 0, 5};
+    CHECK_EQUAL(1, search(input, 0));
+    
+    input = { -1, 0, 5};
+    CHECK_EQUAL(0, search(input, -1));
+
+    input = {-1,0,3,5,9,12};
+    CHECK_EQUAL(5, search(input, 12));
+
+    input = {2, 5};
+    CHECK_EQUAL(-1, search(input, 0));
 }
