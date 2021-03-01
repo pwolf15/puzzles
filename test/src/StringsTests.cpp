@@ -491,3 +491,19 @@ TEST(Strings, ConvertToBase7)
     CHECK_EQUAL("-10", convertToBase7(-7));
     CHECK_EQUAL("0", convertToBase7(0));
 }
+
+TEST(Strings, ArrayStringsAreEqual)
+{
+    std::vector<std::string> word1 = {"ab", "c"};
+    std::vector<std::string> word2 = {"a", "bc"};
+
+    CHECK(arrayStringsAreEqual(word1, word2));
+
+    word1 = {"a", "cb"};
+    word2 = {"ab", "c"};
+    CHECK(!arrayStringsAreEqual(word1, word2));
+
+    word1 = {"abc", "d", "defg"};
+    word2 = {"abcddefg"};
+    CHECK(arrayStringsAreEqual(word1, word2));
+}
