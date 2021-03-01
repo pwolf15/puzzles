@@ -3,6 +3,8 @@
 #include <iostream>
 #include <queue>
 #include <numeric>
+#include <vector>
+#include <string>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -127,4 +129,42 @@ std::vector<double> averageOfLevels_PW2(TreeNode* root)
 std::vector<double> averageOfLevels(TreeNode* root)
 {
     return averageOfLevels_PW2(root);
+}
+
+// time complexity: O(n)
+// space complexity: O(n * log n)
+std::vector<std::string> binaryTreePaths(TreeNode* root)
+{
+    if (root == nullptr) 
+    {
+        return {};
+    }
+    else {
+        std::vector<std::string> left = binaryTreePaths(root->left);
+        std::vector<std::string> right = binaryTreePaths(root->right);
+        std::vector<std::string> paths;
+        if (!left.empty())
+        {
+            for (auto path: left)
+            {
+                path = std::to_string(root->val) + "->" + path;
+                paths.emplace_back(path);
+            }
+        }
+        if (!right.empty())
+        {
+            for (auto path: right)
+            {
+                path = std::to_string(root->val) + "->" + path;
+                paths.emplace_back(path);
+            }
+        }
+
+        if (right.empty() && left.empty())
+        {
+            paths.emplace_back(std::to_string(root->val));
+        }
+
+        return paths;
+    }
 }

@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 
 struct TreeNode
 {
@@ -15,3 +16,5 @@ TreeNode *sortedArrayToBST(std::vector<int> &nums);
 bool isValidBST(TreeNode *root);
 
 std::vector<double> averageOfLevels(TreeNode* root);
+
+std::vector<std::string> binaryTreePaths(TreeNode* root);

@@ -1,5 +1,8 @@
 #include "CppUTest/TestHarness.h"
 
+#include <vector>
+#include <string>
+
 #include "Trees.hpp"
 
 TEST_GROUP(Trees)
@@ -80,6 +83,24 @@ TEST(Trees, AverageOfLevels)
 
     expected = { 2147483647, 2147483647 };
     result = averageOfLevels(node);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+};
+
+TEST(Trees, BinaryTreePaths)
+{
+    TreeNode* node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->right = new TreeNode(5);
+
+    std::vector<std::string> expected = { "1->2->5", "1->3" };
+    auto result = binaryTreePaths(node);
     CHECK_EQUAL(expected.size(), result.size());
     for (size_t i = 0; i < expected.size(); ++i)
     {
