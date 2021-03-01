@@ -1729,6 +1729,8 @@ std::string convertToBase7(int num)
     return s;
 }
 
+// time complexity: O(m + n)
+// space complexity: O(1)
 bool arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::string>& word2)
 {
     int i1 = 0, j1 = 0;
