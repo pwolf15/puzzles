@@ -146,4 +146,6 @@ std::vector<bool> prefixesDivBy5(std::vector<int>& A);
 
 int search(std::vector<int>& nums, int target);
 
+bool canMakeArithmeticProgression(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

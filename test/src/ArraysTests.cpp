@@ -1404,3 +1404,12 @@ TEST(Arrays, Search)
     input = {2, 5};
     CHECK_EQUAL(-1, search(input, 0));
 }
+
+TEST(Arrays, CanMakeArithmeticProgression)
+{
+    std::vector<int> input = {3,5,1};
+    CHECK(canMakeArithmeticProgression(input));
+
+    input = {1,2,4};
+    CHECK(!canMakeArithmeticProgression(input));
+}

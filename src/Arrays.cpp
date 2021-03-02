@@ -2985,3 +2985,21 @@ int search(std::vector<int>& nums, int target)
 {
     return search_PW2(nums, target);
 }
+
+bool canMakeArithmeticProgression(std::vector<int>& arr)
+{
+    std::sort(arr.begin(), arr.end());
+    if (arr.size() <= 2)
+    {
+        return true;
+    }
+    int diff = arr[1] - arr[0];
+    for (int i = 2; i < arr.size(); i++)
+    {
+        if ((arr[i] - arr[i - 1]) != diff)
+        {
+            return false;
+        }
+    }
+    return true;
+}
