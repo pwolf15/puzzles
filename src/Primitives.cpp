@@ -364,6 +364,8 @@ std::vector<std::string> readBinaryWatch(int num)
     return {};
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int totalMoney(int n)
 {
     int sum = 0;
