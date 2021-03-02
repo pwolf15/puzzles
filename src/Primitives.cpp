@@ -358,3 +358,25 @@ bool hasAlternatingBits(int n)
 
     return alternates;
 }
+
+std::vector<std::string> readBinaryWatch(int num)
+{
+    return {};
+}
+
+int totalMoney(int n)
+{
+    int sum = 0;
+    int numWeeks = n / 5;
+    for (int i = 0; i <= numWeeks; ++i)
+    {
+        for (int j = i + 1; j <= i + 7 && j <= n; ++j)
+        {
+            sum += j;
+        }
+
+        n -= 6;
+    }
+
+    return sum;
+}

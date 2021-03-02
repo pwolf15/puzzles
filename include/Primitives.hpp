@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <stdint.h>
+#include <string>
 
 short CountBits(unsigned int x);
 
@@ -33,5 +34,9 @@ bool checkPerfectNumber(int num);
 int binaryGap(int n);
 
 bool hasAlternatingBits(int n);
+
+std::vector<std::string> readBinaryWatch(int num);
+
+int totalMoney(int n);
 
 #endif // PRIMITIVES_HPP

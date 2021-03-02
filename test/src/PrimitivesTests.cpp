@@ -101,3 +101,21 @@ TEST(Primitives, HasAlternatingBits)
     CHECK(hasAlternatingBits(10));
     CHECK(!hasAlternatingBits(3));
 }
+
+TEST(Primitives, ReadBinaryWatch)
+{
+    std::vector<std::string> expected = {"1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"};
+    std::vector<std::string> results = readBinaryWatch(1);
+    // CHECK_EQUAL(expected.size(), results.size());
+    // for (size_t i = 0; i < expected.size(); ++i)
+    // {
+    //     CHECK_EQUAL(expected[i], results[i]);
+    // }
+}
+
+TEST(Primitives, TotalMoney)
+{
+    CHECK_EQUAL(10, totalMoney(4));
+    CHECK_EQUAL(37, totalMoney(10));
+    CHECK_EQUAL(96, totalMoney(20));
+}
