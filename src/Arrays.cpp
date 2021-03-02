@@ -2986,6 +2986,8 @@ int search(std::vector<int>& nums, int target)
     return search_PW2(nums, target);
 }
 
+// time complexity: O(n log n + n)
+// space complexity: O(1)
 bool canMakeArithmeticProgression(std::vector<int>& arr)
 {
     std::sort(arr.begin(), arr.end());
