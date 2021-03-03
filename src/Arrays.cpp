@@ -3006,6 +3006,8 @@ bool canMakeArithmeticProgression(std::vector<int>& arr)
     return true;
 }
 
+// time complexity: O((n + m) * i + n * m)
+// space complexity: O(n * m)
 int oddCells(int n, int m, std::vector<std::vector<int>>& indices)
 {
     std::vector<int> values(n * m, 0);
