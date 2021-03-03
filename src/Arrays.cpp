@@ -3005,3 +3005,34 @@ bool canMakeArithmeticProgression(std::vector<int>& arr)
     }
     return true;
 }
+
+int oddCells(int n, int m, std::vector<std::vector<int>>& indices)
+{
+    std::vector<int> values(n * m, 0);
+    for (auto index: indices)
+    {
+        // row
+        int row = index[0];
+        int col = index[1];
+        for (int i = 0; i < m; ++i)
+        {
+            values[row * m + i] += 1;
+        }
+
+        for (int j = 0; j < n; ++j)
+        {
+            values[j * m + col] += 1;
+        }
+    }
+
+    int numOdds = 0;
+    for (int i = 0; i < values.size(); ++i)
+    {
+        if (values[i] % 2 == 1)
+        {
+            numOdds++;
+        }
+    }
+
+    return numOdds;
+}

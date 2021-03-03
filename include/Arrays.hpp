@@ -148,4 +148,6 @@ int search(std::vector<int>& nums, int target);
 
 bool canMakeArithmeticProgression(std::vector<int>& arr);
 
+int oddCells(int n, int m, std::vector<std::vector<int>>& indices);
+
 #endif // ARRAYS_HPP

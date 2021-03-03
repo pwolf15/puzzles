@@ -1413,3 +1413,12 @@ TEST(Arrays, CanMakeArithmeticProgression)
     input = {1,2,4};
     CHECK(!canMakeArithmeticProgression(input));
 }
+
+TEST(Arrays, OddCells)
+{
+    std::vector<std::vector<int>> indices = {{0,1},{1,1}};
+    CHECK_EQUAL(6, oddCells(2, 3, indices));
+
+    indices = {{1, 1},{0, 0}};
+    CHECK_EQUAL(0, oddCells(2, 2, indices));
+}
