@@ -1422,3 +1422,31 @@ TEST(Arrays, OddCells)
     indices = {{1, 1},{0, 0}};
     CHECK_EQUAL(0, oddCells(2, 2, indices));
 }
+
+TEST(Arrays, CanFormArray)
+{
+    std::vector<int> arr = {85};
+    std::vector<std::vector<int>> pieces = {{85}};
+    CHECK(canFormArray(arr, pieces));
+
+    arr = {15,88}, pieces = {{88},{15}};
+    CHECK(canFormArray(arr, pieces));
+
+    arr = {15,88}, pieces = {{88},{15}};
+    CHECK(canFormArray(arr, pieces));
+
+    arr = {49,18,16}, pieces = {{16,18,49}};
+    CHECK(!canFormArray(arr, pieces));
+
+    arr = {91,4,64,78}, pieces = {{78},{4,64},{91}};
+    CHECK(canFormArray(arr, pieces));
+
+    arr = {1,3,5,7}, pieces = {{2,4,6,8}};
+    CHECK(!canFormArray(arr, pieces));
+
+    arr = {15,88}, pieces = {{88},{15}};
+    CHECK(canFormArray(arr, pieces));
+
+    arr = {12}, pieces = {{1}};
+    CHECK(!canFormArray(arr, pieces));
+}

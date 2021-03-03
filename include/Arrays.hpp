@@ -150,4 +150,6 @@ bool canMakeArithmeticProgression(std::vector<int>& arr);
 
 int oddCells(int n, int m, std::vector<std::vector<int>>& indices);
 
+bool canFormArray(std::vector<int>& arr, std::vector<std::vector<int>>& pieces);
+
 #endif // ARRAYS_HPP

@@ -3038,3 +3038,39 @@ int oddCells(int n, int m, std::vector<std::vector<int>>& indices)
 
     return numOdds;
 }
+
+bool canFormArray(std::vector<int>& arr, std::vector<std::vector<int>>& pieces)
+{
+    std::vector<int> used(pieces.size());
+    int i = 0;
+    bool foundPiece = false;;
+    for (int i = 0; i < arr.size(); )
+    {
+        for (int j = 0; j < pieces.size() && i < arr.size(); ++j)
+        {
+            if (arr[i] == pieces[j][0] && !used[j])
+            {
+                foundPiece = true;
+                for (int k = 0; k < pieces[j].size(); ++k)
+                {
+                    if (arr[i] != pieces[j][k])
+                    {
+                        return false;
+                    }
+
+                    i++;
+                }
+
+                used[j] = 1;
+            }
+        }
+        
+        if (!foundPiece && i <= arr.size() - 1)
+        {
+            return false;
+        }
+
+        foundPiece = false;
+    }
+    return true;
+}
