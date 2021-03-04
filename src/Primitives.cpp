@@ -383,12 +383,14 @@ int totalMoney(int n)
     return sum;
 }
 
+// time complexity: O(N), where N number of bits
+// space complexity: O(1)
 int bitwiseComplement(int N)
 {
     bool foundLeadingZero = false;
 
     if (!N) return 1;
-    
+
     for (int i = (sizeof(int) * 8) - 1; i >= 0; --i)
     {
         if (foundLeadingZero)
