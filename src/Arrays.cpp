@@ -3077,6 +3077,8 @@ bool canFormArray(std::vector<int>& arr, std::vector<std::vector<int>>& pieces)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool kLengthApart(std::vector<int>& nums, int k)
 {
     int lastOne = -1;
