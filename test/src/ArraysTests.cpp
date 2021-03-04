@@ -1450,3 +1450,22 @@ TEST(Arrays, CanFormArray)
     arr = {12}, pieces = {{1}};
     CHECK(!canFormArray(arr, pieces));
 }
+
+TEST(Arrays, KLengthApart)
+{
+    std::vector<int> nums = {1,0,0,0,1,0,0,1};
+    int k = 2;
+    CHECK(kLengthApart(nums, k));
+
+    nums = {1,0,0,1,0,1};
+    k = 2;
+    CHECK(!kLengthApart(nums, k));
+
+    nums = {1,1,1,1,1};
+    k = 0;
+    CHECK(kLengthApart(nums, k));
+
+    nums = {0,1,0,1};
+    k = 1;
+    CHECK(kLengthApart(nums, k));
+}

@@ -152,4 +152,6 @@ int oddCells(int n, int m, std::vector<std::vector<int>>& indices);
 
 bool canFormArray(std::vector<int>& arr, std::vector<std::vector<int>>& pieces);
 
+bool kLengthApart(std::vector<int>& nums, int k);
+
 #endif // ARRAYS_HPP
