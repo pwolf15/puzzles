@@ -39,4 +39,6 @@ std::vector<std::string> readBinaryWatch(int num);
 
 int totalMoney(int n);
 
+int bitwiseComplement(int N);
+
 #endif // PRIMITIVES_HPP

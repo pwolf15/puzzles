@@ -382,3 +382,25 @@ int totalMoney(int n)
 
     return sum;
 }
+
+int bitwiseComplement(int N)
+{
+    bool foundLeadingZero = false;
+
+    if (!N) return 1;
+    
+    for (int i = (sizeof(int) * 8) - 1; i >= 0; --i)
+    {
+        if (foundLeadingZero)
+        {
+            N = ((1 << i) & ~N) | (~(1 << i) & N);
+        }
+        else if ((N >> i) & 0x1)
+        {
+            foundLeadingZero = true;
+            N = ((1 << i) & ~N) | (~(1 << i) & N);
+        }
+    }
+
+    return N;
+}

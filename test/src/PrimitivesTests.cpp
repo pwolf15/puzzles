@@ -119,3 +119,11 @@ TEST(Primitives, TotalMoney)
     CHECK_EQUAL(37, totalMoney(10));
     CHECK_EQUAL(96, totalMoney(20));
 }
+
+TEST(Primitives, BitwiseComplement)
+{
+    CHECK_EQUAL(2, bitwiseComplement(5));
+    CHECK_EQUAL(0, bitwiseComplement(7)); 
+    CHECK_EQUAL(5, bitwiseComplement(10));
+    CHECK_EQUAL(1, bitwiseComplement(0));
+}
