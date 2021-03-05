@@ -156,4 +156,6 @@ bool kLengthApart(std::vector<int>& nums, int k);
 
 bool checkStraightLine(std::vector<std::vector<int>>& coordinates);
 
+bool checkIfExist(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

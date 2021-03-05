@@ -1473,11 +1473,23 @@ TEST(Arrays, KLengthApart)
 TEST(Arrays, CheckStraightLine)
 {
     std::vector<std::vector<int>> coords = {{1,2},{2,3},{3,4},{4,5},{5,6},{6,7}};
-    // CHECK(checkStraightLine(coords));
+    CHECK(checkStraightLine(coords));
 
-    // coords = {{1,1},{2,2},{3,4},{4,5},{5,6},{7,7}};
-    // CHECK(!checkStraightLine(coords));
+    coords = {{1,1},{2,2},{3,4},{4,5},{5,6},{7,7}};
+    CHECK(!checkStraightLine(coords));
 
     coords = {{-4,-3},{1,0},{3,-1},{0,-1},{-5,2}};
     CHECK(!checkStraightLine(coords));
+}
+
+TEST(Arrays, CheckIfExist)
+{
+    std::vector<int> arr = {10,2,5,3};
+    CHECK(checkIfExist(arr));
+
+    arr = {7,1,14,11};
+    CHECK(checkIfExist(arr));
+
+    arr = {3,1,7,11};
+    CHECK(!checkIfExist(arr));
 }
