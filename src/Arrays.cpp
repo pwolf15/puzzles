@@ -3102,6 +3102,8 @@ bool kLengthApart(std::vector<int>& nums, int k)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool checkStraightLine(std::vector<std::vector<int>>& coordinates)
 {
     if (coordinates.size() < 2)
