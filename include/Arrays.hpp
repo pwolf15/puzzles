@@ -154,4 +154,6 @@ bool canFormArray(std::vector<int>& arr, std::vector<std::vector<int>>& pieces);
 
 bool kLengthApart(std::vector<int>& nums, int k);
 
+bool checkStraightLine(std::vector<std::vector<int>>& coordinates);
+
 #endif // ARRAYS_HPP

@@ -3101,3 +3101,41 @@ bool kLengthApart(std::vector<int>& nums, int k)
 
     return true;
 }
+
+bool checkStraightLine(std::vector<std::vector<int>>& coordinates)
+{
+    if (coordinates.size() < 2)
+    {
+        return false;
+    }
+
+    int denom = coordinates[1][0] - coordinates[0][0];
+    int num   = coordinates[1][1] - coordinates[0][1];
+
+    float slope = 0;
+    if (denom)
+    {
+        slope = (float)num / (float)denom;
+    }
+
+    for (int i = 2; i < coordinates.size(); ++i)
+    {
+        int curDenom = coordinates[i][0] - coordinates[i-1][0];
+        int curNum = coordinates[i][1] - coordinates[i-1][1];
+
+        if (!denom && curDenom)
+        {
+            return false;
+        }
+        else if (denom && !curDenom)
+        {
+            return false;
+        }
+        else if (denom && slope != ((float)curNum / (float)curDenom))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
