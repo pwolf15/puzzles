@@ -3142,6 +3142,8 @@ bool checkStraightLine(std::vector<std::vector<int>>& coordinates)
     return true;
 }
 
+// time complexity: O(N^2)
+// space complexity: O(1)
 bool checkIfExist(std::vector<int>& arr)
 {          
     for (int i = 0; i < arr.size() - 1; ++i)
