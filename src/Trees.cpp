@@ -170,6 +170,8 @@ std::vector<std::string> binaryTreePaths(TreeNode* root)
     }
 }
 
+// time complexity: O(n), visit each node only once
+// space complexity: O(n^2), construct new string for each node visit
 std::string tree2str(TreeNode* t)
 {
     if (!t) return "";
@@ -178,12 +180,18 @@ std::string tree2str(TreeNode* t)
     result += std::to_string(t->val);
     std::string left = tree2str(t->left);
     std::string right = tree2str(t->right);
+
     if (!right.empty())
     {
+        // if right non-empty, always append both.
+        //  case 1: left non-empty, would append in any case
+        //  case 2: left empty, need to append to disambiguate with right-empty case
         result += "(" + left + ")";
         result += "(" + right + ")";
     }
-    else if (!left.empty()) {
+    else if (!left.empty())
+
+        // if left non-empty and right empty, always append only left
         result += "(" + left + ")";
     }
 
