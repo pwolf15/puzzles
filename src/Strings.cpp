@@ -1772,3 +1772,58 @@ bool arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::stri
 
     return true;
 }
+
+int isPrefixOfWord(std::string sentence, std::string searchWord)
+{
+    bool inWord = false;
+    bool matchingPrefix = true;
+    int wordIndex = 1;
+    int charIndex = 0;
+    for (int i = 0; i < sentence.size(); ++i)
+    {
+        if (sentence[i] == ' ' && inWord)
+        {
+            inWord = !inWord;
+            wordIndex++;
+            charIndex = 0;
+        }   
+        else if (isalpha(sentence[i]) && !inWord)
+        {
+            inWord = true;
+            if (sentence[i] == searchWord[charIndex])
+            {
+                matchingPrefix = true;
+                charIndex++;
+                
+                if (charIndex == searchWord.size())
+                {
+                    return wordIndex;
+                }
+            }
+            else
+            {
+                matchingPrefix = false;
+            }
+        }
+        else if (isalpha(sentence[i]) && inWord && matchingPrefix)
+        {
+            if (sentence[i] == searchWord[charIndex])
+            {
+                matchingPrefix = true;
+                charIndex++;
+            }
+            else
+            {
+                matchingPrefix = false;
+                charIndex = 0;
+            }
+
+            if (charIndex == searchWord.size())
+            {
+                return wordIndex;
+            }
+        }
+    }
+
+    return -1;
+}

@@ -73,4 +73,6 @@ std::string convertToBase7(int num);
 
 bool arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::string>& word2);
 
+int isPrefixOfWord(std::string sentence, std::string searchWord);
+
 #endif // STRINGS_HPP

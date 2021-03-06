@@ -507,3 +507,17 @@ TEST(Strings, ArrayStringsAreEqual)
     word2 = {"abcddefg"};
     CHECK(arrayStringsAreEqual(word1, word2));
 }
+
+TEST(Strings, IsPrefixOfWord)
+{
+    std::string sentence = "i love eating burger";
+    std::string word = "burg";
+    
+    CHECK_EQUAL(4, isPrefixOfWord(sentence, word));
+    CHECK_EQUAL(2, isPrefixOfWord("this problem is an easy problem", "pro"));
+    CHECK_EQUAL(-1, isPrefixOfWord("i am tired", "you"));  
+    CHECK_EQUAL(4, isPrefixOfWord("i use triple pillow", "pill")); 
+    CHECK_EQUAL(-1, isPrefixOfWord("hello from the other side", "they")); 
+    CHECK_EQUAL(4, isPrefixOfWord("b bu bur burg burger", "burg"));
+    CHECK_EQUAL(2, isPrefixOfWord("corona dream", "d"));
+}
