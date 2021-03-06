@@ -18,3 +18,5 @@ bool isValidBST(TreeNode *root);
 std::vector<double> averageOfLevels(TreeNode* root);
 
 std::vector<std::string> binaryTreePaths(TreeNode* root);
+
+std::string tree2str(TreeNode* t);

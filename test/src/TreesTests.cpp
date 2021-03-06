@@ -109,3 +109,21 @@ TEST(Trees, BinaryTreePaths)
 
     deleteTree(node);
 };
+
+TEST(Trees, Tree2Str)
+{
+    TreeNode* node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->left = new TreeNode(4);
+    CHECK_EQUAL("1(2(4))(3)", tree2str(node));
+    deleteTree(node);
+
+    node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->right = new TreeNode(4);
+    CHECK_EQUAL("1(2()(4))(3)", tree2str(node));
+
+    deleteTree(node);
+}

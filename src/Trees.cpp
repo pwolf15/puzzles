@@ -5,6 +5,7 @@
 #include <numeric>
 #include <vector>
 #include <string>
+#include <stack>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -167,4 +168,24 @@ std::vector<std::string> binaryTreePaths(TreeNode* root)
 
         return paths;
     }
+}
+
+std::string tree2str(TreeNode* t)
+{
+    if (!t) return "";
+    std::string result = "";
+
+    result += std::to_string(t->val);
+    std::string left = tree2str(t->left);
+    std::string right = tree2str(t->right);
+    if (!right.empty())
+    {
+        result += "(" + left + ")";
+        result += "(" + right + ")";
+    }
+    else if (!left.empty()) {
+        result += "(" + left + ")";
+    }
+
+    return result;
 }
