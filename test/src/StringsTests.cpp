@@ -521,3 +521,14 @@ TEST(Strings, IsPrefixOfWord)
     CHECK_EQUAL(4, isPrefixOfWord("b bu bur burg burger", "burg"));
     CHECK_EQUAL(2, isPrefixOfWord("corona dream", "d"));
 }
+
+TEST(Strings, MaxPower)
+{
+    CHECK_EQUAL(2, maxPower("leetcode"));
+    CHECK_EQUAL(5, maxPower("abbcccddddeeeeedcba"));
+    CHECK_EQUAL(5, maxPower("triplepillooooow"));
+    CHECK_EQUAL(11, maxPower("hooraaaaaaaaaaay"));
+    CHECK_EQUAL(1, maxPower("tourist"));
+    CHECK_EQUAL(0, maxPower(""));
+    CHECK_EQUAL(2, maxPower("cc"));
+}

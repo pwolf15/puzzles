@@ -75,4 +75,6 @@ bool arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::stri
 
 int isPrefixOfWord(std::string sentence, std::string searchWord);
 
+int maxPower(std::string s);
+
 #endif // STRINGS_HPP

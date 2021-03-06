@@ -1829,3 +1829,28 @@ int isPrefixOfWord(std::string sentence, std::string searchWord)
 
     return -1;
 }
+
+int maxPower(std::string s)
+{
+    if (s.empty())
+    {
+        return 0;
+    }
+
+    int curCount = 1;
+    int maxCount = curCount;
+    for (int i = 1; i < s.size(); ++i)
+    {
+        if (s[i] == s[i - 1])
+        {
+            curCount++;
+            maxCount = std::max(maxCount, curCount);
+        }
+        else
+        {
+            curCount = 1;
+        }
+    }
+
+    return maxCount;
+}
