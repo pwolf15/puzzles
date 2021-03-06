@@ -3159,3 +3159,31 @@ bool checkIfExist(std::vector<int>& arr)
     
     return false;
 }
+
+bool check(std::vector<int>& nums)
+{
+    bool startFound = false;
+    int first = nums[0];
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        if (nums[i] < nums[i - 1] && !startFound)
+        {
+            if (nums[i] > first)
+            {
+                return false;
+            }
+            
+            startFound = true;
+        }
+        else if (nums[i] < nums[i - 1] && startFound)
+        {
+            return false;
+        }
+        else if (startFound && nums[i] > first) // weird condition
+        {
+            return false;
+        }
+    }
+
+    return true;
+}

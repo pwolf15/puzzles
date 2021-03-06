@@ -158,4 +158,6 @@ bool checkStraightLine(std::vector<std::vector<int>>& coordinates);
 
 bool checkIfExist(std::vector<int>& arr);
 
+bool check(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

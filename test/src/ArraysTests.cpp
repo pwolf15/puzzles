@@ -1493,3 +1493,24 @@ TEST(Arrays, CheckIfExist)
     arr = {3,1,7,11};
     CHECK(!checkIfExist(arr));
 }
+
+TEST(Arrays, Check)
+{
+    std::vector<int> arr = {3,4,5,1,2};
+    CHECK(check(arr));
+
+    arr = {2,1,3,4};
+    CHECK(!check(arr));
+
+    arr = {1,2,3};
+    CHECK(check(arr));
+
+    arr = {1,1,1};
+    CHECK(check(arr));
+
+    arr = {2,1};
+    CHECK(check(arr));
+
+    arr = {1, 3, 2};
+    CHECK(!check(arr));
+}
