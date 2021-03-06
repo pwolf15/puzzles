@@ -3160,6 +3160,8 @@ bool checkIfExist(std::vector<int>& arr)
     return false;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool check(std::vector<int>& nums)
 {
     bool startFound = false;
@@ -3172,7 +3174,7 @@ bool check(std::vector<int>& nums)
             {
                 return false;
             }
-            
+
             startFound = true;
         }
         else if (nums[i] < nums[i - 1] && startFound)
