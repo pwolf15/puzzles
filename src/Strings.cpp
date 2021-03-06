@@ -1830,6 +1830,8 @@ int isPrefixOfWord(std::string sentence, std::string searchWord)
     return -1;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maxPower(std::string s)
 {
     if (s.empty())
