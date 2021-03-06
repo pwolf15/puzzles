@@ -1773,6 +1773,8 @@ bool arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::stri
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int isPrefixOfWord(std::string sentence, std::string searchWord)
 {
     bool inWord = false;
