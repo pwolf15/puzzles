@@ -190,10 +190,9 @@ std::string tree2str(TreeNode* t)
         result += "(" + right + ")";
     }
     else if (!left.empty())
-
+    {
         // if left non-empty and right empty, always append only left
         result += "(" + left + ")";
     }
-
     return result;
 }

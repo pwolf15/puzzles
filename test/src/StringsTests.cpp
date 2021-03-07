@@ -532,3 +532,9 @@ TEST(Strings, MaxPower)
     CHECK_EQUAL(0, maxPower(""));
     CHECK_EQUAL(2, maxPower("cc"));
 }
+
+TEST(Strings, CheckOnesSegment)
+{
+    CHECK(!checkOnesSegment("1001"));
+    CHECK(checkOnesSegment("110"));
+}

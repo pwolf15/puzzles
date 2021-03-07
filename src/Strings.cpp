@@ -1856,3 +1856,21 @@ int maxPower(std::string s)
 
     return maxCount;
 }
+
+bool checkOnesSegment(std::string s)
+{
+    bool inLeadingOnes = true;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == '0' && inLeadingOnes)
+        {
+            inLeadingOnes = false;
+        }
+        else if (s[i] == '1' && !inLeadingOnes)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}

@@ -77,4 +77,6 @@ int isPrefixOfWord(std::string sentence, std::string searchWord);
 
 int maxPower(std::string s);
 
+bool checkOnesSegment(std::string s);
+
 #endif // STRINGS_HPP
