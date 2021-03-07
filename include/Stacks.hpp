@@ -8,6 +8,8 @@
 
 void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head);
 
+// space complexity: O(n)
+// time complexity: O(1) max, O(log n) pop and push
 class StackWithMax
 {
 public: 
