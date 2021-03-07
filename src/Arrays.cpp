@@ -3193,18 +3193,14 @@ bool check(std::vector<int>& nums)
 // time complexity: O(sqrt(n))
 // space complexity: O(1)
 std::vector<int> constructRectangle(int area)
-{
-    std::vector<int> result;
-
-    for (int i = ceil(sqrt(area)); i <= area; ++i)
+{  
+    for (int i = floor(sqrt(area)); i > 0; --i)
     {
         if (area % i == 0)
         {
-            result.push_back(i);
-            result.push_back(area / i);
-            break;
+            return {area / i, i};
         }
     }
 
-    return result;
+    return {};
 }
