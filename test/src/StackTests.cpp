@@ -33,4 +33,20 @@ TEST(Stacks, StackWithMax)
         CHECK_EQUAL(expected[i], m);
         s.Pop();
     }
+
+    StackWithMax_EPI s2;
+    for (int i = 0; i < 10; ++i)
+    {
+        s2.Push(i);
+        s2.Push(i);
+        s2.Push(i);
+    }
+
+    expected = { 9, 9, 9, 8, 8 };
+    for (int i = 0; i < 5; ++i)
+    {
+        int m = s2.Max();
+        CHECK_EQUAL(expected[i], m);
+        s2.Pop();
+    }
 };
