@@ -1857,6 +1857,8 @@ int maxPower(std::string s)
     return maxCount;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool checkOnesSegment(std::string s)
 {
     bool inLeadingOnes = true;
