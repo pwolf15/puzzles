@@ -1514,3 +1514,30 @@ TEST(Arrays, Check)
     arr = {1, 3, 2};
     CHECK(!check(arr));
 }
+
+TEST(Arrays, ConstructRectangle)
+{
+    std::vector<int> expected = { 37, 1 };
+    std::vector<int> result = constructRectangle(37);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 427, 286 };
+    result = constructRectangle(122122);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 2, 2 };
+    result = constructRectangle(4);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

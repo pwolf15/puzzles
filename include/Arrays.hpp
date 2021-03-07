@@ -160,4 +160,6 @@ bool checkIfExist(std::vector<int>& arr);
 
 bool check(std::vector<int>& nums);
 
+std::vector<int> constructRectangle(int area);
+
 #endif // ARRAYS_HPP

@@ -3189,3 +3189,20 @@ bool check(std::vector<int>& nums)
 
     return true;
 }
+
+std::vector<int> constructRectangle(int area)
+{
+    std::vector<int> result;
+
+    for (int i = ceil(sqrt(area)); i <= area; ++i)
+    {
+        if (area % i == 0)
+        {
+            result.push_back(i);
+            result.push_back(area / i);
+            break;
+        }
+    }
+
+    return result;
+}
