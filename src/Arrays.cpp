@@ -3190,6 +3190,8 @@ bool check(std::vector<int>& nums)
     return true;
 }
 
+// time complexity: O(sqrt(n))
+// space complexity: O(1)
 std::vector<int> constructRectangle(int area)
 {
     std::vector<int> result;
