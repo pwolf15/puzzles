@@ -63,4 +63,6 @@ std::shared_ptr<ListNodeEPI<int>> ListPivoting(const std::shared_ptr<ListNodeEPI
 std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>> L1,
     std::shared_ptr<ListNodeEPI<int>> L2);
 
+int getDecimalValue(std::shared_ptr<ListNodeEPI<int>> head);
+
 #endif // LINKEDLISTS_HPP

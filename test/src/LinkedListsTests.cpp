@@ -547,3 +547,18 @@ TEST(LinkedLists, AddTwoNumbers)
     }
 };
 
+
+TEST(LinkedLists, GetDecimalValue)
+{
+    std::shared_ptr<ListNodeEPI<int>> l = createList({ 1, 0, 1});
+    CHECK_EQUAL(5, getDecimalValue(l));
+
+    l = createList({1,0,0,1,0,0,1,1,1,0,0,0,0,0,0});
+    CHECK_EQUAL(18880, getDecimalValue(l));
+
+    l = createList({0});
+    CHECK_EQUAL(0, getDecimalValue(l));
+    
+    l = createList({1});
+    CHECK_EQUAL(1, getDecimalValue(l));
+};

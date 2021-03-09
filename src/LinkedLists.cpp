@@ -1246,3 +1246,15 @@ std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>
 {
     return AddTwoNumbers_EPI(L1, L2);
 }
+
+int getDecimalValue(std::shared_ptr<ListNodeEPI<int>> head)
+{
+    int value = 0;
+    while (head)
+    {
+        value <<= 1;
+        value += head->data;
+        head = head->next;
+    }
+    return value;
+}
