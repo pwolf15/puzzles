@@ -162,4 +162,6 @@ bool check(std::vector<int>& nums);
 
 std::vector<int> constructRectangle(int area);
 
+bool containsNearbyDuplicate(std::vector<int>& nums, int k);
+
 #endif // ARRAYS_HPP

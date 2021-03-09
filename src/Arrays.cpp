@@ -3204,3 +3204,27 @@ std::vector<int> constructRectangle(int area)
 
     return {};
 }
+
+bool containsNearbyDuplicate(std::vector<int>& nums, int k)
+{
+    std::unordered_map<int, std::set<int>> m;
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (m.find(nums[i]) == m.end())
+        {
+            m[nums[i]] = { i };
+        }
+        else
+        {
+            if (i - (*m[nums[i]].rbegin()) <= k)
+            {
+                return true;
+            }
+
+            m[nums[i]].insert(i);
+        }
+    }
+
+    return false;
+}

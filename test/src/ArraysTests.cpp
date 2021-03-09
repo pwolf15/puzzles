@@ -1541,3 +1541,24 @@ TEST(Arrays, ConstructRectangle)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, ContainsNearbyDuplicate)
+{
+    std::vector<int> input = { 1,2,3,1 };
+    CHECK(containsNearbyDuplicate(input, 3));
+
+    input = { 1,0,1,1 };
+    CHECK(containsNearbyDuplicate(input, 1));
+
+    input = {1,2,3,1,2,3};
+    CHECK(!containsNearbyDuplicate(input, 2));
+
+    input = { 99, 99 };
+    CHECK(containsNearbyDuplicate(input, 2));
+
+    input = { 1 };
+    CHECK(!containsNearbyDuplicate(input, 1));
+    
+    input = { 1,2,3,4,5,6,7,8,9,9 };
+    CHECK(containsNearbyDuplicate(input, 3));
+}
