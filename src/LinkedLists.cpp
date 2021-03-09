@@ -1247,6 +1247,8 @@ std::shared_ptr<ListNodeEPI<int>> AddTwoNumbers(std::shared_ptr<ListNodeEPI<int>
     return AddTwoNumbers_EPI(L1, L2);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int getDecimalValue(std::shared_ptr<ListNodeEPI<int>> head)
 {
     int value = 0;
