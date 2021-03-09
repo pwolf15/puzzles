@@ -3205,6 +3205,8 @@ std::vector<int> constructRectangle(int area)
     return {};
 }
 
+// time complexity: O(n * log n)
+// space complexity: O(2n), n for n elements in set, indices across all n elements
 bool containsNearbyDuplicate(std::vector<int>& nums, int k)
 {
     std::unordered_map<int, std::set<int>> m;
