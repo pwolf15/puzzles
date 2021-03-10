@@ -127,3 +127,46 @@ TEST(Primitives, BitwiseComplement)
     CHECK_EQUAL(5, bitwiseComplement(10));
     CHECK_EQUAL(1, bitwiseComplement(0));
 }
+
+TEST(Primitives, GetNoZeroIntegers)
+{
+    std::vector<int> expected = {2, 9};
+    std::vector<int> result = getNoZeroIntegers(11);
+    CHECK_EQUAL(expected.size(), result.size())
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {1, 9999};
+    result = getNoZeroIntegers(10000);
+    CHECK_EQUAL(expected.size(), result.size())
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {1, 68};
+    result = getNoZeroIntegers(69);
+    CHECK_EQUAL(expected.size(), result.size())
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {11, 999};
+    result = getNoZeroIntegers(1010);
+    CHECK_EQUAL(expected.size(), result.size())
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {1, 1};
+    result = getNoZeroIntegers(2);
+    CHECK_EQUAL(expected.size(), result.size())
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

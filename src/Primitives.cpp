@@ -406,3 +406,42 @@ int bitwiseComplement(int N)
 
     return N;
 }
+
+std::vector<int> getNoZeroIntegers(int n)
+{
+    std::vector<int> result;
+    auto containsZero = [](int n) {
+        while (n)
+        {
+            if (n % 10 == 0)
+            {
+                return true;
+            }
+
+            n -= n % 10;
+            n /= 10;
+        }
+
+        return false;
+    };
+
+    for (int i = 1; i <= n / 2; ++i)
+    {
+        if (containsZero(i))
+        {
+            continue;
+        }
+        else if (containsZero(n - i))
+        {
+            continue;
+        }
+        else
+        {
+            result.push_back(i);
+            result.push_back(n - i);
+            return result;
+        }
+    }
+
+    return result;
+}

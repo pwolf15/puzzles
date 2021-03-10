@@ -41,4 +41,6 @@ int totalMoney(int n);
 
 int bitwiseComplement(int N);
 
+std::vector<int> getNoZeroIntegers(int n);
+
 #endif // PRIMITIVES_HPP
