@@ -1877,6 +1877,8 @@ bool checkOnesSegment(std::string s)
     return true;
 }
 
+// time complexity: O(1), dependent on number of bits (32 bits / 16 nibbles)
+// space complexity: O(1), at max 8 bytes to represent
 std::string toHex(int num)
 {
     std::string result = "";
