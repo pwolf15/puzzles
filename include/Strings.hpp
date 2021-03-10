@@ -79,4 +79,6 @@ int maxPower(std::string s);
 
 bool checkOnesSegment(std::string s);
 
+std::string toHex(int num);
+
 #endif // STRINGS_HPP

@@ -1876,3 +1876,42 @@ bool checkOnesSegment(std::string s)
 
     return true;
 }
+
+std::string toHex(int num)
+{
+    std::string result = "";
+
+    auto getChar = [](int n) {
+        if (n < 10) {
+            return (char)(n + '0');
+        } else {
+            switch (n) {
+                case 10:
+                    return 'a';
+                case 11:
+                    return 'b';
+                case 12:
+                    return 'c';
+                case 13:
+                    return 'd';
+                case 14:
+                    return 'e';
+                case 15:
+                    return 'f';
+            }
+        }
+
+        return ' ';
+    };
+
+    for (int i = 0; i < sizeof(num) * 2; ++i)
+    {
+        auto c = getChar(num & 0xf);
+        result = c + result;
+        num >>= 4;
+
+        if (!num) break;
+    }
+
+    return result;
+}

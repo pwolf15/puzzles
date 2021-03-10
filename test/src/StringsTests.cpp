@@ -538,3 +538,11 @@ TEST(Strings, CheckOnesSegment)
     CHECK(!checkOnesSegment("1001"));
     CHECK(checkOnesSegment("110"));
 }
+
+TEST(Strings, ToHex)
+{
+    CHECK_EQUAL("ffffffff", toHex(-1));
+    CHECK_EQUAL("1a", toHex(26));
+    CHECK_EQUAL("1a", toHex(26));
+    // CHECK_EQUAL(toHex("110"));
+}
