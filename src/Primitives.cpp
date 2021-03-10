@@ -407,6 +407,8 @@ int bitwiseComplement(int N)
     return N;
 }
 
+// time complexity: O(n / 2 * log n), contains zero check requires iterating each digit
+// space complexity: O(1)
 std::vector<int> getNoZeroIntegers(int n)
 {
     std::vector<int> result;
