@@ -164,4 +164,6 @@ std::vector<int> constructRectangle(int area);
 
 bool containsNearbyDuplicate(std::vector<int>& nums, int k);
 
+int countMatches(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue);
+
 #endif // ARRAYS_HPP

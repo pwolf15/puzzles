@@ -1562,3 +1562,13 @@ TEST(Arrays, ContainsNearbyDuplicate)
     input = { 1,2,3,4,5,6,7,8,9,9 };
     CHECK(containsNearbyDuplicate(input, 3));
 }
+
+TEST(Arrays, CountMatches)
+{
+    std::vector<std::vector<std::string>> input = {{"phone","blue","pixel"},{"computer","silver","lenovo"},{"phone","gold","iphone"}};
+
+    CHECK_EQUAL(1, countMatches(input, "color", "silver"));
+
+    input = {{"phone","blue","pixel"},{"computer","silver","phone"},{"phone","gold","iphone"}};
+    CHECK_EQUAL(2, countMatches(input, "type", "phone"));
+}

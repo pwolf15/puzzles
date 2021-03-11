@@ -3230,3 +3230,38 @@ bool containsNearbyDuplicate(std::vector<int>& nums, int k)
 
     return false;
 }
+
+int countMatches_PW1(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue)
+{
+    int index = -1;
+    if (ruleKey == "type") index = 0;
+    else if (ruleKey == "color") index = 1;
+    else if (ruleKey == "name") index = 2;
+
+    int count = 0;
+    for (auto item: items)
+    {
+        if (item[index] == ruleValue)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+int countMatches_PW2(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue)
+{
+    int index = -1;
+    if (ruleKey == "type") index = 0;
+    else if (ruleKey == "color") index = 1;
+    else if (ruleKey == "name") index = 2;
+
+    return std::count_if(items.begin(), items.end(), [&](const std::vector<std::string>& s) {
+        return s[index] == ruleValue;
+    });
+}
+
+int countMatches(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue)
+{
+    return countMatches_PW2(items, ruleKey, ruleValue);
+}
