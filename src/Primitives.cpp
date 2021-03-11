@@ -448,6 +448,8 @@ std::vector<int> getNoZeroIntegers(int n)
     return result;
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 int countOdds(int low, int high)
 {
     // num odds
