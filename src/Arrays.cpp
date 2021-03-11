@@ -3231,6 +3231,8 @@ bool containsNearbyDuplicate(std::vector<int>& nums, int k)
     return false;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int countMatches_PW1(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue)
 {
     int index = -1;
@@ -3249,6 +3251,8 @@ int countMatches_PW1(std::vector<std::vector<std::string>>& items, std::string r
     return count;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int countMatches_PW2(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue)
 {
     int index = -1;
