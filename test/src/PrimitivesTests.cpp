@@ -170,3 +170,13 @@ TEST(Primitives, GetNoZeroIntegers)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Primitives, CountOdds)
+{
+    CHECK_EQUAL(3, countOdds(3, 7));
+    CHECK_EQUAL(3, countOdds(2, 7));
+    CHECK_EQUAL(4, countOdds(1, 7));
+    CHECK_EQUAL(1, countOdds(8, 10));
+    CHECK_EQUAL(1, countOdds(21, 22));
+    CHECK_EQUAL(3, countOdds(13, 18));
+}

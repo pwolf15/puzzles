@@ -447,3 +447,25 @@ std::vector<int> getNoZeroIntegers(int n)
 
     return result;
 }
+
+int countOdds(int low, int high)
+{
+    // num odds
+    // 13, 14, 15, 16, 17, 18 => 3
+    // 12, 13, 14, 15, 16, 17 => 3
+    // 11, 12
+    // 11
+    // 
+
+    // if count is even, count == diff over two
+    // if count is odd, 
+    int count = high - low + 1;
+    if (count % 2 == 0)
+    {
+        return count / 2;
+    }
+    else
+    {
+        return (low % 2 == 1) + (high - low) / 2;
+    }
+}

@@ -43,4 +43,6 @@ int bitwiseComplement(int N);
 
 std::vector<int> getNoZeroIntegers(int n);
 
+int countOdds(int low, int high);
+
 #endif // PRIMITIVES_HPP
