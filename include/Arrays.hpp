@@ -166,4 +166,6 @@ bool containsNearbyDuplicate(std::vector<int>& nums, int k);
 
 int countMatches(std::vector<std::vector<std::string>>& items, std::string ruleKey, std::string ruleValue);
 
+int countNegatives(std::vector<std::vector<int>>& grid);
+
 #endif // ARRAYS_HPP

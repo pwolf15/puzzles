@@ -1572,3 +1572,18 @@ TEST(Arrays, CountMatches)
     input = {{"phone","blue","pixel"},{"computer","silver","phone"},{"phone","gold","iphone"}};
     CHECK_EQUAL(2, countMatches(input, "type", "phone"));
 }
+
+TEST(Arrays, CountNegatives)
+{
+    std::vector<std::vector<int>> input = {{4,3,2,-1},{3,2,1,-1},{1,1,-1,-2},{-1,-1,-2,-3}};
+    CHECK_EQUAL(8, countNegatives(input));
+
+    input = {{3,2},{1,0}};
+    CHECK_EQUAL(0, countNegatives(input));
+
+    input = {{1,-1},{-1,-1}};
+    CHECK_EQUAL(3, countNegatives(input));
+
+    input = {{5,1,0},{-5,-5,-5}};
+    CHECK_EQUAL(3, countNegatives(input));
+}
