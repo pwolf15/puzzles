@@ -196,3 +196,42 @@ std::string tree2str(TreeNode* t)
     }
     return result;
 }
+
+int sumNodes(TreeNode* root)
+{
+    if (!root)
+    {
+        return 0;
+    }
+    else {
+        return root->val + sumNodes(root->left) + sumNodes(root->right);
+    }
+}
+
+void tilt(TreeNode* root, std::vector<int>& tiltValues)
+{
+    if (!root)
+    {
+        return;
+    }
+    else if (!root->left && !root->right)
+    {
+        tiltValues.push_back(0);
+        return;
+    }
+    else
+    {
+        int val = abs(sumNodes(root->left) - sumNodes(root->right));
+        tiltValues.push_back(val);
+        tilt(root->left, tiltValues);
+        tilt(root->right, tiltValues);
+    }
+}
+
+int findTilt(TreeNode* root)
+{
+    std::vector<int> tiltValues;
+    tilt(root, tiltValues);
+
+    return std::accumulate(tiltValues.begin(), tiltValues.end(), 0);
+}

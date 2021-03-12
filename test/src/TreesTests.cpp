@@ -127,3 +127,25 @@ TEST(Trees, Tree2Str)
 
     deleteTree(node);
 }
+
+TEST(Trees, FindTilt)
+{
+    TreeNode* node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+
+    CHECK_EQUAL(1, findTilt(node));
+
+    deleteTree(node);
+    
+    node = new TreeNode(4);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(9);
+    node->left->left = new TreeNode(3);
+    node->left->right = new TreeNode(5);
+    node->right->right = new TreeNode(7);
+
+    CHECK_EQUAL(15, findTilt(node));
+
+    deleteTree(node);
+}
