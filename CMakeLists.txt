@@ -53,7 +53,7 @@ add_subdirectory(MonthlyChallenge)
 
 
 include_directories(include)
-add_compile_options(--std=c++20)
+add_compile_options(--std=c++17)
 
 # grouped solutions
 add_library(Arrays              src/Arrays.cpp)
