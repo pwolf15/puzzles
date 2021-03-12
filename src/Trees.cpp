@@ -228,6 +228,8 @@ void tilt(TreeNode* root, std::vector<int>& tiltValues)
     }
 }
 
+// time complexity: O(n!)
+// space complexity: O(n)
 int findTilt(TreeNode* root)
 {
     std::vector<int> tiltValues;
