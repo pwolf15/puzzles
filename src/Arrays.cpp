@@ -3270,6 +3270,8 @@ int countMatches(std::vector<std::vector<std::string>>& items, std::string ruleK
     return countMatches_PW2(items, ruleKey, ruleValue);
 }
 
+// time complexity: O(n x m)
+// space complexity: O(1)
 int countNegatives(std::vector<std::vector<int>>& grid)
 {
     int count = 0;
