@@ -149,3 +149,34 @@ TEST(Trees, FindTilt)
 
     deleteTree(node);
 }
+
+TEST(Trees, IsCousins)
+{
+    TreeNode* node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->right = new TreeNode(4);
+    node->right->right = new TreeNode(5);
+
+    CHECK(isCousins(node, 5, 4));
+
+    deleteTree(node);
+
+    node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->left = new TreeNode(4);
+
+    CHECK(!isCousins(node, 4, 3));
+
+    deleteTree(node);
+
+    node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->right = new TreeNode(3);
+    node->left->right = new TreeNode(4);
+
+    CHECK(!isCousins(node, 2, 3));
+
+    deleteTree(node);
+}

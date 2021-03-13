@@ -22,3 +22,5 @@ std::vector<std::string> binaryTreePaths(TreeNode* root);
 std::string tree2str(TreeNode* t);
 
 int findTilt(TreeNode* root);
+
+bool isCousins(TreeNode* root, int x, int y);

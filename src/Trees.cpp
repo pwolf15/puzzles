@@ -237,3 +237,65 @@ int findTilt(TreeNode* root)
 
     return std::accumulate(tiltValues.begin(), tiltValues.end(), 0);
 }
+
+int nodeDepth(TreeNode* root, int val)
+{
+    if (!root)
+    {
+        return -1;
+    }
+    else if (root->val == val)
+    {
+        return 0;
+    }
+    else {
+        int depthLeft = nodeDepth(root->left, val);
+        int depthRight = nodeDepth(root->right, val);
+
+        // depth == -1 => node not found in this tree
+        if (depthLeft != -1)
+        {
+            return 1 + depthLeft;
+        }
+        else if (depthRight != -1)
+        {
+            return 1 + depthRight;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+}
+
+TreeNode* getParent(TreeNode* root, int val)
+{
+    if (!root)
+    {
+        return root;
+    }
+    else {
+        if ((root->right && root->right->val == val))
+        {
+            return root;
+        }
+        else if ((root->left && root->left->val == val))
+        {
+            return root;
+        }
+        else {
+            TreeNode* left = getParent(root->left, val);
+            TreeNode* right = getParent(root->right, val);
+            if (left) return left;
+            if (right) return right;
+            return nullptr;
+        }
+    }
+}
+
+bool isCousins(TreeNode* root, int x, int y)
+{
+    TreeNode* parent1 = getParent(root, x);
+    TreeNode* parent2 = getParent(root, y);
+    return nodeDepth(root, x) == nodeDepth(root, y) && (parent1 != parent2);
+}
