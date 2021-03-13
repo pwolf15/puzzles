@@ -180,3 +180,9 @@ TEST(Primitives, CountOdds)
     CHECK_EQUAL(1, countOdds(21, 22));
     CHECK_EQUAL(3, countOdds(13, 18));
 }
+
+TEST(Primitives, NumberOfMatches)
+{
+    CHECK_EQUAL(6, numberOfMatches(7));
+    CHECK_EQUAL(13, numberOfMatches(14));
+}

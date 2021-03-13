@@ -45,4 +45,6 @@ std::vector<int> getNoZeroIntegers(int n);
 
 int countOdds(int low, int high);
 
+int numberOfMatches(int n);
+
 #endif // PRIMITIVES_HPP

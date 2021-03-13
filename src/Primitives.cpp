@@ -471,3 +471,23 @@ int countOdds(int low, int high)
         return (low % 2 == 1) + (high - low) / 2;
     }
 }
+
+int numberOfMatches(int n)
+{
+    int numMatches = 0;
+    while (n > 1)
+    {
+        if (n % 2 == 1)
+        {
+            numMatches += n / 2;
+            n /= 2;
+            n += 1; // randomly advanced player
+        }
+        else 
+        {
+            numMatches += n / 2;
+            n /= 2;
+        }
+    }
+    return numMatches;
+}
