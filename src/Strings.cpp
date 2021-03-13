@@ -1960,6 +1960,8 @@ bool isLongPressedName(std::string name, std::string typed)
     return true;
 }
 
+// time complexity: O(l + c), where l is length of allowed and c is number of characters across all words
+// space complexity: O(l) (unordered set creation)
 int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
 {
     int count = 0;
@@ -1986,6 +1988,6 @@ int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
             count++;
         }
     }
-    
+
     return count;
 }
