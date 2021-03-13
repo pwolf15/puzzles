@@ -472,6 +472,8 @@ int countOdds(int low, int high)
     }
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
 int numberOfMatches(int n)
 {
     int numMatches = 0;
