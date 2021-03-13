@@ -293,6 +293,8 @@ TreeNode* getParent(TreeNode* root, int val)
     }
 }
 
+// time complexity: O(4*n), need to traverse tree to find depth of x, depth of y, parent of x, parent of y
+// space complexity: O(1)
 bool isCousins(TreeNode* root, int x, int y)
 {
     TreeNode* parent1 = getParent(root, x);
