@@ -1917,3 +1917,45 @@ std::string toHex(int num)
 
     return result;
 }
+
+bool isLongPressedName(std::string name, std::string typed)
+{
+    if (typed.size() < name.size())
+    {
+        return false;
+    }
+
+    int counter1 = 0, counter2 = 0;
+    while (counter1 < name.size() && counter2 < typed.size())
+    {
+        if (name[counter1] == typed[counter2])
+        {
+            counter1++;
+            counter2++;
+        }
+        else if (name[counter1] != typed[counter2] && (counter1 > 0 && name[counter1 - 1] == typed[counter2]))
+        {
+            counter2++;
+        }
+        else if (name[counter1] != typed[counter2])
+        {
+            return false;
+        }
+    }
+
+    while (counter2 < typed.size())
+    {
+        if (typed[counter2] != name[name.size() - 1])
+        {
+            return false;
+        }
+        counter2++;
+    }
+
+    if (counter1 < name.size())
+    {
+        return false;
+    }
+
+    return true;
+}

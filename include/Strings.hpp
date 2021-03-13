@@ -81,4 +81,6 @@ bool checkOnesSegment(std::string s);
 
 std::string toHex(int num);
 
+bool isLongPressedName(std::string name, std::string typed);
+
 #endif // STRINGS_HPP

@@ -546,3 +546,17 @@ TEST(Strings, ToHex)
     CHECK_EQUAL("1a", toHex(26));
     // CHECK_EQUAL(toHex("110"));
 }
+
+TEST(Strings, IsLongPressedName)
+{
+    // CHECK(isLongPressedName("alex", "aaleex"));
+    // CHECK(!isLongPressedName("saeed", "ssaaedd"));
+    // CHECK(isLongPressedName("leelee", "lleeelee"));
+    // CHECK(isLongPressedName("laiden", "laiden"));
+    // CHECK(!isLongPressedName("a", "b"));
+    // CHECK(!isLongPressedName("alex", "aaleexa"));
+    CHECK(isLongPressedName("vtkgn", "vttkgnn"));
+    CHECK(!isLongPressedName("alexd", "ale"));
+    CHECK(!isLongPressedName("pyplrz", "ppyypllr"));
+
+}
