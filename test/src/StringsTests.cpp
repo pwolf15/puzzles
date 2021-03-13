@@ -549,14 +549,29 @@ TEST(Strings, ToHex)
 
 TEST(Strings, IsLongPressedName)
 {
-    // CHECK(isLongPressedName("alex", "aaleex"));
-    // CHECK(!isLongPressedName("saeed", "ssaaedd"));
-    // CHECK(isLongPressedName("leelee", "lleeelee"));
-    // CHECK(isLongPressedName("laiden", "laiden"));
-    // CHECK(!isLongPressedName("a", "b"));
-    // CHECK(!isLongPressedName("alex", "aaleexa"));
+    CHECK(isLongPressedName("alex", "aaleex"));
+    CHECK(!isLongPressedName("saeed", "ssaaedd"));
+    CHECK(isLongPressedName("leelee", "lleeelee"));
+    CHECK(isLongPressedName("laiden", "laiden"));
+    CHECK(!isLongPressedName("a", "b"));
+    CHECK(!isLongPressedName("alex", "aaleexa"));
     CHECK(isLongPressedName("vtkgn", "vttkgnn"));
     CHECK(!isLongPressedName("alexd", "ale"));
     CHECK(!isLongPressedName("pyplrz", "ppyypllr"));
-
 }
+
+TEST(Strings, CountConsistentStrings)
+{
+    std::string allowed = "ab";
+    std::vector<std::string> words = {"ad","bd","aaab","baa","badab"};
+    CHECK_EQUAL(2, countConsistentStrings(allowed, words));
+
+    allowed = "abc";
+    words = {"a","b","c","ab","ac","bc","abc"};
+    CHECK_EQUAL(7, countConsistentStrings(allowed, words));
+
+    allowed = "cad";
+    words = {"cc","acd","b","ba","bac","bad","ac","d"};
+    CHECK_EQUAL(4, countConsistentStrings(allowed, words));
+}
+

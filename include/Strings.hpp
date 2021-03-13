@@ -83,4 +83,6 @@ std::string toHex(int num);
 
 bool isLongPressedName(std::string name, std::string typed);
 
+int countConsistentStrings(std::string allowed, std::vector<std::string>& words);
+
 #endif // STRINGS_HPP

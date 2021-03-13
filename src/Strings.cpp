@@ -1959,3 +1959,33 @@ bool isLongPressedName(std::string name, std::string typed)
 
     return true;
 }
+
+int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
+{
+    int count = 0;
+    std::unordered_set<char> allowed_set;
+    for (auto c: allowed)
+    {
+        allowed_set.insert(c);
+    }
+
+    for (auto word: words)
+    {
+        bool goodWord = true;
+        for (auto c: word)
+        {
+            if (allowed_set.find(c) == allowed_set.end())
+            {
+                goodWord = false;
+                break;
+            }
+        }
+
+        if (goodWord)
+        {
+            count++;
+        }
+    }
+    
+    return count;
+}
