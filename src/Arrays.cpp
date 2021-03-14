@@ -3317,3 +3317,31 @@ std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& ind
 
     return result;
 }
+
+int minOperations(std::vector<std::string>& logs)
+{
+    int minSteps = 0;
+    for (auto log: logs)
+    {
+        if (log[0] != '.')
+        {
+            minSteps++;
+        }
+        else if (log[0] == '.' && log[1] == '.')
+        {
+            if (minSteps == 0)
+            {
+                // already at main folder
+                continue;
+            }
+
+            minSteps--;
+        }
+        else
+        {
+            // ./ => no change
+        }
+    }
+
+    return minSteps;
+}

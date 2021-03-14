@@ -1623,3 +1623,18 @@ TEST(Arrays, CreateTargetArray)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, MinOperations)
+{
+    std::vector<std::string> logs = {"d1/","d2/","../","d21/","./"};
+    CHECK_EQUAL(2, minOperations(logs));
+
+    logs = {"d1/","d2/","./","d3/","../","d31/"};
+    CHECK_EQUAL(3, minOperations(logs));
+
+    logs = {"d1/","../","../","../"};
+    CHECK_EQUAL(0, minOperations(logs));    
+
+    logs = {"1/"};
+    CHECK_EQUAL(1, minOperations(logs));   
+}

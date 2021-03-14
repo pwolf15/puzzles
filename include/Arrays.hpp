@@ -170,4 +170,6 @@ int countNegatives(std::vector<std::vector<int>>& grid);
 
 std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index);
 
+int minOperations(std::vector<std::string>& logs);
+
 #endif // ARRAYS_HPP
