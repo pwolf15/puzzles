@@ -168,4 +168,6 @@ int countMatches(std::vector<std::vector<std::string>>& items, std::string ruleK
 
 int countNegatives(std::vector<std::vector<int>>& grid);
 
+std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index);
+
 #endif // ARRAYS_HPP

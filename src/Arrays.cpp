@@ -3292,3 +3292,26 @@ int countNegatives(std::vector<std::vector<int>>& grid)
 
     return count;
 }
+
+std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index)
+{
+    std::vector<int> result(nums.size(), -1);
+    for (int i = 0; i < index.size(); ++i)
+    {
+        int idx = index[i];
+        if (result[idx] != -1)
+        {
+            for (int j = result.size() - 1; j > idx; j--)
+            {
+                result[j] = result[j - 1];
+            }
+            result[idx] = nums[i];
+        }
+        else
+        {
+            result[idx] = nums[i];
+        }
+    }
+
+    return result;
+}

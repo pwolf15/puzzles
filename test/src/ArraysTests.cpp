@@ -1587,3 +1587,39 @@ TEST(Arrays, CountNegatives)
     input = {{5,1,0},{-5,-5,-5}};
     CHECK_EQUAL(3, countNegatives(input));
 }
+
+TEST(Arrays, CreateTargetArray)
+{
+    std::vector<int> nums = {0,1,2,3,4};
+    std::vector<int> indices = {0,1,2,2,1};
+    std::vector<int> result = createTargetArray(nums, indices);
+    std::vector<int> expected = {0,4,1,3,2};
+    CHECK_EQUAL(expected.size(), result.size());
+
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = {1,2,3,4,0};
+    indices = {0,1,2,3,0};
+    result = createTargetArray(nums, indices);
+    expected = {0,1,2,3,4};
+    CHECK_EQUAL(expected.size(), result.size());
+
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = {1};
+    indices = {0};
+    result = createTargetArray(nums, indices);
+    expected = {1};
+    CHECK_EQUAL(expected.size(), result.size());
+
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
