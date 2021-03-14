@@ -3293,6 +3293,8 @@ int countNegatives(std::vector<std::vector<int>>& grid)
     return count;
 }
 
+// time complexity: O(n*n-1), worst case each insert requires a shift e.g. index = {0, 0, 0, 0, 0}
+// space complexity: O(n)
 std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index)
 {
     std::vector<int> result(nums.size(), -1);
