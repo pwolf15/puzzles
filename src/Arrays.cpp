@@ -3318,6 +3318,8 @@ std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& ind
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int minOperations(std::vector<std::string>& logs)
 {
     int minSteps = 0;
