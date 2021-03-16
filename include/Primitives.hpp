@@ -47,4 +47,8 @@ int countOdds(int low, int high);
 
 int numberOfMatches(int n);
 
+std::string dayOfTheWeek(int day, int month, int year);
+
+int dayOfYear(std::string date);
+
 #endif // PRIMITIVES_HPP

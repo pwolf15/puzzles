@@ -186,3 +186,19 @@ TEST(Primitives, NumberOfMatches)
     CHECK_EQUAL(6, numberOfMatches(7));
     CHECK_EQUAL(13, numberOfMatches(14));
 }
+
+TEST(Primitives, DayOfTheWeek)
+{
+    int day = 31, month = 8, year = 2019;
+    CHECK_EQUAL("Saturday", dayOfTheWeek(day, month, year));
+}
+
+TEST(Primitives, DayOfYear)
+{
+    CHECK_EQUAL(9, dayOfYear("2019-01-09"));
+    CHECK_EQUAL(41, dayOfYear("2019-02-10"));
+    CHECK_EQUAL(60, dayOfYear("2003-03-01"));
+    CHECK_EQUAL(61, dayOfYear("2004-03-01"));
+    CHECK_EQUAL(364, dayOfYear("1961-12-30"));
+    CHECK_EQUAL(84, dayOfYear("1900-03-25"));
+}

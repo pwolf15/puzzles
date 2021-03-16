@@ -493,3 +493,34 @@ int numberOfMatches(int n)
     }
     return numMatches;
 }
+
+std::string dayOfTheWeek(int day, int month, int year)
+{
+    // Zeller's formula
+    std::vector<std::string> days= {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    int d = day, m = month, y = year, c;
+    if (m < 3) m += 12, y -= 1;
+    c = y / 100, y = y % 100;
+    int w = (c / 4 - 2 * c + y + y / 4 + 13 * (m + 1) / 5 + d - 1) % 7;
+    return days[(w + 7) % 7];
+}
+
+int dayOfYear(std::string date)
+{
+    int day = 0;
+    std::string yearStr = date.substr(0, 4);
+    std::string monthStr = date.substr(5, 2);
+    std::string dayOfMonthStr = date.substr(8, 2);
+    int year = std::stoi(yearStr), month = std::stoi(monthStr), dayOfMonth = std::stoi(dayOfMonthStr);
+
+    std::vector<int> numDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (year % 4 == 0 && ((year % 100 == 0 && year % 400 == 0) || year % 100 != 0)) numDays[1] += 1;
+    for (int i = 1; i < month; ++i)
+    {
+        day += numDays[i - 1];
+    }
+
+    day += dayOfMonth;
+
+    return day;
+}
