@@ -505,6 +505,8 @@ std::string dayOfTheWeek(int day, int month, int year)
     return days[(w + 7) % 7];
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 int dayOfYear(std::string date)
 {
     int day = 0;
