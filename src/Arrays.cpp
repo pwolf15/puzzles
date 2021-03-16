@@ -3347,3 +3347,33 @@ int minOperations(std::vector<std::string>& logs)
 
     return minSteps;
 }
+
+std::vector<int> diStringMatch(std::string S)
+{
+    std::vector<int> result;
+    int leftCounter = 0;
+    int rightCounter = S.size();
+
+    for (int i = 0; i < S.size(); ++i)
+    {
+        if (S[i] == 'I')
+        {
+            result.emplace_back(leftCounter++);            
+        }
+        else
+        {
+            result.emplace_back(rightCounter--);
+        }
+    }
+
+    if (leftCounter < rightCounter)
+    {
+        result.emplace_back(leftCounter);
+    }
+    else 
+    {
+        result.emplace_back(rightCounter);
+    }
+
+    return result;
+}

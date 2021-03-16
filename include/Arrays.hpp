@@ -172,4 +172,6 @@ std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& ind
 
 int minOperations(std::vector<std::string>& logs);
 
+std::vector<int> diStringMatch(std::string S);
+
 #endif // ARRAYS_HPP

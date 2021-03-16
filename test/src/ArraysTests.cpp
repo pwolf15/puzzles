@@ -1638,3 +1638,30 @@ TEST(Arrays, MinOperations)
     logs = {"1/"};
     CHECK_EQUAL(1, minOperations(logs));   
 }
+
+TEST(Arrays, DiStringMatch)
+{
+    std::vector<int> expected = { 0, 4, 1, 3, 2};
+    std::vector<int> result = diStringMatch("IDID");
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 0, 1, 2, 3 };
+    result = diStringMatch("III");
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 3,2,0,1 };
+    result = diStringMatch("DDI");
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
