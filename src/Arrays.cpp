@@ -3348,6 +3348,8 @@ int minOperations(std::vector<std::string>& logs)
     return minSteps;
 }
 
+// time complexity: O(n)
+// space complexity: O(n) (return string)
 std::vector<int> diStringMatch(std::string S)
 {
     std::vector<int> result;
