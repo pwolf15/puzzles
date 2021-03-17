@@ -3395,8 +3395,8 @@ std::vector<int> decode(std::vector<int>& encoded, int first)
     return result;
 }
 
-// time complexity: O(n)
-// space complexity: O(n)
+// time complexity: O(m), where m is length of result
+// space complexity: O(m)
 std::vector<int> decompressRLElist(std::vector<int>& nums)
 {
     std::vector<int> result;
