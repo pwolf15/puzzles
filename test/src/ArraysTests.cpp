@@ -1686,3 +1686,24 @@ TEST(Arrays, Decode)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, DecompressRLElist)
+{
+    std::vector<int> expected = { 2, 4, 4, 4};
+    std::vector<int> input = {1,2,3,4};
+    std::vector<int> result = decompressRLElist(input);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {1,3,3};
+    input = { 1,1,2,3 };
+    result = decompressRLElist(input);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

@@ -176,4 +176,6 @@ std::vector<int> diStringMatch(std::string S);
 
 std::vector<int> decode(std::vector<int>& encoded, int first);
 
+std::vector<int> decompressRLElist(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP
