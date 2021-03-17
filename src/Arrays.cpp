@@ -3379,3 +3379,16 @@ std::vector<int> diStringMatch(std::string S)
 
     return result;
 }
+
+std::vector<int> decode(std::vector<int>& encoded, int first)
+{
+    std::vector<int> result;
+    result.emplace_back(first);
+
+    for (int i = 0; i < encoded.size(); ++i)
+    {
+        result.emplace_back(encoded[i] ^ result[i]);
+    }
+
+    return result;
+}

@@ -174,4 +174,6 @@ int minOperations(std::vector<std::string>& logs);
 
 std::vector<int> diStringMatch(std::string S);
 
+std::vector<int> decode(std::vector<int>& encoded, int first);
+
 #endif // ARRAYS_HPP

@@ -1665,3 +1665,24 @@ TEST(Arrays, DiStringMatch)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, Decode)
+{
+    std::vector<int> expected = { 1,0,2,1 };
+    std::vector<int> input = {1,2,3};
+    std::vector<int> result = decode(input, 1);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 4, 2, 0, 7, 4 };
+    input = {6,2,7,3};
+    result = decode(input, 4);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
