@@ -3380,6 +3380,8 @@ std::vector<int> diStringMatch(std::string S)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<int> decode(std::vector<int>& encoded, int first)
 {
     std::vector<int> result;
