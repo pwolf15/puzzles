@@ -85,4 +85,6 @@ bool isLongPressedName(std::string name, std::string typed);
 
 int countConsistentStrings(std::string allowed, std::vector<std::string>& words);
 
+std::string freqAlphabets(std::string s);
+
 #endif // STRINGS_HPP

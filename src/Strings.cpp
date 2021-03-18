@@ -1991,3 +1991,36 @@ int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
 
     return count;
 }
+
+std::string freqAlphabets(std::string s)
+{
+    std::string result = "";
+    int multiDigitCounter = 0;
+    std::string num = "";
+    for (int i = s.size() - 1; i >= 0; --i)
+    {
+        if (s[i] == '#')
+        {
+            multiDigitCounter = 2;
+        }
+        else if (multiDigitCounter)
+        {
+            num = s[i] + num;
+            multiDigitCounter--;
+        }
+
+        if (!num.empty() && !multiDigitCounter)
+        {
+            int numInt = std::stoi(num);
+            result = (char)(numInt - 1 + 'a') + result;
+            num = "";
+        }
+        else if (num.empty() && !multiDigitCounter)
+        {
+            int num = s[i] - 49;
+            result = (char)(num + 'a') + result;
+        }
+    }
+
+    return result;
+}

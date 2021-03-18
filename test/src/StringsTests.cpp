@@ -575,3 +575,11 @@ TEST(Strings, CountConsistentStrings)
     CHECK_EQUAL(4, countConsistentStrings(allowed, words));
 }
 
+TEST(Strings, FreqAlphabets)
+{
+    CHECK_EQUAL("jkab", freqAlphabets("10#11#12"));
+    CHECK_EQUAL("acz", freqAlphabets("1326#"));
+    CHECK_EQUAL("y", freqAlphabets("25#"));
+    CHECK_EQUAL("abcdefghijklmnopqrstuvwxyz", freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
+}
+
