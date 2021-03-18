@@ -3410,3 +3410,29 @@ std::vector<int> decompressRLElist(std::vector<int>& nums)
 
     return result;
 }
+
+// time complexity: O(n + 2*n log 2*n), where n is number of pairs
+// space complexity: O(2*n)
+std::string destCity(std::vector<std::vector<std::string>>& paths)
+{
+    std::set<std::string> destinations;
+    std::set<std::string> starts;
+
+    for (auto pair: paths)
+    {
+        destinations.insert(pair[1]);
+        starts.insert(pair[0]);
+    }
+
+    std::string finalDest = "";
+    for (auto dest: destinations)
+    {
+        if (starts.find(dest) == starts.end())
+        {
+            finalDest = dest; 
+            break;
+        }
+    }
+
+    return finalDest;
+}

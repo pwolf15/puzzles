@@ -1707,3 +1707,15 @@ TEST(Arrays, DecompressRLElist)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, DestCity)
+{
+    std::vector<std::vector<std::string>> paths = {{"London","New York"},{"New York","Lima"},{"Lima","Sao Paulo"}};
+    CHECK_EQUAL("Sao Paulo", destCity(paths));
+
+    paths = {{"B","C"},{"D","B"},{"C","A"}};
+    CHECK_EQUAL("A", destCity(paths));
+
+    paths = {{"A","Z"}};
+    CHECK_EQUAL("Z", destCity(paths));
+}

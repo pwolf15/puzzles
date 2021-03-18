@@ -178,4 +178,6 @@ std::vector<int> decode(std::vector<int>& encoded, int first);
 
 std::vector<int> decompressRLElist(std::vector<int>& nums);
 
+std::string destCity(std::vector<std::vector<std::string>>& paths);
+
 #endif // ARRAYS_HPP
