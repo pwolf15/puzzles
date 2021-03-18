@@ -1992,6 +1992,8 @@ int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
     return count;
 }
 
+// time complexity: O(n)
+// space complexity: O(n^2)
 std::string freqAlphabets(std::string s)
 {
     std::string result = "";
