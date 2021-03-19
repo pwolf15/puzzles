@@ -182,4 +182,6 @@ std::string destCity(std::vector<std::vector<std::string>>& paths);
 
 int countGoodTriplets(std::vector<int>& arr, int a, int b, int c);
 
+std::vector<int> decrypt(std::vector<int>& code, int k);
+
 #endif // ARRAYS_HPP

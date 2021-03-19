@@ -1731,3 +1731,33 @@ TEST(Arrays, CountGoodTriplets)
     arr = {7,3,7,3,12,1,12,2,3};
     CHECK_EQUAL(12, countGoodTriplets(arr, 5, 8, 1));
 }
+
+TEST(Arrays, Decrypt)
+{
+    std::vector<int> expected = {12,10,16,13};
+    std::vector<int> arr = {5,7,1,4};
+    std::vector<int> result = decrypt(arr, 3);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {0,0,0,0};
+    arr = {1,2,3,4};
+    result = decrypt(arr, 0);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = {12,5,6,13};
+    arr = {2,4,9,3};
+    result = decrypt(arr, -2);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

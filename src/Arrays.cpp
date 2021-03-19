@@ -3465,3 +3465,38 @@ int countGoodTriplets(std::vector<int>& arr, int a, int b, int c)
 
     return count;
 }
+
+std::vector<int> decrypt(std::vector<int>& code, int k)
+{
+    std::vector<int> result(code.size(), 0);
+
+    if (k > 0)
+    {
+        for (int i = 0; i < code.size(); ++i)
+        {
+            for (int j = i + 1; j <= i + k; j++)
+            {
+                result[i] += code[j % code.size()];
+            }
+        }
+    }
+    else if (k == 0)
+    {
+        // do nothing
+    }
+    else
+    {
+        for (int i = 0; i < code.size(); ++i)
+        {
+            for (int j = i - 1; j >= i + k; j--)
+            {
+                int idx = j;
+                if (idx < 0) idx = code.size() - std::abs(idx);
+                result[i] += code[idx];
+            }
+        }
+    }
+
+
+    return result;
+}
