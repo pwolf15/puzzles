@@ -3502,3 +3502,57 @@ std::vector<int> decrypt(std::vector<int>& code, int k)
 
     return result;
 }
+
+int findShortestSubArray(std::vector<int>& nums)
+{
+    std::unordered_map<int, int> count;
+    for (auto num: nums)
+    {
+        count[num]++;
+    }
+
+    int maxElement = count.begin()->first;
+    int maxValue = count.begin()->second;
+
+    std::vector<int> maxElements;
+    std::vector<int> maxValues;
+    maxElements.push_back(maxElement);
+    maxValues.push_back(maxValue);
+
+    for (auto pair: count)
+    {
+        if (pair.second > maxValue)
+        {
+            maxElements.clear();
+            maxValues.clear();
+             
+            maxElement = pair.first;
+            maxValue = pair.second;
+            maxElements.push_back(maxElement);
+            maxValues.push_back(maxValue);
+        }
+        else if (pair.second == maxValue && pair.first != maxElement)
+        {
+            maxElements.push_back(pair.first);
+            maxValues.push_back(pair.second);
+        }
+    }
+
+    int shortestArray = std::numeric_limits<int>::max();
+
+    for (size_t i = 0; i < maxElements.size(); ++i)
+    {
+        int maxElement = maxElements[i];
+
+        int startIdx = 0;
+        int endIdx = nums.size() - 1;
+
+        while (nums[startIdx] != maxElement) startIdx++;
+        while (nums[endIdx] != maxElement) endIdx--;
+
+        shortestArray = std::min(shortestArray, endIdx + 1 - startIdx);
+    }
+
+
+    return shortestArray;
+}

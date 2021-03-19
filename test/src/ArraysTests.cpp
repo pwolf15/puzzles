@@ -1761,3 +1761,15 @@ TEST(Arrays, Decrypt)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, FindShortestSubArray)
+{
+    std::vector<int> arr = {1,2,2,3,1};
+    CHECK_EQUAL(2, findShortestSubArray(arr));
+
+    arr = {1,2,2,3,1,4,2};
+    CHECK_EQUAL(6, findShortestSubArray(arr));
+
+    arr = {1,2,2,1,2,1,1,1,1,2,2,2};
+    CHECK_EQUAL(9, findShortestSubArray(arr));
+}
