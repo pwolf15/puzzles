@@ -3466,6 +3466,8 @@ int countGoodTriplets(std::vector<int>& arr, int a, int b, int c)
     return count;
 }
 
+// time complexity: O(n * k)
+// space complexity: O(n)
 std::vector<int> decrypt(std::vector<int>& code, int k)
 {
     std::vector<int> result(code.size(), 0);
