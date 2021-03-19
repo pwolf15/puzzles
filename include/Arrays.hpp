@@ -185,5 +185,7 @@ int countGoodTriplets(std::vector<int>& arr, int a, int b, int c);
 std::vector<int> decrypt(std::vector<int>& code, int k);
 
 int findShortestSubArray(std::vector<int>& nums);
-     
+
+int minDeletionSize(std::vector<std::string>& strs);
+
 #endif // ARRAYS_HPP

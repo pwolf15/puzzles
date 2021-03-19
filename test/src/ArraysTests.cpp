@@ -1773,3 +1773,15 @@ TEST(Arrays, FindShortestSubArray)
     arr = {1,2,2,1,2,1,1,1,1,2,2,2};
     CHECK_EQUAL(9, findShortestSubArray(arr));
 }
+
+TEST(Arrays, MinDeletionSize)
+{
+    std::vector<std::string> arr = { "cba","daf","ghi" };
+    CHECK_EQUAL(1, minDeletionSize(arr));
+
+    arr = { "a","b" };
+    CHECK_EQUAL(0, minDeletionSize(arr));
+
+    arr = { "zyx","wvu","tsr" };
+    CHECK_EQUAL(3, minDeletionSize(arr));
+}
