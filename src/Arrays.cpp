@@ -3437,6 +3437,8 @@ std::string destCity(std::vector<std::vector<std::string>>& paths)
     return finalDest;
 }
 
+// time complexity: O(n^3)
+// space complexity: O(1)
 int countGoodTriplets(std::vector<int>& arr, int a, int b, int c)
 {
     int count = 0;
@@ -3455,7 +3457,7 @@ int countGoodTriplets(std::vector<int>& arr, int a, int b, int c)
                 {
                     continue;
                 }
-                
+
                 count++;
             }
         }
