@@ -3505,7 +3505,7 @@ std::vector<int> decrypt(std::vector<int>& code, int k)
 
 // time complexity: O(n + n + n * k), where k is number of elements which have same degree
 // space complexity: O(n + 2*n), extra n is for maxElements and maxValues
-int findShortestSubArray(std::vector<int>& nums)
+int findShortestSubArray_PW1(std::vector<int>& nums)
 {
     std::unordered_map<int, int> count;
     for (auto num: nums)
@@ -3557,6 +3557,55 @@ int findShortestSubArray(std::vector<int>& nums)
 
 
     return shortestArray;
+}
+
+// time complexity: O(n)
+// space complexity: O(n) (count, left, right)
+int findShortestSubArray_PW2(std::vector<int>& nums)
+{
+    std::unordered_map<int, int> count, left, right;
+    size_t i = 0;
+    for (auto num: nums)
+    {
+        count[num]++;
+        right[num] = i;
+
+        if (left.find(num) == left.end())
+        {
+            left[num] = i;
+        }
+
+        i++;
+    }
+
+    int maxElement = count.begin()->first;
+    int maxValue = count.begin()->second;
+
+    int degree = 0;
+
+    for (auto pair: count)
+    {
+        if (pair.second > degree)
+        {
+            degree = pair.second;
+        }
+    }
+
+    int shortestArray = std::numeric_limits<int>::max();
+
+    for (auto pair: count)
+    {
+        if (pair.second == degree)
+            shortestArray = std::min(right[pair.first] + 1 - left[pair.first], shortestArray);
+    }
+
+
+    return shortestArray;
+}
+
+int findShortestSubArray(std::vector<int>& nums)
+{
+    return findShortestSubArray_PW2(nums);
 }
 
 // time complexity: O(m * n), where is m is number of strings and n is size of each string
