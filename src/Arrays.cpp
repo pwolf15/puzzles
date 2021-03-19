@@ -3503,6 +3503,8 @@ std::vector<int> decrypt(std::vector<int>& code, int k)
     return result;
 }
 
+// time complexity: O(n + n + n * k), where k is number of elements which have same degree
+// space complexity: O(n + 2*n), extra n is for maxElements and maxValues
 int findShortestSubArray(std::vector<int>& nums)
 {
     std::unordered_map<int, int> count;
