@@ -3559,6 +3559,8 @@ int findShortestSubArray(std::vector<int>& nums)
     return shortestArray;
 }
 
+// time complexity: O(m * n), where is m is number of strings and n is size of each string
+// space complexity: O(1)
 int minDeletionSize(std::vector<std::string>& strs)
 {
     int count = 0;
