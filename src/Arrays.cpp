@@ -3436,3 +3436,30 @@ std::string destCity(std::vector<std::vector<std::string>>& paths)
 
     return finalDest;
 }
+
+int countGoodTriplets(std::vector<int>& arr, int a, int b, int c)
+{
+    int count = 0;
+    for (int i = 0; i < arr.size() - 2; ++i)
+    {
+        for (int j = i + 1; j < arr.size() - 1; ++j)
+        {
+            if (std::abs(arr[j] - arr[i]) > a)
+            {
+                continue;
+            }
+
+            for (int k = j + 1; k < arr.size(); ++k)
+            {
+                if (std::abs(arr[k] - arr[j]) > b || (std::abs(arr[k] - arr[i]) > c))
+                {
+                    continue;
+                }
+                
+                count++;
+            }
+        }
+    }
+
+    return count;
+}

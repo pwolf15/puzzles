@@ -1719,3 +1719,15 @@ TEST(Arrays, DestCity)
     paths = {{"A","Z"}};
     CHECK_EQUAL("Z", destCity(paths));
 }
+
+TEST(Arrays, CountGoodTriplets)
+{
+    std::vector<int> arr = {3,0,1,1,9,7};
+    CHECK_EQUAL(4, countGoodTriplets(arr, 7, 2, 3));
+
+    arr = {1,1,2,2,3};
+    CHECK_EQUAL(0, countGoodTriplets(arr, 0, 0, 1));
+
+    arr = {7,3,7,3,12,1,12,2,3};
+    CHECK_EQUAL(12, countGoodTriplets(arr, 5, 8, 1));
+}

@@ -180,4 +180,6 @@ std::vector<int> decompressRLElist(std::vector<int>& nums);
 
 std::string destCity(std::vector<std::vector<std::string>>& paths);
 
+int countGoodTriplets(std::vector<int>& arr, int a, int b, int c);
+
 #endif // ARRAYS_HPP
