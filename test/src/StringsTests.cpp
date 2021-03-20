@@ -583,3 +583,10 @@ TEST(Strings, FreqAlphabets)
     CHECK_EQUAL("abcdefghijklmnopqrstuvwxyz", freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
 }
 
+TEST(Strings, HalvesAreAlike)
+{
+    CHECK(halvesAreAlike("book"));
+    CHECK(!halvesAreAlike("textbook"));
+    CHECK(!halvesAreAlike("MerryChristmas"));
+    CHECK(halvesAreAlike("AbCdefGh"));
+}

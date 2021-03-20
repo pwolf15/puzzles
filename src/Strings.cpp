@@ -2026,3 +2026,14 @@ std::string freqAlphabets(std::string s)
 
     return result;
 }
+
+bool halvesAreAlike(std::string s)
+{
+    int vowelCount1 = std::count_if(s.begin(), s.begin() + s.size() / 2, [](char c) {
+        return std::tolower(c) == 'a' || std::tolower(c) == 'i' || std::tolower(c) == 'e' || std::tolower(c) == 'o' || std::tolower(c) == 'u';
+    });
+    int vowelCount2 = std::count_if(s.begin() + s.size() / 2, s.end(), [](char c) {
+        return std::tolower(c) == 'a' || std::tolower(c) == 'i' || std::tolower(c) == 'e' || std::tolower(c) == 'o' || std::tolower(c) == 'u';
+    });
+    return vowelCount1 == vowelCount2;
+}

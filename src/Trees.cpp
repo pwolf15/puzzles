@@ -301,3 +301,17 @@ bool isCousins(TreeNode* root, int x, int y)
     TreeNode* parent2 = getParent(root, y);
     return nodeDepth(root, x) == nodeDepth(root, y) && (parent1 != parent2);
 }
+
+int maxHeight(TreeNode* node)
+{
+    if (!node) return 0;
+    else 
+    {
+        return std::max(1 + maxHeight(node->left), 1 + maxHeight(node->right));
+    }
+}
+
+int diameterOfBinaryTree(TreeNode* root)
+{
+    return maxHeight(root->left) + maxHeight(root->right);
+}

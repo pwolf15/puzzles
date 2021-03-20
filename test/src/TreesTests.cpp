@@ -180,3 +180,23 @@ TEST(Trees, IsCousins)
 
     deleteTree(node);
 }
+
+TEST(Trees, DiameterOfBinaryTree)
+{
+    TreeNode* node = new TreeNode(1);
+    node->right = new TreeNode(3);
+    node->left = new TreeNode(2);
+    node->left->left = new TreeNode(4);
+    node->left->right = new TreeNode(5);
+
+    CHECK_EQUAL(3, diameterOfBinaryTree(node));
+
+    deleteTree(node);
+
+    node = new TreeNode(1);
+    node->left = new TreeNode(2);
+
+    CHECK_EQUAL(1, diameterOfBinaryTree(node));
+
+    deleteTree(node);
+}

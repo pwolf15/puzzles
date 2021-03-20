@@ -87,4 +87,6 @@ int countConsistentStrings(std::string allowed, std::vector<std::string>& words)
 
 std::string freqAlphabets(std::string s);
 
+bool halvesAreAlike(std::string s);
+
 #endif // STRINGS_HPP
