@@ -2027,6 +2027,8 @@ std::string freqAlphabets(std::string s)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool halvesAreAlike(std::string s)
 {
     int vowelCount1 = std::count_if(s.begin(), s.begin() + s.size() / 2, [](char c) {
