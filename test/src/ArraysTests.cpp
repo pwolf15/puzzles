@@ -1785,3 +1785,21 @@ TEST(Arrays, MinDeletionSize)
     arr = { "zyx","wvu","tsr" };
     CHECK_EQUAL(3, minDeletionSize(arr));
 }
+
+TEST(Arrays, ContainsPattern)
+{
+    std::vector<int> arr = {1,2,4,4,4,4};
+    CHECK(containsPattern(arr, 1, 3));
+
+    arr = {1,2,1,2,1,1,1,3};
+    CHECK(containsPattern(arr, 2, 2));
+
+    arr = {1,2,1,2,1,3};
+    CHECK(!containsPattern(arr, 2, 3));
+
+    arr = {1,2,3,1,2};
+    CHECK(!containsPattern(arr, 2, 2));
+
+    arr = { 2,2,2,2 };
+    CHECK(!containsPattern(arr, 2, 3));  
+}

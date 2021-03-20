@@ -3627,3 +3627,60 @@ int minDeletionSize(std::vector<std::string>& strs)
 
     return count;
 }
+
+// time complexity: O(n)
+// space complexity: O(n)
+bool containsPattern(std::vector<int>& arr, int m, int k)
+{
+    std::vector<int> pattern;
+    int count = 0;
+
+    for (int i = 0; i < arr.size(); ++i)
+    {
+        if (pattern.empty())
+        {
+            count = 0;
+            for (int j = i; j < i + m; j++)
+            {
+                if (j >= arr.size()) { return false; }
+
+                pattern.push_back(arr[j]);
+            }
+
+            count++;
+        }
+
+        for (int j = i + m; j < arr.size(); j += m)
+        {
+            bool foundPattern = true;
+            for (int l = 0; l < m; l++)
+            {
+                if ((l + j) >= arr.size()) 
+                {
+                    foundPattern = false;
+                    break;
+                }
+
+                if (arr[l + j] != pattern[l]) 
+                {
+                    foundPattern = false;
+                    break;
+                }
+            }
+
+            if (foundPattern) 
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (count < k) pattern.clear();
+        else { break; }
+    }
+
+    return count >= k;
+}

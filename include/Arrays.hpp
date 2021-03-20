@@ -188,4 +188,6 @@ int findShortestSubArray(std::vector<int>& nums);
 
 int minDeletionSize(std::vector<std::string>& strs);
 
+bool containsPattern(std::vector<int>& arr, int m, int k);
+
 #endif // ARRAYS_HPP
