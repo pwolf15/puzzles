@@ -190,4 +190,6 @@ int minDeletionSize(std::vector<std::string>& strs);
 
 bool containsPattern(std::vector<int>& arr, int m, int k);
 
+std::vector<int> finalPrices(std::vector<int>& prices);
+
 #endif // ARRAYS_HPP

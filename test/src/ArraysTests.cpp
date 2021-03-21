@@ -1803,3 +1803,33 @@ TEST(Arrays, ContainsPattern)
     arr = { 2,2,2,2 };
     CHECK(!containsPattern(arr, 2, 3));  
 }
+
+TEST(Arrays, FinalPrices)
+{
+    std::vector<int> arr = { 8,4,6,2,3 };
+    std::vector<int> expected = { 4,2,4,2,3 };
+    std::vector<int> result = finalPrices(arr);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = {1,2,3,4,5};
+    expected = {1,2,3,4,5};
+    result = finalPrices(arr);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = {10,1,1,6};
+    expected = {9,0,1,6};
+    result = finalPrices(arr);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
