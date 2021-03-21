@@ -3685,6 +3685,8 @@ bool containsPattern(std::vector<int>& arr, int m, int k)
     return count >= k;
 }
 
+// time complexity: O(n^2)
+// space complexity: O(n)
 std::vector<int> finalPrices(std::vector<int>& prices)
 {
     std::vector<int> result(prices.size());
