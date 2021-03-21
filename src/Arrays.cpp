@@ -3706,6 +3706,8 @@ std::vector<int> finalPrices(std::vector<int>& prices)
     return result;
 }
 
+// space complexity: O(n)
+// time complexity: O(n)
 int distributeCandies_PW1(std::vector<int>& candyType)
 {
     std::set<int> types;
@@ -3718,6 +3720,8 @@ int distributeCandies_PW1(std::vector<int>& candyType)
     return std::min(types.size(), candyType.size() / 2);
 }
 
+// space complexity: O(1)
+// time complexity: O(n log n + n)
 int distributeCandies_PW2(std::vector<int>& candyType)
 {
     std::sort(candyType.begin(), candyType.end());
