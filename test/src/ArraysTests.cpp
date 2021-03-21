@@ -1833,3 +1833,15 @@ TEST(Arrays, FinalPrices)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, DistributeCandies)
+{
+    std::vector<int> arr = { 1,1,2,2,3,3 };
+    CHECK_EQUAL(3, distributeCandies(arr));
+
+    arr = { 1,1,2,3 };
+    CHECK_EQUAL(2, distributeCandies(arr));    
+
+    arr = { 6,6,6,6 };
+    CHECK_EQUAL(1, distributeCandies(arr));    
+}

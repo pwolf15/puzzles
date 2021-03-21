@@ -192,4 +192,6 @@ bool containsPattern(std::vector<int>& arr, int m, int k);
 
 std::vector<int> finalPrices(std::vector<int>& prices);
 
+int distributeCandies(std::vector<int>& candyType);
+
 #endif // ARRAYS_HPP

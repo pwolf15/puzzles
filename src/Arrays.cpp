@@ -3705,3 +3705,36 @@ std::vector<int> finalPrices(std::vector<int>& prices)
     
     return result;
 }
+
+int distributeCandies_PW1(std::vector<int>& candyType)
+{
+    std::set<int> types;
+
+    for (auto type: candyType)
+    {
+        types.insert(type);
+    }
+
+    return std::min(types.size(), candyType.size() / 2);
+}
+
+int distributeCandies_PW2(std::vector<int>& candyType)
+{
+    std::sort(candyType.begin(), candyType.end());
+    int numTypes = 1;
+    for (int i = 1; i < candyType.size(); ++i)
+    {
+        if (candyType[i] != candyType[i - 1])
+        {
+            numTypes++;
+        }
+    }
+
+    int half = candyType.size() / 2;
+    return std::min(numTypes, half);
+}
+
+int distributeCandies(std::vector<int>& candyType)
+{
+    return distributeCandies_PW2(candyType);
+}
