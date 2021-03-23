@@ -51,4 +51,6 @@ std::string dayOfTheWeek(int day, int month, int year);
 
 int dayOfYear(std::string date);
 
+bool divisorGame(int N);
+
 #endif // PRIMITIVES_HPP

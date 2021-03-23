@@ -526,3 +526,8 @@ int dayOfYear(std::string date)
 
     return day;
 }
+
+bool divisorGame(int N)
+{
+    return N % 2 == 0;
+}

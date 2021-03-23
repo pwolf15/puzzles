@@ -202,3 +202,9 @@ TEST(Primitives, DayOfYear)
     CHECK_EQUAL(364, dayOfYear("1961-12-30"));
     CHECK_EQUAL(84, dayOfYear("1900-03-25"));
 }
+
+TEST(Primitives, DivisorGame)
+{
+    CHECK(divisorGame(2));
+    CHECK(!divisorGame(3));
+}
