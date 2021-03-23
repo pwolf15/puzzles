@@ -194,4 +194,6 @@ std::vector<int> finalPrices(std::vector<int>& prices);
 
 int distributeCandies(std::vector<int>& candyType);
 
+std::vector<int> distributeCandies(int candies, int num_people);
+
 #endif // ARRAYS_HPP

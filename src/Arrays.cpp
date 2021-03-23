@@ -3742,3 +3742,19 @@ int distributeCandies(std::vector<int>& candyType)
 {
     return distributeCandies_PW2(candyType);
 }
+
+std::vector<int> distributeCandies(int candies, int num_people) 
+{
+    std::vector<int> result(num_people);
+
+    int i = 1;
+    while (candies)
+    {
+        result[(i - 1) % num_people] += std::min(i, candies);
+        candies -= i;
+        if (candies <= 0) break;
+        i++;
+    }
+
+    return result;
+}

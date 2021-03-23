@@ -1845,3 +1845,22 @@ TEST(Arrays, DistributeCandies)
     arr = { 6,6,6,6 };
     CHECK_EQUAL(1, distributeCandies(arr));    
 }
+
+TEST(Arrays, DistributeCandies2)
+{
+    std::vector<int> expected = { 1,2,3,1 };
+    std::vector<int> result = distributeCandies(7, 4);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    } 
+
+    expected = { 5,2,3 };
+    result = distributeCandies(10, 3);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }   
+}
