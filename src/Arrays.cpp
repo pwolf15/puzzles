@@ -3743,6 +3743,8 @@ int distributeCandies(std::vector<int>& candyType)
     return distributeCandies_PW2(candyType);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<int> distributeCandies(int candies, int num_people) 
 {
     std::vector<int> result(num_people);
