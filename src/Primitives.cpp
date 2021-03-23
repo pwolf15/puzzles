@@ -527,6 +527,8 @@ int dayOfYear(std::string date)
     return day;
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 bool divisorGame(int N)
 {
     return N % 2 == 0;
