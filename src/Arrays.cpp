@@ -3792,7 +3792,9 @@ int distanceBetweenBusStops(std::vector<int>& distance, int start, int destinati
     return std::min(forward, backward);
 }
 
-void duplicateZeros(std::vector<int>& arr)
+// time complexity: O(n^2)
+// space complexity: O(1)
+void duplicateZeros_PW1(std::vector<int>& arr)
 {
     for (int i = 0; i < arr.size(); ++i)
     {
@@ -3807,8 +3809,53 @@ void duplicateZeros(std::vector<int>& arr)
             {
                 arr[i + 1] = 0;
             }
-            
+
             i++;
         }
     }
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+void duplicateZeros_PW2(std::vector<int>& arr)
+{
+    int possibleDups = 0;
+    int length_ = arr.size() - 1;
+
+    // Find number of zeros to be duplicated
+    for (int left = 0; left <= length_ - possibleDups; left++)
+    {
+        if (arr[left] == 0) {
+            if (left == length_ - possibleDups) {
+                arr[length_] = 0;
+                length_ -= 1;
+                break;
+            }
+            possibleDups++;
+        }
+    }
+
+    // Start backwards from the last element which would be part of 
+    // new array
+    int last = length_ - possibleDups;
+
+    // Copy zero twice, and non-zero once.
+    for (int i = last; i >= 0; i--)
+    {
+        if (arr[i] == 0)
+        {
+            arr[i + possibleDups] = 0;
+            possibleDups--;
+            arr[i + possibleDups] = 0;
+        }
+        else
+        {
+            arr[i + possibleDups] = arr[i];
+        }
+    }
+}
+
+void duplicateZeros(std::vector<int>& arr)
+{
+    duplicateZeros_PW2(arr);
 }
