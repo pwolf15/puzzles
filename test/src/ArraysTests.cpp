@@ -1864,3 +1864,26 @@ TEST(Arrays, DistributeCandies2)
         CHECK_EQUAL(expected[i], result[i]);
     }   
 }
+
+TEST(Arrays, DistanceBetweenBusStops)
+{
+    std::vector<int> distance = {1,2,3,4};
+    int start = 0, destination = 1;
+    CHECK_EQUAL(1, distanceBetweenBusStops(distance, start, destination));
+
+    distance = {1,2,3,4};
+    start = 0, destination = 2;
+    CHECK_EQUAL(3, distanceBetweenBusStops(distance, start, destination));
+
+    distance = {1,2,3,4};
+    start = 0, destination = 3;
+    CHECK_EQUAL(4, distanceBetweenBusStops(distance, start, destination));
+
+    distance = {7,6,3,0,3};
+    start = 0, destination = 4;
+    CHECK_EQUAL(3, distanceBetweenBusStops(distance, start, destination));
+
+    distance = {8,11,6,7,10,11,2};
+    start = 0, destination = 3;
+    CHECK_EQUAL(25, distanceBetweenBusStops(distance, start, destination));
+}

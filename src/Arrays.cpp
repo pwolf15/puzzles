@@ -3760,3 +3760,32 @@ std::vector<int> distributeCandies(int candies, int num_people)
 
     return result;
 }
+
+int distanceBetweenBusStops(std::vector<int>& distance, int start, int destination)
+{
+    int forward = 0;
+    int i = start;
+    while (i != destination)
+    {
+        forward += distance[i];
+        i++;
+        if (i >= distance.size())
+        {
+            i = 0;
+        }
+    }
+
+    int backward = 0;
+    i = start;
+    while (i != destination)
+    {
+        backward += distance[i > 0 ? i - 1 : distance.size() - 1];
+        i--;
+        if (i < 0)
+        {
+            i = distance.size() - 1;
+        }
+    }
+
+    return std::min(forward, backward);
+}

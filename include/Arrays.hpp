@@ -196,4 +196,6 @@ int distributeCandies(std::vector<int>& candyType);
 
 std::vector<int> distributeCandies(int candies, int num_people);
 
+int distanceBetweenBusStops(std::vector<int>& distance, int start, int destination);
+
 #endif // ARRAYS_HPP
