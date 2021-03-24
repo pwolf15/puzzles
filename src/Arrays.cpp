@@ -3791,3 +3791,24 @@ int distanceBetweenBusStops(std::vector<int>& distance, int start, int destinati
 
     return std::min(forward, backward);
 }
+
+void duplicateZeros(std::vector<int>& arr)
+{
+    for (int i = 0; i < arr.size(); ++i)
+    {
+        if (!arr[i])
+        {
+            for (int j = arr.size() - 1; j > i; j--)
+            {
+                arr[j] = arr[j - 1];
+            }
+            
+            if (i < arr.size() - 1)
+            {
+                arr[i + 1] = 0;
+            }
+            
+            i++;
+        }
+    }
+}

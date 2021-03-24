@@ -198,4 +198,6 @@ std::vector<int> distributeCandies(int candies, int num_people);
 
 int distanceBetweenBusStops(std::vector<int>& distance, int start, int destination);
 
+void duplicateZeros(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

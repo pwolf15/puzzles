@@ -1887,3 +1887,14 @@ TEST(Arrays, DistanceBetweenBusStops)
     start = 0, destination = 3;
     CHECK_EQUAL(25, distanceBetweenBusStops(distance, start, destination));
 }
+
+TEST(Arrays, DuplicateZeros)
+{
+    std::vector<int> arr = {1,0,2,3,0,4,5,0};
+    std::vector<int> expected = {1,0,0,2,3,0,0,4};
+    duplicateZeros(arr);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], arr[i]);
+    }
+}
