@@ -3761,6 +3761,8 @@ std::vector<int> distributeCandies(int candies, int num_people)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int distanceBetweenBusStops(std::vector<int>& distance, int start, int destination)
 {
     int forward = 0;
