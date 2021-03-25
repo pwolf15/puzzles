@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <vector>
 #include <set>
+#include <map>
+#include <unordered_map>
 
 // Known as Digital Root
 // below is basic logarithmic solution
@@ -538,7 +540,7 @@ bool divisorGame(int N)
 // space complexity: O(n)
 int countLargestGroup(int n)
 {
-    std::unordered_map<int, int> groups;
+    std::map<int, int> groups;
     auto computeSum = [](int n) {
         int sum = 0;
         while (n) {
@@ -554,22 +556,12 @@ int countLargestGroup(int n)
         groups[sum]++;
     }
 
-    std::unordered_map<int, int> group_counts;
+    std::map<int, int> group_counts;
     for (auto pair: groups)
     {
         group_counts[pair.second]++;
     }
 
-    int max = std::numeric_limits<int>::min();
-    int count = 0;
-    for (auto pair: group_counts)
-    {
-        if (pair.first > max)
-        {
-            max = pair.first;
-            count = pair.second;
-        }
-    }
 
-    return count;
+    return group_counts.rbegin()->second;
 }
