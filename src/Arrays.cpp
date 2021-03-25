@@ -3860,6 +3860,8 @@ void duplicateZeros(std::vector<int>& arr)
     duplicateZeros_PW2(arr);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<int> sumZero(int n)
 {
     std::vector<int> result;
