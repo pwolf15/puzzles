@@ -4,6 +4,8 @@
 #include "ArraysTests.hpp"
 #include "Arrays.hpp"
 
+#include <numeric>
+
 TEST(Arrays, RemoveDuplicates)
 {
     const std::vector<std::vector<int>> tests = {
@@ -1897,4 +1899,19 @@ TEST(Arrays, DuplicateZeros)
     {
         CHECK_EQUAL(expected[i], arr[i]);
     }
+}
+
+TEST(Arrays, SumZero)
+{
+    std::vector<int> result = sumZero(5);
+    CHECK_EQUAL(5, result.size());
+    CHECK_EQUAL(0, std::accumulate(result.begin(), result.end(), 0));
+
+    result = sumZero(3);
+    CHECK_EQUAL(3, result.size());
+    CHECK_EQUAL(0, std::accumulate(result.begin(), result.end(), 0));
+
+    result = sumZero(1);
+    CHECK_EQUAL(1, result.size());
+    CHECK_EQUAL(0, std::accumulate(result.begin(), result.end(), 0));
 }

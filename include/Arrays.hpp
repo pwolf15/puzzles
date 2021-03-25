@@ -200,4 +200,6 @@ int distanceBetweenBusStops(std::vector<int>& distance, int start, int destinati
 
 void duplicateZeros(std::vector<int>& arr);
 
+std::vector<int> sumZero(int n);
+
 #endif // ARRAYS_HPP
