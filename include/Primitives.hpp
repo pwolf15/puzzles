@@ -53,4 +53,6 @@ int dayOfYear(std::string date);
 
 bool divisorGame(int N);
 
+int countLargestGroup(int n);
+
 #endif // PRIMITIVES_HPP

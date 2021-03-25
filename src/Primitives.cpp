@@ -533,3 +533,41 @@ bool divisorGame(int N)
 {
     return N % 2 == 0;
 }
+
+int countLargestGroup(int n)
+{
+    std::unordered_map<int, int> groups;
+    auto computeSum = [](int n) {
+        int sum = 0;
+        while (n) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    };
+
+    for (int i = 1; i <= n; i++)
+    {
+        int sum = computeSum(i);
+        groups[sum]++;
+    }
+
+    std::unordered_map<int, int> group_counts;
+    for (auto pair: groups)
+    {
+        group_counts[pair.second]++;
+    }
+
+    int max = std::numeric_limits<int>::min();
+    int count = 0;
+    for (auto pair: group_counts)
+    {
+        if (pair.first > max)
+        {
+            max = pair.first;
+            count = pair.second;
+        }
+    }
+
+    return count;
+}

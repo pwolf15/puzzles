@@ -208,3 +208,11 @@ TEST(Primitives, DivisorGame)
     CHECK(divisorGame(2));
     CHECK(!divisorGame(3));
 }
+
+TEST(Primitives, CountLargestGroup)
+{
+    CHECK_EQUAL(4, countLargestGroup(13));
+    CHECK_EQUAL(6, countLargestGroup(15)); 
+    CHECK_EQUAL(2, countLargestGroup(2));   
+    CHECK_EQUAL(5, countLargestGroup(24));  
+}
