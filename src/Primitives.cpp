@@ -534,6 +534,8 @@ bool divisorGame(int N)
     return N % 2 == 0;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int countLargestGroup(int n)
 {
     std::unordered_map<int, int> groups;
