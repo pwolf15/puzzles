@@ -3883,7 +3883,7 @@ int getImportance(std::vector<Employee*> employees, int id)
 
     if (it == employees.end()) return 0;
 
-    auto e_fold = [&](int i, int e) {
+    auto e_fold = [this, &employees](int i, int e) {
         return i + getImportance(employees, e);
     };
  
