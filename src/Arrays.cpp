@@ -3875,6 +3875,8 @@ std::vector<int> sumZero(int n)
     return result;
 }
 
+// time complexity: O(n log n * n)
+// space complexity: O(n), recursive
 int getImportance(std::vector<Employee*> employees, int id)
 {
     auto it = std::find_if(employees.begin(), employees.end(), [id](Employee* employee){
