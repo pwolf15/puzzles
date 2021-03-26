@@ -590,3 +590,12 @@ TEST(Strings, HalvesAreAlike)
     CHECK(!halvesAreAlike("MerryChristmas"));
     CHECK(halvesAreAlike("AbCdefGh"));
 }
+
+TEST(Strings, TitleToNumber)
+{
+    CHECK_EQUAL(1, titleToNumber("A"));
+    CHECK_EQUAL(26, titleToNumber("Z"));
+    CHECK_EQUAL(28, titleToNumber("AB"));
+    CHECK_EQUAL(701, titleToNumber("ZY"));
+    CHECK_EQUAL(2147483647, titleToNumber("FXSHRXW"));
+}

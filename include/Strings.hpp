@@ -89,4 +89,6 @@ std::string freqAlphabets(std::string s);
 
 bool halvesAreAlike(std::string s);
 
+int titleToNumber(std::string columnTitle);
+
 #endif // STRINGS_HPP

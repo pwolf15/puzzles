@@ -2039,3 +2039,15 @@ bool halvesAreAlike(std::string s)
     });
     return vowelCount1 == vowelCount2;
 }
+
+int titleToNumber(std::string columnTitle)
+{
+    int column = 0;
+    long long factor = 1;
+    for (int i = columnTitle.size() - 1; i >= 0; --i)
+    {
+        column += (columnTitle[i] - 64) * factor;
+        factor *= 26;
+    }
+    return column;
+}
