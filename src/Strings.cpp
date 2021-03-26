@@ -2040,6 +2040,8 @@ bool halvesAreAlike(std::string s)
     return vowelCount1 == vowelCount2;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int titleToNumber(std::string columnTitle)
 {
     int column = 0;
