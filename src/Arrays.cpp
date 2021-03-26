@@ -3874,3 +3874,18 @@ std::vector<int> sumZero(int n)
     if (n % 2 == 1) result.push_back(0);
     return result;
 }
+
+int getImportance(std::vector<Employee*> employees, int id)
+{
+    auto it = std::find_if(employees.begin(), employees.end(), [id](Employee* employee){
+        return employee->id == id;
+    });
+
+    if (it == employees.end()) return 0;
+
+    auto e_fold = [&](int i, int e) {
+        return i + getImportance(employees, e);
+    };
+ 
+    return (*it)->importance + std::accumulate((*it)->subordinates.begin(), (*it)->subordinates.end(), 0, e_fold);
+}

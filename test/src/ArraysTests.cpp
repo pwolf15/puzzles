@@ -1915,3 +1915,28 @@ TEST(Arrays, SumZero)
     CHECK_EQUAL(1, result.size());
     CHECK_EQUAL(0, std::accumulate(result.begin(), result.end(), 0));
 }
+
+TEST(Arrays, GetImportance)
+{
+    std::vector<Employee*> employees;
+    Employee* e1 = new Employee();
+    e1->id = 1;
+    e1->importance = 5;
+    Employee* e2 = new Employee();
+    e2->id = 2;
+    e2->importance = 3;
+    Employee* e3 = new Employee();
+    e3->id = 3;
+    e3->importance = 3;
+    e1->subordinates.push_back(2);
+    e1->subordinates.push_back(3);
+    employees.push_back(e1);
+    employees.push_back(e2);
+    employees.push_back(e3);
+
+    CHECK_EQUAL(11, getImportance(employees, 1));
+
+    delete e1;
+    delete e2;
+    delete e3;
+}

@@ -202,4 +202,13 @@ void duplicateZeros(std::vector<int>& arr);
 
 std::vector<int> sumZero(int n);
 
+class Employee {
+public:
+    int id;
+    int importance;
+    std::vector<int> subordinates;
+};
+
+int getImportance(std::vector<Employee*> employees, int id);
+
 #endif // ARRAYS_HPP
