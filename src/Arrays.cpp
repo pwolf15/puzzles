@@ -3890,6 +3890,8 @@ int getImportance(std::vector<Employee*> employees, int id)
     return (*it)->importance + std::accumulate((*it)->subordinates.begin(), (*it)->subordinates.end(), 0, e_fold);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int findSpecialInteger(std::vector<int>& arr)
 {
     int curCount = 1;
