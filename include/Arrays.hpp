@@ -211,4 +211,6 @@ public:
 
 int getImportance(std::vector<Employee*> employees, int id);
 
+int findSpecialInteger(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

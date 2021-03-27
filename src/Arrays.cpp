@@ -3889,3 +3889,24 @@ int getImportance(std::vector<Employee*> employees, int id)
  
     return (*it)->importance + std::accumulate((*it)->subordinates.begin(), (*it)->subordinates.end(), 0, e_fold);
 }
+
+int findSpecialInteger(std::vector<int>& arr)
+{
+    int curCount = 1;
+    for (int i = 1; i < arr.size(); ++i)
+    {
+        if (arr[i] == arr[i - 1])
+        {
+            curCount++;
+            if (((float)curCount / (float)arr.size()) > 0.25)
+            {
+                return arr[i];
+            }
+        }
+        else
+        {
+            curCount = 1;
+        }
+    }
+    return arr[0];
+}

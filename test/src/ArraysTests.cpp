@@ -1940,3 +1940,15 @@ TEST(Arrays, GetImportance)
     delete e2;
     delete e3;
 }
+
+TEST(Arrays, FindSpecialInteger)
+{
+    std::vector<int> arr = { 1,2,2,6,6,6,6,7,10 };
+    CHECK_EQUAL(6, findSpecialInteger(arr));
+
+    arr = {1};
+    CHECK_EQUAL(1, findSpecialInteger(arr));
+
+    arr = {1,1,2,2,3,3,3,3};
+    CHECK_EQUAL(3, findSpecialInteger(arr));
+}
