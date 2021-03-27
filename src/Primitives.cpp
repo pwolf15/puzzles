@@ -589,3 +589,48 @@ int trailingZeroes(int n)
     }
     return numTrailingZeroes;
 }
+
+
+
+int fibHelper(int n, std::unordered_map<int, int>& memoized_fib)
+{
+    if (n == 0)
+    {
+        return 0;
+    }
+    else if (n == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        int fib1 = 0, fib2 = 0;
+        if (memoized_fib.find(n - 1) != memoized_fib.end())
+        {
+            fib1 = memoized_fib[n - 1];
+        }
+        else
+        {
+            fib1 = fibHelper(n - 1, memoized_fib);
+            memoized_fib[n - 1] = fib1;
+        }
+
+        if (memoized_fib.find(n - 2) != memoized_fib.end())
+        {
+            fib2 = memoized_fib[n - 2];
+        }
+        else
+        {
+            fib2 = fibHelper(n - 2, memoized_fib);
+            memoized_fib[n - 2] = fib2;
+        }
+
+        return fib1 + fib2;
+    }
+}
+
+int fib(int n)
+{
+    std::unordered_map<int, int> memoized_fib;
+    return fibHelper(n, memoized_fib);
+}

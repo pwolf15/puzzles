@@ -224,3 +224,12 @@ TEST(Primitives, TrailingZeroes)
     CHECK_EQUAL(0, trailingZeroes(0));
     CHECK_EQUAL(0, trailingZeroes(13));
 }
+
+TEST(Primitives, Fib)
+{
+    CHECK_EQUAL(0, fib(0));
+    CHECK_EQUAL(1, fib(1));
+    CHECK_EQUAL(1, fib(2));
+    CHECK_EQUAL(2, fib(3));
+    CHECK_EQUAL(3, fib(4));
+}

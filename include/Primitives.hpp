@@ -57,4 +57,6 @@ int countLargestGroup(int n);
 
 int trailingZeroes(int n);
 
+int fib(int n);
+
 #endif // PRIMITIVES_HPP
