@@ -213,4 +213,6 @@ int getImportance(std::vector<Employee*> employees, int id);
 
 int findSpecialInteger(std::vector<int>& arr);
 
+std::vector<int> fairCandySwap(std::vector<int>& A, std::vector<int>& B);
+
 #endif // ARRAYS_HPP

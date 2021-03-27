@@ -3912,3 +3912,31 @@ int findSpecialInteger(std::vector<int>& arr)
     }
     return arr[0];
 }
+
+// time complexity: O(A.length + B.length)
+// space complexity: O(B.length)
+std::vector<int> fairCandySwap(std::vector<int>& A, std::vector<int>& B)
+{
+    std::vector<int> result;
+
+    int aSize = std::accumulate(A.begin(), A.end(), 0);
+    int bSize = std::accumulate(B.begin(), B.end(), 0);
+    int diff = (bSize - aSize) / 2;
+
+    std::unordered_set<int> bSet;
+    for (int i = 0; i < B.size(); ++i)
+    {
+        bSet.insert(B[i]);
+    }
+
+    for (auto bar: A)
+    {
+        if (bSet.find(bar + diff) != bSet.end())
+        {
+            result.push_back(bar);
+            result.push_back(*bSet.find(bar+diff));
+            return result;
+        }
+    }
+    return result;
+}

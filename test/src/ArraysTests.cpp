@@ -1952,3 +1952,46 @@ TEST(Arrays, FindSpecialInteger)
     arr = {1,1,2,2,3,3,3,3};
     CHECK_EQUAL(3, findSpecialInteger(arr));
 }
+
+TEST(Arrays, FairCandySwap)
+{
+    std::vector<int> bobsBars = {2,2};
+    std::vector<int> alicesBars =  {1,1};
+    std::vector<int> expected = {1, 2};
+    std::vector<int> result = fairCandySwap(alicesBars, bobsBars);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    bobsBars = {2, 3};
+    alicesBars =  {1,2};
+    expected = {1, 2};
+    result = fairCandySwap(alicesBars, bobsBars);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    bobsBars = {1, 3};
+    alicesBars =  {2};
+    expected = {2, 3};
+    result = fairCandySwap(alicesBars, bobsBars);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    bobsBars = {2, 4};
+    alicesBars =  {1,2,5};
+    expected = {5, 4};
+    result = fairCandySwap(alicesBars, bobsBars);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }  
+}
