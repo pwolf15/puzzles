@@ -591,7 +591,8 @@ int trailingZeroes(int n)
 }
 
 
-
+// time complexity: O(n), compute each n only once
+// space complexity: O(n + n), n for recursive solution and n for cache
 int fibHelper(int n, std::unordered_map<int, int>& memoized_fib)
 {
     if (n == 0)
