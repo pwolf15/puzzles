@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <cmath>
 #include <stack>
+#include <set>
+#include <map>
 
 int firstUniqueChar_brute(std::string s)
 {
@@ -2052,4 +2054,85 @@ int titleToNumber(std::string columnTitle)
         factor *= 26;
     }
     return column;
+}
+
+std::vector<std::string> commonChars_PW1(std::vector<std::string>& A)
+{
+    std::map<char, std::vector<int>> charCounts;
+    for (size_t i = 0; i < A.size(); ++i)
+    {
+        for (size_t j = 0; j < A[i].size(); ++j)
+        {
+            if (charCounts.find(A[i][j]) == charCounts.end())
+            {
+                std::vector<int> counts(A.size());
+                charCounts[A[i][j]] = counts;
+                charCounts[A[i][j]][i]++;
+            }
+            else
+            {
+                charCounts[A[i][j]][i]++;
+            }
+        }
+    }
+
+    std::vector<std::string> result;
+    for (auto pair: charCounts)
+    {
+        int min = std::numeric_limits<int>::max();
+        for (auto val: pair.second)
+        {
+            min = std::min(val, min);
+        }
+        
+        if (min > 0)
+        {
+            for (size_t i = 0; i < min; ++i)
+            {
+                std::string str = std::string(1, pair.first);
+                result.push_back(str);
+            }
+        }
+    }
+
+    return result;
+}
+
+std::vector<std::string> commonChars_PW2(std::vector<std::string>& A)
+{
+    std::vector<int> count(26, std::numeric_limits<int>::max());
+    for (size_t i = 0; i < A.size(); ++i)
+    {
+        std::vector<int> count1(26, 0);
+        for (size_t j = 0; j < A[i].size(); ++j)
+        {
+            int k = (int)A[i][j] - 'a';
+            count1[k]++;
+        }
+
+        for (size_t j = 0; j < count.size(); ++j)
+        {
+            count[j] = std::min(count1[j], count[j]);
+        }
+    }
+
+    std::vector<std::string> result;
+    for (size_t i = 0; i < count.size(); ++i)
+    {
+        if (count[i] > 0)
+        {
+            for (int j = 0; j < count[i]; ++j)
+            {
+                std::string str = std::string(1, i + 'a');
+                result.push_back(str);
+            }
+        }
+    }
+
+    return result;
+}
+
+std::vector<std::string> commonChars(std::vector<std::string>& A)
+{
+    return commonChars_PW2(A);
 }

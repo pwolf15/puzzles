@@ -91,4 +91,6 @@ bool halvesAreAlike(std::string s);
 
 int titleToNumber(std::string columnTitle);
 
+std::vector<std::string> commonChars(std::vector<std::string>& A);
+
 #endif // STRINGS_HPP

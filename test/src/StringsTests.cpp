@@ -599,3 +599,24 @@ TEST(Strings, TitleToNumber)
     CHECK_EQUAL(701, titleToNumber("ZY"));
     CHECK_EQUAL(2147483647, titleToNumber("FXSHRXW"));
 }
+
+TEST(Strings, CommonChars)
+{
+    std::vector<std::string> arr = {"bella","label","roller"};
+    std::vector<std::string> expected = {"e","l","l"};
+    std::vector<std::string> result = commonChars(arr);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = {"cool","lock","cook"};
+    expected = {"c", "o"};
+    result = commonChars(arr);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
