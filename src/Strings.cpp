@@ -2056,6 +2056,8 @@ int titleToNumber(std::string columnTitle)
     return column;
 }
 
+// time complexity: O(m * n), need to traverse each character to count and identify min count
+// space complexity: O(m * n) for map which contains each character and count for each word
 std::vector<std::string> commonChars_PW1(std::vector<std::string>& A)
 {
     std::map<char, std::vector<int>> charCounts;
@@ -2098,6 +2100,8 @@ std::vector<std::string> commonChars_PW1(std::vector<std::string>& A)
     return result;
 }
 
+// time complexity: O(m * n), where m is number of strings and n is length of each string
+// space complexity: O(1) just need two vectors of size 26 characters
 std::vector<std::string> commonChars_PW2(std::vector<std::string>& A)
 {
     std::vector<int> count(26, std::numeric_limits<int>::max());
