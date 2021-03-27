@@ -216,3 +216,11 @@ TEST(Primitives, CountLargestGroup)
     CHECK_EQUAL(2, countLargestGroup(2));   
     CHECK_EQUAL(5, countLargestGroup(24));  
 }
+
+TEST(Primitives, TrailingZeroes)
+{
+    CHECK_EQUAL(0, trailingZeroes(3));
+    CHECK_EQUAL(1, trailingZeroes(5));
+    CHECK_EQUAL(0, trailingZeroes(0));
+    CHECK_EQUAL(0, trailingZeroes(13));
+}

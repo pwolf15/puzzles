@@ -565,3 +565,27 @@ int countLargestGroup(int n)
 
     return group_counts.rbegin()->second;
 }
+
+int trailingZeroes(int n)
+{
+    std::function<int(int)> fact = [&](int n) {
+        if (n == 1 || n == 0) return 1;
+        return n * fact(n - 1);
+    };
+
+    int numTrailingZeroes = 0;
+    long long val = fact(n);
+    while (val) 
+    {
+        if (val % 10 != 0) 
+        {
+            break;
+        }
+        else
+        {
+            numTrailingZeroes++;
+        }
+        val /= 10;
+    }
+    return numTrailingZeroes;
+}

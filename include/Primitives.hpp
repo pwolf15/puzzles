@@ -55,4 +55,6 @@ bool divisorGame(int N);
 
 int countLargestGroup(int n);
 
+int trailingZeroes(int n);
+
 #endif // PRIMITIVES_HPP
