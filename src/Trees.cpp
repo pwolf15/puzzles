@@ -332,6 +332,8 @@ void findModeHelper(TreeNode* root, std::unordered_map<int, int>& m)
     }
 }
 
+// time complexity: O(n), traverse entire tree, traverse map with node value to frequency
+// space complexity: O(n), need map for value to frequency, map for frequency to values
 std::vector<int> findMode(TreeNode* root)
 {
     std::unordered_map<int, int> m;
