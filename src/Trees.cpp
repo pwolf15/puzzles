@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <unordered_map>
+#include <map>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -314,4 +316,41 @@ int maxHeight(TreeNode* node)
 int diameterOfBinaryTree(TreeNode* root)
 {
     return maxHeight(root->left) + maxHeight(root->right);
+}
+
+void findModeHelper(TreeNode* root, std::unordered_map<int, int>& m)
+{
+    if (!root)
+    {
+        return;
+    }
+    else
+    {
+        m[root->val]++;
+        findModeHelper(root->left, m);
+        findModeHelper(root->right, m);
+    }
+}
+
+std::vector<int> findMode(TreeNode* root)
+{
+    std::unordered_map<int, int> m;
+    std::map<int, std::vector<int>> counts;
+    findModeHelper(root, m);
+
+    for (auto pair: m)
+    {
+        if (counts.find(pair.second) == counts.end())
+        {
+            std::vector<int> vals;
+            counts[pair.second] = vals;
+            counts[pair.second].push_back(pair.first);
+        }
+        else
+        {
+            counts[pair.second].push_back(pair.first);
+        }
+    }
+
+    return counts.rbegin()->second;
 }

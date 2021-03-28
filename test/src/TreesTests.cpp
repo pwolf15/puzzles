@@ -200,3 +200,32 @@ TEST(Trees, DiameterOfBinaryTree)
 
     deleteTree(node);
 }
+
+TEST(Trees, FindMode)
+{
+    TreeNode* node = new TreeNode(1);
+    node->right = new TreeNode(2);
+    node->right->left = new TreeNode(2);
+
+    std::vector<int> expected = { 2 };
+    std::vector<int> result = findMode(node);
+    CHECK_EQUAL(result.size(), expected.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+
+    node = new TreeNode(0);
+
+    expected = { 0 };
+    result = findMode(node);
+    CHECK_EQUAL(result.size(), expected.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+}
