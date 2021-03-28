@@ -3941,6 +3941,8 @@ std::vector<int> fairCandySwap(std::vector<int>& A, std::vector<int>& B)
     return result;
 }
 
+// time complexity: O(n log n + n)
+// space complexity: O(1)
 int findLucky(std::vector<int>& arr)
 {
     if (arr.empty()) return -1;
