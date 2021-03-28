@@ -1995,3 +1995,21 @@ TEST(Arrays, FairCandySwap)
         CHECK_EQUAL(expected[i], result[i]);
     }  
 }
+
+TEST(Arrays, FindLucky)
+{
+    std::vector<int> arr = { 2,2,3,4 };
+    CHECK_EQUAL(2, findLucky(arr));
+
+    arr = { 1,2,2,3,3,3 };
+    CHECK_EQUAL(3, findLucky(arr));
+
+    arr = { 2,2,2,3,3 };
+    CHECK_EQUAL(-1, findLucky(arr));
+
+    arr = { 5 };
+    CHECK_EQUAL(-1, findLucky(arr));
+
+    arr = { 7,7,7,7,7,7,7 };
+    CHECK_EQUAL(7, findLucky(arr));
+}

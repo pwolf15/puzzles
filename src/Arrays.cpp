@@ -3940,3 +3940,37 @@ std::vector<int> fairCandySwap(std::vector<int>& A, std::vector<int>& B)
     }
     return result;
 }
+
+int findLucky(std::vector<int>& arr)
+{
+    if (arr.empty()) return -1;
+
+    int curFreq = 1;
+    int lucky = -1;
+
+    std::sort(arr.begin(), arr.end());
+
+    for (int i = 1; i < arr.size(); ++i)
+    {
+        if (arr[i] != arr[i - 1])
+        {
+            if (curFreq == arr[i - 1])
+            {
+                lucky = arr[i - 1];
+            }
+
+            curFreq = 1;
+        }
+        else
+        {
+            curFreq++;
+        }
+    }
+
+    if (curFreq == arr[arr.size() - 1])
+    {
+        lucky = arr[arr.size() - 1];
+    }
+
+    return lucky;
+}

@@ -215,4 +215,6 @@ int findSpecialInteger(std::vector<int>& arr);
 
 std::vector<int> fairCandySwap(std::vector<int>& A, std::vector<int>& B);
 
+int findLucky(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP
