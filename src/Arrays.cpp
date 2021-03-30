@@ -3977,6 +3977,8 @@ int findLucky(std::vector<int>& arr)
     return lucky;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> findDisappearedNumbers(std::vector<int>& nums)
 {
     std::vector<int> disappeared;
