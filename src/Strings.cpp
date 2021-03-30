@@ -2141,7 +2141,9 @@ std::vector<std::string> commonChars(std::vector<std::string>& A)
     return commonChars_PW2(A);
 }
 
-bool areAlmostEqual(std::string s1, std::string s2)
+// space complexity: O(1)
+// time complexity: O(n^2)
+bool areAlmostEqual_PW1(std::string s1, std::string s2)
 {
     if (s1.size() != s2.size()) return false;
 
@@ -2158,4 +2160,45 @@ bool areAlmostEqual(std::string s1, std::string s2)
     }
 
     return false;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+bool areAlmostEqual_PW2(std::string s1, std::string s2)
+{
+    if (s1.size() != s2.size()) return false;
+
+    int i1 = -1, i2 = -1, numDiff = 0;
+    for (int i = 0; i < s1.size(); ++i)
+    {
+        if (s1[i] != s2[i])
+        {
+            numDiff++;
+            if (i1 == -1)
+            {
+                i1 = i;
+            }
+            else if (i2 == -1)
+            {
+                i2 = i;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    if (numDiff == 1) return false;
+    if (numDiff == 0) return true;
+    if (numDiff > 2) return false;
+
+    std::swap(s1[i1], s1[i2]);
+
+    return s1 == s2;
+}
+
+bool areAlmostEqual(std::string s1, std::string s2)
+{
+    return areAlmostEqual_PW2(s1, s2);
 }
