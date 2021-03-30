@@ -93,4 +93,6 @@ int titleToNumber(std::string columnTitle);
 
 std::vector<std::string> commonChars(std::vector<std::string>& A);
 
+bool areAlmostEqual(std::string s1, std::string s2);
+
 #endif // STRINGS_HPP

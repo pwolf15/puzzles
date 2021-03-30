@@ -620,3 +620,11 @@ TEST(Strings, CommonChars)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Strings, AreAlmostEqual)
+{
+    CHECK(areAlmostEqual("bank", "kanb"));
+    CHECK(!areAlmostEqual("attack", "defend"));
+    CHECK(areAlmostEqual("kelb", "kelb"));
+    CHECK(!areAlmostEqual("abcd", "dcba"));
+}

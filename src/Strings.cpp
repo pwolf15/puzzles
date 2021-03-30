@@ -2140,3 +2140,22 @@ std::vector<std::string> commonChars(std::vector<std::string>& A)
 {
     return commonChars_PW2(A);
 }
+
+bool areAlmostEqual(std::string s1, std::string s2)
+{
+    if (s1.size() != s2.size()) return false;
+
+    if (s1.empty()) return true;
+
+    for (int i = 0; i < s1.size(); ++i)
+    {
+        for (int j = i; j < s1.size(); ++j)
+        {
+            std::string temp = s1;
+            std::swap(temp[i], temp[j]);
+            if (temp == s2) return true;
+        }
+    }
+
+    return false;
+}
