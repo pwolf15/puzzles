@@ -2013,3 +2013,46 @@ TEST(Arrays, FindLucky)
     arr = { 7,7,7,7,7,7,7 };
     CHECK_EQUAL(7, findLucky(arr));
 }
+
+TEST(Arrays, FindDisappearedNumbers)
+{
+    std::vector<int> arr = { 4,3,2,7,8,2,3,1 };
+    std::vector<int> expected = { 5,6 };
+    std::vector<int> result = findDisappearedNumbers(arr);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = { 1, 1 };
+    expected = { 2 };
+    result = findDisappearedNumbers(arr);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = { 1,1,2,2 };
+    expected = { 3, 4 };
+    result = findDisappearedNumbers(arr);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = { 2, 2 };
+    expected = { 1 };
+    result = findDisappearedNumbers(arr);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

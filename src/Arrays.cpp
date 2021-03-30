@@ -3976,3 +3976,36 @@ int findLucky(std::vector<int>& arr)
 
     return lucky;
 }
+
+std::vector<int> findDisappearedNumbers(std::vector<int>& nums)
+{
+    std::vector<int> disappeared;
+    std::sort(nums.begin(), nums.end());
+
+    for (int k = 1; k < nums[0]; ++k)
+    {
+        disappeared.push_back(k);
+    }
+
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        if (nums[i] == nums[i - 1])
+        {
+            // continue
+        }
+        else if (nums[i] != nums[i - 1])
+        {
+            for (int k = nums[i - 1] + 1; k < nums[i]; ++k)
+            {
+                disappeared.push_back(k);
+            }
+        }
+    }
+
+    for (int k = nums[nums.size() - 1] + 1; k <= nums.size(); ++k)
+    {
+        disappeared.push_back(k);
+    }
+
+    return disappeared;
+}
