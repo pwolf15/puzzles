@@ -4039,6 +4039,8 @@ int findNumbers(std::vector<int>& nums)
     return numEven;
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points)
 {
     int manhattanDistance = std::numeric_limits<int>::max();
