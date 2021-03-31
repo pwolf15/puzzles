@@ -2056,3 +2056,12 @@ TEST(Arrays, FindDisappearedNumbers)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, FindNumbers)
+{
+    std::vector<int> arr = { 12,345,2,6,7896 };
+    CHECK_EQUAL(2, findNumbers(arr));
+
+    arr = { 555,901,482,1771 };
+    CHECK_EQUAL(1, findNumbers(arr)); 
+}

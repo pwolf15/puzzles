@@ -4011,3 +4011,28 @@ std::vector<int> findDisappearedNumbers(std::vector<int>& nums)
 
     return disappeared;
 }
+
+int findNumbers(std::vector<int>& nums)
+{
+    int numEven = 0;
+
+    auto findDigits = [](int num) {
+        int numDigits = 0;
+        while (num)
+        {
+            numDigits++;
+            num /= 10;
+        }
+        return numDigits;
+    };
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (findDigits(nums[i]) % 2 == 0) 
+        {
+            numEven++;
+        }
+    }
+
+    return numEven;
+}

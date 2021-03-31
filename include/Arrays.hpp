@@ -219,4 +219,6 @@ int findLucky(std::vector<int>& arr);
 
 std::vector<int> findDisappearedNumbers(std::vector<int>& nums);
 
+int findNumbers(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP
