@@ -4012,6 +4012,8 @@ std::vector<int> findDisappearedNumbers(std::vector<int>& nums)
     return disappeared;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int findNumbers(std::vector<int>& nums)
 {
     int numEven = 0;
