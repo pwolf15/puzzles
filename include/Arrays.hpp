@@ -221,4 +221,6 @@ std::vector<int> findDisappearedNumbers(std::vector<int>& nums);
 
 int findNumbers(std::vector<int>& nums);
 
+int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points);
+
 #endif // ARRAYS_HPP

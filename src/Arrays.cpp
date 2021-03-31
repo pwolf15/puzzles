@@ -4038,3 +4038,22 @@ int findNumbers(std::vector<int>& nums)
 
     return numEven;
 }
+
+int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points)
+{
+    int manhattanDistance = std::numeric_limits<int>::max();
+    int index = -1;
+    for (int i = 0; i < points.size(); ++i)
+    {
+        if (x == points[i][0] || y == points[i][1])
+        {
+            int dist = sqrt(pow(abs(x - points[i][0]), 2) + pow(abs(y - points[i][1]), 2));
+            if (dist < manhattanDistance)
+            {
+                index = i;
+            }
+            manhattanDistance = std::min(dist, manhattanDistance);
+        }
+    }
+    return index;
+}

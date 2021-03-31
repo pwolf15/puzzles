@@ -2065,3 +2065,18 @@ TEST(Arrays, FindNumbers)
     arr = { 555,901,482,1771 };
     CHECK_EQUAL(1, findNumbers(arr)); 
 }
+
+TEST(Arrays, NearestValidPoint)
+{
+    std::vector<std::vector<int>> arr = {{1,2},{3,1},{2,4},{2,3},{4,4}};
+    CHECK_EQUAL(2, nearestValidPoint(3, 4, arr)); 
+
+    arr = {{3,4}};
+    CHECK_EQUAL(0, nearestValidPoint(3, 4, arr)); 
+
+    arr = {{2,3}};
+    CHECK_EQUAL(-1, nearestValidPoint(3, 4, arr)); 
+
+    arr = {{1,2},{3,3},{3,3}};
+    CHECK_EQUAL(0, nearestValidPoint(1, 1, arr)); 
+}
