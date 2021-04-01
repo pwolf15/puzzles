@@ -4074,6 +4074,8 @@ int largestAltitude(std::vector<int>& gain)
     return maxAlt;
 }
 
+// time complexity: O(N)
+// space complexity: O(1)
 std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& image)
 {
     for (int i = 0; i < image.size(); ++i)
