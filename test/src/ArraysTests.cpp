@@ -2080,3 +2080,12 @@ TEST(Arrays, NearestValidPoint)
     arr = {{1,2},{3,3},{3,3}};
     CHECK_EQUAL(0, nearestValidPoint(1, 1, arr)); 
 }
+
+TEST(Arrays, MaxAltitude)
+{
+    std::vector<int> alts = {-5,1,5,0,-7};
+    CHECK_EQUAL(1, largestAltitude(alts)); 
+
+    alts = {-4,-3,-2,-1,4,3,2};
+    CHECK_EQUAL(0, largestAltitude(alts)); 
+}

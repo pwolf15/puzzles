@@ -223,4 +223,6 @@ int findNumbers(std::vector<int>& nums);
 
 int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points);
 
+int largestAltitude(std::vector<int>& gain);
+
 #endif // ARRAYS_HPP

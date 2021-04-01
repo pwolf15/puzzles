@@ -4059,3 +4059,15 @@ int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points)
     }
     return index;
 }
+
+int largestAltitude(std::vector<int>& gain)
+{
+    int maxAlt = 0;
+    int curAlt = 0;
+    for (int i = 0; i < gain.size(); ++i)
+    {
+        curAlt += gain[i];
+        maxAlt = std::max(maxAlt, curAlt);
+    }
+    return maxAlt;
+}
