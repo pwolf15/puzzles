@@ -4060,6 +4060,8 @@ int nearestValidPoint(int x, int y, std::vector<std::vector<int>>& points)
     return index;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int largestAltitude(std::vector<int>& gain)
 {
     int maxAlt = 0;
