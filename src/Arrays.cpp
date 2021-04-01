@@ -4073,3 +4073,22 @@ int largestAltitude(std::vector<int>& gain)
     }
     return maxAlt;
 }
+
+std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& image)
+{
+    for (int i = 0; i < image.size(); ++i)
+    {
+        int max = round((float)image[i].size() / (float)2);
+        for (int j = 0; j < max; ++j)
+        {
+            std::swap(image[i][j], image[i][image[i].size() - 1 - j]);
+            image[i][image[i].size() - 1 - j] = !image[i][image[i].size() - 1 - j];
+
+            if (j != (image[i].size() - 1 - j))
+            {
+                image[i][j] = !image[i][j];
+            }
+        }
+    }
+    return image;
+}

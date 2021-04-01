@@ -2089,3 +2089,28 @@ TEST(Arrays, MaxAltitude)
     alts = {-4,-3,-2,-1,4,3,2};
     CHECK_EQUAL(0, largestAltitude(alts)); 
 }
+
+TEST(Arrays, FlipAndInvertImage)
+{
+    std::vector<std::vector<int>> image =  {{1,1,0},{1,0,1},{0,0,0}};
+    std::vector<std::vector<int>> expected = {{1,0,0},{0,1,0},{1,1,1}};
+    auto result = flipAndInvertImage(image);
+    for (size_t i = 0; i < image.size(); ++i)
+    {
+        for (size_t j = 0; j < image[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    image = {{1,1,0,0},{1,0,0,1},{0,1,1,1},{1,0,1,0}};
+    expected = {{1,1,0,0},{0,1,1,0},{0,0,0,1},{1,0,1,0}};
+    result = flipAndInvertImage(image);
+    for (size_t i = 0; i < image.size(); ++i)
+    {
+        for (size_t j = 0; j < image[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}
