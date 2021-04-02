@@ -97,4 +97,6 @@ bool areAlmostEqual(std::string s1, std::string s2);
 
 std::string interpret(std::string command);
 
+std::string toGoatLatin(std::string S);
+
 #endif // STRINGS_HPP

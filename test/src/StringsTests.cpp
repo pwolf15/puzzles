@@ -635,3 +635,8 @@ TEST(Strings, Interpret)
     CHECK_EQUAL("Gooooal", interpret("G()()()()(al)"));
     CHECK_EQUAL("alGalooG", interpret("(al)G(al)()()G"));
 }
+
+TEST(Strings, ToGoatLatin)
+{
+    CHECK_EQUAL("Imaa peaksmaaa oatGmaaaa atinLmaaaaa", toGoatLatin("I speak Goat Latin"));
+}

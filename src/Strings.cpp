@@ -2240,3 +2240,87 @@ std::string interpret(std::string command)
 
     return interpreted;
 }
+
+std::string toGoatLatin(std::string S)
+{
+    std::string result;
+    auto isVowel = [](char c) {
+        c = std::tolower(c);
+        switch (c)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                return true;
+        }
+
+        return false;
+    };
+
+    bool leadingVowel = false;
+    bool leadingConsonant = false;
+    bool inWord = false;
+    char leadConsonant = ' ';
+    int wordCount = 1;
+
+    for (int i = 0; i < S.size(); ++i)
+    {
+        if (S[i] == ' ')
+        {
+            if (leadingVowel)
+            {
+                result += "ma";
+            }
+            else if (leadingConsonant)
+            {
+                result += leadConsonant;
+                result += "ma";
+            }
+
+            for (int i = 0; i < wordCount; ++i)
+            {
+                result += "a";
+            }
+
+            wordCount++;
+            result += " ";
+            leadingVowel = leadingConsonant = false;
+            inWord = false;
+            continue;
+        }
+        
+        if (!inWord && isVowel(S[i]))
+        {
+            leadingVowel = true;
+            inWord = true;
+        }
+        else if (!inWord && !isVowel(S[i]))
+        {
+            leadingConsonant = true;
+            inWord = true;
+            leadConsonant = S[i];
+            continue;
+        }
+
+        result += S[i];
+    }
+
+    if (leadingVowel)
+    {
+        result += "ma";
+    }
+    else if (leadingConsonant)
+    {
+        result += leadConsonant;
+        result += "ma";
+    }
+
+    for (int i = 0; i < wordCount; ++i)
+    {
+        result += "a";
+    }
+
+    return result;
+}
