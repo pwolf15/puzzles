@@ -2261,9 +2261,7 @@ std::string toGoatLatin(std::string S)
         return false;
     };
 
-    bool leadingVowel = false;
-    bool leadingConsonant = false;
-    bool inWord = false;
+    bool leadingConsonant = false, inWord = false;
     char leadConsonant = ' ';
     int wordCount = 1;
 
@@ -2271,15 +2269,12 @@ std::string toGoatLatin(std::string S)
     {
         if (S[i] == ' ')
         {
-            if (leadingVowel)
+            if (leadingConsonant)
             {
-                result += "ma";
+                result += leadConsonant; 
             }
-            else if (leadingConsonant)
-            {
-                result += leadConsonant;
-                result += "ma";
-            }
+
+            result += "ma";
 
             for (int i = 0; i < wordCount; ++i)
             {
@@ -2288,36 +2283,30 @@ std::string toGoatLatin(std::string S)
 
             wordCount++;
             result += " ";
-            leadingVowel = leadingConsonant = false;
-            inWord = false;
+            leadingConsonant = inWord = false;
             continue;
         }
         
-        if (!inWord && isVowel(S[i]))
+        if (!inWord)
         {
-            leadingVowel = true;
             inWord = true;
-        }
-        else if (!inWord && !isVowel(S[i]))
-        {
-            leadingConsonant = true;
-            inWord = true;
-            leadConsonant = S[i];
-            continue;
+            if (!isVowel(S[i]))
+            {
+                leadingConsonant = true;
+                leadConsonant = S[i];
+                continue;
+            }
         }
 
         result += S[i];
     }
 
-    if (leadingVowel)
+    if (leadingConsonant)
     {
-        result += "ma";
+        result += leadConsonant; 
     }
-    else if (leadingConsonant)
-    {
-        result += leadConsonant;
-        result += "ma";
-    }
+
+    result += "ma";
 
     for (int i = 0; i < wordCount; ++i)
     {
