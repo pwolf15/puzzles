@@ -2316,6 +2316,8 @@ std::string toGoatLatin(std::string S)
     return result;
 }
 
+// space complexity: O(1)
+// time complexity: O(n)
 std::string generateTheString(int n)
 {
     if (n % 2 == 0)
