@@ -2315,3 +2315,18 @@ std::string toGoatLatin(std::string S)
 
     return result;
 }
+
+std::string generateTheString(int n)
+{
+    if (n % 2 == 0)
+    {
+        std::string result(n-1, 'x');
+        result += "y";
+        return result;
+    }
+    else
+    {
+        std::string result(n, 'x');
+        return result;
+    }
+}

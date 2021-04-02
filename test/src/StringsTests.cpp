@@ -640,3 +640,11 @@ TEST(Strings, ToGoatLatin)
 {
     CHECK_EQUAL("Imaa peaksmaaa oatGmaaaa atinLmaaaaa", toGoatLatin("I speak Goat Latin"));
 }
+
+TEST(Strings, GenerateTheString)
+{
+    CHECK_EQUAL("x", generateTheString(1));
+    CHECK_EQUAL("xy", generateTheString(2));
+    CHECK_EQUAL("xxx", generateTheString(3));
+    CHECK_EQUAL("xxxy", generateTheString(4));
+}

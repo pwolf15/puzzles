@@ -99,4 +99,6 @@ std::string interpret(std::string command);
 
 std::string toGoatLatin(std::string S);
 
+std::string generateTheString(int n);
+
 #endif // STRINGS_HPP
