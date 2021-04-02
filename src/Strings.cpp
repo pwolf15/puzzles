@@ -2241,6 +2241,8 @@ std::string interpret(std::string command)
     return interpreted;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string toGoatLatin(std::string S)
 {
     std::string result;
