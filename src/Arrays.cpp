@@ -4097,7 +4097,7 @@ std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& 
 
 // time complexity: O(n)
 // space complexity: O(1)
-char nextGreatestLetter(std::vector<char>& letters, char target)
+char nextGreatestLetter_PW1(std::vector<char>& letters, char target)
 {
     int diff = std::numeric_limits<int>::max();
     char c = target;
@@ -4113,4 +4113,25 @@ char nextGreatestLetter(std::vector<char>& letters, char target)
     }
 
     return c;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+char nextGreatestLetter_PW2(std::vector<char>& letters, char target)
+{
+    std::vector<bool> seen(26, false);
+    for (char c: letters)
+        seen[c - 'a'] = true;
+
+    while (true) 
+    {
+        target++;
+        if (target > 'z') target = 'a';
+        if (seen[target - 'a']) return target;
+    }
+}
+
+char nextGreatestLetter(std::vector<char>& letters, char target)
+{
+    return nextGreatestLetter_PW2(letters, target);
 }
