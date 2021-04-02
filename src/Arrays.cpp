@@ -4094,3 +4094,21 @@ std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& 
     }
     return image;
 }
+
+char nextGreatestLetter(std::vector<char>& letters, char target)
+{
+    int diff = std::numeric_limits<int>::max();
+    char c = target;
+    int currentDiff;
+    for (int i = 0; i < letters.size(); ++i)
+    {
+        currentDiff = letters[i] >= target ? letters[i] - target : letters[i] + 'z' + 1 - target;
+        if (letters[i] != target && currentDiff < diff)
+        {
+            diff = std::min(diff, currentDiff);
+            c = letters[i];
+        }
+    }
+
+    return c;
+}

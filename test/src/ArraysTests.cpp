@@ -2114,3 +2114,24 @@ TEST(Arrays, FlipAndInvertImage)
         }
     }
 }
+
+TEST(Arrays, NextGreatestLetter)
+{
+    std::vector<char> arr =  {'c', 'f', 'j'};
+    CHECK_EQUAL('c', nextGreatestLetter(arr, 'a'));
+
+    arr = {'c', 'f', 'j'};
+    CHECK_EQUAL('f', nextGreatestLetter(arr, 'c'));
+
+    arr = {'c', 'f', 'j'};
+    CHECK_EQUAL('f', nextGreatestLetter(arr, 'd'));
+
+    arr = {'c', 'f', 'j'};
+    CHECK_EQUAL('j', nextGreatestLetter(arr, 'g'));
+
+    arr = {'c', 'f', 'j'};
+    CHECK_EQUAL('c', nextGreatestLetter(arr, 'j'));
+
+    arr = {'c', 'f', 'j'};
+    CHECK_EQUAL('c', nextGreatestLetter(arr, 'k'));
+}

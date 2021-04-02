@@ -227,4 +227,6 @@ int largestAltitude(std::vector<int>& gain);
 
 std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& image);
 
+char nextGreatestLetter(std::vector<char>& letters, char target);
+
 #endif // ARRAYS_HPP
