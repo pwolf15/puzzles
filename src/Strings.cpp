@@ -2203,6 +2203,8 @@ bool areAlmostEqual(std::string s1, std::string s2)
     return areAlmostEqual_PW2(s1, s2);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string interpret(std::string command)
 {
     char lookahead;
