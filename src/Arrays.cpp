@@ -4095,6 +4095,8 @@ std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& 
     return image;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 char nextGreatestLetter(std::vector<char>& letters, char target)
 {
     int diff = std::numeric_limits<int>::max();
