@@ -2202,3 +2202,39 @@ bool areAlmostEqual(std::string s1, std::string s2)
 {
     return areAlmostEqual_PW2(s1, s2);
 }
+
+std::string interpret(std::string command)
+{
+    char lookahead;
+    if (command.size() > 1)
+    {
+        lookahead = command[1];
+    }
+
+    std::string interpreted = "";
+    for (int i = 0; i < command.size(); )
+    {
+        if (command[i] == 'G')
+        {
+            interpreted += 'G';
+            i++;
+        }
+        else if (command[i] == '(' && lookahead == ')')
+        {
+            interpreted += 'o';
+            i += 2;
+        }
+        else if (command[i] == '(' && lookahead == 'a')
+        {
+            interpreted += "al";
+            i += 4;
+        }
+
+        if (i < command.size() - 1) 
+        {
+            lookahead = command[i + 1];
+        }
+    }
+
+    return interpreted;
+}

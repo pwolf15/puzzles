@@ -628,3 +628,10 @@ TEST(Strings, AreAlmostEqual)
     CHECK(areAlmostEqual("kelb", "kelb"));
     CHECK(!areAlmostEqual("abcd", "dcba"));
 }
+
+TEST(Strings, Interpret)
+{
+    CHECK_EQUAL("Goal", interpret("G()(al)"));
+    CHECK_EQUAL("Gooooal", interpret("G()()()()(al)"));
+    CHECK_EQUAL("alGalooG", interpret("(al)G(al)()()G"));
+}
