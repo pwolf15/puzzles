@@ -4166,7 +4166,7 @@ int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d)
 
 // time complexity: O(2 * n)
 // space complexity: O(2 * n)
-int findJudge(int N, std::vector<std::vector<int>>& trust)
+int findJudge_PW1(int N, std::vector<std::vector<int>>& trust)
 {
     std::vector<int> trusted(N);
     std::vector<int> trusts(N);
@@ -4186,4 +4186,29 @@ int findJudge(int N, std::vector<std::vector<int>>& trust)
     }
 
     return -1;
+}
+
+int findJudge_PW2(int N, std::vector<std::vector<int>>& trust)
+{
+    std::vector<int> trusts(N);
+    for (auto pair: trust)
+    {
+        trusts[pair[1]-1]++;    // others trust him
+        trusts[pair[0]-1]--;    // he trusts others
+    }
+
+    for (size_t i = 0; i < trusts.size(); ++i)
+    {
+        if (trusts[i] == N - 1)
+        {
+            return i + 1;
+        }
+    }
+
+    return -1;
+}
+
+int findJudge(int N, std::vector<std::vector<int>>& trust)
+{
+    return findJudge_PW2(N, trust);
 }
