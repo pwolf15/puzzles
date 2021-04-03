@@ -4136,6 +4136,8 @@ char nextGreatestLetter(std::vector<char>& letters, char target)
     return nextGreatestLetter_PW2(letters, target);
 }
 
+// time complexity: O(m * n)
+// space complexity: O(1)
 int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d)
 {
     int distance = 0;
