@@ -4163,3 +4163,27 @@ int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d)
     }
     return distance;
 }
+
+// time complexity: O(2 * n)
+// space complexity: O(2 * n)
+int findJudge(int N, std::vector<std::vector<int>>& trust)
+{
+    std::vector<int> trusted(N);
+    std::vector<int> trusts(N);
+
+    for (auto pair: trust)
+    {
+        trusted[pair[1]-1]++;
+        trusts[pair[0]-1]++;
+    }
+
+    for (size_t i = 0; i < trusted.size(); ++i)
+    {
+        if (trusted[i] == trusted.size() - 1 && trusts[i] == 0)
+        {
+            return i + 1;
+        }
+    }
+
+    return -1;
+}

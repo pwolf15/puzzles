@@ -231,4 +231,6 @@ char nextGreatestLetter(std::vector<char>& letters, char target);
 
 int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d);
 
+int findJudge(int N, std::vector<std::vector<int>>& trust);
+
 #endif // ARRAYS_HPP

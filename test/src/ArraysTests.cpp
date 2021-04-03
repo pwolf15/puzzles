@@ -2150,3 +2150,21 @@ TEST(Arrays, FindTheDistanceValue)
     arr2 = { -5,-2,10,-3,7 };
     CHECK_EQUAL(1, findTheDistanceValue(arr1, arr2, 6));
 }
+
+TEST(Arrays, FindJudge)
+{
+    std::vector<std::vector<int>> trust = {{1,2}};
+    CHECK_EQUAL(2, findJudge(2, trust));
+
+    trust = {{1,3},{2,3}};
+    CHECK_EQUAL(3, findJudge(3, trust));
+
+    trust = {{1,3},{2,3},{3,1}};
+    CHECK_EQUAL(-1, findJudge(3, trust));
+
+    trust = {{1,2},{2,3}};
+    CHECK_EQUAL(-1, findJudge(3, trust));
+
+    trust = {{1,3},{1,4},{2,3},{2,4},{4,3}};
+    CHECK_EQUAL(3, findJudge(4, trust));
+}
