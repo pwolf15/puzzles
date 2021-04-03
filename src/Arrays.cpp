@@ -4135,3 +4135,29 @@ char nextGreatestLetter(std::vector<char>& letters, char target)
 {
     return nextGreatestLetter_PW2(letters, target);
 }
+
+int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d)
+{
+    int distance = 0;
+    for (int i = 0; i < arr1.size(); ++i)
+    {
+        bool foundMatch = false;
+        for (int j = 0; j < arr2.size(); ++j)
+        {
+            if (abs(arr1[i] - arr2[j]) > d)
+            {
+                continue;
+            }
+            else
+            {
+                foundMatch = true;
+                break;
+            }
+        }
+        if (!foundMatch)
+        {
+            distance++;
+        }
+    }
+    return distance;
+}

@@ -2135,3 +2135,18 @@ TEST(Arrays, NextGreatestLetter)
     arr = {'c', 'f', 'j'};
     CHECK_EQUAL('c', nextGreatestLetter(arr, 'k'));
 }
+
+TEST(Arrays, FindTheDistanceValue)
+{
+    std::vector<int> arr1 = { 4,5,8 };
+    std::vector<int> arr2 = { 10,9,1,8 };
+    CHECK_EQUAL(2, findTheDistanceValue(arr1, arr2, 2));
+
+    arr1 = { 1,4,2,3};
+    arr2 = { -4,-3,6,10,20,30 };
+    CHECK_EQUAL(2, findTheDistanceValue(arr1, arr2, 3));
+
+    arr1 = { 2,1,100,3 };
+    arr2 = { -5,-2,10,-3,7 };
+    CHECK_EQUAL(1, findTheDistanceValue(arr1, arr2, 6));
+}

@@ -229,4 +229,6 @@ std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>>& 
 
 char nextGreatestLetter(std::vector<char>& letters, char target);
 
+int findTheDistanceValue(std::vector<int>& arr1, std::vector<int>& arr2, int d);
+
 #endif // ARRAYS_HPP
