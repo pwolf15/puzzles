@@ -4188,6 +4188,8 @@ int findJudge_PW1(int N, std::vector<std::vector<int>>& trust)
     return -1;
 }
 
+// time complexity: O(2 * n)
+// space complexity: O(n)
 int findJudge_PW2(int N, std::vector<std::vector<int>>& trust)
 {
     std::vector<int> trusts(N);
