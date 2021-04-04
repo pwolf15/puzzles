@@ -2335,7 +2335,7 @@ std::string generateTheString(int n)
 
 // time complexity: O(2 * n log n + n)
 // space complexity: O(1)
-char findTheDifference(std::string s, std::string t)
+char findTheDifference_PW1(std::string s, std::string t)
 {
     std::sort(s.begin(), s.end());
     std::sort(t.begin(), t.end());
@@ -2349,4 +2349,24 @@ char findTheDifference(std::string s, std::string t)
     }
 
     return t[t.size() - 1];
+}
+
+char findTheDifference_PW2(std::string s, std::string t)
+{
+    char r = 0;
+    for (char c: s)
+    {
+        r ^= c;
+    }
+    for (char c: t) 
+    {
+        r ^= c;
+    }
+
+    return r;
+}
+
+char findTheDifference(std::string s, std::string t)
+{
+    return findTheDifference_PW2(s, t);
 }
