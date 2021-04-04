@@ -101,4 +101,6 @@ std::string toGoatLatin(std::string S);
 
 std::string generateTheString(int n);
 
+char findTheDifference(std::string s, std::string t);
+
 #endif // STRINGS_HPP

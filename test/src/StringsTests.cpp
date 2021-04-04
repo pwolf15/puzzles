@@ -648,3 +648,11 @@ TEST(Strings, GenerateTheString)
     CHECK_EQUAL("xxx", generateTheString(3));
     CHECK_EQUAL("xxxy", generateTheString(4));
 }
+
+TEST(Strings, FindTheDifference)
+{
+    CHECK_EQUAL('e', findTheDifference("abcd", "abcde"));
+    CHECK_EQUAL('y', findTheDifference("", "y"));
+    CHECK_EQUAL('a', findTheDifference("a", "aa"));  
+    CHECK_EQUAL('a', findTheDifference("ae", "aea"));  
+}
