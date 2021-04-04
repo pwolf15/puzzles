@@ -2333,6 +2333,8 @@ std::string generateTheString(int n)
     }
 }
 
+// time complexity: O(2 * n log n + n)
+// space complexity: O(1)
 char findTheDifference(std::string s, std::string t)
 {
     std::sort(s.begin(), s.end());
