@@ -2373,6 +2373,8 @@ char findTheDifference(std::string s, std::string t)
     return findTheDifference_PW2(s, t);
 }
 
+// time complexity: O(n * k + m), where m is size of char, n is size of words and k is size of average word
+// space complexity: O(m * n), where m is size of char, n is number of words
 int countCharacters(std::vector<std::string>& words, std::string chars)
 {
     std::unordered_map<char, int> counts;
