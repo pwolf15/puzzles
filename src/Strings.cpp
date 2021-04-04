@@ -2351,6 +2351,8 @@ char findTheDifference_PW1(std::string s, std::string t)
     return t[t.size() - 1];
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 char findTheDifference_PW2(std::string s, std::string t)
 {
     char r = 0;
