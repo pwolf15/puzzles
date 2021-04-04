@@ -4215,6 +4215,8 @@ int findJudge(int N, std::vector<std::vector<int>>& trust)
     return findJudge_PW2(N, trust);
 }
 
+// time complexity: O(n), one iteration through edges, one through edge counts
+// space complexity: O(n), where n is number of nodes
 int findCenter(std::vector<std::vector<int>>& edges)
 {
     std::unordered_map<int, int> edgeCount;
