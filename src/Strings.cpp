@@ -2375,7 +2375,7 @@ char findTheDifference(std::string s, std::string t)
 
 // time complexity: O(n * k + m), where m is size of char, n is size of words and k is size of average word
 // space complexity: O(m * n), where m is size of char, n is number of words
-int countCharacters(std::vector<std::string>& words, std::string chars)
+int countCharacters_PW1(std::vector<std::string>& words, std::string chars)
 {
     std::unordered_map<char, int> counts;
     for (auto c: chars)
@@ -2413,4 +2413,42 @@ int countCharacters(std::vector<std::string>& words, std::string chars)
     }
 
     return characterCount;
+}
+
+// time complexity: O(n * k + m), where m is size of char, n is size of words and k is size of average word
+// space complexity: O(m * n), where m is size of char, n is number of words
+int countCharacters_PW2(std::vector<std::string>& words, std::string chars)
+{
+    std::vector<int> counts(26);
+    for (auto c: chars)
+    {
+        counts[c - 'a']++;
+    }
+
+    int characterCount = 0;
+    for (auto word: words)
+    {        
+        std::vector<int> tmp = counts;
+        bool goodWord = true;
+        for (auto c: word)
+        {
+            if (--tmp[c - 'a'] < 0)
+            {
+                goodWord = false;
+                break;
+            }
+        }
+
+        if (goodWord)
+        {
+            characterCount += word.size();
+        }
+    }
+
+    return characterCount;
+}
+
+int countCharacters(std::vector<std::string>& words, std::string chars)
+{
+    return countCharacters_PW2(words, chars);
 }
