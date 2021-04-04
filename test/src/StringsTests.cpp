@@ -656,3 +656,15 @@ TEST(Strings, FindTheDifference)
     CHECK_EQUAL('a', findTheDifference("a", "aa"));  
     CHECK_EQUAL('a', findTheDifference("ae", "aea"));  
 }
+
+
+TEST(Strings, CountCharacters)
+{
+    std::vector<std::string> words = { "cat","bt","hat","tree" };
+    std::string chars = "atach";
+    CHECK_EQUAL(6, countCharacters(words, chars));
+
+    words = { "hello","world","leetcode" };
+    chars = "welldonehoneyr";
+    CHECK_EQUAL(10, countCharacters(words, chars));
+}

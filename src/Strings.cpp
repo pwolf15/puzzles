@@ -2372,3 +2372,43 @@ char findTheDifference(std::string s, std::string t)
 {
     return findTheDifference_PW2(s, t);
 }
+
+int countCharacters(std::vector<std::string>& words, std::string chars)
+{
+    std::unordered_map<char, int> counts;
+    for (auto c: chars)
+    {
+        counts[c]++;
+    }
+
+    int characterCount = 0;
+
+    for (auto word: words)
+    {        
+        auto temp = counts;
+        bool goodWord = true;
+        for (auto c: word)
+        {
+            if (temp.find(c) == temp.end())
+            {
+                goodWord = false;
+                break;
+            }
+            else
+            {
+                temp[c]--;
+                if (temp[c] == 0)
+                {
+                    temp.erase(c);
+                }
+            }
+        }
+
+        if (goodWord)
+        {
+            characterCount += word.size();
+        }
+    }
+
+    return characterCount;
+}

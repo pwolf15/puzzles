@@ -103,4 +103,6 @@ std::string generateTheString(int n);
 
 char findTheDifference(std::string s, std::string t);
 
+int countCharacters(std::vector<std::string>& words, std::string chars);
+
 #endif // STRINGS_HPP
