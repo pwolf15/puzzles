@@ -4214,3 +4214,25 @@ int findJudge(int N, std::vector<std::vector<int>>& trust)
 {
     return findJudge_PW2(N, trust);
 }
+
+int findCenter(std::vector<std::vector<int>>& edges)
+{
+    std::unordered_map<int, int> edgeCount;
+    for (auto edge: edges)
+    {
+        edgeCount[edge[1]]++;
+        edgeCount[edge[0]]++;
+    }
+
+    int center = 0;
+    for (auto count: edgeCount)
+    {
+        if (count.second == (edgeCount.size() - 1))
+        {
+            center = count.first;
+            break;
+        }
+    }
+
+    return center;
+}

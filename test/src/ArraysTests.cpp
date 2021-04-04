@@ -2168,3 +2168,12 @@ TEST(Arrays, FindJudge)
     trust = {{1,3},{1,4},{2,3},{2,4},{4,3}};
     CHECK_EQUAL(3, findJudge(4, trust));
 }
+
+TEST(Arrays, FindCenter)
+{
+    std::vector<std::vector<int>> edges = {{1,2},{2,3},{4,2}};
+    CHECK_EQUAL(2, findCenter(edges));
+
+    edges = {{1,2},{5,1},{1,3},{1,4}};
+    CHECK_EQUAL(1, findCenter(edges));
+}
