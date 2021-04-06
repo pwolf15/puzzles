@@ -2,6 +2,7 @@
 #define DESIGN_HPP
 
 #include <vector>
+#include <iostream>
 // #include <unordered_set>
 
 class ShuffledArray {
@@ -88,21 +89,18 @@ public:
             return;
         }
 
-        for (int i = row1; i <= row2; ++i)
-        {
-            for (int j = col1; j <= col2; ++j)
-            {
-                m_rect[i][j] = newValue;
-            }
-        }
+        m_sub.push_back({ row1, col1, row2, col2, newValue });
     }
     
     int getValue(int row, int col) 
     {
-        if ((row > m_rect.size() || row < 0) ||
-            (col > m_rect[0].size() || col < 0))
+        for (int i = m_sub.size() - 1; i >= 0; --i)
         {
-            return -1;
+            if ((row >= m_sub[i][0] && row <= m_sub[i][2]) &&
+                (col >= m_sub[i][1] && col <= m_sub[i][3]))
+            {
+                return m_sub[i][4];
+            }
         }
 
         return m_rect[row][col];
@@ -110,7 +108,7 @@ public:
 
 private:
     std::vector<std::vector<int>> m_rect;
-
+    std::vector<std::vector<int>> m_sub;
 };
 
 #endif // DESIGN_HPP

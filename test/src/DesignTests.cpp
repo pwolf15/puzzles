@@ -43,6 +43,8 @@ TEST(Design, SubrectangleQueries)
             CHECK_EQUAL(rect[i][j], sq.getValue(i, j));
         }
     }
+
+    CHECK_EQUAL(1, sq.getValue(0, 2));
     sq.updateSubrectangle(0, 0, 3, 2, 5);
     for (int i = 0; i < rect.size(); ++i)
     {
@@ -51,4 +53,10 @@ TEST(Design, SubrectangleQueries)
             CHECK_EQUAL(5, sq.getValue(i, j));
         }
     }
+    CHECK_EQUAL(5, sq.getValue(0, 2));
+    CHECK_EQUAL(5, sq.getValue(3, 1));
+
+    sq.updateSubrectangle(3, 0, 3, 2, 10);
+    CHECK_EQUAL(10, sq.getValue(3, 1));
+    CHECK_EQUAL(5, sq.getValue(0, 2));
 }
