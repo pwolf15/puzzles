@@ -31,3 +31,24 @@ TEST(Design, MyHashSet)
     CHECK(!hashSet.contains(2));
 };
 
+TEST(Design, SubrectangleQueries)
+{
+    std::vector<std::vector<int>> rect =
+        {{1,2,1},{4,3,4},{3,2,1},{1,1,1}};
+    SubrectangleQueries sq(rect);
+    for (int i = 0; i < rect.size(); ++i)
+    {
+        for (int j = 0; j < rect[i].size(); ++j)
+        {
+            CHECK_EQUAL(rect[i][j], sq.getValue(i, j));
+        }
+    }
+    sq.updateSubrectangle(0, 0, 3, 2, 5);
+    for (int i = 0; i < rect.size(); ++i)
+    {
+        for (int j = 0; j < rect[i].size(); ++j)
+        {
+            CHECK_EQUAL(5, sq.getValue(i, j));
+        }
+    }
+}

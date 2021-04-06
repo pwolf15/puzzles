@@ -63,4 +63,46 @@ private:
 // private:
 // };
 
+class SubrectangleQueries {
+public:
+    SubrectangleQueries(std::vector<std::vector<int>>& rectangle): m_rect(rectangle) 
+    {
+        
+    }
+    
+    void updateSubrectangle(int row1, int col1, int row2, int col2, int newValue) 
+    {
+        if ((row1 > m_rect.size() || row1 < 0) ||
+            (col1 > m_rect[0].size() || col1 < 0) ||
+            (row2 > m_rect.size() || row2 < 0) ||
+            (col2 > m_rect[0].size() || col2 < 0))
+        {
+            return;
+        }
+
+        for (int i = row1; i <= row2; ++i)
+        {
+            for (int j = col1; j <= col2; ++j)
+            {
+                m_rect[i][j] = newValue;
+            }
+        }
+    }
+    
+    int getValue(int row, int col) 
+    {
+        if ((row > m_rect.size() || row < 0) ||
+            (col > m_rect[0].size() || col < 0))
+        {
+            return -1;
+        }
+
+        return m_rect[row][col];
+    }
+
+private:
+    std::vector<std::vector<int>> m_rect;
+
+};
+
 #endif // DESIGN_HPP
