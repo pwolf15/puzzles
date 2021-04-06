@@ -63,13 +63,21 @@ private:
 // private:
 // };
 
+// storage
+//  O(n)
+// updateSubrectangle
+//  time complexity: O(n)
+//  space complexity: O(1)
+// getValue
+//  time complexity: O(1)
+//  space complexity: O(1)
 class SubrectangleQueries {
 public:
     SubrectangleQueries(std::vector<std::vector<int>>& rectangle): m_rect(rectangle) 
     {
         
     }
-    
+
     void updateSubrectangle(int row1, int col1, int row2, int col2, int newValue) 
     {
         if ((row1 > m_rect.size() || row1 < 0) ||
