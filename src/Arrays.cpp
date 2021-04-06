@@ -4251,6 +4251,8 @@ int findCenter(std::vector<std::vector<int>>& edges)
     return findCenter_PW2(edges);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maximumWealth(std::vector<std::vector<int>>& accounts)
 {
     int maxWealth = 0;
