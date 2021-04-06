@@ -4250,3 +4250,14 @@ int findCenter(std::vector<std::vector<int>>& edges)
 {
     return findCenter_PW2(edges);
 }
+
+int maximumWealth(std::vector<std::vector<int>>& accounts)
+{
+    int maxWealth = 0;
+    for (int i = 0; i < accounts.size(); ++i)
+    {
+        maxWealth = std::max(maxWealth, std::accumulate(accounts[i].begin(), accounts[i].end(), 0));
+    }
+
+    return maxWealth;
+}

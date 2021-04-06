@@ -235,4 +235,6 @@ int findJudge(int N, std::vector<std::vector<int>>& trust);
 
 int findCenter(std::vector<std::vector<int>>& edges);
 
+int maximumWealth(std::vector<std::vector<int>>& accounts);
+
 #endif // ARRAYS_HPP
