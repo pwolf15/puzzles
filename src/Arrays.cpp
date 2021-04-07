@@ -4280,7 +4280,7 @@ std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies)
 
 // time complexity: O(n^2)
 // space complexity: O(n)
-std::vector<int> minOperations(std::string boxes)
+std::vector<int> minOperations_PW1(std::string boxes)
 {
     std::vector<int> indices;
     for (size_t i = 0; i < boxes.size(); ++i)
@@ -4300,4 +4300,49 @@ std::vector<int> minOperations(std::string boxes)
     }
 
     return numOps;
+}
+
+std::vector<int> minOperations_PW2(std::string boxes)
+{
+    int distanceRight = 0, distanceLeft = 0;
+    int onesLeft = 0;
+    int onesRight = 0;
+    for (size_t i = 1; i < boxes.size(); ++i)
+    {
+        if (boxes[i] == '1')
+        {
+            distanceRight += i;
+            onesRight += 1;
+        }
+    }
+
+    std::vector<int> numOps(boxes.size());
+    numOps[0] = distanceRight;
+
+    for (size_t i = 1; i < numOps.size(); ++i)
+    {
+        distanceLeft += onesLeft;
+
+        if (boxes[i - 1] == '1')
+        {
+            distanceLeft += 1;
+            onesLeft++;
+        }
+        if (boxes[i] == '1')
+        {
+            distanceRight -= 1;
+            onesRight--;
+        }
+
+        distanceRight -= onesRight;
+
+        numOps[i] = distanceLeft + distanceRight;
+    }
+    
+    return numOps;
+}
+
+std::vector<int> minOperations(std::string boxes)
+{
+    return minOperations_PW2(boxes);
 }
