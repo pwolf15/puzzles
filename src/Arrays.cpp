@@ -4263,3 +4263,17 @@ int maximumWealth(std::vector<std::vector<int>>& accounts)
 
     return maxWealth;
 }
+
+// time complexity: O(n)
+// space complexity: O(1)
+std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies)
+{
+    int maxCandies = *std::max_element(candies.begin(), candies.end());
+    std::vector<bool> result(candies.size());
+    for (int i = 0; i < candies.size(); ++i)
+    {
+        if ((candies[i] + extraCandies) >= maxCandies) result[i] = true;
+    }
+
+    return result;
+}

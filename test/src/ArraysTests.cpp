@@ -2189,3 +2189,33 @@ TEST(Arrays, MaximumWealth)
     accounts = {{2,8,7},{7,1,3},{1,9,5}};
     CHECK_EQUAL(17, maximumWealth(accounts));
 }
+
+TEST(Arrays, KidsWithCandies)
+{
+    std::vector<int> candies = {2,3,5,1,3};
+    std::vector<bool> result = kidsWithCandies(candies, 3);
+    std::vector<bool> expected = {true,true,true,false,true};
+
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    candies = {4,2,1,1,2};
+    result = kidsWithCandies(candies, 1);
+    expected = {true,false,false,false,false};
+
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    candies = {12,1,12};
+    result = kidsWithCandies(candies, 10);
+    expected = {true,false,true};
+
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

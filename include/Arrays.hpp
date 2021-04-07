@@ -237,4 +237,6 @@ int findCenter(std::vector<std::vector<int>>& edges);
 
 int maximumWealth(std::vector<std::vector<int>>& accounts);
 
+std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies);
+
 #endif // ARRAYS_HPP
