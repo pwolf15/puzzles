@@ -4302,6 +4302,8 @@ std::vector<int> minOperations_PW1(std::string boxes)
     return numOps;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> minOperations_PW2(std::string boxes)
 {
     int distanceRight = 0, distanceLeft = 0;
