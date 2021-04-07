@@ -239,4 +239,6 @@ int maximumWealth(std::vector<std::vector<int>>& accounts);
 
 std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies);
 
+std::vector<int> minOperations(std::string boxes);
+    
 #endif // ARRAYS_HPP

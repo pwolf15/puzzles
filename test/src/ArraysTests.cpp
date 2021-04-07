@@ -2219,3 +2219,22 @@ TEST(Arrays, KidsWithCandies)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, MinOperations2)
+{
+    std::vector<int> expected = { 1,1,3 };
+    std::string boxes = "110";
+    std::vector<int> result = minOperations(boxes);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 11,8,5,4,3,4 };
+    boxes = "001011";
+    result = minOperations(boxes);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

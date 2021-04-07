@@ -233,3 +233,8 @@ TEST(Primitives, Fib)
     CHECK_EQUAL(2, fib(3));
     CHECK_EQUAL(3, fib(4));
 }
+
+TEST(Primitives, MinPartitions)
+{
+    // CHECK_EQUAL(3, minPartitions("32"));
+}

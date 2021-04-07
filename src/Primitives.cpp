@@ -635,3 +635,73 @@ int fib(int n)
     std::unordered_map<int, int> memoized_fib;
     return fibHelper(n, memoized_fib);
 }
+
+std::vector<std::string> generateDeciBinary(int n)
+{
+    if (n <= 0) 
+    {
+        return { };
+    }
+    if (n == 1) 
+    { 
+        return { "0", "1" }; 
+    }
+    std::vector<std::string> ndb = generateDeciBinary(n - 1);
+    std::vector<std::string> db;
+    for (auto b: ndb)
+    {
+        db.push_back("1" + b);
+    }
+    for (auto b: ndb)
+    {
+        db.push_back("0" + b);
+    }
+    return db;
+}
+
+int getMin(std::vector<std::string> bin, std::vector<int>& cache, int n)
+{
+    if (n <= 0) return 0;
+    if (n == 1) return 1;
+    else {
+        int min = std::numeric_limits<int>::max();
+        for (int i = 0; i < bin.size(); ++i)
+        {
+            if (std::stoi(bin[i]) == 0) continue;
+
+            int num = n - std::stoi(bin[i]);
+            if (num >= 0 && num < cache.size())
+            {
+                if (cache[num] == -1)
+                {
+                    cache[num] = getMin(bin, cache, num);
+                }
+            }
+            else
+            {
+                continue;
+            }
+                
+            // std::cout << "min: " << min << std::endl;
+            min = std::min(1 + cache[num], min);
+        } 
+        return min;
+    }
+}
+int minPartitions_Helper(int n)
+{
+    std::vector<std::string> newDeciBinary = generateDeciBinary(5);
+    for (auto b: newDeciBinary)
+    {
+        std::cout << "b: " << b << std::endl;
+    }
+    std::vector<int> cache(n + 1, -1);
+    std::cout << "Min: " << getMin(newDeciBinary, cache, 87432) << std::endl;
+    return getMin(newDeciBinary, cache, 32);
+}
+
+int minPartitions(std::string n)
+{
+    int nNum = std::stoi(n);
+    return minPartitions_Helper(nNum);
+}

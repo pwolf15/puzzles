@@ -4277,3 +4277,25 @@ std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies)
 
     return result;
 }
+
+std::vector<int> minOperations(std::string boxes)
+{
+    std::vector<int> indices;
+    for (size_t i = 0; i < boxes.size(); ++i)
+    {
+        if (boxes[i] == '1')
+            indices.push_back(i);
+    }
+
+    std::vector<int> numOps(boxes.size());
+    for (int i = 0; i < numOps.size(); ++i)
+    {
+        numOps[i] = 0;
+        for (int j = 0; j < indices.size(); ++j)
+        {
+            numOps[i] += abs(indices[j] - i);
+        }
+    }
+
+    return numOps;
+}

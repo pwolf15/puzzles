@@ -59,4 +59,6 @@ int trailingZeroes(int n);
 
 int fib(int n);
 
+int minPartitions(std::string n);
+
 #endif // PRIMITIVES_HPP
