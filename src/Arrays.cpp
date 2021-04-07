@@ -4278,6 +4278,8 @@ std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies)
     return result;
 }
 
+// time complexity: O(n^2)
+// space complexity: O(n)
 std::vector<int> minOperations(std::string boxes)
 {
     std::vector<int> indices;
