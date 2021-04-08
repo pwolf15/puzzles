@@ -4403,7 +4403,7 @@ std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
 
 // time complexity: O(n + n + n log n)
 // space complexity: O(2 * n)
-int heightChecker(std::vector<int>& heights)
+int heightChecker_PW1(std::vector<int>& heights)
 {
     std::vector<std::pair<int, int>> actual;
     int numMismatched = 0;
@@ -4426,4 +4426,27 @@ int heightChecker(std::vector<int>& heights)
         i++;
     }
     return numMismatched;
+}
+
+// time complexity: O(n + n + n log n)
+// space complexity: O(n)
+int heightChecker_PW2(std::vector<int>& heights)
+{
+    std::vector<int> actual;
+    std::copy(heights.begin(), heights.end(), std::back_inserter(actual));
+    std::sort(actual.begin(), actual.end());
+    int numMismatched = 0;
+    for (int i = 0; i < heights.size(); ++i)
+    {
+        if (actual[i] != heights[i])
+        {
+            numMismatched++;
+        }
+    } 
+    return numMismatched;
+}
+
+int heightChecker(std::vector<int>& heights)
+{
+    return heightChecker_PW2(heights);
 }
