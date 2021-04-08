@@ -4351,7 +4351,7 @@ std::vector<int> minOperations(std::string boxes)
 
 // time complexity: O(n^2)
 // space complexity: O(1)
-std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
+std::vector<int> smallerNumbersThanCurrent_PW1(std::vector<int>& nums)
 {
     std::vector<int> numSmaller(nums.size());
     for (int i = 0; i < nums.size(); ++i)
@@ -4365,4 +4365,36 @@ std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
         }
     }
     return numSmaller;
+}
+
+std::vector<int> smallerNumbersThanCurrent_PW2(std::vector<int>& nums)
+{
+    std::vector<int> numSmaller(nums.size());
+    std::vector<int> count(101);
+
+    for (size_t i = 0; i < nums.size(); ++i) 
+    {
+        count[nums[i]]++;
+    }
+    for (size_t i = 1; i <= 100; ++i)
+    {
+        count[i] += count[i - 1];
+    }
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] == 0)
+        {
+            numSmaller[i] = 0;
+        }
+        else
+        {
+            numSmaller[i] = count[nums[i] - 1];
+        }
+    }
+    return numSmaller;
+}
+
+std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
+{
+    return smallerNumbersThanCurrent_PW2(nums);
 }
