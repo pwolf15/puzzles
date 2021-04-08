@@ -2238,3 +2238,30 @@ TEST(Arrays, MinOperations2)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, SmallerNumbersThanCurrent)
+{
+    std::vector<int> expected = { 4,0,1,1,3 };
+    std::vector<int> nums = { 8,1,2,2,3 };
+    std::vector<int> result = smallerNumbersThanCurrent(nums);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 2,1,0,3 };
+    nums = { 6,5,4,8 };
+    result = smallerNumbersThanCurrent(nums);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 0, 0, 0, 0};
+    nums = { 7,7,7,7 };
+    result = smallerNumbersThanCurrent(nums);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

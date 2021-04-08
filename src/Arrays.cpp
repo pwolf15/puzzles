@@ -4348,3 +4348,19 @@ std::vector<int> minOperations(std::string boxes)
 {
     return minOperations_PW2(boxes);
 }
+
+std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
+{
+    std::vector<int> numSmaller(nums.size());
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        for (int j = 0; j < nums.size(); ++j)
+        {
+            if (nums[j] < nums[i])
+            {
+                numSmaller[i]++;
+            }
+        }
+    }
+    return numSmaller;
+}
