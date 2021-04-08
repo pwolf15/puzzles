@@ -4400,3 +4400,28 @@ std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
 {
     return smallerNumbersThanCurrent_PW2(nums);
 }
+
+int heightChecker(std::vector<int>& heights)
+{
+    std::vector<std::pair<int, int>> actual;
+    int numMismatched = 0;
+
+    size_t i = 0;
+    for (auto height: heights)
+    {
+        actual.push_back({ i++, height});
+    }
+    std::sort(actual.begin(), actual.end(), [](std::pair<int, int> p1, std::pair<int, int> p2) {
+        return p1.second < p2.second;
+    });
+    i = 0;
+    for (auto pair: actual)
+    {
+        if (pair.first != i && actual[pair.first].second != pair.second)
+        {
+            numMismatched++;
+        }
+        i++;
+    }
+    return numMismatched;
+}

@@ -105,4 +105,6 @@ char findTheDifference(std::string s, std::string t);
 
 int countCharacters(std::vector<std::string>& words, std::string chars);
 
+std::string sortString(std::string s);
+
 #endif // STRINGS_HPP

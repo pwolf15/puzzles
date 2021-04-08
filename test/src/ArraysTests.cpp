@@ -2265,3 +2265,18 @@ TEST(Arrays, SmallerNumbersThanCurrent)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, HeightChecker)
+{
+    std::vector<int> heights = { 1,1,4,2,1,3 };
+    CHECK_EQUAL(3, heightChecker(heights));
+
+    heights = { 5,1,2,3,4 };
+    CHECK_EQUAL(5, heightChecker(heights));
+
+    heights = { 1,2,3,4,5 };
+    CHECK_EQUAL(0, heightChecker(heights));
+
+    heights = { 2,1,2,1,1,2,2,1 };
+    CHECK_EQUAL(4, heightChecker(heights));
+}

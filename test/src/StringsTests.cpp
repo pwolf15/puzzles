@@ -668,3 +668,8 @@ TEST(Strings, CountCharacters)
     chars = "welldonehoneyr";
     CHECK_EQUAL(10, countCharacters(words, chars));
 }
+
+TEST(Strings, SortString)
+{
+    // CHECK_EQUAL("abccbaabccba", sortString("aaaabbbbcccc"));
+}

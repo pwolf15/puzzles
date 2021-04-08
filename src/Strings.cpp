@@ -2452,3 +2452,37 @@ int countCharacters(std::vector<std::string>& words, std::string chars)
 {
     return countCharacters_PW2(words, chars);
 }
+
+std::string sortString(std::string s)
+{
+    std::string result;
+    std::sort(s.begin(), s.end());
+    int i = 0;
+    int j = s.size() - 1;
+    int k = i + 1;
+
+    while (result.size() != s.size())
+    {
+        // smallest character from s
+        result += s[i];
+        i++;
+        while (k != s.size() && s[k] == s[i])
+        {
+            k++;
+        }
+
+        int l = j;
+        while (l >= 0 && s[l] == s[j])
+        {
+            l--;
+        }
+        result += s[k];
+        k++;
+        result += s[j];
+        j--;
+        result += s[l];
+        l--;
+    }
+
+    return result;
+}

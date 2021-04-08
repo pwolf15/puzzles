@@ -243,4 +243,6 @@ std::vector<int> minOperations(std::string boxes);
 
 std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums);
 
+int heightChecker(std::vector<int>& heights);
+
 #endif // ARRAYS_HPP
