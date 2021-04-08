@@ -4349,6 +4349,8 @@ std::vector<int> minOperations(std::string boxes)
     return minOperations_PW2(boxes);
 }
 
+// time complexity: O(n^2)
+// space complexity: O(1)
 std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
 {
     std::vector<int> numSmaller(nums.size());
