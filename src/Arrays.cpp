@@ -4401,6 +4401,8 @@ std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums)
     return smallerNumbersThanCurrent_PW2(nums);
 }
 
+// time complexity: O(n + n + n log n)
+// space complexity: O(2 * n)
 int heightChecker(std::vector<int>& heights)
 {
     std::vector<std::pair<int, int>> actual;
