@@ -4367,6 +4367,8 @@ std::vector<int> smallerNumbersThanCurrent_PW1(std::vector<int>& nums)
     return numSmaller;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> smallerNumbersThanCurrent_PW2(std::vector<int>& nums)
 {
     std::vector<int> numSmaller(nums.size());
