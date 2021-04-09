@@ -238,3 +238,19 @@ TEST(Primitives, MinPartitions)
 {
     // CHECK_EQUAL(3, minPartitions("32"));
 }
+
+TEST(Primitives, GuessNumber)
+{
+    Guesser guesser(1);
+    CHECK_EQUAL(1, guesser.guessNumber(32));
+    Guesser guesser2(37);
+    CHECK_EQUAL(37, guesser2.guessNumber(100));
+    Guesser guesser3(6);
+    CHECK_EQUAL(6, guesser3.guessNumber(10));
+    Guesser guesser4(1);
+    CHECK_EQUAL(1, guesser4.guessNumber(1));
+    Guesser guesser5(1);
+    CHECK_EQUAL(1, guesser5.guessNumber(2));
+    Guesser guesser6(2);
+    CHECK_EQUAL(2, guesser6.guessNumber(2));
+}

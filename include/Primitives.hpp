@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdint.h>
 #include <string>
+#include <iostream>
 
 short CountBits(unsigned int x);
 
@@ -60,5 +61,56 @@ int trailingZeroes(int n);
 int fib(int n);
 
 int minPartitions(std::string n);
+
+class Guesser 
+{
+public:
+
+    Guesser(int seed): m_seed(seed)
+    {
+
+    }
+
+    int guess(int n) 
+    {
+        if (n > m_seed)
+        {
+            return -1;
+        }
+        else if (n == m_seed)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    int guessNumber(int n)
+    {
+        int lower = 0;
+        int upper = n;
+        int myGuess = (upper - lower) / 2;
+        int result = guess(myGuess);
+        while (result != 0)
+        {
+            if (result == 1)
+            {
+                lower = myGuess + 1;
+                myGuess = (upper - lower) / 2 + lower;
+            }
+            else if (result == -1)
+            {
+                upper = myGuess - 1;
+                myGuess = (upper - lower) / 2 + lower;
+            }
+            result = guess(myGuess);
+        }
+        return myGuess;
+    }
+private:
+    int m_seed;
+};
 
 #endif // PRIMITIVES_HPP
