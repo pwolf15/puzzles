@@ -2280,3 +2280,11 @@ TEST(Arrays, HeightChecker)
     heights = { 2,1,2,1,1,2,2,1 };
     CHECK_EQUAL(4, heightChecker(heights));
 }
+
+TEST(Arrays, GetMaximumGenerated)
+{
+    CHECK_EQUAL(3, getMaximumGenerated(7));
+    CHECK_EQUAL(1, getMaximumGenerated(2));
+    CHECK_EQUAL(2, getMaximumGenerated(3));
+    CHECK_EQUAL(1, getMaximumGenerated(1));
+}

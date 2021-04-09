@@ -245,4 +245,6 @@ std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums);
 
 int heightChecker(std::vector<int>& heights);
 
+int getMaximumGenerated(int n);
+
 #endif // ARRAYS_HPP

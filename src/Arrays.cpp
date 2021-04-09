@@ -4450,3 +4450,30 @@ int heightChecker(std::vector<int>& heights)
 {
     return heightChecker_PW2(heights);
 }
+
+int getMaximumGenerated(int n)
+{
+    int i = 0;
+    std::vector<int> nums(n + 1);
+    while (i <= n)
+    {
+        if (i == 0 || i == 1)
+        {
+            nums[i] = i;
+        }
+        
+        if ((2 * i) >= 2 && (2 * i) <= n)
+        {
+            nums[2 * i] = nums[i];
+        }
+        
+        if ((2 * i + 1) >= 2 && (2 * i + 1) <= n)
+        {
+            nums[2 * i + 1] = nums[i] + nums[i + 1];
+        }
+
+        i++;
+    }
+
+    return *std::max_element(nums.begin(), nums.end());
+}
