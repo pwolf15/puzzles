@@ -87,6 +87,8 @@ public:
         }
     }
 
+    // time complexity: O(log n)
+    // space complexity: O(1)
     int guessNumber(int n)
     {
         int lower = 0;
