@@ -4451,6 +4451,8 @@ int heightChecker(std::vector<int>& heights)
     return heightChecker_PW2(heights);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int getMaximumGenerated(int n)
 {
     int i = 0;
