@@ -4556,10 +4556,11 @@ std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, in
 // space complexity: O(n)
 std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
 {
-    std::vector<std::vector<int>> result;
+    std::vector<std::vector<int>> result(M.size());
     for (size_t i = 0; i < M.size(); ++i)
     {
-        result.push_back({});
+        std::vector<int> rowData(M[0].size());
+        result[i] = rowData;
         for (size_t j = 0; j < M[0].size(); ++j)
         {
             int sum = 0;
@@ -4572,11 +4573,7 @@ std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
                     int row = k + i;
                     int col = j + l;
 
-                    if (row < 0 || row >= M.size())
-                    {
-                        continue;
-                    }
-                    else if (col < 0 || col >= M[0].size())
+                    if (row < 0 || row >= M.size() || col < 0 || col >= M[0].size())
                     {
                         continue;
                     }
@@ -4588,7 +4585,7 @@ std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
                 }
             }
 
-            result[i].push_back(floor((float)sum/(float)numPixels));
+            result[i][j] = floor((float)sum/(float)numPixels);
         }
     }
 
