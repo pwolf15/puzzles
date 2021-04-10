@@ -4484,7 +4484,7 @@ int getMaximumGenerated(int n)
 
 // space complexity: O(n)
 // time complexity: O(n)
-std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
+std::vector<std::vector<int>> floodFill_PW1(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
 {
     std::queue<std::pair<int, int>> coords;
     coords.push({ sc, sr });
@@ -4525,4 +4525,29 @@ std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, in
         }
     }
     return image;
+}
+
+void dfs(std::vector<std::vector<int>>& image, int r, int c, int curColor, int newColor)
+{
+    if (image[r][c] == curColor)
+    {
+        image[r][c] = newColor;
+        if ((r + 1) < image.size()) dfs(image, r + 1, c, curColor, newColor); 
+        if ((r - 1) >= 0) dfs(image, r - 1, c, curColor, newColor); 
+        if ((c + 1) < image[0].size()) dfs(image, r, c+1, curColor, newColor);
+        if ((c - 1) >= 0) dfs(image, r, c-1, curColor, newColor);
+    }
+}
+
+std::vector<std::vector<int>> floodFill_PW2(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
+{
+    if (image[sr][sc] == newColor) return image;
+    
+    dfs(image, sr, sc, image[sr][sc], newColor);
+    return image;
+}
+
+std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
+{
+    return floodFill_PW2(image, sr, sc, newColor);
 }
