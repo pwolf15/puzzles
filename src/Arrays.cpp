@@ -4552,6 +4552,8 @@ std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, in
     return floodFill_PW2(image, sr, sc, newColor);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
 {
     std::vector<std::vector<int>> result;
