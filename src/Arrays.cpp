@@ -4482,6 +4482,8 @@ int getMaximumGenerated(int n)
     return *std::max_element(nums.begin(), nums.end());
 }
 
+// space complexity: O(n)
+// time complexity: O(n)
 std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
 {
     std::queue<std::pair<int, int>> coords;
@@ -4489,7 +4491,7 @@ std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, in
     int curColor = image[sr][sc];
 
     if (curColor == newColor) return image;
-    
+
     int width = image[0].size(); 
     int height = image.size();
 
