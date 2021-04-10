@@ -5,6 +5,7 @@
 
 #include <stack>
 #include <map>
+#include <queue>
 
 void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head);
 
@@ -81,6 +82,84 @@ private:
         int element, max;
     };
     std::stack<ElementWithCachedMax> element_with_cached_max_;
+};
+
+
+class MyStack {
+public:
+    /** Initialize your data structure here. */
+    MyStack() {
+        
+    }
+    
+    /** Push element x onto stack. */
+    void push(int x) {
+        m_a.push(x);
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    int pop() {
+
+        while (true)
+        {
+            if (m_a.empty())
+            {
+                break;
+            }
+
+            int cur = m_a.front();
+            m_a.pop();
+
+            if (m_a.empty())
+            {
+                std::swap(m_a, m_b);
+                return cur;
+            }
+            else
+            {
+                m_b.push(cur);
+            }
+        }
+
+        return -1;
+    }
+    
+    /** Get the top element. */
+    int top() {
+
+        while (true)
+        {
+            if (m_a.empty())
+            {
+                break;
+            }
+
+            int cur = m_a.front();
+            m_a.pop();
+
+            if (m_a.empty())
+            {
+                m_b.push(cur);
+                std::swap(m_a, m_b);
+                return cur;
+            }
+            else
+            {
+                m_b.push(cur);
+            }
+        }
+
+        return -1;
+    }
+    
+    /** Returns whether the stack is empty. */
+    bool empty() {
+        return m_a.empty();
+    }
+
+private:
+    std::queue<int> m_a;
+    std::queue<int> m_b;
 };
 
 #endif // STACKS_HPP

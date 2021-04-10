@@ -50,3 +50,14 @@ TEST(Stacks, StackWithMax)
         s2.Pop();
     }
 };
+
+TEST(Stacks, MyStack)
+{
+    MyStack myStack;
+    myStack.push(1);
+    myStack.push(2);
+    CHECK_EQUAL(2, myStack.top());
+    CHECK_EQUAL(2, myStack.pop());
+    CHECK_EQUAL(1, myStack.pop());
+    CHECK(myStack.empty());
+};
