@@ -92,11 +92,13 @@ public:
         
     }
     
+    // time complexity: O(1)
     /** Push element x onto stack. */
     void push(int x) {
         m_a.push(x);
     }
     
+    // time complexity: O(n)
     /** Removes the element on top of the stack and returns that element. */
     int pop() {
 
@@ -124,6 +126,7 @@ public:
         return -1;
     }
     
+    // time complexity: O(n)
     /** Get the top element. */
     int top() {
 
