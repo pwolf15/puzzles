@@ -5,9 +5,11 @@
 #include <set>
 #include <unordered_map>
 #include <deque>
+#include <queue>
 #include <cmath>
 #include <map>
 #include <numeric>
+#include <stack>
 
 // RNG
 #include <ctime>
@@ -4478,4 +4480,47 @@ int getMaximumGenerated(int n)
     }
 
     return *std::max_element(nums.begin(), nums.end());
+}
+
+std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
+{
+    std::queue<std::pair<int, int>> coords;
+    coords.push({ sc, sr });
+    int curColor = image[sr][sc];
+
+    if (curColor == newColor) return image;
+    
+    int width = image[0].size(); 
+    int height = image.size();
+
+    while (!coords.empty())
+    {
+        auto curCoord = coords.front();
+        int row = curCoord.second;
+        int col = curCoord.first;
+        coords.pop();
+
+        if (image[row][col] == curColor)
+        {
+            image[row][col] = newColor;
+        }
+
+        if (((row + 1) < height) && image[row + 1][col] == curColor)
+        {
+            coords.push({col, row + 1});
+        }
+        if (((row - 1) >= 0) && image[row - 1][col] == curColor)
+        {
+            coords.push({col, row - 1});
+        }
+        if (((col + 1) < width) && image[row][col + 1] == curColor)
+        {
+            coords.push({col + 1, row});
+        }
+        if (((col - 1) >= 0) && image[row][col - 1] == curColor)
+        {
+            coords.push({col - 1, row});
+        }
+    }
+    return image;
 }

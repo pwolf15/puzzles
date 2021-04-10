@@ -247,4 +247,6 @@ int heightChecker(std::vector<int>& heights);
 
 int getMaximumGenerated(int n);
 
+std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor);
+
 #endif // ARRAYS_HPP

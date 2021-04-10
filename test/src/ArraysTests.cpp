@@ -2288,3 +2288,30 @@ TEST(Arrays, GetMaximumGenerated)
     CHECK_EQUAL(2, getMaximumGenerated(3));
     CHECK_EQUAL(1, getMaximumGenerated(1));
 }
+
+TEST(Arrays, FloodFill)
+{
+    std::vector<std::vector<int>> expected =
+     {{2,2,2},{2,2,0},{2,0,1}};
+    std::vector<std::vector<int>> image =
+     {{1,1,1},{1,1,0},{1,0,1}};
+    auto result = floodFill(image, 1, 1, 2);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    expected = {{0,0,0},{0,1,1}};
+    image = {{0,0,0},{0,1,1}};
+    result = floodFill(image, 1, 1, 1);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+} 
