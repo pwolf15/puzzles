@@ -107,4 +107,6 @@ int countCharacters(std::vector<std::string>& words, std::string chars);
 
 std::string sortString(std::string s);
 
+std::string gcdOfStrings(std::string str1, std::string str2);
+
 #endif // STRINGS_HPP

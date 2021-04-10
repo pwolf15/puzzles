@@ -673,3 +673,8 @@ TEST(Strings, SortString)
 {
     // CHECK_EQUAL("abccbaabccba", sortString("aaaabbbbcccc"));
 }
+
+TEST(Strings, GcdOfStrings)
+{
+    CHECK_EQUAL("ABC", gcdOfStrings("ABCABC", "ABC"));
+}

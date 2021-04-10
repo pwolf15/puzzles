@@ -2486,3 +2486,8 @@ std::string sortString(std::string s)
 
     return result;
 }
+
+std::string gcdOfStrings(std::string str1, std::string str2)
+{
+    return "";
+}
