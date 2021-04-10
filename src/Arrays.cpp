@@ -4542,7 +4542,7 @@ void dfs(std::vector<std::vector<int>>& image, int r, int c, int curColor, int n
 std::vector<std::vector<int>> floodFill_PW2(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
 {
     if (image[sr][sc] == newColor) return image;
-    
+
     dfs(image, sr, sc, image[sr][sc], newColor);
     return image;
 }
@@ -4550,4 +4550,45 @@ std::vector<std::vector<int>> floodFill_PW2(std::vector<std::vector<int>>& image
 std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor)
 {
     return floodFill_PW2(image, sr, sc, newColor);
+}
+
+std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
+{
+    std::vector<std::vector<int>> result;
+    for (size_t i = 0; i < M.size(); ++i)
+    {
+        result.push_back({});
+        for (size_t j = 0; j < M[0].size(); ++j)
+        {
+            int sum = 0;
+            int numPixels = 0;
+
+            for (int k = -1; k <= 1; ++k)
+            {
+                for (int l = -1; l <= 1; ++l)
+                {
+                    int row = k + i;
+                    int col = j + l;
+
+                    if (row < 0 || row >= M.size())
+                    {
+                        continue;
+                    }
+                    else if (col < 0 || col >= M[0].size())
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        numPixels++;
+                        sum += M[row][col];
+                    }
+                }
+            }
+
+            result[i].push_back(floor((float)sum/(float)numPixels));
+        }
+    }
+
+    return result;
 }

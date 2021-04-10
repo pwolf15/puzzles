@@ -249,4 +249,6 @@ int getMaximumGenerated(int n);
 
 std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, int sr, int sc, int newColor);
 
+std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M);
+
 #endif // ARRAYS_HPP

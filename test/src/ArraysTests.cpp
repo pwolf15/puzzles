@@ -2314,4 +2314,45 @@ TEST(Arrays, FloodFill)
             CHECK_EQUAL(expected[i][j], result[i][j]);
         }
     }
+}
+
+TEST(Arrays, ImageSmoother)
+{
+    std::vector<std::vector<int>> expected =
+        {{0,0,0},
+        {0,0,0},
+        {0,0,0}};
+
+    std::vector<std::vector<int>> image =
+        {{1,1,1},
+        {1,0,1},
+        {1,1,1}};
+
+    auto result = imageSmoother(image);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    expected =
+        {{255, 255, 255},
+        {255, 255, 255},
+        {255, 255, 255}};
+
+    image =
+        {{255, 255, 255},
+        {255, 255, 255},
+        {255, 255, 255}};
+
+    result = imageSmoother(image);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
 } 
