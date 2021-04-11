@@ -251,4 +251,6 @@ std::vector<std::vector<int>> floodFill(std::vector<std::vector<int>>& image, in
 
 std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M);
 
+int majorityElement(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

@@ -2356,3 +2356,12 @@ TEST(Arrays, ImageSmoother)
         }
     }
 } 
+
+TEST(Arrays, MajorityElement)
+{
+    std::vector<int> nums = {3,2,3};
+    CHECK_EQUAL(3, majorityElement(nums));
+
+    nums = {2,2,1,1,1,2,2};
+    CHECK_EQUAL(2, majorityElement(nums));
+}

@@ -4591,3 +4591,9 @@ std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
 
     return result;
 }
+
+int majorityElement(std::vector<int>& nums)
+{
+    std::sort(nums.begin(), nums.end());
+    return nums[nums.size() / 2];
+}
