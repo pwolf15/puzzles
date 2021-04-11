@@ -53,7 +53,7 @@ TEST(Stacks, StackWithMax)
 
 TEST(Stacks, MyStack)
 {
-    MyStack myStack;
+    MyStack2 myStack;
     myStack.push(1);
     myStack.push(2);
     CHECK_EQUAL(2, myStack.top());
