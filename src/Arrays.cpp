@@ -4592,6 +4592,8 @@ std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
     return result;
 }
 
+// time complexity: O(n log n)
+// space complexity: O(1)
 int majorityElement(std::vector<int>& nums)
 {
     std::sort(nums.begin(), nums.end());
