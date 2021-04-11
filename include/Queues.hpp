@@ -8,6 +8,8 @@ public:
         
     }
     
+    // time complexity: O(1)
+    // space complexity: O(n)
     /** Push element x to the back of queue. */
     void push(int x) {
         m_a.push(x);
@@ -18,6 +20,8 @@ public:
         }
     }
     
+    // time complexity: O(n)
+    // space complexity: O(n)
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
 
@@ -45,6 +49,8 @@ public:
         return front;
     }
     
+    // time complexity: O(n)
+    // space complexity: O(n)
     /** Get the front element. */
     int peek() {
         
