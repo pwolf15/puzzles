@@ -2365,3 +2365,27 @@ TEST(Arrays, MajorityElement)
     nums = {2,2,1,1,1,2,2};
     CHECK_EQUAL(2, majorityElement(nums));
 }
+
+TEST(Arrays, AllCellsDistOrder)
+{
+    std::vector<std::vector<int>> expected = 
+        {{0,0},{0,1}};
+    auto result = allCellsDistOrder(1, 2, 0, 0);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (auto j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    expected = {{2,3},{1,3},{2,2},{2,4},{0,3},{1,2},{1,4},{2,1},{0,2},{0,4},{1,1},{2,0},{0,1},{1,0},{0,0}};
+    result = allCellsDistOrder(3, 5, 2, 3);
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (auto j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}

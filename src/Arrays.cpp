@@ -4642,3 +4642,23 @@ int majorityElement(std::vector<int>& nums)
 {
     return majorityElement_PW3(nums);
 }
+
+std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0)
+{
+    std::vector<std::vector<int>> cells;
+    for (int i = 0; i < R; ++i)
+    {
+        for (int j = 0; j < C; ++j)
+        {
+            cells.push_back({ i, j });
+        }
+    }
+
+    std::sort(cells.begin(), cells.end(), [r0, c0](std::vector<int> cellA, std::vector<int> cellB) {
+        auto distanceA = abs(cellA[0] - r0) + abs(cellA[1] - c0);
+        auto distanceB = abs(cellB[0] - r0) + abs(cellB[1] - c0);
+        return distanceA < distanceB;
+    });
+
+    return cells;
+}
