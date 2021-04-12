@@ -4643,6 +4643,8 @@ int majorityElement(std::vector<int>& nums)
     return majorityElement_PW3(nums);
 }
 
+// time complexity: O(n + n log n)
+// space complexity: O(1)
 std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0)
 {
     std::vector<std::vector<int>> cells;
