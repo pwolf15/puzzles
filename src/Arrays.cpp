@@ -4594,8 +4594,51 @@ std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& M)
 
 // time complexity: O(n log n)
 // space complexity: O(1)
-int majorityElement(std::vector<int>& nums)
+int majorityElement_PW1(std::vector<int>& nums)
 {
     std::sort(nums.begin(), nums.end());
     return nums[nums.size() / 2];
+}
+
+int majorityElement_PW2(std::vector<int>& nums)
+{
+    std::unordered_map<int, int> counts;
+    for (size_t i = 0; i < nums.size(); ++i)
+    {
+        counts[nums[i]]++;
+    }
+
+    int majority = 0;
+    for (auto pair: counts)
+    {
+        if (pair.second >= round((float)nums.size() / (float)2))
+        {
+            majority = pair.first;
+            break;
+        }
+    }
+
+    return majority;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+// Boyer Moore voting
+int majorityElement_PW3(std::vector<int>& nums)
+{
+    int count = 0;
+    int candidate = -1;
+    for (auto num : nums) {
+        if (count == 0) {
+            candidate = num;
+        }
+        count += (num == candidate) ? 1 : -1;
+    }
+
+    return candidate;
+}
+
+int majorityElement(std::vector<int>& nums)
+{
+    return majorityElement_PW3(nums);
 }
