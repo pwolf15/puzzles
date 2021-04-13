@@ -2532,6 +2532,8 @@ bool isIsomorphic(std::string s, std::string t)
     return t == s;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<std::string> findWords(std::vector<std::string>& words)
 {
     std::string row1 = "qwertyuiop";
