@@ -2492,6 +2492,8 @@ std::string gcdOfStrings(std::string str1, std::string str2)
     return "";
 }
 
+// space complexity: O(n)
+// time complexity: O(n)
 bool isIsomorphic(std::string s, std::string t)
 {
     if (s.size() != t.size())
