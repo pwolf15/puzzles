@@ -111,4 +111,6 @@ std::string gcdOfStrings(std::string str1, std::string str2);
 
 bool isIsomorphic(std::string s, std::string t);
 
+std::vector<std::string> findWords(std::vector<std::string>& words);
+
 #endif // STRINGS_HPP

@@ -687,3 +687,33 @@ TEST(Strings, IsIsomorphic)
     CHECK(!isIsomorphic("bbbaaaba", "aaabbbba"));
     CHECK(!isIsomorphic("aabbaa", "ccddee"));
 }
+
+TEST(Strings, FindWords)
+{
+    std::vector<std::string> words = {"Hello","Alaska","Dad","Peace"};
+    std::vector<std::string> expected = {"Alaska","Dad"};
+    std::vector<std::string> result = findWords(words);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    words = {"omk"};
+    expected = {};
+    result = findWords(words);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    words = {"adsdf","SFD"};
+    expected = {"adsdf","SFD"};
+    result = findWords(words);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

@@ -2531,3 +2531,38 @@ bool isIsomorphic(std::string s, std::string t)
 
     return t == s;
 }
+
+std::vector<std::string> findWords(std::vector<std::string>& words)
+{
+    std::string row1 = "qwertyuiop";
+    std::string row2 = "asdfghjkl";
+    std::string row3 = "zxcvbnm";
+    
+    std::vector<std::string> wordsInOneRow;
+    for (auto word: words)
+    {
+        std::set<int> rows;
+        for (auto c: word)
+        {
+            if (row1.find(std::tolower(c)) != std::string::npos)
+            {
+                rows.insert(1);
+            }
+            else if (row2.find(std::tolower(c)) != std::string::npos)
+            {
+                rows.insert(2);
+            }
+            else if (row3.find(std::tolower(c)) != std::string::npos)
+            {
+                rows.insert(3);
+            }
+        }
+
+        if (rows.size() == 1)
+        {
+            wordsInOneRow.push_back(word);
+        }
+    }
+
+    return wordsInOneRow;
+}
