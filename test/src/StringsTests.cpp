@@ -678,3 +678,12 @@ TEST(Strings, GcdOfStrings)
 {
 //    CHECK_EQUAL("ABC", gcdOfStrings("ABCABC", "ABC"));
 }
+
+TEST(Strings, IsIsomorphic)
+{
+    CHECK(isIsomorphic("egg", "add"));
+    CHECK(!isIsomorphic("foo", "bar"));
+    CHECK(isIsomorphic("paper", "title"));
+    CHECK(!isIsomorphic("bbbaaaba", "aaabbbba"));
+    CHECK(!isIsomorphic("aabbaa", "ccddee"));
+}

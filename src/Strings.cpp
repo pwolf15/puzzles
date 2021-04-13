@@ -2491,3 +2491,41 @@ std::string gcdOfStrings(std::string str1, std::string str2)
 {
     return "";
 }
+
+bool isIsomorphic(std::string s, std::string t)
+{
+    if (s.size() != t.size())
+    {
+        return false;
+    }
+
+    std::unordered_map<char, char> myMap;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (myMap.find(t[i]) == myMap.end())
+        {
+            myMap[t[i]] = s[i];
+        }
+        else if (myMap[t[i]] != s[i])
+        {
+            return false;
+        }
+
+        t[i] = s[i];
+    }
+
+    std::set<int> chars;
+    for (auto p: myMap)
+    {
+        if (chars.find(p.second) == chars.end())
+        {
+            chars.insert(p.second);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return t == s;
+}

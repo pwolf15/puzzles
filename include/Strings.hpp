@@ -109,4 +109,6 @@ std::string sortString(std::string s);
 
 std::string gcdOfStrings(std::string str1, std::string str2);
 
+bool isIsomorphic(std::string s, std::string t);
+
 #endif // STRINGS_HPP
