@@ -739,6 +739,8 @@ bool isHappy(int n)
     return n == 1;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int findKthPositive(std::vector<int>& arr, int k)
 {
     int i = 1;
