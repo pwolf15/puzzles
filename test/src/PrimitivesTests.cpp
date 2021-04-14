@@ -257,8 +257,17 @@ TEST(Primitives, GuessNumber)
 
 TEST(Primitives, IsHappy)
 {
-    // CHECK(isHappy(19));
-    // CHECK(!isHappy(2));
-    // CHECK(!isHappy(3));
+    CHECK(isHappy(19));
+    CHECK(!isHappy(2));
+    CHECK(!isHappy(3));
     CHECK(isHappy(13));
+}
+
+TEST(Primitives, FindKthPositive)
+{
+    std::vector<int> arr = { 2, 3, 4, 7, 11 };
+    CHECK_EQUAL(9, findKthPositive(arr, 5));
+
+    arr = { 1, 2, 3, 4};
+    CHECK_EQUAL(6, findKthPositive(arr, 2));
 }

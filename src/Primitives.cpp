@@ -738,3 +738,30 @@ bool isHappy(int n)
 
     return n == 1;
 }
+
+int findKthPositive(std::vector<int>& arr, int k)
+{
+    int i = 1;
+    int j = 0;
+
+    while (k)
+    {
+        if (j >= arr.size())
+        {
+            i++;
+            k--;
+            continue;
+        }
+        if (arr[j] > i)
+        {
+            k--;
+            i++;
+            continue;
+        }
+
+        j++;
+        i++;
+    }
+
+    return i-1;
+}

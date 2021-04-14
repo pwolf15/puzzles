@@ -117,4 +117,6 @@ private:
 
 bool isHappy(int n);
 
+int findKthPositive(std::vector<int>& arr, int k);
+
 #endif // PRIMITIVES_HPP
