@@ -706,9 +706,10 @@ int minPartitions(std::string n)
     return minPartitions_Helper(nNum);
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 bool isHappy(int n) 
 {
-
     int arr[100] = { 0 };
     while (true)
     {
