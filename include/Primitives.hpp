@@ -115,4 +115,6 @@ private:
     int m_seed;
 };
 
+bool isHappy(int n);
+
 #endif // PRIMITIVES_HPP

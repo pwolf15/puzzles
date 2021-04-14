@@ -254,3 +254,11 @@ TEST(Primitives, GuessNumber)
     Guesser guesser6(2);
     CHECK_EQUAL(2, guesser6.guessNumber(2));
 }
+
+TEST(Primitives, IsHappy)
+{
+    // CHECK(isHappy(19));
+    // CHECK(!isHappy(2));
+    // CHECK(!isHappy(3));
+    CHECK(isHappy(13));
+}

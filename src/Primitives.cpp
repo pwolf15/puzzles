@@ -706,3 +706,34 @@ int minPartitions(std::string n)
     return minPartitions_Helper(nNum);
 }
 
+bool isHappy(int n) 
+{
+
+    int arr[100] = { 0 };
+    while (true)
+    {
+        int tmp = n;
+        n = 0;
+        
+        while (tmp)
+        {
+            n += pow(tmp % 10, 2);
+            tmp /= 10;
+        }
+
+        if (n == 1)
+        {
+            return n;
+        }
+        else if (n < 100 && arr[n] == 1)
+        {
+            return false;
+        }
+        else if (n < 100)
+        {
+            arr[n] = 1;
+        }
+    }
+
+    return n == 1;
+}
