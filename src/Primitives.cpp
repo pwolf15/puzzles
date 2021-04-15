@@ -768,6 +768,8 @@ int findKthPositive(std::vector<int>& arr, int k)
     return i-1;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)s
 int xorOperation(int n, int start)
 {
     int result = 0;
