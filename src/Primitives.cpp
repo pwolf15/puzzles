@@ -767,3 +767,13 @@ int findKthPositive(std::vector<int>& arr, int k)
 
     return i-1;
 }
+
+int xorOperation(int n, int start)
+{
+    int result = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        result ^= 2*i + start;
+    }
+    return result;
+}

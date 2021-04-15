@@ -271,3 +271,11 @@ TEST(Primitives, FindKthPositive)
     arr = { 1, 2, 3, 4};
     CHECK_EQUAL(6, findKthPositive(arr, 2));
 }
+
+TEST(Primitives, XorOperation)
+{
+    CHECK_EQUAL(8, xorOperation(5, 0));
+    CHECK_EQUAL(8, xorOperation(4, 3));
+    CHECK_EQUAL(7, xorOperation(1, 7));
+    CHECK_EQUAL(2, xorOperation(10, 5));
+}

@@ -119,4 +119,6 @@ bool isHappy(int n);
 
 int findKthPositive(std::vector<int>& arr, int k);
 
+int xorOperation(int n, int start);
+
 #endif // PRIMITIVES_HPP
