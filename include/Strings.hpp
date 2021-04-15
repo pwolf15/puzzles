@@ -113,4 +113,6 @@ bool isIsomorphic(std::string s, std::string t);
 
 std::vector<std::string> findWords(std::vector<std::string>& words);
 
+int balancedStringSplit(std::string s);
+
 #endif // STRINGS_HPP

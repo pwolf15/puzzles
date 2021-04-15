@@ -717,3 +717,11 @@ TEST(Strings, FindWords)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Strings, BalancedStringSplit)
+{
+    CHECK_EQUAL(4, balancedStringSplit("RLRRLLRLRL"));
+    CHECK_EQUAL(3, balancedStringSplit("RLLLLRRRLR"));
+    CHECK_EQUAL(1, balancedStringSplit("LLLLRRRR"));
+    CHECK_EQUAL(2, balancedStringSplit("RLRRRLLRLL"));
+}

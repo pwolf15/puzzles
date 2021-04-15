@@ -2568,3 +2568,31 @@ std::vector<std::string> findWords(std::vector<std::string>& words)
 
     return wordsInOneRow;
 }
+
+int balancedStringSplit(std::string s)
+{
+    int numLs = 0;
+    int numRs = 0;
+    int numStr = 0;
+
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == 'L') 
+        {
+            numLs++;
+        }
+        else
+        {
+            numRs++;
+        }
+
+        if (numLs == numRs && numLs && numRs)
+        {
+            numStr++;
+            numLs = 0;
+            numRs = 0;
+        }
+    }
+
+    return numStr;
+}
