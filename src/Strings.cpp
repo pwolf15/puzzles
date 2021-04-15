@@ -2569,6 +2569,8 @@ std::vector<std::string> findWords(std::vector<std::string>& words)
     return wordsInOneRow;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int balancedStringSplit(std::string s)
 {
     int numLs = 0;
