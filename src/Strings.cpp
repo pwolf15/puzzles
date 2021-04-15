@@ -2573,26 +2573,24 @@ std::vector<std::string> findWords(std::vector<std::string>& words)
 // space complexity: O(1)
 int balancedStringSplit(std::string s)
 {
-    int numLs = 0;
-    int numRs = 0;
+    int count = 0;
     int numStr = 0;
 
     for (int i = 0; i < s.size(); ++i)
     {
         if (s[i] == 'L') 
         {
-            numLs++;
+            count++;
         }
         else
         {
-            numRs++;
+            count--;
         }
 
-        if (numLs == numRs && numLs && numRs)
+        if (!count)
         {
             numStr++;
-            numLs = 0;
-            numRs = 0;
+            count = 0;
         }
     }
 
