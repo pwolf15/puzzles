@@ -780,6 +780,8 @@ int xorOperation(int n, int start)
     return result;
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
 int subtractProductAndSum(int n)
 {
     int sum = 0;
