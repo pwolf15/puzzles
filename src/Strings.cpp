@@ -2597,6 +2597,8 @@ int balancedStringSplit(std::string s)
     return numStr;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string toLowerCase(std::string str)
 {
     std::string result;
