@@ -121,4 +121,6 @@ int findKthPositive(std::vector<int>& arr, int k);
 
 int xorOperation(int n, int start);
 
+int subtractProductAndSum(int n);
+
 #endif // PRIMITIVES_HPP

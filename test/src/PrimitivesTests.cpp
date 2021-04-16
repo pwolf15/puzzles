@@ -279,3 +279,9 @@ TEST(Primitives, XorOperation)
     CHECK_EQUAL(7, xorOperation(1, 7));
     CHECK_EQUAL(2, xorOperation(10, 5));
 }
+
+TEST(Primitives, SubtractProductAndSum)
+{
+    CHECK_EQUAL(15, subtractProductAndSum(234));
+    CHECK_EQUAL(21, subtractProductAndSum(4421));
+}
