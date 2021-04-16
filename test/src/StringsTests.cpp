@@ -725,3 +725,9 @@ TEST(Strings, BalancedStringSplit)
     CHECK_EQUAL(1, balancedStringSplit("LLLLRRRR"));
     CHECK_EQUAL(2, balancedStringSplit("RLRRRLLRLL"));
 }
+
+TEST(Strings, ToLowercase)
+{
+    CHECK_EQUAL("hello", toLowerCase("Hello"));
+    CHECK_EQUAL("here", toLowerCase("here"));
+}

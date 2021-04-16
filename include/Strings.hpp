@@ -115,4 +115,6 @@ std::vector<std::string> findWords(std::vector<std::string>& words);
 
 int balancedStringSplit(std::string s);
 
+std::string toLowerCase(std::string str);
+
 #endif // STRINGS_HPP

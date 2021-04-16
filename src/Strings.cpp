@@ -2596,3 +2596,12 @@ int balancedStringSplit(std::string s)
 
     return numStr;
 }
+
+std::string toLowerCase(std::string str)
+{
+    std::string result;
+    std::transform(str.begin(), str.end(), std::back_inserter(result), [](char a) {
+        return std::tolower(a);
+    });
+    return result;
+}
