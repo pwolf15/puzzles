@@ -4695,7 +4695,30 @@ int countGoodRectangles_PW2(std::vector<std::vector<int>>& rectangles)
     return widths[maxWidth];
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
+int countGoodRectangles_PW3(std::vector<std::vector<int>>& rectangles)
+{
+    int maxWidth = std::numeric_limits<int>::min();
+    int count = 0;
+    for (auto rect: rectangles)
+    {
+        int curWidth = std::min(rect[0], rect[1]);
+        if (curWidth > maxWidth)
+        {
+            maxWidth = std::max(maxWidth, curWidth);
+            count = 1;
+        }
+        else if (curWidth == maxWidth)
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
 int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
 {
-    return countGoodRectangles_PW2(rectangles);
+    return countGoodRectangles_PW3(rectangles);
 }
