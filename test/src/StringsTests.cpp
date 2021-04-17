@@ -744,3 +744,12 @@ TEST(Strings, TruncateSentence)
     CHECK_EQUAL("What is the solution", truncateSentence("What is the solution to this problem", 4))
     CHECK_EQUAL("chopper is not a tanuki", truncateSentence("chopper is not a tanuki", 5));
 }
+
+TEST(Strings, UniqueMorseRepresentations)
+{
+    std::vector<std::string> words = {"gin", "zen", "gig", "msg"};
+    CHECK_EQUAL(2, uniqueMorseRepresentations(words));
+
+    words = {"gin", "zen", "gig", "msg"};
+    CHECK_EQUAL(2, uniqueMorseRepresentations(words));
+}

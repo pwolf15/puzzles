@@ -120,5 +120,7 @@ std::string toLowerCase(std::string str);
 std::string removeOuterParentheses(std::string S);
 
 std::string truncateSentence(std::string s, int k);
-    
+
+int uniqueMorseRepresentations(std::vector<std::string>& words);
+
 #endif // STRINGS_HPP

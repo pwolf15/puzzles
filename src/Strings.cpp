@@ -2664,3 +2664,25 @@ std::string truncateSentence(std::string s, int k)
     
     return truncated;
 }
+
+int uniqueMorseRepresentations(std::vector<std::string>& words)
+{
+    std::vector<std::string> codes = 
+        {".-","-...","-.-.","-..",".",
+         "..-.","--.","....","..",".---",
+         "-.-",".-..","--","-.","---",".--.",
+         "--.-",".-.","...","-","..-","...-",
+         ".--","-..-","-.--","--.."};
+
+    std::unordered_set<std::string> reps;
+    for (auto word: words)
+    {
+        std::string rep = "";
+        for (auto c: word)
+        {
+            rep += codes[c - 'a'];
+        }
+        reps.insert(rep);
+    }
+    return reps.size();
+}
