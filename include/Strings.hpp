@@ -117,4 +117,8 @@ int balancedStringSplit(std::string s);
 
 std::string toLowerCase(std::string str);
 
+std::string removeOuterParentheses(std::string S);
+
+std::string truncateSentence(std::string s, int k);
+    
 #endif // STRINGS_HPP

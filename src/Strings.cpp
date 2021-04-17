@@ -2607,3 +2607,58 @@ std::string toLowerCase(std::string str)
     });
     return result;
 }
+
+std::string removeOuterParentheses(std::string S)
+{
+    std::stack<char> st;
+    std::string result = "";
+    std::string curResult = "";
+    int i = 0;
+    while (i != S.size())
+    {
+        if (S[i] == '(')
+        {
+            st.push(S[i]);
+            result += curResult;
+            curResult = "";
+        }
+        else
+        {
+            st.pop();
+            if (!st.empty())
+            {
+                curResult += "(";
+                curResult += ")";
+            }
+        }
+        ++i;
+    }
+
+    result += curResult;
+    return result;
+}
+
+std::string truncateSentence(std::string s, int k)
+{
+    std::string truncated = "";
+    int numWords = 0;
+    bool inWord = true;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (inWord && s[i] == ' ')
+        {
+            inWord = false;
+            numWords++;
+
+            if (numWords == k) break;
+        }
+        else if (!inWord && isalpha(s[i]))
+        {
+            inWord = true;
+        }
+
+        truncated += s[i];
+    }
+    
+    return truncated;
+}

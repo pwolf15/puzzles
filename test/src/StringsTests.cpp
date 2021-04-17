@@ -731,3 +731,16 @@ TEST(Strings, ToLowercase)
     CHECK_EQUAL("hello", toLowerCase("Hello"));
     CHECK_EQUAL("here", toLowerCase("here"));
 }
+
+TEST(Strings, RemoveOuterParentheses)
+{
+    CHECK_EQUAL("()()()", removeOuterParentheses("(()())(())"));
+    // CHECK_EQUAL("()()()()(())", removeOuterParentheses("(()())(())(()(()))"));
+}
+
+TEST(Strings, TruncateSentence)
+{
+    CHECK_EQUAL("Hello how are you", truncateSentence("Hello how are you Contestant", 4));
+    CHECK_EQUAL("What is the solution", truncateSentence("What is the solution to this problem", 4))
+    CHECK_EQUAL("chopper is not a tanuki", truncateSentence("chopper is not a tanuki", 5));
+}
