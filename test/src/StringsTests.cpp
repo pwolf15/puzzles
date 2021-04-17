@@ -753,3 +753,11 @@ TEST(Strings, UniqueMorseRepresentations)
     words = {"gin", "zen", "gig", "msg"};
     CHECK_EQUAL(2, uniqueMorseRepresentations(words));
 }
+
+TEST(Strings, SquareIsWhite)
+{
+    CHECK(!squareIsWhite("a1"));
+    CHECK(squareIsWhite("h3"));
+    CHECK(!squareIsWhite("c7"));
+    CHECK(!squareIsWhite("b2"));
+}

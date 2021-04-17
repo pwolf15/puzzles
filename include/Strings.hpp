@@ -123,4 +123,6 @@ std::string truncateSentence(std::string s, int k);
 
 int uniqueMorseRepresentations(std::vector<std::string>& words);
 
+bool squareIsWhite(std::string coordinates);
+
 #endif // STRINGS_HPP

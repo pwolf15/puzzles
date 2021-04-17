@@ -2688,3 +2688,8 @@ int uniqueMorseRepresentations(std::vector<std::string>& words)
     }
     return reps.size();
 }
+
+bool squareIsWhite(std::string coordinates)
+{
+    return !(((coordinates[0] - 'a') % 2) ^ (coordinates[1] - '1' + 1) % 2);
+}
