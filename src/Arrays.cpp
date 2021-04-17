@@ -4666,8 +4666,8 @@ std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0)
 }
 
 // time complexity: O(n), traverse twice
-// space complexit: O(1)
-int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
+// space complexity: O(1)
+int countGoodRectangles_PW1(std::vector<std::vector<int>>& rectangles)
 {
     int maxWidth = std::numeric_limits<int>::min();
     for (auto rect: rectangles)
@@ -4678,4 +4678,24 @@ int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
     return std::count_if(rectangles.begin(), rectangles.end(), [maxWidth](std::vector<int> rect) {
         return maxWidth == std::min(rect[0], rect[1]);
     });
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+int countGoodRectangles_PW2(std::vector<std::vector<int>>& rectangles)
+{
+    int maxWidth = std::numeric_limits<int>::min();
+    std::unordered_map<int, int> widths;
+    for (auto rect: rectangles)
+    {
+        maxWidth = std::max(maxWidth, std::min(rect[0], rect[1]));
+        widths[std::min(rect[0], rect[1])]++;
+    }
+
+    return widths[maxWidth];
+}
+
+int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
+{
+    return countGoodRectangles_PW2(rectangles);
 }
