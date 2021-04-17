@@ -4664,3 +4664,16 @@ std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0)
 
     return cells;
 }
+
+int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
+{
+    int maxWidth = std::numeric_limits<int>::min();
+    for (auto rect: rectangles)
+    {
+        maxWidth = std::max(maxWidth, std::min(rect[0], rect[1]));
+    }
+
+    return std::count_if(rectangles.begin(), rectangles.end(), [maxWidth](std::vector<int> rect) {
+        return maxWidth == std::min(rect[0], rect[1]);
+    });
+}

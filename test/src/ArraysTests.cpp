@@ -2389,3 +2389,12 @@ TEST(Arrays, AllCellsDistOrder)
         }
     }
 }
+
+TEST(Arrays, CountGoodRectangles)
+{
+    std::vector<std::vector<int>> rectangles = 
+        {{5,8},{3,9},{5,12},{16,5}};
+    CHECK_EQUAL(3, countGoodRectangles(rectangles));
+    rectangles = {{2,3},{3,7},{4,3},{3,7}};
+    CHECK_EQUAL(3, countGoodRectangles(rectangles));
+}

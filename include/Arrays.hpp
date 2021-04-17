@@ -255,4 +255,6 @@ int majorityElement(std::vector<int>& nums);
 
 std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);
 
+int countGoodRectangles(std::vector<std::vector<int>>& rectangles);
+
 #endif // ARRAYS_HPP
