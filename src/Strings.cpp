@@ -2665,6 +2665,8 @@ std::string truncateSentence(std::string s, int k)
     return truncated;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int uniqueMorseRepresentations(std::vector<std::string>& words)
 {
     std::vector<std::string> codes = 
