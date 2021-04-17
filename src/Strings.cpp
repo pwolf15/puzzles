@@ -2638,6 +2638,8 @@ std::string removeOuterParentheses(std::string S)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string truncateSentence(std::string s, int k)
 {
     std::string truncated = "";
