@@ -4665,6 +4665,8 @@ std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0)
     return cells;
 }
 
+// time complexity: O(n), traverse twice
+// space complexit: O(1)
 int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
 {
     int maxWidth = std::numeric_limits<int>::min();
