@@ -285,3 +285,10 @@ TEST(Primitives, SubtractProductAndSum)
     CHECK_EQUAL(15, subtractProductAndSum(234));
     CHECK_EQUAL(21, subtractProductAndSum(4421));
 }
+
+TEST(Primitives, Maximum69Number)
+{
+    CHECK_EQUAL(9969, maximum69Number(9669));
+    CHECK_EQUAL(9999, maximum69Number(9999));
+    CHECK_EQUAL(9999, maximum69Number(9996));
+}

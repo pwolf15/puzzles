@@ -123,4 +123,6 @@ int xorOperation(int n, int start);
 
 int subtractProductAndSum(int n);
 
+int maximum69Number (int num);
+
 #endif // PRIMITIVES_HPP

@@ -795,3 +795,27 @@ int subtractProductAndSum(int n)
 
     return product - sum;
 }
+
+int maximum69Number (int num)
+{
+    int lastSix = -1;
+    int digit = 0;
+    int temp = num;
+    while (temp)
+    {
+        if (temp % 10 == 6)
+        {
+            lastSix = digit;
+        }
+
+        temp /= 10;
+        digit++;
+    }
+
+    if (lastSix != -1)
+    {
+        num += 3 * pow(10, lastSix);
+    }
+
+    return num;
+}
