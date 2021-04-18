@@ -4723,6 +4723,8 @@ int countGoodRectangles(std::vector<std::vector<int>>& rectangles)
     return countGoodRectangles_PW3(rectangles);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int diagonalSum(std::vector<std::vector<int>>& mat)
 {
     int sum = 0;
