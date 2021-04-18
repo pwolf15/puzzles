@@ -2398,3 +2398,25 @@ TEST(Arrays, CountGoodRectangles)
     rectangles = {{2,3},{3,7},{4,3},{3,7}};
     CHECK_EQUAL(3, countGoodRectangles(rectangles));
 }
+
+TEST(Arrays, DiagonalSum)
+{
+    std::vector<std::vector<int>> mat =
+        {{1,2,3},
+        {4,5,6},
+        {7,8,9}};
+    CHECK_EQUAL(25, diagonalSum(mat));
+
+    mat =
+        {{1,1,1,1},
+        {1,1,1,1},
+        {1,1,1,1},
+        {1,1,1,1}};
+    CHECK_EQUAL(8, diagonalSum(mat));
+
+
+    mat =
+        {{5}};
+
+    CHECK_EQUAL(5, diagonalSum(mat));
+}

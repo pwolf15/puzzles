@@ -257,4 +257,6 @@ std::vector<std::vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);
 
 int countGoodRectangles(std::vector<std::vector<int>>& rectangles);
 
+int diagonalSum(std::vector<std::vector<int>>& mat);
+
 #endif // ARRAYS_HPP
