@@ -796,6 +796,8 @@ int subtractProductAndSum(int n)
     return product - sum;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maximum69Number (int num)
 {
     int lastSix = -1;
