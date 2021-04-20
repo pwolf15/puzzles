@@ -4739,3 +4739,35 @@ int diagonalSum(std::vector<std::vector<int>>& mat)
 
     return sum;
 }
+
+std::vector<int> selfDividingNumbers(int left, int right)
+{
+    std::vector<int> nums;
+    for (int i = left; i <= right; ++i)
+    {
+        int temp1 = i;
+        int temp2 = i;
+        bool selfDividing = true;
+        while (temp1)
+        {
+            if (!((temp1 % 10) == 0) && (temp2 % (temp1 % 10)) == 0)
+            {
+                // do nothing
+            }
+            else
+            {
+                selfDividing = false;
+                break;
+            }
+
+            temp1 /= 10;
+        }
+
+        if (selfDividing)
+        {
+            nums.push_back(temp2);
+        }
+    }
+
+    return nums;
+}

@@ -259,4 +259,6 @@ int countGoodRectangles(std::vector<std::vector<int>>& rectangles);
 
 int diagonalSum(std::vector<std::vector<int>>& mat);
 
+std::vector<int> selfDividingNumbers(int left, int right);
+
 #endif // ARRAYS_HPP

@@ -2420,3 +2420,17 @@ TEST(Arrays, DiagonalSum)
 
     CHECK_EQUAL(5, diagonalSum(mat));
 }
+
+TEST(Arrays, SelfDividingNumbers)
+{
+    std::vector<int> expected =
+        {
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22
+        };
+    std::vector<int> nums = selfDividingNumbers(1, 22);
+    CHECK_EQUAL(expected.size(), nums.size());
+    for(int i = 0; i < nums.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], nums[i]);
+    }
+}
