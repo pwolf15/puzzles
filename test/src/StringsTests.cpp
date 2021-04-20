@@ -761,3 +761,10 @@ TEST(Strings, SquareIsWhite)
     CHECK(!squareIsWhite("c7"));
     CHECK(!squareIsWhite("b2"));
 }
+
+TEST(Strings, MergeAlternately)
+{
+    CHECK_EQUAL("apbqcr", mergeAlternately("abc", "pqr"));
+    CHECK_EQUAL("apbqrs", mergeAlternately("ab", "pqrs"));
+    CHECK_EQUAL("apbqcd", mergeAlternately("abcd", "pq"));
+}

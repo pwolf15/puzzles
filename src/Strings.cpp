@@ -2695,3 +2695,19 @@ bool squareIsWhite(std::string coordinates)
 {
     return !(((coordinates[0] - 'a') % 2) ^ (coordinates[1] - '1' + 1) % 2);
 }
+
+std::string mergeAlternately(std::string word1, std::string word2)
+{
+    std::string result;
+    int i = 0;
+    while (i < word1.size() || i < word2.size())
+    {
+        std::string a = i < word1.size() ? word1.substr(i, 1) : "";
+        std::string b = i < word2.size() ? word2.substr(i, 1) : "";
+        result += a;
+        result += b;
+        i++;
+    }
+
+    return result;
+}

@@ -125,4 +125,6 @@ int uniqueMorseRepresentations(std::vector<std::string>& words);
 
 bool squareIsWhite(std::string coordinates);
 
+std::string mergeAlternately(std::string word1, std::string word2);
+
 #endif // STRINGS_HPP
