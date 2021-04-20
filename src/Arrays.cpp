@@ -4740,6 +4740,8 @@ int diagonalSum(std::vector<std::vector<int>>& mat)
     return sum;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> selfDividingNumbers(int left, int right)
 {
     std::vector<int> nums;
