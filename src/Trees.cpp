@@ -357,6 +357,8 @@ std::vector<int> findMode(TreeNode* root)
     return counts.rbegin()->second;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int rangeSumBST(TreeNode* root, int low, int high)
 {
     if (root == nullptr)
