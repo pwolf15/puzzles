@@ -359,7 +359,7 @@ std::vector<int> findMode(TreeNode* root)
 
 // time complexity: O(n)
 // space complexity: O(1)
-int rangeSumBST(TreeNode* root, int low, int high)
+int rangeSumBST_PW1(TreeNode* root, int low, int high)
 {
     if (root == nullptr)
     {
@@ -368,4 +368,41 @@ int rangeSumBST(TreeNode* root, int low, int high)
     
     int sum = rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
     return root->val >= low && root->val <= high ? sum + root->val : sum;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+int rangeSumBST_PW2(TreeNode* root, int low, int high)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+    
+    int sum = 0;
+    if (root->val < low)
+    {
+        return rangeSumBST(root->right, low, high);
+    }
+    else if (root->val == low)
+    {
+        return low + rangeSumBST(root->right, low, high);
+    }
+    else if (root->val > low && root->val < high)
+    {
+        return root->val + rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
+    }
+    else if (root->val == high)
+    {
+        return root->val + rangeSumBST(root->left, low, high);
+    }
+    else
+    {
+        return rangeSumBST(root->left, low, high);
+    }
+}
+
+int rangeSumBST(TreeNode* root, int low, int high)
+{
+    return rangeSumBST_PW2(root, low, high);
 }
