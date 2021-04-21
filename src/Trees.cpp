@@ -356,3 +356,14 @@ std::vector<int> findMode(TreeNode* root)
 
     return counts.rbegin()->second;
 }
+
+int rangeSumBST(TreeNode* root, int low, int high)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+    
+    int sum = rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
+    return root->val >= low && root->val <= high ? sum + root->val : sum;
+}

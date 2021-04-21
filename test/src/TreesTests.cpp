@@ -229,3 +229,31 @@ TEST(Trees, FindMode)
 
     deleteTree(node);
 }
+
+TEST(Trees, RangeSumBST)
+{
+    TreeNode* node = new TreeNode(10);
+    node->left = new TreeNode(5);
+    node->left->left = new TreeNode(3);
+    node->left->right = new TreeNode(7);
+    node->right = new TreeNode(15);
+    node->right->right = new TreeNode(18);
+
+    CHECK_EQUAL(32, rangeSumBST(node, 7, 15));
+
+    deleteTree(node);
+
+    node = new TreeNode(10);
+    node->left = new TreeNode(5);
+    node->left->left = new TreeNode(3);
+    node->left->left->left = new TreeNode(1);
+    node->left->right = new TreeNode(7);
+    node->left->right->left = new TreeNode(6);
+    node->right = new TreeNode(15);
+    node->right->left = new TreeNode(13);
+    node->right->right = new TreeNode(18);
+
+    CHECK_EQUAL(23, rangeSumBST(node, 6, 10));
+
+    deleteTree(node);
+}
