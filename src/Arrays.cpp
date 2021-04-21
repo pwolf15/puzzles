@@ -4774,6 +4774,8 @@ std::vector<int> selfDividingNumbers(int left, int right)
     return nums;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int arraySign(std::vector<int>& nums)
 {
     return std::accumulate(nums.begin(), nums.end(), 1, [](int acc, int num) {
