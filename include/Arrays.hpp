@@ -261,4 +261,6 @@ int diagonalSum(std::vector<std::vector<int>>& mat);
 
 std::vector<int> selfDividingNumbers(int left, int right);
 
+int arraySign(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

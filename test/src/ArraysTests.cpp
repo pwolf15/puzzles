@@ -2434,3 +2434,18 @@ TEST(Arrays, SelfDividingNumbers)
         CHECK_EQUAL(expected[i], nums[i]);
     }
 }
+
+TEST(Arrays, ArraySign)
+{
+    std::vector<int> nums = {-1,-2,-3,-4,3,2,1};
+    CHECK_EQUAL(1, arraySign(nums));
+
+    nums = {1,5,0,2,-3};
+    CHECK_EQUAL(0, arraySign(nums));
+
+    nums = {-1,1,-1,1,-1};
+    CHECK_EQUAL(-1, arraySign(nums));
+
+    nums = {9,72,34,29,-49,-22,-77,-17,-66,-75,-44,-30,-24};
+    CHECK_EQUAL(-1, arraySign(nums));
+}

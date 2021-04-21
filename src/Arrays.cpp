@@ -4773,3 +4773,10 @@ std::vector<int> selfDividingNumbers(int left, int right)
 
     return nums;
 }
+
+int arraySign(std::vector<int>& nums)
+{
+    return std::accumulate(nums.begin(), nums.end(), 1, [](int acc, int num) {
+        return acc * (num < 0 ? -1 : (num > 0 ? 1 : 0));
+    });
+}
