@@ -2714,6 +2714,8 @@ std::string mergeAlternately(std::string word1, std::string word2)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool judgeCircle(std::string moves)
 {
     int h = 0;
