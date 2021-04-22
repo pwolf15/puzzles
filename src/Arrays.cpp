@@ -4783,6 +4783,8 @@ int arraySign(std::vector<int>& nums)
     });
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int sumOfUnique(std::vector<int>& nums)
 {
     std::unordered_map<int, int> count;
