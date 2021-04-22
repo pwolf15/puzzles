@@ -2449,3 +2449,15 @@ TEST(Arrays, ArraySign)
     nums = {9,72,34,29,-49,-22,-77,-17,-66,-75,-44,-30,-24};
     CHECK_EQUAL(-1, arraySign(nums));
 }
+
+TEST(Arrays, SumOfUnique)
+{
+    std::vector<int> arr = { 1,2,3,2 };
+    CHECK_EQUAL(4, sumOfUnique(arr));
+
+    arr = {1,1,1,1,1};
+    CHECK_EQUAL(0, sumOfUnique(arr));
+
+    arr = {1,2,3,4,5};
+    CHECK_EQUAL(15, sumOfUnique(arr));
+}

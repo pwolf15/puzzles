@@ -263,4 +263,6 @@ std::vector<int> selfDividingNumbers(int left, int right);
 
 int arraySign(std::vector<int>& nums);
 
+int sumOfUnique(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

@@ -4782,3 +4782,23 @@ int arraySign(std::vector<int>& nums)
         return acc * (num < 0 ? -1 : (num > 0 ? 1 : 0));
     });
 }
+
+int sumOfUnique(std::vector<int>& nums)
+{
+    std::unordered_map<int, int> count;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        count[nums[i]]++;
+    }
+
+    int sum = 0;
+    for (auto pair: count)
+    {
+        if (pair.second == 1)
+        {
+            sum += pair.first;
+        }
+    }
+
+    return sum;
+}
