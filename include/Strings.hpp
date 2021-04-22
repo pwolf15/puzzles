@@ -127,4 +127,6 @@ bool squareIsWhite(std::string coordinates);
 
 std::string mergeAlternately(std::string word1, std::string word2);
 
+bool judgeCircle(std::string moves);
+
 #endif // STRINGS_HPP

@@ -2713,3 +2713,30 @@ std::string mergeAlternately(std::string word1, std::string word2)
 
     return result;
 }
+
+bool judgeCircle(std::string moves)
+{
+    int h = 0;
+    int v = 0;
+
+    for (int i = 0; i < moves.size(); ++i)
+    {
+        switch(moves[i])
+        {
+            case 'U':
+                v++;
+                break;
+            case 'D':
+                v--;
+                break;
+            case 'L':
+                h--;
+                break;
+            case 'R':
+                h++;
+                break;
+        }
+    }
+
+    return h == 0 && v == 0;
+}

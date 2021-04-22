@@ -768,3 +768,12 @@ TEST(Strings, MergeAlternately)
     CHECK_EQUAL("apbqrs", mergeAlternately("ab", "pqrs"));
     CHECK_EQUAL("apbqcd", mergeAlternately("abcd", "pq"));
 }
+
+TEST(Strings, JudgeCircle)
+{
+    CHECK(judgeCircle("UD"));
+    CHECK(!judgeCircle("LL"));
+    CHECK(!judgeCircle("RRDD"));
+    CHECK(!judgeCircle("LDRRLRUULR"));
+    CHECK(judgeCircle("RLUURDDDLU"));
+}
