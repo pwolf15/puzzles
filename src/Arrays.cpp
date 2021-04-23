@@ -4805,6 +4805,8 @@ int sumOfUnique(std::vector<int>& nums)
     return sum;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maxProduct(std::vector<int>& nums)
 {
     if (nums.size() < 2) return 0;
