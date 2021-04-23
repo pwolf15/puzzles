@@ -4831,3 +4831,17 @@ int maxProduct(std::vector<int>& nums)
 
     return (max1 - 1) * (max2 - 1);
 }
+
+int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int queryTime)
+{
+    int numBusy = 0;
+    for (int i = 0; i < endTime.size(); ++i)
+    {
+        if (queryTime >= startTime[i] && queryTime <= endTime[i])
+        {
+            ++numBusy;
+        }
+    }
+
+    return numBusy;
+}

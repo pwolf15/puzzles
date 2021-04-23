@@ -2473,3 +2473,26 @@ TEST(Arrays, MaxProduct)
     arr = { 3, 7 };
     CHECK_EQUAL(12, maxProduct(arr));
 }
+
+TEST(Arrays, BusyStudent)
+{
+    std::vector<int> startTimes = { 1,2,3 };
+    std::vector<int> endTimes = { 3,2,7 };
+    CHECK_EQUAL(1, busyStudent(startTimes,endTimes,4));
+
+    startTimes = { 4 };
+    endTimes = { 4 };
+    CHECK_EQUAL(1, busyStudent(startTimes,endTimes,4));
+
+    startTimes = { 4 };
+    endTimes = { 4 };
+    CHECK_EQUAL(0, busyStudent(startTimes,endTimes,5));
+
+    startTimes = { 1,1,1,1 };
+    endTimes = { 1,3,2,4 };
+    CHECK_EQUAL(0, busyStudent(startTimes,endTimes,7));
+
+    startTimes = { 9,8,7,6,5,4,3,2,1 };
+    endTimes = { 10,10,10,10,10,10,10,10,10 };
+    CHECK_EQUAL(5, busyStudent(startTimes,endTimes,5));
+}

@@ -267,4 +267,6 @@ int sumOfUnique(std::vector<int>& nums);
 
 int maxProduct(std::vector<int>& nums);
 
+int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int queryTime);
+
 #endif // ARRAYS_HPP
