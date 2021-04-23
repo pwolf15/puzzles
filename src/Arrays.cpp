@@ -4832,6 +4832,8 @@ int maxProduct(std::vector<int>& nums)
     return (max1 - 1) * (max2 - 1);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int queryTime)
 {
     int numBusy = 0;
