@@ -4809,11 +4809,17 @@ int sumOfUnique(std::vector<int>& nums)
 // space complexity: O(1)
 int maxProduct(std::vector<int>& nums)
 {
-    if (nums.size() < 2) return 0;
+    if (nums.size() < 2) 
+    {
+        return 0;
+    }
 
     int max1 = nums[0];
     int max2 = nums[1] > max1 ? nums[1] : nums[0];
-    if (max2 == nums[0]) max1 = nums[1];
+    if (max2 == nums[0]) 
+    {
+        max1 = nums[1];
+    }
     
     for (int i = 2; i < nums.size(); ++i)
     {

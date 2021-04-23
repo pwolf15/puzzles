@@ -5,6 +5,11 @@ project (LeetCode)
 # Common
 # add_subdirectory(Common)
 
+set(CMAKE_CXX_CLANG_TIDY
+    clang-tidy;
+    -header-filter=.;
+    -checks=*;)
+
 add_subdirectory(MaxSubArray)
 add_subdirectory(LengthOfLastWord)
 add_subdirectory(PlusOne)

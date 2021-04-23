@@ -10,4 +10,5 @@ RUN apt-get -y update && \
         build-essential \
         cmake cpputest \
         pkg-config \ 
-        cppcheck
+        cppcheck \
+        clang-tidy
