@@ -4804,3 +4804,28 @@ int sumOfUnique(std::vector<int>& nums)
 
     return sum;
 }
+
+int maxProduct(std::vector<int>& nums)
+{
+    if (nums.size() < 2) return 0;
+
+    int max1 = nums[0];
+    int max2 = nums[1] > max1 ? nums[1] : nums[0];
+    if (max2 == nums[0]) max1 = nums[1];
+    
+    for (int i = 2; i < nums.size(); ++i)
+    {
+        int cur = nums[i];
+        if (cur >= max2)
+        {
+            max1 = max2;
+            max2 = cur;
+        }
+        else if (cur >= max1)
+        {
+            max1 = cur;
+        }
+    }
+
+    return (max1 - 1) * (max2 - 1);
+}

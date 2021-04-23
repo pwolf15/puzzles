@@ -2461,3 +2461,15 @@ TEST(Arrays, SumOfUnique)
     arr = {1,2,3,4,5};
     CHECK_EQUAL(15, sumOfUnique(arr));
 }
+
+TEST(Arrays, MaxProduct)
+{
+    std::vector<int> arr = { 3, 4, 5, 2 };
+    CHECK_EQUAL(12, maxProduct(arr));
+
+    arr = { 1,5,4,5 };
+    CHECK_EQUAL(16, maxProduct(arr));
+
+    arr = { 3, 7 };
+    CHECK_EQUAL(12, maxProduct(arr));
+}

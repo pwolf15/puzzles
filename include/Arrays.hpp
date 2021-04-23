@@ -265,4 +265,6 @@ int arraySign(std::vector<int>& nums);
 
 int sumOfUnique(std::vector<int>& nums);
 
+int maxProduct(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP
