@@ -4854,6 +4854,8 @@ int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int quer
     return numBusy;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums, int r, int c)
 {
     if ((r * c) > (nums.size() * nums[0].size()))
