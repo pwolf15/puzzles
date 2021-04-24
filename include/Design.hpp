@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <queue>
 // #include <unordered_set>
 
 class ShuffledArray {
@@ -109,6 +110,26 @@ public:
 private:
     std::vector<std::vector<int>> m_rect;
     std::vector<std::vector<int>> m_sub;
+};
+
+class RecentCounter {
+public:
+    RecentCounter() {
+        
+    }
+    
+    int ping(int t) {
+
+        while (!requests.empty() && t - requests.front() > 3000)
+        {
+            requests.pop();
+        }
+
+        requests.push(t);
+        return requests.size();
+    }
+private:
+    std::queue<int> requests;
 };
 
 #endif // DESIGN_HPP

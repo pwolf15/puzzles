@@ -60,3 +60,12 @@ TEST(Design, SubrectangleQueries)
     CHECK_EQUAL(10, sq.getValue(3, 1));
     CHECK_EQUAL(5, sq.getValue(0, 2));
 }
+
+TEST(Design, RecentCounter)
+{
+    RecentCounter counter;
+    CHECK_EQUAL(1, counter.ping(1));
+    CHECK_EQUAL(2, counter.ping(100));
+    CHECK_EQUAL(3, counter.ping(3001));
+    CHECK_EQUAL(3, counter.ping(3002));
+};
