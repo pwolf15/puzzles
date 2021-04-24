@@ -2496,3 +2496,36 @@ TEST(Arrays, BusyStudent)
     endTimes = { 10,10,10,10,10,10,10,10,10 };
     CHECK_EQUAL(5, busyStudent(startTimes,endTimes,5));
 }
+
+TEST(Arrays, MatrixReshape)
+{
+    std::vector<std::vector<int>> mat = { {1,2},{3,4} };
+    std::vector<std::vector<int>> exp = {{ 1, 2, 3, 4 }};
+    int r = 1;
+    int c = 4;
+    auto result = matrixReshape(mat, r, c);
+    CHECK_EQUAL(exp.size(), result.size());
+    CHECK_EQUAL(exp[0].size(), result[0].size());
+    for (size_t i = 0; i < r; ++i)
+    {
+        for (size_t j = 0; j < c; ++j)
+        {
+            CHECK_EQUAL(exp[i][j], result[i][j]);
+        }
+    }
+
+    mat = { {1,2},{3,4} };
+    exp = { {1,2},{3,4} };;
+    r = 2;
+    c = 4;
+    result = matrixReshape(mat, r, c);
+    CHECK_EQUAL(exp.size(), result.size());
+    CHECK_EQUAL(exp[0].size(), result[0].size());
+    for (size_t i = 0; i < r; ++i)
+    {
+        for (size_t j = 0; j < c; ++j)
+        {
+            CHECK_EQUAL(exp[i][j], result[i][j]);
+        }
+    }
+}

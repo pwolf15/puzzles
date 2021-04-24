@@ -269,4 +269,6 @@ int maxProduct(std::vector<int>& nums);
 
 int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int queryTime);
 
+std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums, int r, int c);
+
 #endif // ARRAYS_HPP

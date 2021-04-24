@@ -4853,3 +4853,31 @@ int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int quer
 
     return numBusy;
 }
+
+std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums, int r, int c)
+{
+    if ((r * c) > (nums.size() * nums[0].size()))
+    {
+        return nums;
+    }
+
+    std::vector<std::vector<int>> result(r);
+    for (int i = 0; i < r; ++i)
+    {
+        std::vector<int> row(c);
+        result[i] = row;
+    }
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        for (int j = 0; j < nums[i].size(); ++j)
+        {
+            int el = i * nums[i].size() + j;
+            int transR = el / c;
+            int transC = el % c;
+            result[transR][transC] = nums[i][j];
+        }
+    }
+
+    return result;
+}
