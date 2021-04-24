@@ -125,4 +125,6 @@ int subtractProductAndSum(int n);
 
 int maximum69Number (int num);
 
+int numWaterBottles(int numBottles, int numExchange);
+
 #endif // PRIMITIVES_HPP

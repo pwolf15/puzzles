@@ -821,3 +821,18 @@ int maximum69Number (int num)
 
     return num;
 }
+
+int numWaterBottles(int numBottles, int numExchange)
+{
+    int total = numBottles;
+    int leftover = total;
+
+    while (numBottles)
+    {
+        numBottles = leftover / numExchange;
+        total += numBottles;
+        leftover = leftover % numExchange + numBottles;
+    }
+
+    return total;
+}

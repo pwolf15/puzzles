@@ -292,3 +292,11 @@ TEST(Primitives, Maximum69Number)
     CHECK_EQUAL(9999, maximum69Number(9999));
     CHECK_EQUAL(9999, maximum69Number(9996));
 }
+
+TEST(Primitives, NumWaterBottles)
+{
+    CHECK_EQUAL(13, numWaterBottles(9, 3));
+    CHECK_EQUAL(19, numWaterBottles(15, 4));
+    CHECK_EQUAL(6, numWaterBottles(5, 5));
+    CHECK_EQUAL(2, numWaterBottles(2, 3));
+}
