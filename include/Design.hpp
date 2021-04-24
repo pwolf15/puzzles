@@ -112,6 +112,8 @@ private:
     std::vector<std::vector<int>> m_sub;
 };
 
+// time complexity: O(1)
+// space complexity: O(1)
 class RecentCounter {
 public:
     RecentCounter() {
