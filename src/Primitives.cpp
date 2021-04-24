@@ -822,6 +822,8 @@ int maximum69Number (int num)
     return num;
 }
 
+// time complexity: O(1)
+// space complexity: O(1)
 int numWaterBottles(int numBottles, int numExchange)
 {
     int total = numBottles;
