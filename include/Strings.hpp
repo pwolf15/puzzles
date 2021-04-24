@@ -129,4 +129,6 @@ std::string mergeAlternately(std::string word1, std::string word2);
 
 bool judgeCircle(std::string moves);
 
+std::string reverseWords(std::string s);
+
 #endif // STRINGS_HPP

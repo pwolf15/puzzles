@@ -777,3 +777,9 @@ TEST(Strings, JudgeCircle)
     CHECK(!judgeCircle("LDRRLRUULR"));
     CHECK(judgeCircle("RLUURDDDLU"));
 }
+
+TEST(Strings, ReverseWordsII)
+{
+    CHECK_EQUAL("s'teL ekat edoCteeL tsetnoc", reverseWords("Let's take LeetCode contest"));
+    CHECK_EQUAL("doG gniD", reverseWords("God Ding"));
+}

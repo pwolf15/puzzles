@@ -2742,3 +2742,67 @@ bool judgeCircle(std::string moves)
 
     return h == 0 && v == 0;
 }
+
+// time complexity: O(n)
+// space complexity: O(k)
+std::string reverseWords_PW1(std::string s)
+{
+    std::string result = "";
+    std::string cur = "";
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == ' ')
+        {
+            result += cur;
+            result += ' ';
+            cur = "";
+        }
+        else
+        {
+            cur = s[i] + cur;
+        }
+    }
+
+    result += cur;
+
+    return result;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+std::string reverseWords_PW2(std::string s)
+{
+    int j = 0, k = 0;
+    for (int i = 0; i < s.size();)
+    {
+        if (s[i] != ' ')
+        {
+            k++;
+            i++;
+        }
+        else
+        {
+            while (j < k)
+            {
+                std::swap(s[j++], s[--k]);
+            }
+            while (s[i] == ' ' && i < s.size())
+            {
+                ++i;
+            }
+            j = k = i;
+        }
+    }
+
+    while (j < k)
+    {
+        std::swap(s[j++], s[--k]);
+    }
+
+    return s;
+}
+
+std::string reverseWords(std::string s)
+{
+    return reverseWords_PW2(s);
+}
