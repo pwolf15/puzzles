@@ -2515,15 +2515,15 @@ TEST(Arrays, MatrixReshape)
     }
 
     mat = { {1,2},{3,4} };
-    exp = { {1,2},{3,4} };;
+    exp = { {1,2},{3,4} };
     r = 2;
     c = 4;
     result = matrixReshape(mat, r, c);
     CHECK_EQUAL(exp.size(), result.size());
     CHECK_EQUAL(exp[0].size(), result[0].size());
-    for (size_t i = 0; i < r; ++i)
+    for (size_t i = 0; i < exp.size(); ++i)
     {
-        for (size_t j = 0; j < c; ++j)
+        for (size_t j = 0; j < exp[0].size(); ++j)
         {
             CHECK_EQUAL(exp[i][j], result[i][j]);
         }
