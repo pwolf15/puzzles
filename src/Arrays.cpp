@@ -4899,6 +4899,8 @@ int smallestRangeI(std::vector<int>& A, int K)
     return (max - min) <= 2 * K ? 0 : max - min - 2 * K;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool isToeplitzMatrix(std::vector<std::vector<int>>& matrix)
 {
     for (int i = 1; i < matrix.size(); ++i)
