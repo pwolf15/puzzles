@@ -2529,3 +2529,15 @@ TEST(Arrays, MatrixReshape)
         }
     }
 }
+
+TEST(Arrays, SmallestRangeI)
+{
+    std::vector<int> nums = { 1 };
+    CHECK_EQUAL(0, smallestRangeI(nums,0));
+
+    nums = { 0,10 };
+    CHECK_EQUAL(6, smallestRangeI(nums,2));
+
+    nums = { 1,3,6 };
+    CHECK_EQUAL(0, smallestRangeI(nums,3));
+}

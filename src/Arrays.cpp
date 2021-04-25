@@ -4883,3 +4883,16 @@ std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums,
 
     return result;
 }
+
+int smallestRangeI(std::vector<int>& A, int K)
+{
+    int max = *std::max_element(A.begin(), A.end());
+    int min = *std::min_element(A.begin(), A.end());
+
+    if (max == min) 
+    {
+        return 0;
+    }
+
+    return (max - min) <= 2 * K ? 0 : max - min - 2 * K;
+}

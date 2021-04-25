@@ -271,4 +271,6 @@ int busyStudent(std::vector<int>& startTime, std::vector<int>& endTime, int quer
 
 std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums, int r, int c);
 
+int smallestRangeI(std::vector<int>& A, int K);
+
 #endif // ARRAYS_HPP
