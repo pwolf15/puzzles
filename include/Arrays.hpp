@@ -273,4 +273,6 @@ std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums,
 
 int smallestRangeI(std::vector<int>& A, int K);
 
+bool isToeplitzMatrix(std::vector<std::vector<int>>& matrix);
+
 #endif // ARRAYS_HPP

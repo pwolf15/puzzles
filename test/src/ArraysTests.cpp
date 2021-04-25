@@ -2541,3 +2541,25 @@ TEST(Arrays, SmallestRangeI)
     nums = { 1,3,6 };
     CHECK_EQUAL(0, smallestRangeI(nums,3));
 }
+
+TEST(Arrays, IsToeplitzMatrix)
+{
+    std::vector<std::vector<int>> mat = {{1,2,3,4},{5,1,2,3},{9,5,1,2}};
+    CHECK(isToeplitzMatrix(mat));
+
+    mat = {{1,2},{2,2}};
+    CHECK(!isToeplitzMatrix(mat));
+
+    mat = {{18},{66}};
+    CHECK(isToeplitzMatrix(mat));
+
+    mat = {{11,74,0,93},{40,11,74,7}};
+    CHECK(!isToeplitzMatrix(mat));
+
+    mat = {
+        {36,59,71,15,26,82,87},
+        {56,36,59,71,15,26,82},
+        {15,0,36,59,71,15,26}
+    };
+    CHECK(!isToeplitzMatrix(mat));
+}
