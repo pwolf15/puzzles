@@ -4884,6 +4884,8 @@ std::vector<std::vector<int>> matrixReshape(std::vector<std::vector<int>>& nums,
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int smallestRangeI(std::vector<int>& A, int K)
 {
     int max = *std::max_element(A.begin(), A.end());
