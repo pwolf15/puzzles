@@ -4940,6 +4940,8 @@ std::vector<int> numMovesStones(int a, int b, int c)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::string> summaryRanges(std::vector<int>& nums)
 {
     if (nums.empty())
