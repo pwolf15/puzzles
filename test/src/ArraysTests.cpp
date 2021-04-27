@@ -2581,3 +2581,46 @@ TEST(Arrays, NumMovesStones)
     // CHECK_EQUAL(expected[0], result[0]);
     // CHECK_EQUAL(expected[1], result[1]);
 }
+
+TEST(Arrays, SummaryRanges)
+{
+    std::vector<std::string> expected = 
+    {
+        "0->2",
+        "4->5",
+        "7"
+    };
+    std::vector<int> input = { 0, 1, 2, 4, 5, 7 };
+    std::vector<std::string> result = summaryRanges(input);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = 
+    {
+        "0",
+        "2->4",
+        "6",
+        "8->9"
+    };
+    input = { 0,2,3,4,6,8,9 };
+    result = summaryRanges(input);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = 
+    {
+    };
+    input = {};
+    result = summaryRanges(input);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

@@ -4939,3 +4939,51 @@ std::vector<int> numMovesStones(int a, int b, int c)
     
     return result;
 }
+
+std::vector<std::string> summaryRanges(std::vector<int>& nums)
+{
+    if (nums.empty())
+    {
+        return {};
+    }
+
+    std::vector<std::string> ranges;
+    std::string range = std::to_string(nums[0]);
+    int numConsec = 1;
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        if ((nums[i] - 1) > nums[i - 1])
+        {
+            if (numConsec > 1)
+            {
+                range += "->";
+                range += std::to_string(nums[i - 1]);
+                ranges.push_back(range);
+            }
+            else
+            {
+                ranges.push_back(range);
+            }
+
+            numConsec = 1;
+            range = std::to_string(nums[i]);
+        }
+        else
+        {
+            numConsec++;
+        }
+    }
+
+    if (numConsec > 1)
+    {
+        range += "->";
+        range += std::to_string(nums[nums.size() - 1]);
+        ranges.push_back(range);
+    }
+    else
+    {
+        ranges.push_back(range);
+    }
+
+    return ranges;
+}

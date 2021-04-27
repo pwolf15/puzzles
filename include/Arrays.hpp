@@ -277,4 +277,6 @@ bool isToeplitzMatrix(std::vector<std::vector<int>>& matrix);
 
 std::vector<int> numMovesStones(int a, int b, int c);
 
+std::vector<std::string> summaryRanges(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP
