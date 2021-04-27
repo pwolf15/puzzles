@@ -407,6 +407,8 @@ int rangeSumBST(TreeNode* root, int low, int high)
     return rangeSumBST_PW2(root, low, high);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 TreeNode* increasingBST(TreeNode* root)
 {
     if (!root)
