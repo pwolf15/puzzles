@@ -30,3 +30,5 @@ int diameterOfBinaryTree(TreeNode* root);
 std::vector<int> findMode(TreeNode* root);
 
 int rangeSumBST(TreeNode* root, int low, int high);
+
+TreeNode* increasingBST(TreeNode* root);

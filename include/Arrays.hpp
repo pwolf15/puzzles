@@ -275,4 +275,6 @@ int smallestRangeI(std::vector<int>& A, int K);
 
 bool isToeplitzMatrix(std::vector<std::vector<int>>& matrix);
 
+std::vector<int> numMovesStones(int a, int b, int c);
+
 #endif // ARRAYS_HPP

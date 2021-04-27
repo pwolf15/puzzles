@@ -406,3 +406,44 @@ int rangeSumBST(TreeNode* root, int low, int high)
 {
     return rangeSumBST_PW2(root, low, high);
 }
+
+TreeNode* increasingBST(TreeNode* root)
+{
+    if (!root)
+    {
+        return root;
+    }
+    else
+    {
+        auto newRoot = increasingBST(root->left);
+        if (!newRoot)
+        {
+            // it's already the lowest-valued noode
+            newRoot = root;
+            newRoot->right = increasingBST(root->right);
+        }
+        else 
+        {
+            auto temp = root;
+
+            // re-assign root
+            root = newRoot;
+            newRoot->left = nullptr;
+
+            // find largest node in LHS tree
+            while (root->right)
+            {
+                root = root->right;
+            }
+
+            // assign previous root to right child of largest LHS tree node
+            root->right = temp;
+            temp->right = increasingBST(temp->right);
+
+            // assign left child of previous root to null
+            temp->left = nullptr;
+        }
+        
+        return newRoot;
+    }
+}

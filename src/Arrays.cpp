@@ -4916,3 +4916,26 @@ bool isToeplitzMatrix(std::vector<std::vector<int>>& matrix)
 
     return true;
 }
+
+std::vector<int> numMovesStones(int a, int b, int c)
+{
+    std::vector<int> sorted = { a , b , c};
+    std::sort(sorted.begin(), sorted.end());
+    a = sorted[0];
+    b = sorted[1];
+    c = sorted[2];
+
+    std::vector<int> result(2);
+    if (b - a == 1 && c - b == 1)
+    {
+        result[0] = 0;
+        result[1] = 0;
+    }
+    else if ((b - a == 1) || (c - b == 1))
+    {
+        result[0] = 1;
+        result[1] = ((b - a) > (c - b) ? b - a : c - b) - 1;
+    }
+    
+    return result;
+}

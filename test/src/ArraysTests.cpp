@@ -2563,3 +2563,21 @@ TEST(Arrays, IsToeplitzMatrix)
     };
     CHECK(!isToeplitzMatrix(mat));
 }
+
+TEST(Arrays, NumMovesStones)
+{
+    std::vector<int> expected = { 1, 2 };
+    auto result = numMovesStones(1, 2, 5);
+    CHECK_EQUAL(expected[0], result[0]);
+    CHECK_EQUAL(expected[1], result[1]);
+
+    expected = { 0, 0 };
+    result = numMovesStones(4, 3, 2);
+    CHECK_EQUAL(expected[0], result[0]);
+    CHECK_EQUAL(expected[1], result[1]);
+
+    // expected = { 1, 2 };
+    // result = numMovesStones(3, 5, 1);
+    // CHECK_EQUAL(expected[0], result[0]);
+    // CHECK_EQUAL(expected[1], result[1]);
+}

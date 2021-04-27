@@ -1,6 +1,7 @@
 #include "CppUTest/TestHarness.h"
 
 #include <vector>
+#include <iostream>
 #include <string>
 
 #include "Trees.hpp"
@@ -256,4 +257,31 @@ TEST(Trees, RangeSumBST)
     CHECK_EQUAL(23, rangeSumBST(node, 6, 10));
 
     deleteTree(node);
+}
+
+TEST(Trees, IncreasingBST)
+{
+    TreeNode* node = new TreeNode(5);
+    node->left = new TreeNode(3);
+    node->left->left = new TreeNode(2);
+    node->left->left->left = new TreeNode(1);
+    node->left->right = new TreeNode(4);
+    node->right = new TreeNode(6);
+    node->right->right = new TreeNode(8);
+    node->right->right->left = new TreeNode(7);
+    node->right->right->right = new TreeNode(9);
+
+    TreeNode* root = increasingBST(node);
+    
+    auto temp = root;
+    std::vector<int> expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int i = 0;
+    while (temp)
+    {
+        CHECK_EQUAL(expected[i], temp->val);
+        temp = temp->right;
+        i++;
+    }
+
+    deleteTree(root);
 }
