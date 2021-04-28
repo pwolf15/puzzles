@@ -5004,6 +5004,8 @@ std::vector<int> sortedSquares(std::vector<int>& nums)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 bool uniqueOccurrences(std::vector<int>& arr)
 {
     std::unordered_map<int, int> counts;
