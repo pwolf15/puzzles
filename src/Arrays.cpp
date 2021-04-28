@@ -5003,3 +5003,27 @@ std::vector<int> sortedSquares(std::vector<int>& nums)
     std::sort(result.begin(), result.end());
     return result;
 }
+
+bool uniqueOccurrences(std::vector<int>& arr)
+{
+    std::unordered_map<int, int> counts;
+    std::unordered_set<int> unique_counts;
+    for (size_t i = 0; i < arr.size(); ++i)
+    {
+        counts[arr[i]]++;
+    }
+
+    for (auto pair: counts)
+    {
+        if (unique_counts.find(pair.second) != unique_counts.end())
+        {
+            return false;
+        }
+        else
+        {
+            unique_counts.insert(pair.second);
+        }
+    }
+
+    return true;
+}

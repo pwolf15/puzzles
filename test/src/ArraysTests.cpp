@@ -2645,3 +2645,15 @@ TEST(Arrays, SortedSquares)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, UniqueOccurrences)
+{
+    std::vector<int> nums = {1,2,2,1,1,3};
+    CHECK(uniqueOccurrences(nums));
+
+    nums = {1,2};
+    CHECK(!uniqueOccurrences(nums));
+
+    nums = { -3,0,1,-3,1,1,1,-3,10,0 };
+    CHECK(uniqueOccurrences(nums));
+}

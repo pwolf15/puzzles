@@ -281,4 +281,6 @@ std::vector<std::string> summaryRanges(std::vector<int>& nums);
 
 std::vector<int> sortedSquares(std::vector<int>& nums);
 
+bool uniqueOccurrences(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP
