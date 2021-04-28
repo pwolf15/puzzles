@@ -2624,3 +2624,24 @@ TEST(Arrays, SummaryRanges)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, SortedSquares)
+{
+    std::vector<int> expected = { 0,1,9,16,100 };
+    std::vector<int> nums = {-4,-1,0,3,10 };
+    std::vector<int> result = sortedSquares(nums);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 4,9,9,49,121 };
+    nums = {-7,-3,2,3,11};
+    result = sortedSquares(nums);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

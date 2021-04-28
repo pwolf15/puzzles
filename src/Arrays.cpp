@@ -4989,3 +4989,17 @@ std::vector<std::string> summaryRanges(std::vector<int>& nums)
 
     return ranges;
 }
+
+// time complexity: O(n + n log n)
+// space complexity: O(1)
+std::vector<int> sortedSquares(std::vector<int>& nums)
+{
+    std::vector<int> result;
+    for (auto num: nums)
+    {
+        result.push_back(pow(num, 2));
+    }
+
+    std::sort(result.begin(), result.end());
+    return result;
+}
