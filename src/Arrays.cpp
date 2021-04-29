@@ -5109,6 +5109,8 @@ std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& n
     return nextGreaterElement_PW2(nums1, nums2);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int minStartValue(std::vector<int>& nums)
 {
     int min = nums[0];
