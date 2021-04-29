@@ -2657,3 +2657,26 @@ TEST(Arrays, UniqueOccurrences)
     nums = { -3,0,1,-3,1,1,1,-3,10,0 };
     CHECK(uniqueOccurrences(nums));
 }
+
+TEST(Arrays, NextGreaterElement)
+{
+    std::vector<int> nums1 = {4,1,2};
+    std::vector<int> nums2 = {1,3,4,2};
+    std::vector<int> result = nextGreaterElement(nums1, nums2);
+    std::vector<int> expected = {-1,3,-1};
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums1 = {2,4};
+    nums2 = {1,2,3,4};
+    result = nextGreaterElement(nums1, nums2);
+    expected = {3,-1};
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

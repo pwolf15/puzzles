@@ -5029,3 +5029,38 @@ bool uniqueOccurrences(std::vector<int>& arr)
 
     return true;
 }
+
+std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2)
+{
+    std::vector<int> arr = {};
+    for (int i = 0; i < nums1.size(); ++i)
+    {
+        for (int j = 0; j < nums2.size(); ++j)
+        {
+            if (nums2[j] == nums1[i])
+            {
+                bool foundGreater = false;
+                int k = j;
+                for (; k < nums2.size(); ++k)
+                {
+                    if (nums2[k] > nums1[i])
+                    {
+                        foundGreater = true;
+                        break;
+                    }
+                }
+
+                if (foundGreater)
+                {
+                    arr.push_back(nums2[k]);
+                }
+                else
+                {
+                    arr.push_back(-1);
+                }
+            }
+        }
+    }
+
+    return arr;
+}

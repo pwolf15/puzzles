@@ -283,4 +283,6 @@ std::vector<int> sortedSquares(std::vector<int>& nums);
 
 bool uniqueOccurrences(std::vector<int>& arr);
 
+std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2);
+
 #endif // ARRAYS_HPP
