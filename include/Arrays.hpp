@@ -285,4 +285,6 @@ bool uniqueOccurrences(std::vector<int>& arr);
 
 std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2);
 
+int minStartValue(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

@@ -5108,3 +5108,16 @@ std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& n
 {
     return nextGreaterElement_PW2(nums1, nums2);
 }
+
+int minStartValue(std::vector<int>& nums)
+{
+    int min = nums[0];
+    int cur = min;
+    for (int i = 1; i < nums.size(); ++i)
+    {
+        cur += nums[i];
+        min = std::min(min, cur);
+    }
+
+    return min < 1 ? 1 - min : 1;
+}

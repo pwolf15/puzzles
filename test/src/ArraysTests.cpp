@@ -2680,3 +2680,15 @@ TEST(Arrays, NextGreaterElement)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, MinStartValue)
+{
+    std::vector<int> nums = {-3,2,-3,4,2};
+    CHECK_EQUAL(5, minStartValue(nums));
+
+    nums = {1, 2};
+    CHECK_EQUAL(1, minStartValue(nums));
+
+    nums = {1,-2,-3};
+    CHECK_EQUAL(5, minStartValue(nums));
+}
