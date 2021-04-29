@@ -5032,7 +5032,7 @@ bool uniqueOccurrences(std::vector<int>& arr)
 
 // time complexity: O(n^3)
 // space complexity: O(1)
-std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2)
+std::vector<int> nextGreaterElement_PW1(std::vector<int>& nums1, std::vector<int>& nums2)
 {
     std::vector<int> arr = {};
     for (int i = 0; i < nums1.size(); ++i)
@@ -5065,4 +5065,46 @@ std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& n
     }
 
     return arr;
+}
+
+// time complexity: O(n^2)
+// space complexity: O(n)
+std::vector<int> nextGreaterElement_PW2(std::vector<int>& nums1, std::vector<int>& nums2)
+{
+    std::vector<int> arr = {};
+    std::unordered_map<int, int> pos;
+    for (int i = 0; i < nums2.size(); ++i)
+    {
+        pos[nums2[i]] = i;
+    }
+
+    for (int i = 0; i < nums1.size(); ++i)
+    {
+        bool foundGreater = false;
+        int j = pos[nums1[i]];
+        for (; j < nums2.size(); ++j)
+        {
+            if (nums2[j] > nums1[i])
+            {
+                foundGreater = true;
+                break;
+            }
+        }
+
+        if (foundGreater)
+        {
+            arr.push_back(nums2[j]);
+        }
+        else
+        {
+            arr.push_back(-1);
+        }
+    }
+
+    return arr;
+}
+
+std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2)
+{
+    return nextGreaterElement_PW2(nums1, nums2);
 }
