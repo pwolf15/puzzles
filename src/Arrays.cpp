@@ -5030,6 +5030,8 @@ bool uniqueOccurrences(std::vector<int>& arr)
     return true;
 }
 
+// time complexity: O(n^3)
+// space complexity: O(1)
 std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& nums2)
 {
     std::vector<int> arr = {};
