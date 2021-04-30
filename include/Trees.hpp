@@ -32,3 +32,5 @@ std::vector<int> findMode(TreeNode* root);
 int rangeSumBST(TreeNode* root, int low, int high);
 
 TreeNode* increasingBST(TreeNode* root);
+
+int sumRootToLeaf(TreeNode* root);

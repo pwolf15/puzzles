@@ -5123,3 +5123,36 @@ int minStartValue(std::vector<int>& nums)
 
     return min < 1 ? 1 - min : 1;
 }
+
+std::vector<int> sortByBits(std::vector<int>& arr)
+{
+    auto numOnes = [](int num) {
+
+        int numOnes = 0;
+        while (num) 
+        {
+            numOnes += num % 2;
+            num /= 2;
+        }
+
+        return numOnes;
+    };
+
+    std::sort(arr.begin(), arr.end(), [&](int a, int b) {
+        
+        if (numOnes(a) < numOnes(b))
+        {
+            return 1;
+        }
+        else if (numOnes(a) == numOnes(b))
+        {
+            return a < b ? 1 : a == b;
+        }
+        else
+        {
+            return 0;
+        }
+    });
+
+    return arr;
+}

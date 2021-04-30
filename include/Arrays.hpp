@@ -287,4 +287,6 @@ std::vector<int> nextGreaterElement(std::vector<int>& nums1, std::vector<int>& n
 
 int minStartValue(std::vector<int>& nums);
 
+std::vector<int> sortByBits(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

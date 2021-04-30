@@ -2692,3 +2692,46 @@ TEST(Arrays, MinStartValue)
     nums = {1,-2,-3};
     CHECK_EQUAL(5, minStartValue(nums));
 }
+
+TEST(Arrays, SortByBits)
+{
+    std::vector<int> nums = {0,1,2,3,4,5,6,7,8};
+    std::vector<int> expected = { 0,1,2,4,8,3,5,6,7 };
+    std::vector<int> result = sortByBits(nums);
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 1024,512,256,128,64,32,16,8,4,2,1 };
+    expected = { 1,2,4,8,16,32,64,128,256,512,1024 };
+    result = sortByBits(nums);
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 1000, 1000 };
+    expected = { 1000, 1000 };
+    result = sortByBits(nums);
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 2,3,5,7,11,13,17,19 };
+    expected = { 2,3,5,17,7,11,13,19 };
+    result = sortByBits(nums);
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 10,100,1000,10000 };
+    expected = { 10,100,10000,1000 };
+    result = sortByBits(nums);
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
