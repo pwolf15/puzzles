@@ -5124,6 +5124,8 @@ int minStartValue(std::vector<int>& nums)
     return min < 1 ? 1 - min : 1;
 }
 
+// time complexity: O(n log n)
+// space complexity: O(1)
 std::vector<int> sortByBits(std::vector<int>& arr)
 {
     auto numOnes = [](int num) {
