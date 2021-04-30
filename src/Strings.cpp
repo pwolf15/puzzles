@@ -2806,3 +2806,35 @@ std::string reverseWords(std::string s)
 {
     return reverseWords_PW2(s);
 }
+
+std::vector<int> shortestToChar(std::string s, char c)
+{
+    std::vector<int> dists;
+    std::vector<int> occurrences;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == c)
+        {
+            occurrences.push_back(i);
+        }
+    }
+
+    for (int i = 0; i < s.size(); ++i)
+    {
+        auto upper = std::upper_bound(occurrences.begin(), occurrences.end(), i);
+        if (upper == occurrences.end())
+        {
+            dists.push_back(i - occurrences[occurrences.size() - 1]);
+        }
+        else if (upper == occurrences.begin())
+        {
+            dists.push_back(occurrences[0] - i);
+        }
+        else
+        {
+            dists.push_back(std::min(*upper-i, i - *(upper - 1)));
+        }
+    }
+
+    return dists;
+}

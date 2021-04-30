@@ -131,4 +131,6 @@ bool judgeCircle(std::string moves);
 
 std::string reverseWords(std::string s);
 
+std::vector<int> shortestToChar(std::string s, char c);
+
 #endif // STRINGS_HPP

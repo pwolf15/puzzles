@@ -783,3 +783,34 @@ TEST(Strings, ReverseWordsII)
     CHECK_EQUAL("s'teL ekat edoCteeL tsetnoc", reverseWords("Let's take LeetCode contest"));
     CHECK_EQUAL("doG gniD", reverseWords("God Ding"));
 }
+
+TEST(Strings, ShortestToChar)
+{
+    std::vector<int> expected = { 3,2,1,0,1,0,0,1,2,2,1,0 };
+    std::vector<int> result = shortestToChar("loveleetcode", 'e');
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 3,2,1,0 };
+    result = shortestToChar("aaab", 'b');
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+    
+    expected = { 2,1,0,1 };
+    result = shortestToChar("aaba", 'b');
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    expected = { 1,0,0,1 };
+    result = shortestToChar("abba", 'b');
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
