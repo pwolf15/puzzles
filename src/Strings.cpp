@@ -2807,6 +2807,8 @@ std::string reverseWords(std::string s)
     return reverseWords_PW2(s);
 }
 
+// time complexity: O(n + n log n)
+// space complexity: O(n)
 std::vector<int> shortestToChar(std::string s, char c)
 {
     std::vector<int> dists;
