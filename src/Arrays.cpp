@@ -5246,6 +5246,8 @@ std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr)
     return diffs.begin()->second;
 }
 
+// time complexity: O(n + n log n)
+// space complexity: O(n)
 std::vector<int> frequencySort(std::vector<int>& nums)
 {
     std::vector<int> result = nums;
