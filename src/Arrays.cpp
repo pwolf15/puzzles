@@ -5212,3 +5212,60 @@ std::vector<int> luckyNumbers (std::vector<std::vector<int>>& matrix)
 
     return lucky;
 }
+
+std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2)
+{
+    return {};
+}
+
+std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr)
+{
+    std::map<int, std::vector<std::vector<int>>> diffs;
+    for (int i = 0; i < arr.size() - 1; ++i)
+    {
+        for (int j = i + 1; j < arr.size(); ++j)
+        {
+            int diff = std::abs(arr[j] - arr[i]);
+            if (diffs.find(diff) != diffs.end())
+            {
+                std::vector<int> new_pair = { arr[i], arr[j] };
+                std::sort(new_pair.begin(), new_pair.end());
+                diffs.find(diff)->second.push_back(new_pair);
+            }
+            else
+            {
+                std::vector<int> new_pair = { arr[i], arr[j] };
+                std::sort(new_pair.begin(), new_pair.end());
+                diffs[diff] = { new_pair };
+            }
+        }
+    }
+    std::sort(diffs.begin()->second.begin(), diffs.begin()->second.end(), [](std::vector<int> a, std::vector<int> b) {
+        return a[0] < b[0];
+    });
+    return diffs.begin()->second;
+}
+
+std::vector<int> frequencySort(std::vector<int>& nums)
+{
+    std::vector<int> result = nums;
+    std::unordered_map<int, int> counts;
+    for (auto num: nums)
+    {
+        counts[num]++;
+    }
+    std::sort(result.begin(), result.end(), [&](int a, int b) {
+        int countA = counts[a];
+        int countB = counts[b];
+        if (countA == countB)
+        {
+            return a > b;
+        } 
+        else
+        {
+            return countA < countB;
+        }
+    });
+
+    return result;
+}

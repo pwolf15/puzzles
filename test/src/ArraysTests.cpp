@@ -2784,3 +2784,46 @@ TEST(Arrays, LuckyNumbers)
         CHECK_EQUAL(expected[i], results[i]);
     }
 }
+
+TEST(Arrays, MinimumAbsDifference)
+{
+    std::vector<int> arr = {4,2,1,3};
+    std::vector<std::vector<int>> expected = {{1,2},{2,3},{3,4}};
+    std::vector<std::vector<int>> results = minimumAbsDifference(arr);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), results[i].size());
+        for (int j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], results[i][j]);
+        }
+    }
+}
+
+TEST(Arrays, FrequencySort)
+{
+    std::vector<int> arr = {1,1,2,2,2,3};
+    std::vector<int> expected = { 3,1,1,2,2,2 };
+    std::vector<int> result = frequencySort(arr);
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = {2,3,1,3,2};
+    expected = { 1,3,3,2,2 };
+    result = frequencySort(arr);
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    arr = {-1,1,-6,4,5,-6,1,4,1};
+    expected = { 5,-1,4,4,-6,-6,1,1,1 };
+    result = frequencySort(arr);
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}

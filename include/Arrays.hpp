@@ -293,4 +293,10 @@ std::vector<int> replaceElements(std::vector<int>& arr);
 
 std::vector<int> luckyNumbers (std::vector<std::vector<int>>& matrix);
 
+std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2);
+
+std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr);
+
+std::vector<int> frequencySort(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP
