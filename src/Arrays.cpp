@@ -5174,6 +5174,8 @@ std::vector<int> replaceElements(std::vector<int>& arr)
     return arr;
 }
 
+// time complexity: O(mn)
+// space complexity: O(m + n)
 std::vector<int> luckyNumbers (std::vector<std::vector<int>>& matrix)
 {
     std::vector<int> lucky;
