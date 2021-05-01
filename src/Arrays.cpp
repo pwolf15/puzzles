@@ -5159,6 +5159,8 @@ std::vector<int> sortByBits(std::vector<int>& arr)
     return arr;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> replaceElements(std::vector<int>& arr)
 {
     int curMax = arr[arr.size() - 1];
