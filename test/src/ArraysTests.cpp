@@ -2735,3 +2735,22 @@ TEST(Arrays, SortByBits)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, ReplaceElements)
+{
+    std::vector<int> nums = {17,18,5,4,6,1};
+    std::vector<int> expected = { 18,6,6,6,1,-1 };
+    std::vector<int> results = replaceElements(nums);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = {400};
+    expected = { -1 };
+    results = replaceElements(nums);
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+}

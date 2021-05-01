@@ -289,4 +289,6 @@ int minStartValue(std::vector<int>& nums);
 
 std::vector<int> sortByBits(std::vector<int>& arr);
 
+std::vector<int> replaceElements(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

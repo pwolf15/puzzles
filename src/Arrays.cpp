@@ -5158,3 +5158,16 @@ std::vector<int> sortByBits(std::vector<int>& arr)
 
     return arr;
 }
+
+std::vector<int> replaceElements(std::vector<int>& arr)
+{
+    int curMax = arr[arr.size() - 1];
+    arr[arr.size() - 1] = -1;
+    for (int i = arr.size() - 2; i >= 0; --i)
+    {
+        int newMax = std::max(curMax, arr[i]);
+        arr[i] = curMax;
+        curMax = newMax;
+    }
+    return arr;
+}
