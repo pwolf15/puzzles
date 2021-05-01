@@ -291,4 +291,6 @@ std::vector<int> sortByBits(std::vector<int>& arr);
 
 std::vector<int> replaceElements(std::vector<int>& arr);
 
+std::vector<int> luckyNumbers (std::vector<std::vector<int>>& matrix);
+
 #endif // ARRAYS_HPP

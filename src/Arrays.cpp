@@ -5173,3 +5173,40 @@ std::vector<int> replaceElements(std::vector<int>& arr)
     }
     return arr;
 }
+
+std::vector<int> luckyNumbers (std::vector<std::vector<int>>& matrix)
+{
+    std::vector<int> lucky;
+    std::set<int> minRow;
+    std::set<int> maxCol;
+
+    for (int i = 0; i < matrix.size(); ++i)
+    {
+        int min = matrix[i][0];
+        for (int j = 0; j < matrix[0].size(); ++j)
+        {
+            min = std::min(matrix[i][j], min);
+        }
+        minRow.insert(min);
+    }
+
+    for (int i = 0; i < matrix[0].size(); ++i)
+    {
+        int max = matrix[0][i];
+        for (int j = 0; j < matrix.size(); ++j)
+        {
+            max = std::max(matrix[j][i], max);
+        }
+        maxCol.insert(max);
+    }
+
+    for (auto row: minRow)
+    {
+        if (maxCol.find(row) != maxCol.end())
+        {
+            lucky.push_back(row);
+        }
+    }
+
+    return lucky;
+}

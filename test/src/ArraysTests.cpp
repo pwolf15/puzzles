@@ -2754,3 +2754,33 @@ TEST(Arrays, ReplaceElements)
         CHECK_EQUAL(expected[i], results[i]);
     }
 }
+
+TEST(Arrays, LuckyNumbers)
+{
+    std::vector<std::vector<int>> nums = {{3,7,8},{9,11,13},{15,16,17}};
+    std::vector<int> expected = { 15 };
+    std::vector<int> results = luckyNumbers(nums);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = {{1,10,4,2},{9,3,8,7},{15,16,17,12}};
+    expected = { 12 };
+    results = luckyNumbers(nums);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = {{7,8},{1,2}};
+    expected = { 7 };
+    results = luckyNumbers(nums);
+    CHECK_EQUAL(expected.size(), results.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+}
