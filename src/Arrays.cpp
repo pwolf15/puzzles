@@ -5218,6 +5218,8 @@ std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2)
     return {};
 }
 
+// time complexity: O(n log n + n + n)
+// space complexity: O(1)
 std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr)
 {
     std::sort(arr.begin(), arr.end());
