@@ -838,3 +838,18 @@ int numWaterBottles(int numBottles, int numExchange)
 
     return total;
 }
+
+int findComplement(int num)
+{
+    int largest = (num & (num - 1));
+    largest >>= 1;
+    int mask = 1;
+    while (largest)
+    {
+        largest >>= 1;
+        mask <<= 1;
+        mask |= 1;
+    }
+    
+    return ~num & mask;
+}

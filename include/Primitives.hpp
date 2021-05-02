@@ -127,4 +127,6 @@ int maximum69Number (int num);
 
 int numWaterBottles(int numBottles, int numExchange);
 
+int findComplement(int num);
+
 #endif // PRIMITIVES_HPP

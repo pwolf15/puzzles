@@ -300,3 +300,10 @@ TEST(Primitives, NumWaterBottles)
     CHECK_EQUAL(6, numWaterBottles(5, 5));
     CHECK_EQUAL(2, numWaterBottles(2, 3));
 }
+
+TEST(Primitives, FindComplement)
+{
+    CHECK_EQUAL(2, findComplement(5));
+    CHECK_EQUAL(0, findComplement(1));  
+    CHECK_EQUAL(1, findComplement(2)); 
+}

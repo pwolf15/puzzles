@@ -5220,30 +5220,25 @@ std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2)
 
 std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr)
 {
-    std::map<int, std::vector<std::vector<int>>> diffs;
-    for (int i = 0; i < arr.size() - 1; ++i)
+    std::sort(arr.begin(), arr.end());
+    int absDiff = std::numeric_limits<int>::max();
+    for (size_t i = 1; i < arr.size(); ++i)
     {
-        for (int j = i + 1; j < arr.size(); ++j)
+        int dist = arr[i] - arr[i - 1];
+        absDiff = std::min(absDiff, dist);
+    }
+
+    std::vector<std::vector<int>> dists;
+    for (size_t i = 1; i < arr.size(); ++i)
+    {
+        int dist = arr[i] - arr[i - 1];
+        if (dist == absDiff)
         {
-            int diff = std::abs(arr[j] - arr[i]);
-            if (diffs.find(diff) != diffs.end())
-            {
-                std::vector<int> new_pair = { arr[i], arr[j] };
-                std::sort(new_pair.begin(), new_pair.end());
-                diffs.find(diff)->second.push_back(new_pair);
-            }
-            else
-            {
-                std::vector<int> new_pair = { arr[i], arr[j] };
-                std::sort(new_pair.begin(), new_pair.end());
-                diffs[diff] = { new_pair };
-            }
+            dists.push_back({ arr[i - 1], arr[i] });
         }
     }
-    std::sort(diffs.begin()->second.begin(), diffs.begin()->second.end(), [](std::vector<int> a, std::vector<int> b) {
-        return a[0] < b[0];
-    });
-    return diffs.begin()->second;
+
+    return dists;
 }
 
 // time complexity: O(n + n log n)
