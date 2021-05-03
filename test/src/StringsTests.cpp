@@ -814,3 +814,25 @@ TEST(Strings, ShortestToChar)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+
+TEST(Strings, NumUniqueEmails)
+{
+    std::vector<std::string> emails = 
+        {
+            "test.email+alex@leetcode.com",
+            "test.e.mail+bob.cathy@leetcode.com",
+            "testemail+david@lee.tcode.com"
+        };
+
+    CHECK_EQUAL(2, numUniqueEmails(emails));
+    
+    emails = 
+        {
+            "a@leetcode.com",
+            "b@leetcode.com",
+            "c@leetcode.com"
+        };
+
+    CHECK_EQUAL(3, numUniqueEmails(emails));
+}

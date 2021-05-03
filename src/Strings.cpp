@@ -2840,3 +2840,40 @@ std::vector<int> shortestToChar(std::string s, char c)
 
     return dists;
 }
+
+int numUniqueEmails(std::vector<std::string>& emails)
+{
+    std::set<std::string> uniqueEmails;
+    for (auto email: emails)
+    {
+        std::string actualEmail = "";
+        bool seenAmp = false;
+        bool seenPlus = false;
+        for (auto c: email)
+        {
+            if (c == '@')
+            {
+                seenAmp = true;
+            }
+            else if (!seenAmp && seenPlus)
+            {
+                continue;
+            }
+            else if (!seenAmp && !seenPlus && c == '.')
+            {
+                continue;
+            }
+            else if (!seenAmp && !seenPlus && c == '+')
+            {
+                seenPlus = true;
+                continue;
+            }
+
+            actualEmail += c;
+        }
+
+        uniqueEmails.insert(actualEmail);
+    }
+
+    return uniqueEmails.size();
+}

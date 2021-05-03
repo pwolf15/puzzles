@@ -133,4 +133,6 @@ std::string reverseWords(std::string s);
 
 std::vector<int> shortestToChar(std::string s, char c);
 
+int numUniqueEmails(std::vector<std::string>& emails);
+
 #endif // STRINGS_HPP
