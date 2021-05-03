@@ -1,5 +1,7 @@
 #include "Queues.hpp"
 
+// time complexity: O(n)
+// space complexity: O(n)
 int countStudents(std::vector<int>& students, std::vector<int>& sandwiches)
 {
     std::queue<int> studQueue;
