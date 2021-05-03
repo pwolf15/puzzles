@@ -2841,6 +2841,8 @@ std::vector<int> shortestToChar(std::string s, char c)
     return dists;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int numUniqueEmails(std::vector<std::string>& emails)
 {
     std::set<std::string> uniqueEmails;
