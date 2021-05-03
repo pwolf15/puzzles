@@ -26,3 +26,14 @@ TEST(Queues, MyQueue)
     // CHECK_EQUAL(1, myQueue2.pop());
     // CHECK_EQUAL(2, myQueue2.peek());
 };
+
+TEST(Queues, CountStudents)
+{
+    std::vector<int> students = { 1,1,0,0 };
+    std::vector<int> sandwiches = { 0,1,0,1 };
+    CHECK_EQUAL(0, countStudents(students, sandwiches));
+
+    students = { 1,1,1,0,0,1 };
+    sandwiches = { 1,0,0,0,1,1 };
+    CHECK_EQUAL(3, countStudents(students, sandwiches));
+};

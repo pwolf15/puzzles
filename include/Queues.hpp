@@ -1,5 +1,7 @@
 #include <stack>
 #include <iostream>
+#include <queue>
+#include <vector>
 
 class MyQueue {
 public:
@@ -147,3 +149,5 @@ private:
  * int param_3 = obj->peek();
  * bool param_4 = obj->empty();
  */
+
+int countStudents(std::vector<int>& students, std::vector<int>& sandwiches);
