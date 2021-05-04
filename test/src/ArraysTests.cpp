@@ -2838,4 +2838,7 @@ TEST(Arrays, RepeatedNTimes)
 
     arr = {5,1,5,2,5,3,5,4};
     CHECK_EQUAL(5, repeatedNTimes(arr));
+    
+    arr = {9,5,3,3};
+    CHECK_EQUAL(3, repeatedNTimes(arr));
 }

@@ -5271,7 +5271,7 @@ std::vector<int> frequencySort(std::vector<int>& nums)
 
 // time complexity: O(n + n)
 // space complexity: O(n)
-int repeatedNTimes(std::vector<int>& A)
+int repeatedNTimes_PW1(std::vector<int>& A)
 {
     std::map<int, int> counts;
     for (auto a: A)
@@ -5291,4 +5291,17 @@ int repeatedNTimes(std::vector<int>& A)
         }
     }
     return maxEl;
+}
+
+// time complexity: O(n log n)
+// space complexity: O(1)
+int repeatedNTimes_PW2(std::vector<int>& A)
+{
+    std::sort(A.begin(), A.end());
+    return A[A.size() / 2] == A[A.size() / 2 + 1] ? A[A.size() / 2] : A[A.size() / 2 - 1];
+}
+
+int repeatedNTimes(std::vector<int>& A)
+{
+    return repeatedNTimes_PW2(A);
 }
