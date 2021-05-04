@@ -299,4 +299,6 @@ std::vector<std::vector<int>> minimumAbsDifference(std::vector<int>& arr);
 
 std::vector<int> frequencySort(std::vector<int>& nums);
 
+int repeatedNTimes(std::vector<int>& A);
+
 #endif // ARRAYS_HPP

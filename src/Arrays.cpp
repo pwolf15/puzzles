@@ -5268,3 +5268,25 @@ std::vector<int> frequencySort(std::vector<int>& nums)
 
     return result;
 }
+
+int repeatedNTimes(std::vector<int>& A)
+{
+    std::map<int, int> counts;
+    for (auto a: A)
+    {
+        counts[a]++;
+    }
+
+    int maxEl = counts.begin()->first;
+    int max = counts.begin()->second;
+
+    for (auto count: counts)
+    {
+        max = std::max(count.second, max);
+        if (max == count.second)
+        {
+            maxEl = count.first;
+        }
+    }
+    return maxEl;
+}

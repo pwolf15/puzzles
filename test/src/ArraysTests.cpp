@@ -2827,3 +2827,15 @@ TEST(Arrays, FrequencySort)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, RepeatedNTimes)
+{
+    std::vector<int> arr = {1,2,3,3};
+    CHECK_EQUAL(3, repeatedNTimes(arr));
+
+    arr = {1,2,3,32,1,2,5,3,2};
+    CHECK_EQUAL(2, repeatedNTimes(arr));
+
+    arr = {5,1,5,2,5,3,5,4};
+    CHECK_EQUAL(5, repeatedNTimes(arr));
+}
