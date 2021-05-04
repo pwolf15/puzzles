@@ -5305,3 +5305,26 @@ int repeatedNTimes(std::vector<int>& A)
 {
     return repeatedNTimes_PW2(A);
 }
+
+int countBalls(int lowLimit, int highLimit)
+{
+    std::vector<int> counts(46); // max size is 9 * 5 (45)
+
+    auto sumDigits = [](int num) {
+        int sum = 0;
+        while (num)
+        {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    };
+
+    for (int i = lowLimit; i <= highLimit; ++i)
+    {
+        int sum = sumDigits(i);
+        counts[sum]++;
+    }
+
+    return *std::max_element(counts.begin(), counts.end());
+}

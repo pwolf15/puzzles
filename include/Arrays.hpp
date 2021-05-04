@@ -301,4 +301,6 @@ std::vector<int> frequencySort(std::vector<int>& nums);
 
 int repeatedNTimes(std::vector<int>& A);
 
+int countBalls(int lowLimit, int highLimit);
+
 #endif // ARRAYS_HPP

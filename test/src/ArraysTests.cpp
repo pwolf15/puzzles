@@ -2842,3 +2842,10 @@ TEST(Arrays, RepeatedNTimes)
     arr = {9,5,3,3};
     CHECK_EQUAL(3, repeatedNTimes(arr));
 }
+
+TEST(Arrays, CountBalls)
+{
+    CHECK_EQUAL(2, countBalls(1, 10));
+    CHECK_EQUAL(2, countBalls(5, 15));
+    CHECK_EQUAL(2, countBalls(10, 20));
+}
