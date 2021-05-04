@@ -5306,6 +5306,8 @@ int repeatedNTimes(std::vector<int>& A)
     return repeatedNTimes_PW2(A);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int countBalls(int lowLimit, int highLimit)
 {
     std::vector<int> counts(46); // max size is 9 * 5 (45)
