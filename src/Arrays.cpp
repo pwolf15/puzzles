@@ -5269,6 +5269,8 @@ std::vector<int> frequencySort(std::vector<int>& nums)
     return result;
 }
 
+// time complexity: O(n + n)
+// space complexity: O(n)
 int repeatedNTimes(std::vector<int>& A)
 {
     std::map<int, int> counts;
