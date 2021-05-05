@@ -5331,6 +5331,8 @@ int countBalls(int lowLimit, int highLimit)
     return *std::max_element(counts.begin(), counts.end());
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int getMinDistance(std::vector<int>& nums, int target, int start)
 {
     int minDist =  std::numeric_limits<int>::max();
