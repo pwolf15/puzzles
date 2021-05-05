@@ -5347,3 +5347,31 @@ int getMinDistance(std::vector<int>& nums, int target, int start)
     }
     return minDist;
 }
+
+// time complexity: O(n)
+// space complexity: O(n)
+std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix)
+{
+    int newWidth = matrix.size();
+    int newHeight = matrix[0].size();
+
+    std::vector<std::vector<int>> transposed;
+    transposed.resize(newHeight);
+    for (int i = 0; i < newHeight; ++i)
+    {
+        transposed[i].resize(newWidth);
+    }
+
+    for (int i = 0; i < matrix.size(); ++i)
+    {
+        for (int j = 0; j < matrix[i].size(); ++j)
+        {
+            int pos = i * matrix[i].size() + j; 
+            int row = pos % newWidth;
+            int col = pos / newWidth;
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposed;
+}

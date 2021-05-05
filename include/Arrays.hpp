@@ -305,4 +305,6 @@ int countBalls(int lowLimit, int highLimit);
 
 int getMinDistance(std::vector<int>& nums, int target, int start);
 
+std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix);
+
 #endif // ARRAYS_HPP

@@ -2861,3 +2861,48 @@ TEST(Arrays, GetMinDistance)
     nums = { 1,1,1,1,1,1,1,1,1,1 };
     CHECK_EQUAL(0, getMinDistance(nums, 1, 0));
 }
+
+TEST(Arrays, Transpose)
+{
+    std::vector<std::vector<int>> matrix =
+        {
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+        };
+    std::vector<std::vector<int>> result = transpose(matrix);
+    std::vector<std::vector<int>> expected =
+        {
+            {1,4,7},
+            {2,5,8},
+            {3,6,9}
+        };
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    matrix =
+        {
+            {1,2,3},
+            {4,5,6}
+        };
+
+    result = transpose(matrix);
+    expected =
+        {
+            {1,4},
+            {2,5},
+            {3,6}
+        };
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}
