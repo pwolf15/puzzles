@@ -5330,3 +5330,18 @@ int countBalls(int lowLimit, int highLimit)
 
     return *std::max_element(counts.begin(), counts.end());
 }
+
+int getMinDistance(std::vector<int>& nums, int target, int start)
+{
+    int minDist =  std::numeric_limits<int>::max();
+    int curDist = minDist;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] == target)
+        {
+            curDist = abs(i - start);
+            minDist = std::min(curDist, minDist);
+        }
+    }
+    return minDist;
+}

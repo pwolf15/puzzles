@@ -303,4 +303,6 @@ int repeatedNTimes(std::vector<int>& A);
 
 int countBalls(int lowLimit, int highLimit);
 
+int getMinDistance(std::vector<int>& nums, int target, int start);
+
 #endif // ARRAYS_HPP

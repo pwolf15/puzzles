@@ -2849,3 +2849,15 @@ TEST(Arrays, CountBalls)
     CHECK_EQUAL(2, countBalls(5, 15));
     CHECK_EQUAL(2, countBalls(10, 20));
 }
+
+TEST(Arrays, GetMinDistance)
+{
+    std::vector<int> nums = { 1,2,3,4,5 };
+    CHECK_EQUAL(1, getMinDistance(nums, 5, 3));
+
+    nums = { 1 };
+    CHECK_EQUAL(0, getMinDistance(nums, 1, 0));
+
+    nums = { 1,1,1,1,1,1,1,1,1,1 };
+    CHECK_EQUAL(0, getMinDistance(nums, 1, 0));
+}
