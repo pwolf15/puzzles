@@ -2930,6 +2930,8 @@ std::string removeDuplicates(std::string S)
     return newStr;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool checkIfPangram(std::string sentence)
 {
     int arr[26] = {0};
@@ -2945,6 +2947,6 @@ bool checkIfPangram(std::string sentence)
             return false;
         }
     }
-    
+
     return true;
 }
