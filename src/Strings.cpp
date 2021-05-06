@@ -2929,3 +2929,22 @@ std::string removeDuplicates(std::string S)
 
     return newStr;
 }
+
+bool checkIfPangram(std::string sentence)
+{
+    int arr[26] = {0};
+    for (auto c: sentence)
+    {
+        arr[c - 'a']++;
+    }
+
+    for (auto el: arr)
+    {
+        if (!el)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}

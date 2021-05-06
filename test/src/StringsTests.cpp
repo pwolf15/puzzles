@@ -842,3 +842,9 @@ TEST(Strings, RemoveDuplicates)
     CHECK_EQUAL("ca", removeDuplicates("abbaca"));
     CHECK_EQUAL("a", removeDuplicates("aaaaaaaaa"));
 }
+
+TEST(Strings, CheckIfPangram)
+{
+    CHECK(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"));
+    CHECK(!checkIfPangram("leetcode"));
+}
