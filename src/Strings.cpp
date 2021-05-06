@@ -2880,6 +2880,8 @@ int numUniqueEmails(std::vector<std::string>& emails)
     return uniqueEmails.size();
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string removeDuplicates(std::string S)
 {
     std::string newStr;
