@@ -2879,3 +2879,51 @@ int numUniqueEmails(std::vector<std::string>& emails)
 
     return uniqueEmails.size();
 }
+
+std::string removeDuplicates(std::string S)
+{
+    std::string newStr;
+    while (!S.empty())
+    {
+        char c = S[0];
+        int count = 1;
+        for (int i = 1; i < S.size(); ++i)
+        {
+            if (S[i] != c)
+            {
+                if (count == 1)
+                {
+                    newStr += c;
+                }
+
+                c = S[i];
+                count = 1;
+            }
+            else if (S[i] == c)
+            {
+                count++;
+
+                if (count == 3)
+                {
+                    c = S[i];
+                    count = 1;
+                }
+            }
+        }
+
+        if (count == 1)
+        {
+            newStr += c;
+        }
+
+        if (S == newStr)
+        {
+            break;
+        }
+
+        S = newStr;
+        newStr = "";
+    }
+
+    return newStr;
+}

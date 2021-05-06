@@ -135,4 +135,6 @@ std::vector<int> shortestToChar(std::string s, char c);
 
 int numUniqueEmails(std::vector<std::string>& emails);
 
+std::string removeDuplicates(std::string S);
+    
 #endif // STRINGS_HPP

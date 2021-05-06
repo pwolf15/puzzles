@@ -836,3 +836,9 @@ TEST(Strings, NumUniqueEmails)
 
     CHECK_EQUAL(3, numUniqueEmails(emails));
 }
+
+TEST(Strings, RemoveDuplicates)
+{
+    CHECK_EQUAL("ca", removeDuplicates("abbaca"));
+    CHECK_EQUAL("a", removeDuplicates("aaaaaaaaa"));
+}
