@@ -2951,6 +2951,8 @@ bool checkIfPangram(std::string sentence)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool canConstruct(std::string ransomNote, std::string magazine)
 {
     std::vector<int> rn_count(26);
