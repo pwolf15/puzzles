@@ -2979,6 +2979,8 @@ bool canConstruct(std::string ransomNote, std::string magazine)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int maxNumberOfBalloons(std::string text)
 {
     std::string target = "balloon";
