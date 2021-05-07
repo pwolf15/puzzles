@@ -855,3 +855,10 @@ TEST(Strings, CanConstruct)
     CHECK(!canConstruct("aa", "ab"));
     CHECK(canConstruct("aa", "aab"));
 }
+
+TEST(Strings, MaxNumberOfBalloons)
+{
+    CHECK_EQUAL(1, maxNumberOfBalloons("nlaebolko"));
+    CHECK_EQUAL(2, maxNumberOfBalloons("loonbalxballpoon"));
+    CHECK_EQUAL(0, maxNumberOfBalloons("leetcode"));
+}

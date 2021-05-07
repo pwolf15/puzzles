@@ -2978,3 +2978,44 @@ bool canConstruct(std::string ransomNote, std::string magazine)
 
     return true;
 }
+
+int maxNumberOfBalloons(std::string text)
+{
+    std::string target = "balloon";
+    std::vector<int> count1(26);
+    std::vector<int> count2(26);
+    for (int i = 0; i < target.size(); ++i)
+    {
+        count1[target[i] - 'a']++;
+    }
+
+    for (int i = 0; i < text.size(); ++i)
+    {
+        count2[text[i] - 'a']++;
+    }
+
+    int maxNum = 0;
+    int minDiff = std::numeric_limits<int>::max();
+    for (int i = 0; i < 26; ++i)
+    {
+        if (!count1[i])
+        {
+            continue;
+        }
+        else if (count2[i] < count1[i])
+        {
+            return 0;
+        }
+        else if (count2[i] == count1[i])
+        {
+            minDiff = 1;
+            continue;
+        }
+        else if (count2[i] > count1[i])
+        {
+            minDiff = std::min(minDiff, count2[i] / count1[i]);
+        }
+    }
+
+    return minDiff;
+}

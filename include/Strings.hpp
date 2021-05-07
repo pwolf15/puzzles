@@ -141,4 +141,6 @@ bool checkIfPangram(std::string sentence);
 
 bool canConstruct(std::string ransomNote, std::string magazine);
 
+int maxNumberOfBalloons(std::string text);
+
 #endif // STRINGS_HPP
