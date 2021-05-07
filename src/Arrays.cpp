@@ -5409,6 +5409,8 @@ bool isAlienSorted(std::vector<std::string>& words, std::string order)
     return true;
 }
 
+// time complexity: O(n + n log n)
+// space complexity: O(n)
 int lastStoneWeight(std::vector<int>& stones)
 {
     std::multiset<int> stoness;
