@@ -2950,3 +2950,29 @@ bool checkIfPangram(std::string sentence)
 
     return true;
 }
+
+bool canConstruct(std::string ransomNote, std::string magazine)
+{
+    std::vector<int> rn_count(26);
+    std::vector<int> mag_count(26);
+
+    for (auto c: ransomNote)
+    {
+        rn_count[c - 'a']++;
+    }
+
+    for (auto c: magazine)
+    {
+        mag_count[c - 'a']++;
+    }
+
+    for (size_t i = 0; i < 26; ++i)
+    {
+        if (rn_count[i] > mag_count[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}

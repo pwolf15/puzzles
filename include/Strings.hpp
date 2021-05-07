@@ -139,4 +139,6 @@ std::string removeDuplicates(std::string S);
 
 bool checkIfPangram(std::string sentence);
 
+bool canConstruct(std::string ransomNote, std::string magazine);
+
 #endif // STRINGS_HPP

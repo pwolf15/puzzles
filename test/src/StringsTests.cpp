@@ -848,3 +848,10 @@ TEST(Strings, CheckIfPangram)
     CHECK(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"));
     CHECK(!checkIfPangram("leetcode"));
 }
+
+TEST(Strings, CanConstruct)
+{
+    CHECK(!canConstruct("a", "b"));
+    CHECK(!canConstruct("aa", "ab"));
+    CHECK(canConstruct("aa", "aab"));
+}
