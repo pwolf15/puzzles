@@ -5376,6 +5376,8 @@ std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix)
     return transposed;
 }
 
+// time complexity: O(n log n + n)
+// space complexity: O(n)
 bool isAlienSorted(std::vector<std::string>& words, std::string order)
 {
     std::vector<std::string> sorted = words;
