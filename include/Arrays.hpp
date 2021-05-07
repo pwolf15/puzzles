@@ -307,4 +307,6 @@ int getMinDistance(std::vector<int>& nums, int target, int start);
 
 std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix);
 
+bool isAlienSorted(std::vector<std::string>& words, std::string order);
+
 #endif // ARRAYS_HPP

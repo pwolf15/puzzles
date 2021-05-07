@@ -2906,3 +2906,15 @@ TEST(Arrays, Transpose)
         }
     }
 }
+
+TEST(Arrays, IsAlienSorted)
+{
+    std::vector<std::string> words = { "hello","leetcode" };
+    CHECK(isAlienSorted(words, "hlabcdefgijkmnopqrstuvwxyz"));
+
+    words = { "word","world","row" };
+    CHECK(!isAlienSorted(words, "worldabcefghijkmnpqstuvxyz"));
+
+    words = { "apple","app" };
+    CHECK(!isAlienSorted(words, "abcdefghijklmnopqrstuvwxyz"));
+}

@@ -5375,3 +5375,33 @@ std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix)
 
     return transposed;
 }
+
+bool isAlienSorted(std::vector<std::string>& words, std::string order)
+{
+    std::vector<std::string> sorted = words;
+    std::sort(sorted.begin(), sorted.end(), [&](std::string a, std::string b) {
+        for (size_t i = 0; i < a.size() && i < b.size(); ++i)
+        {
+            if (a[i] == b[i])
+            {
+                continue;
+            }
+            else
+            {
+                return order.find(a[i]) < order.find(b[i]);
+            }
+        }
+
+        return a.size() < b.size();
+    });
+
+    for (size_t i = 0; i < words.size(); ++i)
+    {
+        if (words[i] != sorted[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
