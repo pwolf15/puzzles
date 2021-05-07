@@ -309,4 +309,6 @@ std::vector<std::vector<int>> transpose(std::vector<std::vector<int>>& matrix);
 
 bool isAlienSorted(std::vector<std::string>& words, std::string order);
 
+int lastStoneWeight(std::vector<int>& stones);
+
 #endif // ARRAYS_HPP

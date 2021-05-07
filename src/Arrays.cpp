@@ -10,6 +10,7 @@
 #include <map>
 #include <numeric>
 #include <stack>
+#include <set>
 
 // RNG
 #include <ctime>
@@ -5406,4 +5407,32 @@ bool isAlienSorted(std::vector<std::string>& words, std::string order)
     }
 
     return true;
+}
+
+int lastStoneWeight(std::vector<int>& stones)
+{
+    std::multiset<int> stoness;
+    for (auto s: stones)
+    {
+        stoness.insert(s);
+    }
+
+    while (stoness.size() > 1)
+    {
+        auto largest = --stoness.end();
+        auto secondLargest = --(--stoness.end());
+
+        if (*largest != *secondLargest)
+        {
+            int newStone = *largest - *secondLargest;
+            stoness.erase(secondLargest, stoness.end());
+
+            stoness.insert(newStone);
+        }
+        else
+        {
+            stoness.erase(secondLargest, stoness.end());
+        }
+    }
+    return stoness.size() ? *stoness.begin() : 0;
 }

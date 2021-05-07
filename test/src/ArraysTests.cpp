@@ -2918,3 +2918,15 @@ TEST(Arrays, IsAlienSorted)
     words = { "apple","app" };
     CHECK(!isAlienSorted(words, "abcdefghijklmnopqrstuvwxyz"));
 }
+
+TEST(Arrays, LastStoneWeight)
+{
+    std::vector<int> stones = { 2,7,4,1,8,1 };
+    CHECK_EQUAL(1, lastStoneWeight(stones));
+
+    stones = { 1, 3};
+    CHECK_EQUAL(2, lastStoneWeight(stones));
+
+    stones = { 3,7,2 };
+    CHECK_EQUAL(2, lastStoneWeight(stones));
+}
