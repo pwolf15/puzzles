@@ -2930,3 +2930,12 @@ TEST(Arrays, LastStoneWeight)
     stones = { 3,7,2 };
     CHECK_EQUAL(2, lastStoneWeight(stones));
 }
+
+TEST(Arrays, FindMaxConsecutiveOnes)
+{
+    std::vector<int> nums = { 1,1,0,1,1,1 };
+    CHECK_EQUAL(3, findMaxConsecutiveOnes(nums));
+
+    nums = { 1,0,1,1,0,1 };
+    CHECK_EQUAL(2, findMaxConsecutiveOnes(nums));
+}

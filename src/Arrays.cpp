@@ -5438,3 +5438,25 @@ int lastStoneWeight(std::vector<int>& stones)
     }
     return stoness.size() ? *stoness.begin() : 0;
 }
+
+int findMaxConsecutiveOnes(std::vector<int>& nums)
+{
+    int max = 0;
+    int cur = 0;
+    for (size_t i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i])
+        {
+            ++cur;
+        }
+        else
+        {
+            max = std::max(cur, max);
+            cur = 0;
+        }
+    }
+
+    max = std::max(cur, max);
+
+    return max;
+}
