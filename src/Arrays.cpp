@@ -5439,6 +5439,8 @@ int lastStoneWeight(std::vector<int>& stones)
     return stoness.size() ? *stoness.begin() : 0;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int findMaxConsecutiveOnes(std::vector<int>& nums)
 {
     int max = 0;
