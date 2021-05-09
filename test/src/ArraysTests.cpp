@@ -2939,3 +2939,18 @@ TEST(Arrays, FindMaxConsecutiveOnes)
     nums = { 1,0,1,1,0,1 };
     CHECK_EQUAL(2, findMaxConsecutiveOnes(nums));
 }
+
+TEST(Arrays, DominantIndex)
+{
+    std::vector<int> nums = { 3,6,1,0 };
+    CHECK_EQUAL(1, dominantIndex(nums));
+
+    nums = { 1,2,3,4 };
+    CHECK_EQUAL(-1, dominantIndex(nums));
+
+    nums = { 1 };
+    CHECK_EQUAL(0, dominantIndex(nums));
+
+    nums = {0,0,0,1};
+    CHECK_EQUAL(3, dominantIndex(nums));
+}

@@ -313,4 +313,6 @@ int lastStoneWeight(std::vector<int>& stones);
 
 int findMaxConsecutiveOnes(std::vector<int>& nums);
 
+int dominantIndex(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

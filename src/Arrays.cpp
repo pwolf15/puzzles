@@ -5462,3 +5462,31 @@ int findMaxConsecutiveOnes(std::vector<int>& nums)
 
     return max;
 }
+
+int dominantIndex(std::vector<int>& nums)
+{
+    int max = 0, maxEl = 0, max2 = 0, maxEl2 = 0;
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] > max)
+        {
+            max2 = max;
+            maxEl2 = maxEl;
+            max = nums[i];
+            maxEl = i;
+        }
+        else if (nums[i] > max2)
+        {
+            max2 = nums[i];
+            maxEl2 = i;
+        }
+    }
+
+    if (max2 == 0) 
+    {
+        return maxEl;
+    }
+
+    return max / max2 >= 2 ? maxEl : -1;
+}
