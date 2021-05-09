@@ -5463,6 +5463,8 @@ int findMaxConsecutiveOnes(std::vector<int>& nums)
     return max;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int dominantIndex(std::vector<int>& nums)
 {
     int max = 0, maxEl = 0, max2 = 0, maxEl2 = 0;
