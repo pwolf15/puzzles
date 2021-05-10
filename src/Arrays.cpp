@@ -5493,6 +5493,8 @@ int dominantIndex(std::vector<int>& nums)
     return max / max2 >= 2 ? maxEl : -1;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 bool lemonadeChange(std::vector<int>& bills)
 {
     int num5s = 0;
