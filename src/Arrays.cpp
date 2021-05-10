@@ -5492,3 +5492,49 @@ int dominantIndex(std::vector<int>& nums)
 
     return max / max2 >= 2 ? maxEl : -1;
 }
+
+bool lemonadeChange(std::vector<int>& bills)
+{
+    int num5s = 0;
+    int num10s = 0;
+    for (int i = 0; i < bills.size(); ++i)
+    {
+        if (bills[i] == 5)
+        {
+            ++num5s;
+        }
+        else if (bills[i] == 10)
+        {
+            if (num5s < 1)
+            {
+                return false;
+            }
+            else
+            {
+                --num5s;
+                ++num10s;
+            }
+        }
+        else if (bills[i] == 20)
+        {
+            if (num5s >= 3 || (num5s >= 1 && num10s >= 1))
+            {
+                if (num10s >= 1)
+                {
+                    num5s -= 1;
+                    num10s -= 1;
+                }
+                else 
+                {
+                    num5s -= 3;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}

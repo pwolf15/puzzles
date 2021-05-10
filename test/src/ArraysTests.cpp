@@ -2954,3 +2954,18 @@ TEST(Arrays, DominantIndex)
     nums = {0,0,0,1};
     CHECK_EQUAL(3, dominantIndex(nums));
 }
+
+TEST(Arrays, LemonadeChange)
+{
+    std::vector<int> bills = { 5,5,5,10,20 };
+    CHECK(lemonadeChange(bills));
+
+    bills = { 5,5,10 };
+    CHECK(lemonadeChange(bills));
+
+    bills = { 10, 10 };
+    CHECK(!lemonadeChange(bills));
+
+    bills = { 5,5,5,5,20,20,5,5,20,5 };
+    CHECK(!lemonadeChange(bills));
+}

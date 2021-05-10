@@ -315,4 +315,6 @@ int findMaxConsecutiveOnes(std::vector<int>& nums);
 
 int dominantIndex(std::vector<int>& nums);
 
+bool lemonadeChange(std::vector<int>& bills);
+
 #endif // ARRAYS_HPP
