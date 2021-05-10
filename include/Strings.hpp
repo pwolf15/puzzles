@@ -143,4 +143,6 @@ bool canConstruct(std::string ransomNote, std::string magazine);
 
 int maxNumberOfBalloons(std::string text);
 
+int maxLengthBetweenEqualCharacters(std::string s);
+
 #endif // STRINGS_HPP

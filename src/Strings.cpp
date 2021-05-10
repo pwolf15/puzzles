@@ -3021,3 +3021,27 @@ int maxNumberOfBalloons(std::string text)
 
     return minDiff;
 }
+
+int maxLengthBetweenEqualCharacters(std::string s)
+{
+    std::unordered_map<char, std::vector<int>> pos;
+    for (size_t i = 0; i < s.size(); ++i)
+    {
+        pos[s[i]].push_back(i);
+    }
+
+    int maxLength = -1;
+    for (auto pair: pos)
+    {
+        if (pair.second.size() < 2)
+        {
+            continue;
+        }
+        else 
+        {
+            maxLength = std::max(*(--pair.second.end()) - *pair.second.begin() - 1, maxLength);
+        }
+    }
+
+    return maxLength;
+}

@@ -862,3 +862,11 @@ TEST(Strings, MaxNumberOfBalloons)
     CHECK_EQUAL(2, maxNumberOfBalloons("loonbalxballpoon"));
     CHECK_EQUAL(0, maxNumberOfBalloons("leetcode"));
 }
+
+TEST(Strings, MaxLengthBetweenEqualCharacters)
+{
+    CHECK_EQUAL(0, maxLengthBetweenEqualCharacters("aa"));
+    CHECK_EQUAL(2, maxLengthBetweenEqualCharacters("abca"));
+    CHECK_EQUAL(-1, maxLengthBetweenEqualCharacters("cbzxy"));
+    CHECK_EQUAL(4, maxLengthBetweenEqualCharacters("cabbac"));
+}
