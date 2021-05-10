@@ -3026,22 +3026,18 @@ int maxNumberOfBalloons(std::string text)
 // space complexity: O(n)
 int maxLengthBetweenEqualCharacters(std::string s)
 {
-    std::unordered_map<char, std::vector<int>> pos;
-    for (size_t i = 0; i < s.size(); ++i)
-    {
-        pos[s[i]].push_back(i);
-    }
-
+    std::vector<int> idx(26);
     int maxLength = -1;
-    for (auto pair: pos)
+    for (int i = 0; i < s.size(); ++i)
     {
-        if (pair.second.size() < 2)
+        if (idx[s[i] - 'a'] == 0)
         {
+            idx[s[i] - 'a'] = i + 1;
             continue;
         }
-        else 
+        else
         {
-            maxLength = std::max(*(--pair.second.end()) - *pair.second.begin() - 1, maxLength);
+            maxLength = std::max(maxLength, i - idx[s[i] - 'a']);
         }
     }
 
