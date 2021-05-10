@@ -3022,6 +3022,8 @@ int maxNumberOfBalloons(std::string text)
     return minDiff;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int maxLengthBetweenEqualCharacters(std::string s)
 {
     std::unordered_map<char, std::vector<int>> pos;
