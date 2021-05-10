@@ -3023,7 +3023,7 @@ int maxNumberOfBalloons(std::string text)
 }
 
 // time complexity: O(n)
-// space complexity: O(n)
+// space complexity: O(1)
 int maxLengthBetweenEqualCharacters(std::string s)
 {
     std::vector<int> idx(26);
