@@ -3044,6 +3044,8 @@ int maxLengthBetweenEqualCharacters(std::string s)
     return maxLength;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string replaceDigits(std::string s)
 {
     std::string result;
