@@ -3043,3 +3043,21 @@ int maxLengthBetweenEqualCharacters(std::string s)
 
     return maxLength;
 }
+
+std::string replaceDigits(std::string s)
+{
+    std::string result;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (i % 2 == 0)
+        {
+            result += s[i];
+        }
+        else
+        {
+            result += s[i - 1] + s[i] - '1' + 1;
+        }
+    }
+
+    return result;
+}

@@ -129,4 +129,8 @@ int numWaterBottles(int numBottles, int numExchange);
 
 int findComplement(int num);
 
+int numPrimeArrangements(int n);
+
+long long fact(long long n);
+
 #endif // PRIMITIVES_HPP

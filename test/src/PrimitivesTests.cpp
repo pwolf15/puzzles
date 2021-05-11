@@ -307,3 +307,9 @@ TEST(Primitives, FindComplement)
     CHECK_EQUAL(0, findComplement(1));  
     CHECK_EQUAL(1, findComplement(2)); 
 }
+
+TEST(Primitives, NumPrimeArrangements)
+{
+    CHECK_EQUAL(12, numPrimeArrangements(5));
+    // CHECK_EQUAL(682289015, numPrimeArrangements(100));
+}

@@ -145,4 +145,6 @@ int maxNumberOfBalloons(std::string text);
 
 int maxLengthBetweenEqualCharacters(std::string s);
 
+std::string replaceDigits(std::string s);
+
 #endif // STRINGS_HPP

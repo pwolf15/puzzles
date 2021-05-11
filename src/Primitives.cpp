@@ -8,6 +8,7 @@
 #include <set>
 #include <map>
 #include <unordered_map>
+#include <Arrays.hpp>
 
 // Known as Digital Root
 // below is basic logarithmic solution
@@ -852,4 +853,45 @@ int findComplement(int num)
     }
     
     return ~num & mask;
+}
+
+long long fact(long long n)
+{
+    if (n == 0 || n == 1)
+    {
+        return 1;
+    }
+    else 
+    {
+        return n * fact(n - 1);
+    }
+}
+
+int numPrimeArrangements(int n)
+{
+    int numPrimes = 0;
+    std::vector<bool> prime(n + 1, true);
+    for (int p = 2; p * p <= n; p++)
+    {
+        // If prime[p] is not changed,
+        // then it is a prime
+        if (prime[p] == true)
+        {
+            // Update all multiples
+            // of p greater than or
+            // equal to the square of it
+            // numbers which are multiple
+            // of p and are less than p^2
+            // are already been marked.
+            for (int i = p * p; i <= n; i += p)
+                prime[i] = false;
+        }
+    }
+
+        // Print all prime numbers
+    for (int p = 2; p <= n; p++)
+        if (prime[p])
+            ++numPrimes;
+
+    return fact(n) / (n * fact(n - numPrimes));
 }

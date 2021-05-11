@@ -870,3 +870,9 @@ TEST(Strings, MaxLengthBetweenEqualCharacters)
     CHECK_EQUAL(-1, maxLengthBetweenEqualCharacters("cbzxy"));
     CHECK_EQUAL(4, maxLengthBetweenEqualCharacters("cabbac"));
 }
+
+TEST(Strings, ReplaceDigits)
+{
+    CHECK_EQUAL("abcdef", replaceDigits("a1c1e1"));
+    CHECK_EQUAL("abbdcfdhe", replaceDigits("a1b2c3d4e"));
+}
