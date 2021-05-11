@@ -5540,3 +5540,36 @@ bool lemonadeChange(std::vector<int>& bills)
 
     return true;
 }
+
+std::vector<std::string> findRelativeRanks(std::vector<int>& score)
+{
+    std::map<int, std::string> ranks;
+    for (size_t i = 0; i < score.size(); ++i)
+    {
+        ranks[score[i]] = "";
+    }
+
+    size_t i = 0;
+    std::vector<std::string> medals = { "Gold Medal", "Silver Medal", "Bronze Medal"};
+    for (auto it = ranks.rbegin(); it != ranks.rend(); it++)
+    {
+        if (i < 3)
+        {
+            it->second = medals[i];
+        }
+        else
+        {
+            it->second = std::to_string(i + 1);
+        }
+
+        i++;
+    }
+
+    std::vector<std::string> scores;
+    for (auto s: score)
+    {
+        scores.push_back(ranks[s]);
+    }
+
+    return scores;
+}

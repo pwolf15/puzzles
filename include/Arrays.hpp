@@ -317,4 +317,6 @@ int dominantIndex(std::vector<int>& nums);
 
 bool lemonadeChange(std::vector<int>& bills);
 
+std::vector<std::string> findRelativeRanks(std::vector<int>& score);
+
 #endif // ARRAYS_HPP

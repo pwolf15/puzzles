@@ -2969,3 +2969,24 @@ TEST(Arrays, LemonadeChange)
     bills = { 5,5,5,5,20,20,5,5,20,5 };
     CHECK(!lemonadeChange(bills));
 }
+
+TEST(Arrays, FindRelativeRanks)
+{
+    std::vector<int> score = { 5,4,3,2,1 };
+    std::vector<std::string> expected = { "Gold Medal","Silver Medal","Bronze Medal","4","5" };
+    std::vector<std::string> result = findRelativeRanks(score);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    score = { 10,3,8,9,4 };
+    expected = { "Gold Medal","5","Bronze Medal","Silver Medal","4" };
+    result = findRelativeRanks(score);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
