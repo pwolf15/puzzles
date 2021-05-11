@@ -5541,6 +5541,8 @@ bool lemonadeChange(std::vector<int>& bills)
     return true;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::string> findRelativeRanks(std::vector<int>& score)
 {
     std::map<int, std::string> ranks;
