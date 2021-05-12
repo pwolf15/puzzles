@@ -319,4 +319,6 @@ bool lemonadeChange(std::vector<int>& bills);
 
 std::vector<std::string> findRelativeRanks(std::vector<int>& score);
 
+int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes);
+
 #endif // ARRAYS_HPP

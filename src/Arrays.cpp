@@ -5575,3 +5575,50 @@ std::vector<std::string> findRelativeRanks(std::vector<int>& score)
 
     return scores;
 }
+
+int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes)
+{
+    for (auto& pair: dominoes)
+    {
+        std::sort(pair.begin(), pair.end());
+    }
+
+    std::sort(dominoes.begin(), dominoes.end(), [](std::vector<int> a, std::vector<int> b) {
+    
+        if (a[0] == b[0])
+        {
+            return a[1] < b[1];
+        }
+        else
+        {
+            return a[0] < b[0];
+        }
+    });
+
+    int curNumEqualPairs = 1;
+    int numEqualPairs = 0;
+    for (size_t i = 1; i < dominoes.size(); ++i)
+    {
+        if ((dominoes[i][0] == dominoes[i-1][0]) &&
+            (dominoes[i][1] == dominoes[i-1][1]))
+        {
+            ++curNumEqualPairs;
+        }
+        else
+        {
+            if (curNumEqualPairs > 1)
+            {
+                numEqualPairs += (curNumEqualPairs * (curNumEqualPairs - 1)) / 2;
+            }
+
+            curNumEqualPairs = 1;
+        }
+    }
+
+    if (curNumEqualPairs > 1)
+    {
+        numEqualPairs += (curNumEqualPairs * (curNumEqualPairs - 1)) / 2;
+    }
+
+    return numEqualPairs;
+}

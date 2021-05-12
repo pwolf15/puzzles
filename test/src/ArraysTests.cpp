@@ -2990,3 +2990,15 @@ TEST(Arrays, FindRelativeRanks)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, NumEquivDominoPairs)
+{
+    std::vector<std::vector<int>> dominoes = {{1,2},{2,1},{3,4},{5,6}};
+    CHECK_EQUAL(1, numEquivDominoPairs(dominoes));
+
+    dominoes = {{1,2},{1,2},{1,1},{1,2},{2,2}};
+    CHECK_EQUAL(3, numEquivDominoPairs(dominoes));
+
+    dominoes = {{2,1},{1,2},{1,2},{1,2},{2,1},{1,1},{1,2},{2,2}};
+    CHECK_EQUAL(15, numEquivDominoPairs(dominoes));
+}
