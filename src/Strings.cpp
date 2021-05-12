@@ -3065,6 +3065,8 @@ std::string replaceDigits(std::string s)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned)
 {
     std::unordered_map<std::string, int> counts;
