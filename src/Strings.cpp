@@ -9,6 +9,7 @@
 #include <stack>
 #include <set>
 #include <map>
+#include <locale>
 
 int firstUniqueChar_brute(std::string s)
 {
@@ -3062,4 +3063,62 @@ std::string replaceDigits(std::string s)
     }
 
     return result;
+}
+
+std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned)
+{
+    std::unordered_map<std::string, int> counts;
+    std::set<std::string> words;
+    for (auto b: banned)
+    {
+        words.insert(b);
+    }
+
+    std::string curWord = "";
+    size_t index = 0;
+    while (index < paragraph.size())
+    {
+        if (!isalpha(paragraph[index]))
+        {
+            if (!curWord.empty() && words.find(curWord) == words.end())
+            {
+                std::string lower = "";
+                for (auto c: curWord)
+                {
+                    lower += std::tolower(c);
+                }
+                ++counts[lower];
+            }
+
+            curWord = "";
+        }
+        else
+        {
+            curWord += paragraph[index]; 
+        }
+        index++;
+    }
+
+    if (!curWord.empty() && words.find(curWord) == words.end())
+    {
+        std::string lower = "";
+        for (auto c: curWord)
+        {
+            lower += std::tolower(c);
+        }
+        ++counts[lower];
+    }
+
+    int maxCount = -1;
+    std::string mostCommon = "";
+    for (auto pair: counts)
+    {
+        if (pair.second > maxCount || (pair.second == maxCount && pair.first < mostCommon))
+        {
+            mostCommon = pair.first;
+            maxCount = pair.second;
+        }
+    }
+
+    return mostCommon;
 }

@@ -147,4 +147,6 @@ int maxLengthBetweenEqualCharacters(std::string s);
 
 std::string replaceDigits(std::string s);
 
+std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned);
+
 #endif // STRINGS_HPP
