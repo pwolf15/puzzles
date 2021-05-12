@@ -5576,6 +5576,8 @@ std::vector<std::string> findRelativeRanks(std::vector<int>& score)
     return scores;
 }
 
+// time complexity: O(n log n + n log n = n)
+// space complexity: O(1)
 int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes)
 {
     for (auto& pair: dominoes)
