@@ -3125,6 +3125,8 @@ std::string mostCommonWord(std::string paragraph, std::vector<std::string>& bann
     return mostCommon;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string reverseOnlyLetters(std::string s)
 {
     int i = 0, j = s.size() - 1;
