@@ -891,3 +891,10 @@ TEST(Strings, MostCommonWord)
     banned = {"n","q","l","i","u","d","h","o","y","b","c","t","v","a","x","m","k","w","s","z"};
     CHECK_EQUAL("r", mostCommonWord(paragraph, banned));
 }
+
+TEST(Strings, ReverseOnlyLetters)
+{
+    CHECK_EQUAL("dc-ba", reverseOnlyLetters("ab-cd"));
+    CHECK_EQUAL("j-Ih-gfE-dCba", reverseOnlyLetters("a-bC-dEf-ghIj"));
+    CHECK_EQUAL("Qedo1ct-eeLg=ntse-T!", reverseOnlyLetters("Test1ng-Leet=code-Q!"));
+}

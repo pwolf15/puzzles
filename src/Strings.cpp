@@ -3124,3 +3124,25 @@ std::string mostCommonWord(std::string paragraph, std::vector<std::string>& bann
 
     return mostCommon;
 }
+
+std::string reverseOnlyLetters(std::string s)
+{
+    int i = 0, j = s.size() - 1;
+    while (i < j)
+    {
+        if (!isalpha(s[i]))
+        {
+            ++i;
+            continue;
+        }
+        else if (!isalpha(s[j]))
+        {
+            --j;
+            continue;
+        }
+        std::swap(s[i], s[j]);
+        ++i;
+        --j;
+    }
+    return s;
+}

@@ -285,3 +285,49 @@ TEST(Trees, IncreasingBST)
 
     deleteTree(root);
 }
+
+TEST(Trees, PreorderTraversal)
+{
+    TreeNode* node = new TreeNode(1);
+    node->right = new TreeNode(2);
+    node->right->left = new TreeNode(3);
+
+    std::vector<int> result = preorderTraversal(node);
+    std::vector<int> expected = { 3, 2, 1};
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+
+    node = nullptr;
+
+    result = preorderTraversal(node);
+    expected = { };
+    CHECK_EQUAL(expected.size(), result.size());
+
+    node = new TreeNode(1);
+    result = preorderTraversal(node);
+    expected = { 1 };
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < result.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    deleteTree(node);
+
+    // node = new TreeNode(1);
+    // node->left = new TreeNode(2);
+    // result = preorderTraversal(node);
+    // expected = { 1, 2 };
+    // CHECK_EQUAL(expected.size(), result.size());
+    // for (int i = 0; i < result.size(); ++i)
+    // {
+    //     CHECK_EQUAL(expected[i], result[i]);
+    // }
+
+    // deleteTree(node);
+}

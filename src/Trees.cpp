@@ -455,3 +455,26 @@ int sumRootToLeaf(TreeNode* root)
 {
     return 0;
 }
+
+void preorderTraversal(TreeNode* root, std::vector<int>& nodes)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        preorderTraversal(root->left, nodes);
+        preorderTraversal(root->right, nodes);
+        nodes.push_back(root->val);
+    }
+}
+
+std::vector<int> preorderTraversal(TreeNode* root)
+{
+    std::vector<int> nodes;
+    
+    preorderTraversal(root, nodes);
+
+    return nodes;
+}

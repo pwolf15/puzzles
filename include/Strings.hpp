@@ -149,4 +149,6 @@ std::string replaceDigits(std::string s);
 
 std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned);
 
+std::string reverseOnlyLetters(std::string s);
+
 #endif // STRINGS_HPP
