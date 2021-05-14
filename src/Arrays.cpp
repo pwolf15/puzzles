@@ -5624,3 +5624,30 @@ int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes)
 
     return numEqualPairs;
 }
+
+std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes)
+{
+    std::map<int, std::vector<int>> people;
+    std::vector<std::vector<int>> result;
+    for (int i = 0; i < groupSizes.size(); ++i)
+    {
+        people[groupSizes[i]].push_back(i);
+    }
+
+    for (auto it = people.begin(); it != people.end(); ++it)
+    {
+        std::vector<int> newGroup;
+        for (int j = 0; j < it->second.size(); ++j)
+        {
+            if (newGroup.size() == it->first)
+            {
+                result.push_back(newGroup);
+                newGroup.clear();
+            }
+            newGroup.push_back(it->second[j]);
+        }
+        result.push_back(newGroup);
+    }
+
+    return result;
+}

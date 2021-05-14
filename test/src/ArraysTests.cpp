@@ -3002,3 +3002,32 @@ TEST(Arrays, NumEquivDominoPairs)
     dominoes = {{2,1},{1,2},{1,2},{1,2},{2,1},{1,1},{1,2},{2,2}};
     CHECK_EQUAL(15, numEquivDominoPairs(dominoes));
 }
+
+TEST(Arrays, GroupThePeople)
+{
+    std::vector<int> people = {3,3,3,3,3,1,3};
+    std::vector<std::vector<int>> expected = {{5},{0,1,2}, {3,4,6}};
+    std::vector<std::vector<int>> result = groupThePeople(people);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    people = {2,1,3,3,3,2};
+    expected = {{1},{0,5},{2,3,4}};
+    result = groupThePeople(people);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}

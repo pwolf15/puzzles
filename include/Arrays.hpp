@@ -321,4 +321,6 @@ std::vector<std::string> findRelativeRanks(std::vector<int>& score);
 
 int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes);
 
+std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes);
+
 #endif // ARRAYS_HPP

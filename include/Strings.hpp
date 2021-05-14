@@ -151,4 +151,6 @@ std::string mostCommonWord(std::string paragraph, std::vector<std::string>& bann
 
 std::string reverseOnlyLetters(std::string s);
 
+std::vector<std::string> stringMatching(std::vector<std::string>& words);
+
 #endif // STRINGS_HPP
