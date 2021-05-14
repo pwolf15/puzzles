@@ -5625,6 +5625,8 @@ int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes)
     return numEqualPairs;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes)
 {
     std::map<int, std::vector<int>> people;
