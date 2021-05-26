@@ -3153,3 +3153,22 @@ std::vector<std::string> stringMatching(std::vector<std::string>& words)
 {
     return {};
 }
+
+std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs)
+{
+    std::unordered_map<std::string, std::vector<std::string>> anagrams;
+    std::vector<std::vector<std::string>> result;
+    for (size_t i = 0; i < strs.size(); ++i)
+    {
+        auto sorted = strs[i];
+        std::sort(sorted.begin(), sorted.end());
+        anagrams[sorted].push_back(strs[i]);
+    }
+
+    for (auto pair: anagrams)
+    {
+        result.push_back(pair.second);
+    }
+
+    return result;
+}

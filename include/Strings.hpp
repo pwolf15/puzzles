@@ -153,4 +153,6 @@ std::string reverseOnlyLetters(std::string s);
 
 std::vector<std::string> stringMatching(std::vector<std::string>& words);
 
+std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs);
+
 #endif // STRINGS_HPP

@@ -898,3 +898,51 @@ TEST(Strings, ReverseOnlyLetters)
     CHECK_EQUAL("j-Ih-gfE-dCba", reverseOnlyLetters("a-bC-dEf-ghIj"));
     CHECK_EQUAL("Qedo1ct-eeLg=ntse-T!", reverseOnlyLetters("Test1ng-Leet=code-Q!"));
 }
+
+TEST(Strings, GroupAnagrams)
+{
+    std::vector<std::string> strs = {"eat","tea","tan","ate","nat","bat"};
+    std::vector<std::vector<std::string>> expected =
+        {{"bat"},{"tan", "nat"},{"eat","tea", "ate"}};
+
+    auto result = groupAnagrams(strs);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    strs = {""};
+    expected =
+        {{""}};
+
+    result = groupAnagrams(strs);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    strs = {"a"};
+    expected =
+        {{"a"}};
+
+    result = groupAnagrams(strs);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}
