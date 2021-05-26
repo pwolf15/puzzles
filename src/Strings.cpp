@@ -3154,6 +3154,8 @@ std::vector<std::string> stringMatching(std::vector<std::string>& words)
     return {};
 }
 
+// time complexity: O(n * w log w)
+// space complexity: O(n)
 std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs)
 {
     std::unordered_map<std::string, std::vector<std::string>> anagrams;
