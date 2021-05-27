@@ -5654,6 +5654,8 @@ std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes)
     return result;
 }
 
+// time complexity: O(n log n + n)
+// space complexity: O(1)
 int maxIceCream(std::vector<int>& costs, int coins)
 {
     std::sort(costs.begin(), costs.end());
@@ -5662,7 +5664,7 @@ int maxIceCream(std::vector<int>& costs, int coins)
     for (; i < costs.size(); ++i)
     {
         coins -= costs[i];
-        
+
         if (coins < 0)
         {
             break;
