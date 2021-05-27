@@ -323,4 +323,6 @@ int numEquivDominoPairs(std::vector<std::vector<int>>& dominoes);
 
 std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes);
 
+int maxIceCream(std::vector<int>& costs, int coins);
+
 #endif // ARRAYS_HPP

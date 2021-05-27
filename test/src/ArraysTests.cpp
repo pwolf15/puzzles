@@ -3031,3 +3031,15 @@ TEST(Arrays, GroupThePeople)
         }
     }
 }
+
+TEST(Arrays, MaxIceCream)
+{
+    std::vector<int> costs = { 1,3,2,4,1 };
+    CHECK_EQUAL(4, maxIceCream(costs, 7));
+
+    costs = { 10,6,8,7,7,8 };
+    CHECK_EQUAL(0, maxIceCream(costs, 5));
+
+    costs = { 1,6,3,1,2,5 };
+    CHECK_EQUAL(6, maxIceCream(costs, 20));
+}

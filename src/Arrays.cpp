@@ -5653,3 +5653,21 @@ std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes)
 
     return result;
 }
+
+int maxIceCream(std::vector<int>& costs, int coins)
+{
+    std::sort(costs.begin(), costs.end());
+
+    int i = 0;
+    for (; i < costs.size(); ++i)
+    {
+        coins -= costs[i];
+        
+        if (coins < 0)
+        {
+            break;
+        }
+    }
+
+    return i;
+}
