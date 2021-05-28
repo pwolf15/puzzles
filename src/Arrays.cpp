@@ -5674,6 +5674,8 @@ int maxIceCream(std::vector<int>& costs, int coins)
     return i;
 }
 
+// time complexity: O(n log n)
+// space complexity: O(1)
 int maxCoins(std::vector<int>& piles)
 {
     std::sort(piles.begin(), piles.end());
