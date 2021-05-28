@@ -5673,3 +5673,20 @@ int maxIceCream(std::vector<int>& costs, int coins)
 
     return i;
 }
+
+int maxCoins(std::vector<int>& piles)
+{
+    std::sort(piles.begin(), piles.end());
+    int i = 0, k = piles.size() - 1, j = k - 1;
+
+    int coins = 0;
+    while (j > i)
+    {
+        coins += piles[j];
+        ++i;
+        k -= 2;
+        j -= 2;
+    }
+
+    return coins;
+}

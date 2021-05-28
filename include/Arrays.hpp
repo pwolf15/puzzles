@@ -325,4 +325,6 @@ std::vector<std::vector<int>> groupThePeople(std::vector<int>& groupSizes);
 
 int maxIceCream(std::vector<int>& costs, int coins);
 
+int maxCoins(std::vector<int>& piles);
+
 #endif // ARRAYS_HPP

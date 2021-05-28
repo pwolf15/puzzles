@@ -3043,3 +3043,15 @@ TEST(Arrays, MaxIceCream)
     costs = { 1,6,3,1,2,5 };
     CHECK_EQUAL(6, maxIceCream(costs, 20));
 }
+
+TEST(Arrays, MaxCoins)
+{
+    std::vector<int> piles = { 2,4,1,2,7,8 };
+    CHECK_EQUAL(9, maxCoins(piles));
+
+    piles = { 2,4,5 };
+    CHECK_EQUAL(4, maxCoins(piles));
+
+    piles = { 9,8,7,6,5,1,2,3,4 };
+    CHECK_EQUAL(18, maxCoins(piles));
+}
