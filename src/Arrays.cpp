@@ -5693,6 +5693,8 @@ int maxCoins(std::vector<int>& piles)
     return coins;
 }
 
+// time complexity: O(n * k^2)
+// space complexity: O(n)
 std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat, int k)
 {
     std::vector<std::vector<int>> result(mat.size());
@@ -5707,7 +5709,7 @@ std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat,
                 {
                     continue;
                 }
-                
+
                 for (int n = -k + j; n <= k + j; ++n)
                 {
                     if (n < 0 || n >= mat[i].size())
