@@ -5692,3 +5692,34 @@ int maxCoins(std::vector<int>& piles)
 
     return coins;
 }
+
+std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat, int k)
+{
+    std::vector<std::vector<int>> result(mat.size());
+    for (int i = 0; i < mat.size(); ++i)
+    {
+        result[i].resize(mat[i].size());
+        for (int j = 0; j < mat[i].size(); ++j)
+        {
+            for (int m = -k + i; m <= k + i; ++m)
+            {
+                if (m < 0 || m >= mat.size())
+                {
+                    continue;
+                }
+                
+                for (int n = -k + j; n <= k + j; ++n)
+                {
+                    if (n < 0 || n >= mat[i].size())
+                    {
+                        continue;
+                    }
+
+                    result[i][j] += mat[m][n];
+                }
+            }
+        }
+    }
+
+    return result;
+}

@@ -3055,3 +3055,46 @@ TEST(Arrays, MaxCoins)
     piles = { 9,8,7,6,5,1,2,3,4 };
     CHECK_EQUAL(18, maxCoins(piles));
 }
+
+TEST(Arrays, MatrixBlockSum)
+{
+    std::vector<std::vector<int>> mat = 
+    {
+        {1,2,3},
+        {4,5,6},
+        {7,8,9}
+    };
+    std::vector<std::vector<int>> expected =
+    {
+        {12,21,16},
+        {27,45,33},
+        {24,39,28}
+    };
+    std::vector<std::vector<int>> result = matrixBlockSum(mat, 1);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    expected = 
+    {
+        {45,45,45},
+        {45,45,45},
+        {45,45,45}
+    };
+    result = matrixBlockSum(mat, 2);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+}

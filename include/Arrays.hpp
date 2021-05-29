@@ -327,4 +327,6 @@ int maxIceCream(std::vector<int>& costs, int coins);
 
 int maxCoins(std::vector<int>& piles);
 
+std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat, int k);
+
 #endif // ARRAYS_HPP
