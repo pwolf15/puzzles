@@ -3098,3 +3098,26 @@ TEST(Arrays, MatrixBlockSum)
         }
     }
 }
+
+TEST(Arrays, CountBattleships)
+{
+    std::vector<std::vector<char>> board = 
+    {
+        {'X','.','.','X'},
+        {'.','.','.','X'},
+        {'.','.','.','X'}
+    };
+    CHECK_EQUAL(2, countBattleships(board));
+
+    board = 
+    {
+        {'.'}
+    };
+    CHECK_EQUAL(0, countBattleships(board));
+
+    board = 
+    {
+        {'X','X','X'}
+    };
+    CHECK_EQUAL(1, countBattleships(board));
+}

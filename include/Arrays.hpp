@@ -329,4 +329,6 @@ int maxCoins(std::vector<int>& piles);
 
 std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat, int k);
 
+int countBattleships(std::vector<std::vector<char>>& board);
+
 #endif // ARRAYS_HPP

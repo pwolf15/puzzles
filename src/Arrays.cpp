@@ -5725,3 +5725,61 @@ std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat,
 
     return result;
 }
+
+int countBattleships(std::vector<std::vector<char>>& board)
+{
+    std::map<int, std::set<int>> battleships;
+    int numBattleships = 0;
+    for (int i = 0; i < board.size(); ++i)
+    {
+        for (int j = 0; j < board[i].size(); ++j)
+        {
+            if (board[i][j] == '.')
+            {
+                continue;
+            }
+
+            // check top
+            int y1 = i - 1;
+            int x1 = j;
+
+            // check left
+            int y2 = i;
+            int x2 = j - 1;
+
+            bool matchFound = false;
+
+            if (battleships.find(x1) != battleships.end())
+            {
+                if (battleships[x1].find(y1) != battleships[x1].end())
+                {
+                    matchFound = true;
+                }
+            }
+            if (battleships.find(x2) != battleships.end())
+            {
+                if (battleships[x2].find(y2) != battleships[x2].end())
+                {
+                    matchFound = true;
+                }
+            }
+
+            if (!matchFound)
+            {
+                ++numBattleships;
+            }
+
+            battleships[j].insert(i);
+        }
+    }
+
+    int numPoints = 0;
+    for (auto pair: battleships)
+    {
+        numPoints += pair.second.size();
+    }
+
+    std::cout << numPoints << std::endl;
+
+    return numBattleships;
+}
