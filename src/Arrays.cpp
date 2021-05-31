@@ -5768,3 +5768,18 @@ int countBattleships(std::vector<std::vector<char>>& board)
 
     return numBattleships;
 }
+
+std::vector<int> findDuplicates(std::vector<int>& nums)
+{
+    std::vector<int> duplicates;
+    for (size_t i = 0; i < nums.size(); ++i)
+    {
+        nums[abs(nums[i]) - 1] = -nums[abs(nums[i]) - 1];
+        if (nums[abs(nums[i]) - 1] > 0) 
+        {
+            duplicates.push_back(abs(nums[i]));
+        }
+    }
+
+    return duplicates;
+}

@@ -331,4 +331,6 @@ std::vector<std::vector<int>> matrixBlockSum(std::vector<std::vector<int>>& mat,
 
 int countBattleships(std::vector<std::vector<char>>& board);
 
+std::vector<int> findDuplicates(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

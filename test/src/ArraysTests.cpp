@@ -1,10 +1,12 @@
 #include <iostream>
 #include <unordered_map>
+#include <algorithm> 
 
 #include "ArraysTests.hpp"
 #include "Arrays.hpp"
 
 #include <numeric>
+
 
 TEST(Arrays, RemoveDuplicates)
 {
@@ -3120,4 +3122,47 @@ TEST(Arrays, CountBattleships)
         {'X','X','X'}
     };
     CHECK_EQUAL(1, countBattleships(board));
+}
+
+TEST(Arrays, FindDuplicates)
+{
+    std::vector<int> nums = { 4,3,2,7,8,2,3,1 };
+    std::vector<int> expected = { 2,3 };
+    std::vector<int> results = findDuplicates(nums);
+    std::sort(results.begin(), results.end());
+    CHECK_EQUAL(expected.size(), results.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = { 1, 1, 2 };
+    expected = { 1 };
+    results = findDuplicates(nums);
+    std::sort(results.begin(), results.end());
+    CHECK_EQUAL(expected.size(), results.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = { 1 };
+    expected = { };
+    results = findDuplicates(nums);
+    std::sort(results.begin(), results.end());
+    CHECK_EQUAL(expected.size(), results.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
+
+    nums = { 10,2,5,10,9,1,1,4,3,7 };
+    expected = {1, 10};
+    results = findDuplicates(nums);
+    std::sort(results.begin(), results.end());
+    CHECK_EQUAL(expected.size(), results.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], results[i]);
+    }
 }
