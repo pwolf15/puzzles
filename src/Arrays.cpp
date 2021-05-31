@@ -5769,6 +5769,8 @@ int countBattleships(std::vector<std::vector<char>>& board)
     return numBattleships;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> findDuplicates(std::vector<int>& nums)
 {
     std::vector<int> duplicates;
