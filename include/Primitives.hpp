@@ -133,4 +133,6 @@ int numPrimeArrangements(int n);
 
 long long fact(long long n);
 
+int getKth(int lo, int hi, int k);
+
 #endif // PRIMITIVES_HPP

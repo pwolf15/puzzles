@@ -895,3 +895,54 @@ int numPrimeArrangements(int n)
 
     return fact(n) / (n * fact(n - numPrimes));
 }
+
+int getKth(int lo, int hi, int k)
+{
+    std::vector<int> cache(1001, std::numeric_limits<int>::max());
+
+    auto compute = [](int val) {
+        
+        int power = 0;
+        while (val != 1)
+        {
+            if (val % 2)
+            {
+                val = 3 * val + 1;
+            }
+            else
+            {
+                val /= 2;
+            }
+            ++power;
+        }
+
+        return power;
+    };
+
+    cache[1] = 0;
+
+    for (size_t i = 2; i <= 1000; ++i)
+    {
+        cache[i] = compute(i);
+    }
+
+    std::vector<std::pair<int, int>> powers;
+    for (int i = lo; i <= hi; ++i)
+    {
+        powers.push_back({ i, cache[i] });
+    }
+
+    std::sort(powers.begin(), powers.end(), [](std::pair<int, int>& a, std::pair<int, int>& b) {
+        
+        if (a.second == b.second)
+        {
+            return a.first < b.first;
+        }
+        else
+        {
+            return a.second < b.second;
+        }
+    });
+
+    return powers[k-1].first;
+}

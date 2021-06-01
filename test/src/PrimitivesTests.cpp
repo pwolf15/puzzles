@@ -313,3 +313,14 @@ TEST(Primitives, NumPrimeArrangements)
     CHECK_EQUAL(12, numPrimeArrangements(5));
     // CHECK_EQUAL(682289015, numPrimeArrangements(100));
 }
+
+
+TEST(Primitives, GetKth)
+{
+    CHECK_EQUAL(13, getKth(12, 15, 2));
+    CHECK_EQUAL(1, getKth(1, 1, 1));
+    CHECK_EQUAL(7, getKth(7, 11, 4));
+    CHECK_EQUAL(7, getKth(7, 11, 4));
+    CHECK_EQUAL(13, getKth(10, 20, 5));
+    CHECK_EQUAL(570, getKth(1, 1000, 777));
+}
