@@ -896,6 +896,8 @@ int numPrimeArrangements(int n)
     return fact(n) / (n * fact(n - numPrimes));
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int getKth(int lo, int hi, int k)
 {
     std::vector<int> cache(1001, std::numeric_limits<int>::max());
