@@ -3166,3 +3166,21 @@ TEST(Arrays, FindDuplicates)
         CHECK_EQUAL(expected[i], results[i]);
     }
 }
+
+TEST(Arrays, MinSetSize)
+{
+    std::vector<int> nums = { 3,3,3,3,5,5,5,2,2,7 };
+    CHECK_EQUAL(2, minSetSize(nums));
+
+    nums = { 7,7,7,7,7,7 };
+    CHECK_EQUAL(1, minSetSize(nums));
+
+    nums = { 1,9 };
+    CHECK_EQUAL(1, minSetSize(nums));
+
+    nums = { 1000,1000,3,7 };
+    CHECK_EQUAL(1, minSetSize(nums));
+
+    nums = { 1,2,3,4,5,6,7,8,9,10 };
+    CHECK_EQUAL(5, minSetSize(nums));
+}

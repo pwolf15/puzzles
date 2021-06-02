@@ -333,4 +333,6 @@ int countBattleships(std::vector<std::vector<char>>& board);
 
 std::vector<int> findDuplicates(std::vector<int>& nums);
 
+int minSetSize(std::vector<int>& arr);
+
 #endif // ARRAYS_HPP

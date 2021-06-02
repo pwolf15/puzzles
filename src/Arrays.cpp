@@ -5785,3 +5785,32 @@ std::vector<int> findDuplicates(std::vector<int>& nums)
 
     return duplicates;
 }
+
+int minSetSize(std::vector<int>& arr)
+{
+    std::map<int, int> counts;
+    for (size_t i = 0; i < arr.size(); ++i)
+    {
+        ++counts[arr[i]];
+    }
+
+    std::multimap<int, int> countsR;
+    for (auto pair: counts)
+    {
+        countsR.insert({pair.second, pair.first});
+    }
+
+    int count = 0;
+    int numInts = 0;
+    for (auto it = countsR.rbegin(); it != countsR.rend(); it++)
+    {
+        count += it->first;
+        numInts++;
+        if (count >= arr.size() / 2)
+        {
+            break;
+        }
+    }
+
+    return numInts;
+}
