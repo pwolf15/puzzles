@@ -5786,7 +5786,7 @@ std::vector<int> findDuplicates(std::vector<int>& nums)
     return duplicates;
 }
 
-// time complexity: O(n)
+// time complexity: O(n log n)
 // space complexity: O(n)
 int minSetSize(std::vector<int>& arr)
 {
