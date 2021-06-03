@@ -3175,6 +3175,8 @@ std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& st
     return result;
 }
 
+// time complexity: O(n log n)
+// space complexity: O(n)
 std::string frequencySort(std::string s)
 {
     std::map<char, int> counts;
