@@ -155,4 +155,6 @@ std::vector<std::string> stringMatching(std::vector<std::string>& words);
 
 std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs);
 
+std::string frequencySort(std::string s);
+
 #endif // STRINGS_HPP

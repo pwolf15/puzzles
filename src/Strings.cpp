@@ -3174,3 +3174,26 @@ std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& st
 
     return result;
 }
+
+std::string frequencySort(std::string s)
+{
+    std::map<char, int> counts;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        ++counts[s[i]];
+    }
+
+    std::multimap<int, char> countsR;
+    for (auto pair: counts)
+    {
+        countsR.insert({pair.second, pair.first});
+    }
+
+    std::string result;
+    for (auto it = countsR.rbegin(); it != countsR.rend(); it++)
+    {
+        result += std::string(it->first, it->second);
+    }
+
+    return result;
+}

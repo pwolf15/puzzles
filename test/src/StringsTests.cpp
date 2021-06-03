@@ -946,3 +946,10 @@ TEST(Strings, GroupAnagrams)
         }
     }
 }
+
+TEST(Strings, FrequencySort)
+{
+    CHECK_EQUAL("eetr", frequencySort("tree"));
+    CHECK_EQUAL("cccaaa", frequencySort("cccaaa"));
+    CHECK_EQUAL("bbaA", frequencySort("Aabb"));
+}
