@@ -5841,6 +5841,8 @@ std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 void gameOfLife(std::vector<std::vector<int>>& board)
 {
     std::vector<std::vector<int>> nextState(board.size());
