@@ -335,4 +335,6 @@ std::vector<int> findDuplicates(std::vector<int>& nums);
 
 int minSetSize(std::vector<int>& arr);
 
+std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

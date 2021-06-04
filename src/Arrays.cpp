@@ -5816,3 +5816,25 @@ int minSetSize(std::vector<int>& arr)
 
     return numInts;
 }
+
+std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums)
+{
+    std::vector<int> result(nums.size());
+    std::unordered_map<int, int> cache;
+
+    int sumGreater = std::accumulate(nums.begin(), nums.end(), 0);
+    int numGreater = nums.size();
+    int sumLesser = 0;
+    int numLesser = 0;
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        sumGreater -= nums[i];
+        numGreater--;
+        result[i] += sumGreater - (numGreater * nums[i]) + (numLesser * nums[i]) - sumLesser;
+
+        numLesser++;
+        sumLesser += nums[i];
+    }
+    return result;
+}

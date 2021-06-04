@@ -3184,3 +3184,36 @@ TEST(Arrays, MinSetSize)
     nums = { 1,2,3,4,5,6,7,8,9,10 };
     CHECK_EQUAL(5, minSetSize(nums));
 }
+
+TEST(Arrays, GetSumAbsoluteDifferences)
+{
+    std::vector<int> nums = { 2,3,5 };
+    std::vector<int> expected = { 4,3,5 };
+    std::vector<int> result = getSumAbsoluteDifferences(nums);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 1,4,6,8,10 };
+    expected = { 24,15,13,15,21 };
+    result = getSumAbsoluteDifferences(nums);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { 40, 40 };
+    expected = { 0, 0 };
+    result = getSumAbsoluteDifferences(nums);
+
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
