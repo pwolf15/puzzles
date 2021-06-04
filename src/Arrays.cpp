@@ -5817,6 +5817,8 @@ int minSetSize(std::vector<int>& arr)
     return numInts;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums)
 {
     std::vector<int> result(nums.size());
