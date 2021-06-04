@@ -3217,3 +3217,34 @@ TEST(Arrays, GetSumAbsoluteDifferences)
         CHECK_EQUAL(expected[i], result[i]);
     }
 }
+
+TEST(Arrays, GameOfLife)
+{
+    std::vector<std::vector<int>> board = 
+    {
+        {0,1,0},
+        {0,0,1},
+        {1,1,1},
+        {0,0,0}
+    };
+
+    std::vector<std::vector<int>> expected = 
+    {
+        {0,0,0},
+        {1,0,1},
+        {0,1,1},
+        {0,1,0}
+    };
+
+    gameOfLife(board);
+    CHECK_EQUAL(expected.size(), board.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), board[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], board[i][j]);
+        }
+    }
+}
+

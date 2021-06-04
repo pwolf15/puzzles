@@ -5840,3 +5840,52 @@ std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums)
     }
     return result;
 }
+
+void gameOfLife(std::vector<std::vector<int>>& board)
+{
+    std::vector<std::vector<int>> nextState(board.size());
+    for (size_t i = 0; i < board.size(); ++i)
+    {
+        nextState[i].resize(board[i].size());
+        for (size_t j = 0; j < board[i].size(); ++j)
+        {
+            int numNeighbors = 0;
+            for (int k = -1; k <= 1; ++k)
+            {
+                for (int l = -1; l <= 1; ++l)
+                {
+                    int r = i + k;
+                    int c = j + l;
+                    if ((r != i || c != j) && 
+                        (r >= 0 && r < board.size()) &&
+                        (c >= 0 && c < board[i].size()))
+                    {
+                        if (board[r][c] > 0)
+                        {
+                            numNeighbors++;
+                        }
+                    }
+                }
+            }
+
+            if (board[i][j] && numNeighbors < 2)
+            {
+                nextState[i][j] = 0;
+            }
+            else if (board[i][j] && numNeighbors >= 2 && numNeighbors <= 3)
+            {
+                nextState[i][j] = 1;
+            }
+            else if (board[i][j] && numNeighbors > 3)
+            {
+                nextState[i][j] = 0;
+            }
+            else if (!board[i][j] && numNeighbors == 3)
+            {
+                nextState[i][j] = 1;
+            }
+        }
+    }
+
+    std::swap(nextState, board);
+}

@@ -337,4 +337,6 @@ int minSetSize(std::vector<int>& arr);
 
 std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums);
 
+void gameOfLife(std::vector<std::vector<int>>& board);
+
 #endif // ARRAYS_HPP
