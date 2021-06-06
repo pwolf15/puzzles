@@ -5892,6 +5892,8 @@ void gameOfLife(std::vector<std::vector<int>>& board)
     std::swap(nextState, board);
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> productExceptSelf(std::vector<int>& nums)
 {
     int countZeroes = 0;
