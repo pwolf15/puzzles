@@ -3248,3 +3248,24 @@ TEST(Arrays, GameOfLife)
     }
 }
 
+TEST(Arrays, ProductExceptSelf)
+{
+    std::vector<int> nums = { 1,2,3,4 };
+    std::vector<int> expected = { 24,12,8,6 };
+    std::vector<int> result = productExceptSelf(nums);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    nums = { -1,1,0,-3,3 };
+    expected = { 0,0,9,0,0 };
+    result = productExceptSelf(nums);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
+

@@ -339,4 +339,6 @@ std::vector<int> getSumAbsoluteDifferences(std::vector<int>& nums);
 
 void gameOfLife(std::vector<std::vector<int>>& board);
 
+std::vector<int> productExceptSelf(std::vector<int>& nums);
+
 #endif // ARRAYS_HPP

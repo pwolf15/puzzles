@@ -5891,3 +5891,43 @@ void gameOfLife(std::vector<std::vector<int>>& board)
 
     std::swap(nextState, board);
 }
+
+std::vector<int> productExceptSelf(std::vector<int>& nums)
+{
+    int countZeroes = 0;
+    int product = 1;
+    std::vector<int> result(nums.size());
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (!nums[i])
+        {
+            ++countZeroes;
+        }
+        else
+        {
+            product *= nums[i];
+        }
+    }
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (countZeroes > 1)
+        {
+            result[i] = 0;
+        }
+        else if (countZeroes && nums[i])
+        {
+            result[i] = 0;
+        }
+        else if (nums[i] == 0)
+        {
+            result[i] = product;
+        }
+        else
+        {
+            result[i] = product / nums[i];
+        }
+    }
+
+    return result;
+}
