@@ -3269,3 +3269,32 @@ TEST(Arrays, ProductExceptSelf)
     }
 }
 
+TEST(Arrays, NumberOfArithmeticSlices)
+{
+    std::vector<int> nums = { 1,2,3,4 };
+    CHECK_EQUAL(3, numberOfArithmeticSlices(nums));
+
+    nums = { 1 };
+    CHECK_EQUAL(0, numberOfArithmeticSlices(nums));
+
+    // 3 = 1
+    // 4 = 3
+    // 5 = 6
+    // 6 = 10
+    // 7 = 15
+    // 1,2,3,4,5
+    // 1,2,3,4,5,6,7
+    
+    nums = { 1,2,3,4,5,6 };
+    CHECK_EQUAL(10, numberOfArithmeticSlices(nums));
+
+    nums = { 1,2,3,4,5,6,8,1,2,3,4,5 };
+    CHECK_EQUAL(16, numberOfArithmeticSlices(nums));
+
+    nums = {1,2,3};
+    CHECK_EQUAL(1, numberOfArithmeticSlices(nums));
+
+    nums = {-1,-2,-3};
+    CHECK_EQUAL(1, numberOfArithmeticSlices(nums));
+}
+

@@ -5933,3 +5933,28 @@ std::vector<int> productExceptSelf(std::vector<int>& nums)
 
     return result;
 }
+
+int numberOfArithmeticSlices(std::vector<int>& nums)
+{
+    int curSeq = 0;
+    int sum = 0;
+    int total = 0;
+    for (int i = 2; i < nums.size(); ++i)
+    {
+        if ((nums[i - 1] - nums[i - 2]) == (nums[i] - nums[i - 1]))
+        {
+            curSeq++;
+            sum += curSeq;
+        }
+        else
+        {
+            total += sum;
+            curSeq = 0;
+            sum = 0;
+        }
+    }
+
+    total += sum;
+
+    return total;
+}
