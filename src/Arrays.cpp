@@ -5934,6 +5934,8 @@ std::vector<int> productExceptSelf(std::vector<int>& nums)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 int numberOfArithmeticSlices(std::vector<int>& nums)
 {
     int curSeq = 0;
