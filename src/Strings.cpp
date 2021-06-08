@@ -3200,6 +3200,8 @@ std::string frequencySort(std::string s)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::string intToRoman(int num)
 {
     std::string result;
