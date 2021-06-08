@@ -953,3 +953,12 @@ TEST(Strings, FrequencySort)
     CHECK_EQUAL("cccaaa", frequencySort("cccaaa"));
     CHECK_EQUAL("bbaA", frequencySort("Aabb"));
 }
+
+TEST(Strings, IntToRoman)
+{
+    CHECK_EQUAL("III", intToRoman(3));
+    CHECK_EQUAL("IV", intToRoman(4));
+    CHECK_EQUAL("IX", intToRoman(9));
+    CHECK_EQUAL("LVIII", intToRoman(58));
+    CHECK_EQUAL("MCMXCIV", intToRoman(1994));
+}

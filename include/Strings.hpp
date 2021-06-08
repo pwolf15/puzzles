@@ -45,6 +45,8 @@ std::string LookAndSay(int n);
 
 int RomanToInteger(const std::string& s);
 
+std::string intToRoman(int num);
+
 std::vector<std::string> GetValidIpAddress(const std::string& s);
 
 std::string SnakeString(const std::string& s);
