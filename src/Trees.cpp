@@ -501,6 +501,8 @@ void updateTree(std::vector<std::vector<std::string>>& mat, int r, int c, int he
     }
 }
 
+// time complexity: O(log n + n)
+// space complexity: O(1)
 std::vector<std::vector<std::string>> printTree(TreeNode* root)
 {
     const auto height = [](TreeNode* root) {
