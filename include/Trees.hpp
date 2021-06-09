@@ -36,3 +36,5 @@ TreeNode* increasingBST(TreeNode* root);
 int sumRootToLeaf(TreeNode* root);
 
 std::vector<int> preorderTraversal(TreeNode* root);
+
+std::vector<std::vector<std::string>> printTree(TreeNode* root);

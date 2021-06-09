@@ -8,6 +8,7 @@
 #include <stack>
 #include <unordered_map>
 #include <map>
+#include <cmath>
 
 TreeNode* sortedArrayToBST(std::vector<int>& nums)
 {
@@ -477,4 +478,53 @@ std::vector<int> preorderTraversal(TreeNode* root)
     preorderTraversal(root, nodes);
 
     return nodes;
+}
+
+void updateTree(std::vector<std::vector<std::string>>& mat, int r, int c, int height, TreeNode* root)
+{
+    if (!root)
+    {
+        return;
+    }
+    else
+    {
+        mat[r][c] = std::to_string(root->val);
+        
+        if (root->left)
+        {
+            updateTree(mat, r+1, c-pow(2, height-r-2), height, root->left);
+        }
+        if (root->right)
+        {
+            updateTree(mat, r+1, c+pow(2, height-r-2), height, root->right);
+        }
+    }
+}
+
+std::vector<std::vector<std::string>> printTree(TreeNode* root)
+{
+    const auto height = [](TreeNode* root) {
+        auto height_impl=[](TreeNode* root,auto& height_ref) mutable {
+            if (!root)
+            {
+                return 0;
+            }
+            else
+            {
+                return std::max(1 + height_ref(root->left, height_ref), 1 + height_ref(root->right, height_ref));
+            }
+        };
+        return height_impl(root,height_impl);
+    };
+
+    int h = height(root);
+    std::vector<std::vector<std::string>> mat(h);
+    for (size_t i = 0; i < mat.size(); ++i)
+    {
+        mat[i].resize(round(pow(2, h) - 1));
+    }
+
+    updateTree(mat, 0, round(pow(2, h) - 1) / 2, h, root);
+
+    return mat;
 }

@@ -331,3 +331,52 @@ TEST(Trees, PreorderTraversal)
 
     // deleteTree(node);
 }
+
+TEST(Trees, PrintTree)
+{
+    TreeNode* node = new TreeNode(1);
+    node->left = new TreeNode(2);
+
+    std::vector<std::vector<std::string>> expected = 
+    {
+        {"","1",""},
+        {"2","",""}
+    };
+    auto result = printTree(node);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    deleteTree(node);
+
+    node = new TreeNode(1);
+    node->left = new TreeNode(2);
+    node->left->right = new TreeNode(4);
+    node->right = new TreeNode(3);
+
+    expected = 
+    {
+        {"","","","1","","",""},
+        {"","2","","","","3",""},
+        {"","","4","","","",""}
+    };
+
+    result = printTree(node);
+    CHECK_EQUAL(expected.size(), result.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i].size(), result[i].size());
+        for (size_t j = 0; j < expected[i].size(); ++j)
+        {
+            CHECK_EQUAL(expected[i][j], result[i][j]);
+        }
+    }
+
+    deleteTree(node);
+}
