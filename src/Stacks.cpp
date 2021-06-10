@@ -16,6 +16,8 @@ void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head)
     }
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int clumsy(int n)
 {
     enum Op
