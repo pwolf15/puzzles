@@ -61,3 +61,10 @@ TEST(Stacks, MyStack)
     CHECK_EQUAL(1, myStack.pop());
     CHECK(myStack.empty());
 };
+
+TEST(Stacks, Clumsy)
+{
+    CHECK_EQUAL(7, clumsy(4));
+    CHECK_EQUAL(12, clumsy(10));
+    CHECK_EQUAL(12, clumsy(10));
+};

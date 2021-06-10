@@ -208,4 +208,6 @@ private:
     std::queue<int> m_q;
 };
 
+int clumsy(int n);
+
 #endif // STACKS_HPP
