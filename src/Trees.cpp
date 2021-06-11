@@ -569,6 +569,8 @@ void bstToGstHelper(TreeNode* root, const std::vector<int>& values)
     }
 }
 
+// time complexity: O(n^2)
+// space complexity: O(n)
 TreeNode* bstToGst(TreeNode* root)
 {
     std::vector<int> values;
