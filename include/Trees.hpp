@@ -38,3 +38,7 @@ int sumRootToLeaf(TreeNode* root);
 std::vector<int> preorderTraversal(TreeNode* root);
 
 std::vector<std::vector<std::string>> printTree(TreeNode* root);
+
+TreeNode* bstToGst(TreeNode* root);
+
+TreeNode* fromArray(std::vector<int> arr);

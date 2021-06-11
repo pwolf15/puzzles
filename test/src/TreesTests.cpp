@@ -25,6 +25,26 @@ static void deleteTree(TreeNode* node)
     }
 }
 
+bool equal(TreeNode* l, TreeNode* r)
+{
+    if (!l || !r)
+    {
+        return l == r;
+    }
+    else
+    {
+        bool result = l->val == r->val;
+
+        if (!result)
+        {
+            std::cout << l->val << " != " << r->val << std::endl;
+        }
+        
+        return result && equal(l->left, r->left) && 
+            equal(l->right, r->right);
+    }
+}
+
 TEST(Trees, ConvertSortedArrayToBST)
 {
     std::vector<int> sorted = { -10,-3,0,5,9 };
@@ -378,5 +398,59 @@ TEST(Trees, PrintTree)
         }
     }
 
+    deleteTree(node);
+}
+
+TEST(Trees, FromArray)
+{
+    TreeNode* expected = new TreeNode(3);
+    expected->left = new TreeNode(3);
+    expected->right = new TreeNode(2);
+
+    std::vector<int> testArr = { 3, 3, 2};
+    TreeNode* node = fromArray(testArr);
+
+    CHECK(equal(expected, node));
+
+    deleteTree(expected);
+    deleteTree(node);
+
+    expected = new TreeNode(4);
+    expected->left = new TreeNode(1);
+    expected->right = new TreeNode(6);
+    expected->left->left = new TreeNode(0);
+    expected->left->right = new TreeNode(2);
+    expected->left->right->right= new TreeNode(3);
+    expected->right->left = new TreeNode(5);
+    expected->right->right = new TreeNode(7);
+    expected->right->right->right = new TreeNode(8);
+
+    testArr = { 4, 1, 6, 0, 2, 5, 7, -1, -1, -1, 3, -1, -1, -1, 8 };
+    node = fromArray(testArr);
+
+    CHECK(equal(expected, node));
+
+    deleteTree(expected);
+    deleteTree(node);
+}
+
+TEST(Trees, BstToGst)
+{
+    TreeNode* node = fromArray({ 1, 0, 2});
+    TreeNode* root = bstToGst(node);
+
+    TreeNode* expected = fromArray({3, 3, 2 });
+    CHECK(equal(expected, root));
+
+    deleteTree(root);
+    deleteTree(expected);
+
+    node = fromArray({4,1,6,0,2,5,7,-1,-1,-1,3,-1,-1,-1,8});
+    root = bstToGst(node);
+    expected = fromArray({30,36,21,36,35,26,15,-1,-1,-1,33,-1,-1,-1,8});
+
+    CHECK(equal(expected, node));
+
+    deleteTree(expected);
     deleteTree(node);
 }

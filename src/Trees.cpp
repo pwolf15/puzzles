@@ -530,3 +530,89 @@ std::vector<std::vector<std::string>> printTree(TreeNode* root)
 
     return mat;
 }
+
+void getValues(TreeNode* root, std::vector<int>& values)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        getValues(root->left, values);
+        values.push_back(root->val);
+        getValues(root->right, values);
+    }
+}
+
+void bstToGstHelper(TreeNode* root, const std::vector<int>& values)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        int newVal = root->val;
+        for (size_t i = 0; i < values.size(); ++i)
+        {
+            if (values[i] > root->val)
+            {
+                newVal += values[i];
+            }
+        }
+
+        root->val = newVal;
+
+        bstToGstHelper(root->left, values);
+        bstToGstHelper(root->right, values);
+    }
+}
+
+TreeNode* bstToGst(TreeNode* root)
+{
+    std::vector<int> values;
+    getValues(root, values);
+    bstToGstHelper(root, values);
+    return root;
+}
+
+TreeNode* fromArray(std::vector<int> arr)
+{
+    if (arr.empty())
+    {
+        return nullptr;
+    }
+
+    TreeNode* root = new TreeNode(arr[0]);
+    std::queue<TreeNode*> nodes;
+    nodes.push(root);
+
+    int i = 1;
+    while (true)
+    {
+        auto node = nodes.front();
+        nodes.pop();
+        
+        if (arr[i] != -1)
+        {
+            node->left = new TreeNode(arr[i]);
+            nodes.push(node->left);
+        }
+
+        i++;
+        if (arr[i] != -1)
+        {
+            node->right = new TreeNode(arr[i]);
+            nodes.push(node->right);
+        }
+        i++;
+
+        if (nodes.empty() || i >= arr.size())
+        {
+            break;
+        }
+    }
+
+    return root;
+}
