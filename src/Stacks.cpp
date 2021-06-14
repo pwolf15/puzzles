@@ -104,6 +104,8 @@ int clumsy(int n)
     return nums2.top();
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int Evaluate(const std::string& expression)
 {
     int result = 0;
