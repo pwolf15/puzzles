@@ -72,7 +72,25 @@ TEST(Stacks, Clumsy)
 
 TEST(Stacks, Evaluate)
 {
-    CHECK_EQUAL(15, Evaluate("3,4,+,2,x,1,+"));
+    CHECK_EQUAL(15, Evaluate("3,4,+,2,*,1,+"));
     CHECK_EQUAL(1729, Evaluate("1729"));
     CHECK_EQUAL(-3, Evaluate("-641,6,/,28,/"));
+};
+
+TEST(Stacks, EvalRPN)
+{
+    std::vector<std::string> tokens = { "3","4","+","2","*","1","+"};
+    CHECK_EQUAL(15, evalRPN(tokens));
+
+    tokens = { "2","1","+","3","*" };
+    CHECK_EQUAL(9, evalRPN(tokens));
+
+    tokens = { "4","13","5","/","+" };
+    CHECK_EQUAL(6, evalRPN(tokens));
+
+    tokens = { "4","13","5","/","+" };
+    CHECK_EQUAL(6, evalRPN(tokens));
+
+    tokens = { "10","6","9","3","+","-11","*","/","*","17","+","5","+" };
+    CHECK_EQUAL(22, evalRPN(tokens));
 };

@@ -147,7 +147,7 @@ int Evaluate(const std::string& expression)
                 ops.push(op2 / op1);
                 std::cout << op1 << ", " << op2 << std::endl;
             }
-            else if (cur == "x")
+            else if (cur == "*")
             {
                 auto op1 = ops.top();
                 ops.pop();
@@ -219,4 +219,62 @@ int Evaluate(const std::string& expression)
     result = ops.top();
 
     return result;
+}
+
+int evalRPN(std::vector<std::string>& tokens)
+{
+    int result = 0;
+    std::stack<int> ops;
+    for (int i = 0; i < tokens.size(); ++i)
+    {
+        if (tokens[i] == "+")
+        {
+            auto op1 = ops.top();
+            ops.pop();
+            auto op2 = ops.top();
+            ops.pop();
+
+            ops.push(op1 + op2);
+            std::cout << op1 << ", " << op2 << std::endl;
+            std::cout << ops.top() << std::endl;
+        }
+        else if (tokens[i] == "-")
+        {
+            auto op1 = ops.top();
+            ops.pop();
+            auto op2 = ops.top();
+            ops.pop();
+
+            ops.push(op2 - op1);
+            std::cout << op1 << ", " << op2 << std::endl;
+        }
+        else if (tokens[i] == "/")
+        {
+            auto op1 = ops.top();
+            ops.pop();
+            auto op2 = ops.top();
+            ops.pop();
+
+            ops.push(op2 / op1);
+            std::cout << op1 << ", " << op2 << std::endl;
+        }
+        else if (tokens[i] == "*")
+        {
+            auto op1 = ops.top();
+            ops.pop();
+            auto op2 = ops.top();
+            ops.pop();
+            ops.push(op1 * op2);
+
+            std::cout << op2 << ", " << op1 << std::endl;
+        }
+        else
+        {
+            ops.push(std::atoi(tokens[i].c_str()));
+        }
+    }
+
+    result = ops.top();
+
+    return result;   
 }

@@ -212,4 +212,6 @@ int clumsy(int n);
 
 int Evaluate(const std::string& expression);
 
+int evalRPN(std::vector<std::string>& tokens);
+
 #endif // STACKS_HPP
