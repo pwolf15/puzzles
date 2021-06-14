@@ -221,6 +221,8 @@ int Evaluate(const std::string& expression)
     return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 int evalRPN(std::vector<std::string>& tokens)
 {
     int result = 0;
