@@ -210,4 +210,6 @@ private:
 
 int clumsy(int n);
 
+int Evaluate(const std::string& expression);
+
 #endif // STACKS_HPP

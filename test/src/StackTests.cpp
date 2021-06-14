@@ -68,3 +68,11 @@ TEST(Stacks, Clumsy)
     CHECK_EQUAL(12, clumsy(10));
     CHECK_EQUAL(12, clumsy(10));
 };
+
+
+TEST(Stacks, Evaluate)
+{
+    CHECK_EQUAL(15, Evaluate("3,4,+,2,x,1,+"));
+    CHECK_EQUAL(1729, Evaluate("1729"));
+    CHECK_EQUAL(-3, Evaluate("-641,6,/,28,/"));
+};

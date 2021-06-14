@@ -103,3 +103,118 @@ int clumsy(int n)
 
     return nums2.top();
 }
+
+int Evaluate(const std::string& expression)
+{
+    int result = 0;
+    std::string cur = "";
+    std::stack<int> ops;
+    for (int i = 0; i < expression.size(); ++i)
+    {
+        if (expression[i] == ',')
+        {
+            // delimiter
+            if (cur == "+")
+            {
+                auto op1 = ops.top();
+                ops.pop();
+                auto op2 = ops.top();
+                ops.pop();
+
+                ops.push(op1 + op2);
+                std::cout << op1 << ", " << op2 << std::endl;
+                std::cout << ops.top() << std::endl;
+            }
+            else if (cur == "-")
+            {
+                auto op1 = ops.top();
+                ops.pop();
+                auto op2 = ops.top();
+                ops.pop();
+
+                ops.push(op2 - op1);
+                std::cout << op1 << ", " << op2 << std::endl;
+            }
+            else if (cur == "/")
+            {
+                auto op1 = ops.top();
+                ops.pop();
+                auto op2 = ops.top();
+                ops.pop();
+
+                ops.push(op2 / op1);
+                std::cout << op1 << ", " << op2 << std::endl;
+            }
+            else if (cur == "x")
+            {
+                auto op1 = ops.top();
+                ops.pop();
+                auto op2 = ops.top();
+                ops.pop();
+                ops.push(op1 * op2);
+
+                std::cout << op2 << ", " << op1 << std::endl;
+            }
+            else
+            {
+                ops.push(std::atoi(cur.c_str()));
+            }
+
+            cur = "";
+        }
+        else
+        {
+            cur += expression[i];
+        }
+    }
+
+    if (cur == "+")
+    {
+        auto op1 = ops.top();
+        ops.pop();
+        auto op2 = ops.top();
+        ops.pop();
+
+        ops.push(op2 + op1);
+        std::cout << op1 << ", " << op2 << std::endl;
+        std::cout << ops.top() << std::endl;
+    }
+    else if (cur == "-")
+    {
+        auto op1 = ops.top();
+        ops.pop();
+        auto op2 = ops.top();
+        ops.pop();
+
+        ops.push(op2 - op1);
+        std::cout << op1 << ", " << op2 << std::endl;
+    }
+    else if (cur == "/")
+    {
+        auto op1 = ops.top();
+        ops.pop();
+        auto op2 = ops.top();
+        ops.pop();
+
+        ops.push(op2 / op1);
+        std::cout << op1 << ", " << op2 << std::endl;
+    }
+    else if (cur == "*")
+    {
+        auto op1 = ops.top();
+        ops.pop();
+        auto op2 = ops.top();
+        ops.pop();
+        ops.push(op2 / op1);
+
+        std::cout << op1 << ", " << op2 << std::endl;
+    }
+    else
+    {
+        ops.push(std::atoi(cur.c_str()));
+    }
+
+    result = ops.top();
+
+    return result;
+}
