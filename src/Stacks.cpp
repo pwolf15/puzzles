@@ -2,6 +2,9 @@
 
 #include <stack>
 #include <iostream>
+#include <sstream>
+#include <unordered_map>
+#include <functional>
 
 void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head)
 {
@@ -106,7 +109,7 @@ int clumsy(int n)
 
 // time complexity: O(n)
 // space complexity: O(n)
-int Evaluate(const std::string& expression)
+int Evaluate_PW(const std::string& expression)
 {
     int result = 0;
     std::string cur = "";
@@ -223,7 +226,47 @@ int Evaluate(const std::string& expression)
 
 // time complexity: O(n)
 // space complexity: O(n)
-int evalRPN(std::vector<std::string>& tokens)
+int Evaluate_EPI(const std::string& expression)
+{
+    std::stack<int> intermediate_results;
+    std::stringstream ss(expression);
+    std::string token;
+    const char kDelimiter = ',';
+    const std::unordered_map<std::string, std::function<int(int, int)>> kOperators = 
+    {
+        { "+", [](int x, int y) -> int { return x + y; }},
+        { "-", [](int x, int y) -> int { return x - y; }},
+        { "*", [](int x, int y) -> int { return x * y; }},
+        { "/", [](int x, int y) -> int { return x / y; }},
+    };
+
+    while (getline(ss, token, kDelimiter))
+    {
+        if (kOperators.count(token))
+        {
+            const int y = intermediate_results.top();
+            intermediate_results.pop();
+            const int x = intermediate_results.top();
+            intermediate_results.pop();
+            intermediate_results.emplace(kOperators.at(token)(x, y));
+        }
+        else
+        {
+            intermediate_results.emplace(std::stoi(token));
+        }
+    }
+
+    return intermediate_results.top();
+}
+
+int Evaluate(const std::string& expression)
+{
+    return Evaluate_EPI(expression);
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+int evalRPN_PW(std::vector<std::string>& tokens)
 {
     int result = 0;
     std::stack<int> ops;
@@ -279,4 +322,40 @@ int evalRPN(std::vector<std::string>& tokens)
     result = ops.top();
 
     return result;   
+}
+
+int evalRPN_EPI(std::vector<std::string>& tokens)
+{
+    std::stack<int> intermediate_results;
+    const std::unordered_map<std::string, std::function<int(int, int)>> kOperators = 
+    {
+        { "+", [](int x, int y) -> int { return x + y; }},
+        { "-", [](int x, int y) -> int { return x - y; }},
+        { "*", [](int x, int y) -> int { return x * y; }},
+        { "/", [](int x, int y) -> int { return x / y; }},
+    };
+
+    for (size_t i = 0; i < tokens.size(); ++i)
+    {
+        std::string token = tokens[i];
+        if (kOperators.count(token))
+        {
+            const int y = intermediate_results.top();
+            intermediate_results.pop();
+            const int x = intermediate_results.top();
+            intermediate_results.pop();
+            intermediate_results.emplace(kOperators.at(token)(x, y));
+        }
+        else
+        {
+            intermediate_results.emplace(std::stoi(token));
+        }
+    }
+
+    return intermediate_results.top();
+}
+
+int evalRPN(std::vector<std::string>& tokens)
+{
+    return evalRPN_EPI(tokens);
 }
