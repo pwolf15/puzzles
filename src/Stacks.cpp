@@ -362,7 +362,7 @@ int evalRPN(std::vector<std::string>& tokens)
 
 // time complexity: O(n)
 // space complexity: O(n)
-bool isWellFormed(const std::string& s)
+bool isWellFormed_PW(const std::string& s)
 {
     std::stack<char> braces;
     for (int i = 0; i < s.size(); ++i)
@@ -408,4 +408,38 @@ bool isWellFormed(const std::string& s)
     }
 
     return true;
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+bool isWellFormed_EPI(const std::string& s)
+{
+    std::stack<char> left_chars;
+    const std::unordered_map<char, char> kLookup = 
+    {
+        { '(', ')' }, {'{', '}'}, {'[', ']'}
+    };
+    for (int i = 0; i < std::size(s); ++i)
+    {
+        if (kLookup.count(s[i]))
+        {
+            left_chars.emplace(s[i]);
+        }
+        else
+        {
+            if (std::empty(left_chars) || 
+                kLookup.at(left_chars.top()) != s[i])
+            {
+                // Unmatched right char or mismatched chars
+                return false;
+            }
+            left_chars.pop();
+        }
+    }
+    return std::empty(left_chars);
+}
+
+bool isWellFormed(const std::string& s)
+{
+    return isWellFormed_EPI(s);
 }
