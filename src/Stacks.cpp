@@ -390,9 +390,9 @@ bool isWellFormed(const std::string& s)
             {
                 invalid = c != '[';
             }
-            else if (s[i] == '{')
+            else if (s[i] == '}')
             {
-                invalid = c != '}';
+                invalid = c != '{';
             }
 
             if (invalid)
