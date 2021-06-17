@@ -359,3 +359,53 @@ int evalRPN(std::vector<std::string>& tokens)
 {
     return evalRPN_EPI(tokens);
 }
+
+// time complexity: O(n)
+// space complexity: O(n)
+bool isWellFormed(const std::string& s)
+{
+    std::stack<char> braces;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+        {
+            braces.push(s[i]);
+        }
+        else
+        {
+            if (braces.empty())
+            {
+                return false;
+            }
+
+            char c = braces.top();
+            braces.pop();
+
+            bool invalid = false;
+            if (s[i] == ')')
+            {
+                invalid = c != '(';
+            }
+            else if (s[i] == ']')
+            {
+                invalid = c != '[';
+            }
+            else if (s[i] == '{')
+            {
+                invalid = c != '}';
+            }
+
+            if (invalid)
+            {
+                return false;
+            }
+        }
+    }
+
+    if (!braces.empty())
+    {
+        return false;
+    }
+
+    return true;
+}

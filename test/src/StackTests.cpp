@@ -94,3 +94,12 @@ TEST(Stacks, EvalRPN)
     tokens = { "10","6","9","3","+","-11","*","/","*","17","+","5","+" };
     CHECK_EQUAL(22, evalRPN(tokens));
 };
+
+TEST(Stacks, IsWellFormed)
+{
+    CHECK(isWellFormed("([]){()}"));
+    CHECK(isWellFormed("[()[]{()()}]"));
+    CHECK(!isWellFormed("{)"));
+    CHECK(!isWellFormed("{(})"));   
+    CHECK(!isWellFormed("[()[]{()()")); 
+}

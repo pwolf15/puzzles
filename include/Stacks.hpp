@@ -214,4 +214,6 @@ int Evaluate(const std::string& expression);
 
 int evalRPN(std::vector<std::string>& tokens);
 
+bool isWellFormed(const std::string& s);
+
 #endif // STACKS_HPP
