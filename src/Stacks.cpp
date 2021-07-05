@@ -443,3 +443,85 @@ bool isWellFormed(const std::string& s)
 {
     return isWellFormed_EPI(s);
 }
+
+std::string ShortestEquivalentPath(const std::string& path)
+{
+    std::string curDir = "";
+    std::stack<std::string> dirs;
+
+    for (int i = 1; i < path.size(); ++i)
+    {
+        if (path[i] == '/' && !curDir.empty())
+        {
+            if (curDir == "..")
+            {
+                if (!dirs.empty())
+                {
+                    dirs.pop();
+                }
+            }
+            else if (curDir == ".")
+            {
+
+            }
+            else 
+            {
+                dirs.push(curDir);
+            }
+
+            curDir = "";
+        }
+        else if (path[i] == '/')
+        {
+
+        }
+        else
+        {
+            curDir += path[i];
+        }
+    }
+
+    if (!curDir.empty())
+    {
+        if (curDir == "..")
+        {
+            if (!dirs.empty())
+            {
+                dirs.pop();
+            }
+        }
+        else if (curDir == ".")
+        {
+
+        }
+        else 
+        {
+            dirs.push(curDir);
+        }
+
+        curDir = "";
+    }
+
+    std::string absPath = "";
+
+    while (!dirs.empty())
+    {
+        if (!absPath.empty())
+        {
+            absPath = dirs.top() + "/" + absPath;
+        }
+        else
+        {
+            absPath = dirs.top();
+        }
+
+        dirs.pop();
+    }
+
+    if (path[0] == '/')
+    {
+        absPath = "/" + absPath;
+    }
+
+    return absPath;
+}

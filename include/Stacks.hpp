@@ -216,4 +216,6 @@ int evalRPN(std::vector<std::string>& tokens);
 
 bool isWellFormed(const std::string& s);
 
+std::string ShortestEquivalentPath(const std::string& path);
+
 #endif // STACKS_HPP

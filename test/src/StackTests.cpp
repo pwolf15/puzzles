@@ -103,3 +103,13 @@ TEST(Stacks, IsWellFormed)
     CHECK(!isWellFormed("{(})"));   
     CHECK(!isWellFormed("[()[]{()()")); 
 }
+
+TEST(Stacks, ShortestEquivalentPath)
+{
+    CHECK_EQUAL("/usr/bin/gcc", ShortestEquivalentPath("/usr/lib/../bin/gcc"));
+    CHECK_EQUAL("scripts/awkscripts", ShortestEquivalentPath("scripts//./../scripts/awkscripts/././"));
+    CHECK_EQUAL("/home", ShortestEquivalentPath("/home/"));
+    CHECK_EQUAL("/", ShortestEquivalentPath("/../"));
+    CHECK_EQUAL("/home/foo", ShortestEquivalentPath("/home//foo/"));
+    CHECK_EQUAL("/c", ShortestEquivalentPath("/a/./b/../../c/"));
+}
