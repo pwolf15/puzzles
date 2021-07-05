@@ -444,6 +444,8 @@ bool isWellFormed(const std::string& s)
     return isWellFormed_EPI(s);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::string ShortestEquivalentPath(const std::string& path)
 {
     std::string curDir = "";
