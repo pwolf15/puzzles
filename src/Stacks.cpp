@@ -592,3 +592,37 @@ std::string ShortestEquivalentPath(const std::string& path)
 {
     return ShortestEquivalentPath_EPI(path);
 }
+
+std::vector<int> ExamineBuildsWithSunset(
+    std::vector<int>::const_iterator sequence_begin,
+    std::vector<int>::const_iterator sequence_end
+)
+{
+    std::vector<int> result;
+    std::stack<int> curBuildings;
+    while (sequence_begin != sequence_end)
+    {
+        if (curBuildings.empty() || *sequence_begin < curBuildings.top())
+        {
+            curBuildings.push(*sequence_begin);
+        }
+        else if (!curBuildings.empty() && *sequence_begin > curBuildings.top())
+        {
+            while (!curBuildings.empty() && *sequence_begin > curBuildings.top())
+            {
+                curBuildings.pop();
+            }
+            curBuildings.push(*sequence_begin);
+        }
+
+        sequence_begin++;
+    }
+
+    while (!curBuildings.empty())
+    {
+        result.push_back(curBuildings.top());
+        curBuildings.pop();
+    }
+
+    return result;
+}

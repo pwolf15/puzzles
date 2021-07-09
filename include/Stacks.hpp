@@ -218,4 +218,9 @@ bool isWellFormed(const std::string& s);
 
 std::string ShortestEquivalentPath(const std::string& path);
 
+std::vector<int> ExamineBuildsWithSunset(
+    std::vector<int>::const_iterator sequence_begin,
+    std::vector<int>::const_iterator sequence_end
+);
+
 #endif // STACKS_HPP

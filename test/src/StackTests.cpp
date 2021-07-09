@@ -113,3 +113,24 @@ TEST(Stacks, ShortestEquivalentPath)
     CHECK_EQUAL("/home/foo", ShortestEquivalentPath("/home//foo/"));
     CHECK_EQUAL("/c", ShortestEquivalentPath("/a/./b/../../c/"));
 }
+
+TEST(Stacks, ExamineBuildsWithSunset)
+{
+    std::vector<int> input = { 7, 5, 5, 4, 6, 3, 2, 1};
+    std::vector<int> expected = { 1, 2, 3, 6, 7 };
+    std::vector<int> result = ExamineBuildsWithSunset(input.begin(), input.end());
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+
+    input = { 5, 5, 5, 5 };
+    expected = { 5 };
+    result = ExamineBuildsWithSunset(input.begin(), input.end());
+    CHECK_EQUAL(expected.size(), result.size());
+    for (int i = 0; i < expected.size(); ++i)
+    {
+        CHECK_EQUAL(expected[i], result[i]);
+    }
+}
