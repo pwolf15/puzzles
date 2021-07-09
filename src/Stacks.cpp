@@ -593,36 +593,74 @@ std::string ShortestEquivalentPath(const std::string& path)
     return ShortestEquivalentPath_EPI(path);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
+std::vector<int> ExamineBuildsWithSunset_PW(
+    std::vector<int>::const_iterator sequence_begin,
+    std::vector<int>::const_iterator sequence_end
+)
+{
+    int building_idx = 0;
+    struct Building {
+        int id;
+        int height;
+    };
+
+    std::vector<int> result;
+    std::stack<Building> curBuildings;
+    while (sequence_begin != sequence_end)
+    {
+        while (!curBuildings.empty() && *sequence_begin >= curBuildings.top().height)
+        {
+            curBuildings.pop();
+        }
+        curBuildings.push(Building{building_idx++,*sequence_begin++});
+    }
+
+    while (!curBuildings.empty())
+    {
+        result.push_back(curBuildings.top().id);
+        curBuildings.pop();
+    }
+
+    return result;
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+std::vector<int> ExamineBuildsWithSunset_EPI(
+    std::vector<int>::const_iterator sequence_begin,
+    std::vector<int>::const_iterator sequence_end
+)
+{
+    int building_idx = 0;
+    struct BuildingWithHeight {
+        int id, height;
+    };
+    std::stack<BuildingWithHeight> candidates;
+    while (sequence_begin != sequence_end)
+    {
+        int building_height = *sequence_begin++;
+        while (!std::empty(candidates) && building_height >= candidates.top().height)
+        {
+            candidates.pop();
+        }
+        candidates.emplace(BuildingWithHeight{building_idx++, building_height});
+    }
+
+    std::vector<int> buildings_with_sunset;
+    while (!std::empty(candidates))
+    {
+        buildings_with_sunset.emplace_back(candidates.top().id);
+        candidates.pop();
+    }
+    return buildings_with_sunset;
+}
+
 std::vector<int> ExamineBuildsWithSunset(
     std::vector<int>::const_iterator sequence_begin,
     std::vector<int>::const_iterator sequence_end
 )
 {
-    std::vector<int> result;
-    std::stack<int> curBuildings;
-    while (sequence_begin != sequence_end)
-    {
-        if (curBuildings.empty() || *sequence_begin < curBuildings.top())
-        {
-            curBuildings.push(*sequence_begin);
-        }
-        else if (!curBuildings.empty() && *sequence_begin > curBuildings.top())
-        {
-            while (!curBuildings.empty() && *sequence_begin > curBuildings.top())
-            {
-                curBuildings.pop();
-            }
-            curBuildings.push(*sequence_begin);
-        }
-
-        sequence_begin++;
-    }
-
-    while (!curBuildings.empty())
-    {
-        result.push_back(curBuildings.top());
-        curBuildings.pop();
-    }
-
-    return result;
+    return ExamineBuildsWithSunset_PW(sequence_begin, sequence_end);
 }

@@ -117,7 +117,7 @@ TEST(Stacks, ShortestEquivalentPath)
 TEST(Stacks, ExamineBuildsWithSunset)
 {
     std::vector<int> input = { 7, 5, 5, 4, 6, 3, 2, 1};
-    std::vector<int> expected = { 1, 2, 3, 6, 7 };
+    std::vector<int> expected = { 7,6,5,4,0 };
     std::vector<int> result = ExamineBuildsWithSunset(input.begin(), input.end());
     CHECK_EQUAL(expected.size(), result.size());
     for (int i = 0; i < expected.size(); ++i)
@@ -126,7 +126,7 @@ TEST(Stacks, ExamineBuildsWithSunset)
     }
 
     input = { 5, 5, 5, 5 };
-    expected = { 5 };
+    expected = { 3 };
     result = ExamineBuildsWithSunset(input.begin(), input.end());
     CHECK_EQUAL(expected.size(), result.size());
     for (int i = 0; i < expected.size(); ++i)
