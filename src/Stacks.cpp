@@ -665,6 +665,8 @@ std::vector<int> ExamineBuildsWithSunset(
     return ExamineBuildsWithSunset_PW(sequence_begin, sequence_end);
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<std::vector<int>> BinaryTreeDepthOrder(
     const std::unique_ptr<BinaryTreeNode<int>>& tree
 )
@@ -676,7 +678,7 @@ std::vector<std::vector<int>> BinaryTreeDepthOrder(
     {
         return {};
     }
-    
+
     cur.push(tree.get());
 
     if (!cur.empty())
