@@ -667,7 +667,7 @@ std::vector<int> ExamineBuildsWithSunset(
 
 // time complexity: O(n)
 // space complexity: O(n)
-std::vector<std::vector<int>> BinaryTreeDepthOrder(
+std::vector<std::vector<int>> BinaryTreeDepthOrder_PW(
     const std::unique_ptr<BinaryTreeNode<int>>& tree
 )
 {
@@ -717,4 +717,52 @@ std::vector<std::vector<int>> BinaryTreeDepthOrder(
     }
 
     return depthOrder;
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+std::vector<std::vector<int>> BinaryTreeDepthOrder_EPI(
+    const std::unique_ptr<BinaryTreeNode<int>>& tree
+)
+{
+    std::vector<std::vector<int>> result;
+    if (!tree.get())
+    {
+        return result;
+    }
+
+    std::queue<BinaryTreeNode<int>*> curr_depth_nodes({tree.get()});
+    while (!empty(curr_depth_nodes))
+    {
+        std::queue<BinaryTreeNode<int>*> next_depth_nodes;
+        std::vector<int> this_level;
+        while (!empty(curr_depth_nodes))
+        {
+            auto curr = curr_depth_nodes.front();
+            curr_depth_nodes.pop();
+            this_level.emplace_back(curr->data);
+
+            if (curr->left)
+            {
+                next_depth_nodes.emplace(curr->left.get());
+            }
+            if (curr->right)
+            {
+                next_depth_nodes.emplace(curr->right.get());
+            }
+        }
+        result.emplace_back(this_level);
+        curr_depth_nodes = next_depth_nodes;
+    }
+
+    return result;
+}
+
+// time complexity: O(n)
+// space complexity: O(n)
+std::vector<std::vector<int>> BinaryTreeDepthOrder(
+    const std::unique_ptr<BinaryTreeNode<int>>& tree
+)
+{
+    return BinaryTreeDepthOrder_EPI(tree);
 }
