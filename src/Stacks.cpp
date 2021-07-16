@@ -669,5 +669,50 @@ std::vector<std::vector<int>> BinaryTreeDepthOrder(
     const std::unique_ptr<BinaryTreeNode<int>>& tree
 )
 {
-    return {};
+    std::vector<std::vector<int>> depthOrder;
+    std::queue<BinaryTreeNode<int>*> cur;
+
+    if (!tree)
+    {
+        return {};
+    }
+    
+    cur.push(tree.get());
+
+    if (!cur.empty())
+    {
+        depthOrder.push_back({});
+    }
+
+    while (true)
+    {
+        std::queue<BinaryTreeNode<int>*> nextCur;
+        while (!cur.empty())
+        {
+            auto node = cur.front();
+            cur.pop();
+            depthOrder.back().push_back(node->data);
+
+            if (node->left)
+            {
+                nextCur.push(node->left.get());
+            }
+            if (node->right)
+            {
+                nextCur.push(node->right.get());
+            }
+        }
+
+        if (nextCur.empty())
+        {
+            break;
+        }
+        else 
+        {
+            std::swap(cur, nextCur);
+            depthOrder.push_back({});
+        }
+    }
+
+    return depthOrder;
 }
