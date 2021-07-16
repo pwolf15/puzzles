@@ -2,6 +2,8 @@
 
 #include "LinkedLists.hpp"
 #include "Stacks.hpp"
+// #include "Trees.hpp"
+#include <functional>
 
 #include "CppUTest/TestHarness.h"
 
@@ -133,4 +135,23 @@ TEST(Stacks, ExamineBuildsWithSunset)
     {
         CHECK_EQUAL(expected[i], result[i]);
     }
+}
+
+TEST(Stacks, BinaryTreeDepthOrder)
+{
+    std::unique_ptr<BinaryTreeNode<int>> node = fromArrayBT({ 5, 4, 6, 3, 4, 6, 7});
+    
+    std::function<void(const std::unique_ptr<BinaryTreeNode<int>>&)> print;
+    print = [&print](const std::unique_ptr<BinaryTreeNode<int>>& n)->void {
+        
+        if (n == nullptr)
+        {
+            return;
+        }
+
+        std::cout << n->data << " ";
+        print(n->left);
+        print(n->right);
+    };
+    print(node);
 }

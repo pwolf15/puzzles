@@ -618,3 +618,46 @@ TreeNode* fromArray(std::vector<int> arr)
 
     return root;
 }
+
+std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr)
+{
+    if (arr.empty())
+    {
+        return nullptr;
+    }
+
+    std::unique_ptr<BinaryTreeNode<int>> root = std::make_unique<BinaryTreeNode<int>>();
+    root->data = (arr[0]);
+    std::queue<BinaryTreeNode<int>*> nodes;
+    nodes.push(root.get());
+
+    int i = 1;
+    while (true)
+    {
+        BinaryTreeNode<int>* node = nodes.front();
+        nodes.pop();
+        
+        if (arr[i] != -1)
+        {
+            node->left = std::make_unique<BinaryTreeNode<int>>();
+            node->left->data = arr[i];
+            nodes.push(node->left.get());
+        }
+
+        i++;
+        if (arr[i] != -1)
+        {
+            node->right = std::make_unique<BinaryTreeNode<int>>();
+            node->right->data = (arr[i]);
+            nodes.push(node->right.get());
+        }
+        i++;
+
+        if (nodes.empty() || i >= arr.size())
+        {
+            break;
+        }
+    }
+
+    return std::move(root);
+}

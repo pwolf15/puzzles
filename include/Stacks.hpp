@@ -1,11 +1,12 @@
 #ifndef STACKS_HPP
 #define STACKS_HPP
 
-#include "LinkedLists.hpp"
-
 #include <stack>
 #include <map>
 #include <queue>
+
+#include "LinkedLists.hpp"
+#include "Trees.hpp"
 
 void PrintLinkedListInReverse(std::shared_ptr<ListNodeEPI<int>> head);
 
@@ -221,6 +222,10 @@ std::string ShortestEquivalentPath(const std::string& path);
 std::vector<int> ExamineBuildsWithSunset(
     std::vector<int>::const_iterator sequence_begin,
     std::vector<int>::const_iterator sequence_end
+);
+
+std::vector<std::vector<int>> BinaryTreeDepthOrder(
+    const std::unique_ptr<BinaryTreeNode<int>>& tree
 );
 
 #endif // STACKS_HPP

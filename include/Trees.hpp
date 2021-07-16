@@ -1,5 +1,9 @@
+#ifndef TREES_H
+#define TREES_H
+
 #include <vector>
 #include <string>
+#include <memory>
 
 struct TreeNode
 {
@@ -42,3 +46,13 @@ std::vector<std::vector<std::string>> printTree(TreeNode* root);
 TreeNode* bstToGst(TreeNode* root);
 
 TreeNode* fromArray(std::vector<int> arr);
+
+template <typename T>
+struct BinaryTreeNode {
+    T data;
+    std::unique_ptr<BinaryTreeNode<T>> left, right;
+};
+
+std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr);
+
+#endif
