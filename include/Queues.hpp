@@ -151,3 +151,48 @@ private:
  */
 
 int countStudents(std::vector<int>& students, std::vector<int>& sandwiches);
+
+class CircularQueue
+{
+    public:
+        CircularQueue(std::size_t capacity): 
+            m_data(capacity),
+            m_start(0),
+            m_end(0)
+        {
+
+        }
+
+        void Enqueue(int k)
+        {
+            if (m_end == m_data.size())
+            {
+                // account for dynamic resize
+                m_data.resize((m_end + 1)*2);
+            }
+
+            m_data[m_end] = k;
+            m_end++;
+        }
+
+        int Dequeue()
+        {
+            if (m_start != m_end)
+            {
+                return m_data[m_start++];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        int Size() const
+        {
+            return m_end - m_start;
+        }
+    
+    private:
+        std::vector<int> m_data;
+        int m_start, m_end;
+};

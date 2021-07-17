@@ -37,3 +37,19 @@ TEST(Queues, CountStudents)
     sandwiches = { 1,0,0,0,1,1 };
     CHECK_EQUAL(3, countStudents(students, sandwiches));
 };
+
+TEST(Queues, CircularQueue)
+{
+    CircularQueue q(0);
+    q.Enqueue(1);
+    q.Enqueue(2);
+    q.Enqueue(3);
+
+    CHECK_EQUAL(3, q.Size());
+
+    CHECK_EQUAL(1, q.Dequeue());
+    CHECK_EQUAL(2, q.Dequeue());
+    CHECK_EQUAL(3, q.Dequeue());
+
+    CHECK_EQUAL(0, q.Size());
+};
