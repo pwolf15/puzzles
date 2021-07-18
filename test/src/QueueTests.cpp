@@ -38,9 +38,9 @@ TEST(Queues, CountStudents)
     CHECK_EQUAL(3, countStudents(students, sandwiches));
 };
 
-TEST(Queues, CircularQueue)
+TEST(Queues, CircularQueue_EPI)
 {
-    CircularQueue q(0);
+    CircularQueue_EPI q(0);
     q.Enqueue(1);
     q.Enqueue(2);
     q.Enqueue(3);
@@ -52,4 +52,52 @@ TEST(Queues, CircularQueue)
     CHECK_EQUAL(3, q.Dequeue());
 
     CHECK_EQUAL(0, q.Size());
+
+    CircularQueue_EPI q2(100);
+    for (int i = 0; i < 1000; ++i)
+    {
+        q2.Enqueue(i);
+    }
+
+    for (int i = 0; i < 1000; ++i)
+    {
+        CHECK_EQUAL(i, q2.Dequeue());
+    }
+
+    CircularQueue_EPI q3(10);
+    for (int i = 0; i < 10; ++i)
+    {
+        q3.Enqueue(i);
+    }
+    
+    for (int i = 0; i < 5; ++i)
+    {
+        CHECK_EQUAL(i, q3.Dequeue());
+    }
+
+    for (int i = 10; i < 15; ++i)
+    {
+        q3.Enqueue(i);
+    }
+
+    for (int i = 5; i < 10; ++i)
+    {
+        CHECK_EQUAL(i, q3.Dequeue());
+    }   
 };
+
+TEST(Queues, CircularQueue_LC)
+{
+    CircularQueue_LC q5(2);
+    q5.Enqueue(1);  // 1,_
+    q5.Enqueue(2);  // 1,2
+    CHECK_EQUAL(1, q5.Dequeue());   // _,3
+    CHECK_EQUAL(2, q5.Dequeue());   // _,_
+    q5.Enqueue(3);
+    CHECK_EQUAL(3, q5.Dequeue()); 
+    q5.Enqueue(3);
+    CHECK_EQUAL(3, q5.Dequeue()); 
+    q5.Enqueue(3);
+    CHECK_EQUAL(3, q5.Dequeue()); 
+    CHECK_EQUAL(-1, q5.Front());   
+}
