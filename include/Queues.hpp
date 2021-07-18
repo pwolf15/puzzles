@@ -331,7 +331,12 @@ class CircularQueue_LC
 
         int Rear()
         {
-            return m_data[m_end];
+            if (!m_num_elements)
+            {
+                return -1;
+            }
+            int index = (m_end - 1) >= 0 ? m_end - 1 : m_data.size() - 1;
+            return m_data[index];
         }
 
         bool isEmpty()
