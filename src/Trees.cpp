@@ -661,3 +661,47 @@ std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr)
 
     return std::move(root);
 }
+
+// time complexity: O(n)
+// space complexity: O(h), where h max depth of stack
+//  log n <= h <= n
+void preorder(const std::unique_ptr<BinaryTreeNode<int>>& root)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    std::cout << root->data << std::endl;
+    preorder(root->left);
+    preorder(root->right);
+}
+
+
+// time complexity: O(n)
+// space complexity: O(h), where h max depth of stack
+void inorder(const std::unique_ptr<BinaryTreeNode<int>>& root)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    inorder(root->left);
+    std::cout << root->data << std::endl;
+    inorder(root->right);
+}
+
+// time complexity: O(n)
+// space complexity: O(h), where h max depth of stack
+void postorder(const std::unique_ptr<BinaryTreeNode<int>>& root)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    std::cout << root->data << std::endl;
+}

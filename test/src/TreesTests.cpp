@@ -454,3 +454,14 @@ TEST(Trees, BstToGst)
     deleteTree(expected);
     deleteTree(node);
 }
+
+TEST(Trees, Traversal)
+{
+    std::unique_ptr<BinaryTreeNode<int>> node = fromArrayBT({ 314, 6, 6, 271, 561, 2, 271 });
+    std::cout << "Preorder" << std::endl;
+    preorder(node);
+    std::cout << "Inorder" << std::endl;
+    inorder(node);
+    std::cout << "Postorder" << std::endl;
+    postorder(node);
+}

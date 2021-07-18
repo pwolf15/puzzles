@@ -55,4 +55,10 @@ struct BinaryTreeNode {
 
 std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr);
 
+void preorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
+
+void inorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
+
+void postorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
+
 #endif

@@ -195,6 +195,16 @@ Boyer-Moore implementations for find str
 * top/pop throw exceptions with empty stack
 * 
 
+## Binary Trees
+
+* node, ancestor, parent, child, descendant, full/perfect/complete binary trees
+* left/right skews
+* recursion, complexity of function call stack
+* consider skewed trees when doing complexity analysis, O(log n) for balanced trees, O(n) for skewed trees
+* make complexity better when given parent field
+* easy to mistake parent with single child as leaf
+* https://stackoverflow.com/a/58441716
+
 ### TODO.
 
 Implement variants
