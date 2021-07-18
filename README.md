@@ -203,7 +203,6 @@ Boyer-Moore implementations for find str
 * consider skewed trees when doing complexity analysis, O(log n) for balanced trees, O(n) for skewed trees
 * make complexity better when given parent field
 * easy to mistake parent with single child as leaf
-* https://stackoverflow.com/a/58441716
 
 ### TODO.
 
