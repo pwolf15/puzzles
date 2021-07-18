@@ -2,6 +2,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
 
 class MyQueue {
 public:
@@ -250,6 +251,52 @@ class CircularQueue_EPI
     private:
         std::vector<int> m_data;
         int m_start, m_end, m_num_elements;
+};
+
+class CircularQueue_EPI2
+{
+    public:
+        explicit CircularQueue_EPI2(std::size_t capacity): 
+            entries_(capacity)
+        {
+            // added this to protect against zero-valued capacity
+            if (num_queue_elements == std::size(entries_))
+            {
+                entries_.resize((std::size(entries_) + 1) * kScaleFactor);
+            }
+        }
+
+        void Enqueue(int x)
+        {
+            if (num_queue_elements == std::size(entries_)) // Needs to resize.
+            {
+                // Make the queue elements appear consecutively
+                std::rotate(std::begin(entries_), std::begin(entries_) + head_, std::end(entries_));
+                head_ = 0, tail_ = num_queue_elements; // Resets head and tail;
+                entries_.resize(std::size(entries_) * kScaleFactor);
+            }
+
+            entries_[tail_] = x;
+            tail_ = (tail_ + 1) % std::size(entries_), ++num_queue_elements;
+        }
+
+        int Dequeue() 
+        {
+            --num_queue_elements;
+            int result = entries_[head_];
+            head_ = (head_ + 1) % std::size(entries_);
+            return result;
+        }
+
+        int Size() const
+        {
+            return num_queue_elements;
+        }
+    
+    private:
+        const int kScaleFactor = 2;
+        int head_ = 0, tail_ = 0, num_queue_elements = 0;
+        std::vector<int> entries_;
 };
 
 class CircularQueue_LC

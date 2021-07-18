@@ -86,6 +86,54 @@ TEST(Queues, CircularQueue_EPI)
     }   
 };
 
+TEST(Queues, CircularQueue_EPI2)
+{
+    CircularQueue_EPI2 q(0);
+    q.Enqueue(1);
+    q.Enqueue(2);
+    q.Enqueue(3);
+
+    CHECK_EQUAL(3, q.Size());
+
+    CHECK_EQUAL(1, q.Dequeue());
+    CHECK_EQUAL(2, q.Dequeue());
+    CHECK_EQUAL(3, q.Dequeue());
+
+    CHECK_EQUAL(0, q.Size());
+
+    CircularQueue_EPI2 q2(100);
+    for (int i = 0; i < 1000; ++i)
+    {
+        q2.Enqueue(i);
+    }
+
+    for (int i = 0; i < 1000; ++i)
+    {
+        CHECK_EQUAL(i, q2.Dequeue());
+    }
+
+    CircularQueue_EPI2 q3(10);
+    for (int i = 0; i < 10; ++i)
+    {
+        q3.Enqueue(i);
+    }
+    
+    for (int i = 0; i < 5; ++i)
+    {
+        CHECK_EQUAL(i, q3.Dequeue());
+    }
+
+    for (int i = 10; i < 15; ++i)
+    {
+        q3.Enqueue(i);
+    }
+
+    for (int i = 5; i < 10; ++i)
+    {
+        CHECK_EQUAL(i, q3.Dequeue());
+    }   
+};
+
 TEST(Queues, CircularQueue_LC)
 {
     CircularQueue_LC q5(2);
