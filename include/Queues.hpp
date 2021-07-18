@@ -331,7 +331,7 @@ class CircularQueue_LC
 
         int Rear()
         {
-            return m_data[m_end-1];
+            return m_data[m_end];
         }
 
         bool isEmpty()
@@ -344,87 +344,30 @@ class CircularQueue_LC
             return m_num_elements == m_data.size();
         }
 
-        void Enqueue(int k)
+        bool enQueue(int k)
         {
-            m_data[m_end++] = k;
-            m_num_elements++;
-
-            std::cout << "Num elements: " << m_num_elements << std::endl;
-
             if (m_num_elements >= m_data.size())
             {
-                std::cout << "Resize!" << std::endl;
-
-                // exceeded size
-                m_data.resize(m_data.size() * 2);
-
-                // shift elements
-                std::vector<int> new_data(m_data.size() * 2);
-                
-                if (m_start > m_end)
-                {
-                    for (int i = m_start; i < m_data.size(); ++i)
-                    {
-                        new_data.push_back(m_data[i]);
-                    }
-                    for (int i = 0; i <= m_end; ++i)
-                    {
-                        new_data.push_back(m_data[i]);
-                    }
-
-                    std::swap(m_data, new_data);
-                }
-                else
-                {
-                    for (int i = 0; i < m_data.size(); ++i)
-                    {
-                        new_data[i] = m_data[i];
-                    }
-                }
-
-                m_start = 0;
-                m_end = m_num_elements;
-            }
-            else if (m_end >= m_data.size())
-            {
-                // wraparound
-                m_end = 0;
+                return false;
             }
 
-            std::cout << "Enqueue, Start: " << m_start << ", end: " << m_end << std::endl;
+            m_data[m_end] = k;
+            m_end = (m_end + 1) % std::size(m_data), ++m_num_elements;
+            return true;
         }
 
-        int Dequeue()
+        bool deQueue()
         {
-            int retVal = -1;
-            if (m_num_elements <= 0)
+            if (!m_num_elements)
             {
-                // do nothing
-            }
-            else 
-            {
-                m_num_elements--;
-                retVal = m_data[m_start++];
+                return false;
             }
 
-            if (m_num_elements == 0)
-            {
-                m_start = m_end = 0;
-            }
-            else if (m_num_elements && m_start == m_data.size())
-            {
-                // wraparound
-                m_start = 0;
-            }
+            --m_num_elements;
+            int result = m_data[m_start];
+            m_start = (m_start + 1) % std::size(m_data);
 
-            std::cout << "Dequeue, start: " << m_start << ", end: " << m_end << std::endl;
-
-            return retVal;
-        }
-
-        int Size() const
-        {
-            return std::abs(m_end - m_start);
+            return true;
         }
     
     private:

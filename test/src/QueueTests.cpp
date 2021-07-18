@@ -137,15 +137,20 @@ TEST(Queues, CircularQueue_EPI2)
 TEST(Queues, CircularQueue_LC)
 {
     CircularQueue_LC q5(2);
-    q5.Enqueue(1);  // 1,_
-    q5.Enqueue(2);  // 1,2
-    CHECK_EQUAL(1, q5.Dequeue());   // _,3
-    CHECK_EQUAL(2, q5.Dequeue());   // _,_
-    q5.Enqueue(3);
-    CHECK_EQUAL(3, q5.Dequeue()); 
-    q5.Enqueue(3);
-    CHECK_EQUAL(3, q5.Dequeue()); 
-    q5.Enqueue(3);
-    CHECK_EQUAL(3, q5.Dequeue()); 
+    q5.enQueue(1);  // 1,_
+    q5.enQueue(2);  // 1,2
+    CHECK_EQUAL(1, q5.Front());   // _,3
+    q5.deQueue();
+    CHECK_EQUAL(2, q5.Front());   // _,_
+    q5.deQueue();
+    q5.enQueue(3);
+    CHECK_EQUAL(3, q5.Front()); 
+    q5.deQueue();
+    q5.enQueue(3);
+    CHECK_EQUAL(3, q5.Front()); 
+    q5.deQueue();
+    q5.enQueue(3);
+    CHECK_EQUAL(3, q5.Front()); 
+    q5.deQueue();
     CHECK_EQUAL(-1, q5.Front());   
 }
