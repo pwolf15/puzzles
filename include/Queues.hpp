@@ -374,3 +374,40 @@ class CircularQueue_LC
         std::vector<int> m_data;
         int m_start, m_end, m_num_elements;
 };
+
+class StackQueue
+{
+    public:
+        void Enqueue(int x)
+        {
+            m_s1.push(x);
+        }
+
+        // s1: 3, 2, 1
+
+        // s2: 1, 2, 3
+        // s1: 2, 3
+        int Dequeue() 
+        {
+            while (!m_s1.empty())
+            {
+                m_s2.push(m_s1.top());
+                m_s1.pop();
+            }
+
+            int val = m_s2.top();
+            m_s2.pop();
+
+            while (!m_s2.empty())
+            {
+                m_s1.push(m_s2.top());
+                m_s2.pop();
+            }
+
+            return val;
+        }
+
+    
+    private:
+        std::stack<int> m_s1, m_s2;
+};

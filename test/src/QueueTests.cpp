@@ -154,3 +154,15 @@ TEST(Queues, CircularQueue_LC)
     q5.deQueue();
     CHECK_EQUAL(-1, q5.Front());   
 }
+
+
+TEST(Queues, StackQueue)
+{
+    StackQueue q1;
+    q1.Enqueue(1);
+    q1.Enqueue(2);
+    q1.Enqueue(3);
+    CHECK_EQUAL(1, q1.Dequeue());
+    CHECK_EQUAL(2, q1.Dequeue());
+    CHECK_EQUAL(3, q1.Dequeue());  
+}
