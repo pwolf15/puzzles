@@ -465,3 +465,15 @@ TEST(Trees, Traversal)
     std::cout << "Postorder" << std::endl;
     postorder(node);
 }
+
+TEST(Trees, IsBalanced)
+{
+    auto n = fromArrayBT({});
+    CHECK(IsBalanced(n));
+    auto n1 = fromArrayBT({1,2,3});
+    CHECK(IsBalanced(n1));
+    auto n2 = fromArrayBT({1,1,-1});
+    CHECK(IsBalanced(n2));
+    auto n3 = fromArrayBT({1,1,-1,1,-1,-1,-1,1,-1,-1,-1,-1,-1,-1});
+    CHECK(!IsBalanced(n3));
+}

@@ -61,4 +61,6 @@ void inorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
 
 void postorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
 
+bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree);
+
 #endif

@@ -705,3 +705,27 @@ void postorder(const std::unique_ptr<BinaryTreeNode<int>>& root)
     postorder(root->right);
     std::cout << root->data << std::endl;
 }
+
+int height(const std::unique_ptr<BinaryTreeNode<int>>& t)
+{
+    if (t == nullptr)
+    {
+        return 0;
+    }
+    else 
+    {
+        return 1 + std::max(height(t->left), height(t->right));
+    }
+}
+
+bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    if (tree == nullptr)
+    {
+        return true;
+    }
+    else
+    {
+        return std::abs(height(tree->left) - height(tree->right)) <= 1;
+    }
+}
