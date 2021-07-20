@@ -726,6 +726,9 @@ bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
     }
     else
     {
-        return std::abs(height(tree->left) - height(tree->right)) <= 1;
+        int h1 = height(tree->left);
+        int h2 = height(tree->right);
+        std::cout << "h1: " << h1 << ", h2: " << h2 << std::endl;
+        return std::abs(h1 - h2) <= 1 && IsBalanced(tree->left) && IsBalanced(tree->right);
     }
 }

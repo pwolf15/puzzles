@@ -476,4 +476,6 @@ TEST(Trees, IsBalanced)
     CHECK(IsBalanced(n2));
     auto n3 = fromArrayBT({1,1,-1,1,-1,-1,-1,1,-1,-1,-1,-1,-1,-1});
     CHECK(!IsBalanced(n3));
+    auto n4 = fromArrayBT({ 1,2,2,3,-1,-1,3,4,-1,-1,4 });
+    CHECK(!IsBalanced(n4));
 }
