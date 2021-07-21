@@ -776,7 +776,42 @@ bool IsBalanced_PW2(const std::unique_ptr<BinaryTreeNode<int>>& tree)
     }
 }
 
+struct BalancedStatusWithHeight
+{
+    bool balanced;
+    int height;
+};
+
+// First value of the return value indicates if tree is balanced, and if
+// balanced the second value of the return value is the height of the tree.
+BalancedStatusWithHeight CheckBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    if (tree == nullptr)
+    {
+        return { true, -1 };
+    }
+    auto left_result = CheckBalanced(tree->left);
+    if (!left_result.balanced)
+    {
+        return { false, 0 };
+    }
+    auto right_result = CheckBalanced(tree->right);
+    if (!right_result.balanced)
+    {
+        return { false, 0 };
+    }
+
+    bool is_balanced = std::abs(left_result.height - right_result.height) <= 1;
+    int height = std::max(left_result.height, right_result.height) + 1;
+    return { is_balanced, height };
+}
+
+bool IsBalanced_EPI(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    return CheckBalanced(tree).balanced;
+}
+
 bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
 {
-    return IsBalanced_PW2(tree);
+    return IsBalanced_EPI(tree);
 }
