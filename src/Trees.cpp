@@ -718,7 +718,9 @@ int height(const std::unique_ptr<BinaryTreeNode<int>>& t)
     }
 }
 
-bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+// time complexity: O(n)
+// space complexity: O(h)
+bool IsBalanced_PW1(const std::unique_ptr<BinaryTreeNode<int>>& tree)
 {
     if (tree == nullptr)
     {
@@ -728,7 +730,53 @@ bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
     {
         int h1 = height(tree->left);
         int h2 = height(tree->right);
-        std::cout << "h1: " << h1 << ", h2: " << h2 << std::endl;
         return std::abs(h1 - h2) <= 1 && IsBalanced(tree->left) && IsBalanced(tree->right);
     }
+}
+
+struct NodeHeight 
+{
+    int height;
+    bool balanced;
+};
+
+// time complexity: O(n)
+// space complexity: O(n)
+NodeHeight getHeight(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    if (tree == nullptr)
+    {
+        NodeHeight nh;
+        nh.balanced = true;
+        nh.height = 0;
+        return nh;
+    }
+    else
+    {
+        NodeHeight nh;
+        NodeHeight left, right;
+        left = getHeight(tree->left);
+        right = getHeight(tree->right);
+        nh.height = 1 + std::max(left.height, right.height);
+        nh.balanced = left.balanced && right.balanced && std::abs(right.height - left.height) <= 1;
+        return nh;
+    }
+}
+
+bool IsBalanced_PW2(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    if (tree == nullptr)
+    {
+        return true;
+    }
+    else
+    {
+        NodeHeight nh = getHeight(tree);
+        return nh.balanced;
+    }
+}
+
+bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
+{
+    return IsBalanced_PW2(tree);
 }
