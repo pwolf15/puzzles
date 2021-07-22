@@ -861,7 +861,7 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
     return std::move(root);
 }
 
-int depth(const std::unique_ptr<BinaryTreeNodeP<int>>& node)
+int depth(BinaryTreeNodeP<int>* node)
 {
     if (!node)
     {
@@ -869,7 +869,7 @@ int depth(const std::unique_ptr<BinaryTreeNodeP<int>>& node)
     }
     else
     {
-        return 1 + std::max(depth(node->left), depth(node->right));
+        return 1 + depth(node->parent);
     }
 }
 
@@ -877,8 +877,8 @@ BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     const std::unique_ptr<BinaryTreeNodeP<int>>& node1
 )
 {
-    int depth0 = depth(node0);
-    int depth1 = depth(node1);
+    int depth0 = depth(node0.get());
+    int depth1 = depth(node1.get());
 
     BinaryTreeNodeP<int>* cur0 = node0.get();
     BinaryTreeNodeP<int>* cur1 = node1.get();
@@ -886,18 +886,19 @@ BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     if (depth0 < depth1)
     {
         int diff = depth1 - depth0;
-        while (depth0 != depth1)
+        while (diff)
         {
-            cur0 = cur0->parent;
+            std::cout << cur1->data << std::endl;
+            cur1 = cur1->parent;
             --diff;
         }
     }
     else if (depth1 < depth0)
     {
         int diff = depth0 - depth1;
-        while (depth0 != depth1)
+        while (diff)
         {
-            cur1 = cur1->parent;
+            cur0 = cur0->parent;
             --diff;
         }
     }
