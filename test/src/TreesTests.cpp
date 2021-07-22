@@ -489,4 +489,11 @@ TEST(Trees, LCA)
     CHECK(!n1->parent);
     CHECK(n1->left->parent == n1.get());
     CHECK(n1->right->parent == n1.get());
+
+    CHECK(n1.get() == Lca(n1->left, n1->right));
+
+    auto n2 = fromArrayBTP({314, 6, 6, 271, 561, 2, 271 });
+    CHECK(n2);
+    CHECK(!n2->parent)
+    CHECK(n2->left.get() == Lca(n2->left->left, n2->left->right));
 }

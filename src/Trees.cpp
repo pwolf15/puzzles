@@ -860,3 +860,53 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
 
     return std::move(root);
 }
+
+int depth(const std::unique_ptr<BinaryTreeNodeP<int>>& node)
+{
+    if (!node)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1 + std::max(depth(node->left), depth(node->right));
+    }
+}
+
+BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+    const std::unique_ptr<BinaryTreeNodeP<int>>& node1
+)
+{
+    int depth0 = depth(node0);
+    int depth1 = depth(node1);
+
+    BinaryTreeNodeP<int>* cur0 = node0.get();
+    BinaryTreeNodeP<int>* cur1 = node1.get();
+
+    if (depth0 < depth1)
+    {
+        int diff = depth1 - depth0;
+        while (depth0 != depth1)
+        {
+            cur0 = cur0->parent;
+            --diff;
+        }
+    }
+    else if (depth1 < depth0)
+    {
+        int diff = depth0 - depth1;
+        while (depth0 != depth1)
+        {
+            cur1 = cur1->parent;
+            --diff;
+        }
+    }
+
+    while (cur0 != cur1)
+    {
+        cur0 = cur0->parent;
+        cur1 = cur1->parent;
+    }
+
+    return cur0;
+}

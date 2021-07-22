@@ -72,4 +72,8 @@ struct BinaryTreeNodeP {
 
 std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr);
 
+BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+    const std::unique_ptr<BinaryTreeNodeP<int>>& node1
+);
+
 #endif
