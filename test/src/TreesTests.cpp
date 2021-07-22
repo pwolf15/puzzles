@@ -479,3 +479,14 @@ TEST(Trees, IsBalanced)
     auto n4 = fromArrayBT({ 1,2,2,3,-1,-1,3,4,-1,-1,4 });
     CHECK(!IsBalanced(n4));
 }
+
+TEST(Trees, LCA)
+{
+    auto n = fromArrayBTP({});
+    CHECK(!n);
+    auto n1 = fromArrayBTP({2,1,3});
+    CHECK(n1);
+    CHECK(!n1->parent);
+    CHECK(n1->left->parent == n1.get());
+    CHECK(n1->right->parent == n1.get());
+}

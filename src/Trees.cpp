@@ -815,3 +815,48 @@ bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree)
 {
     return IsBalanced_EPI(tree);
 }
+
+std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
+{
+    if (arr.empty())
+    {
+        return nullptr;
+    }
+
+    std::unique_ptr<BinaryTreeNodeP<int>> root = std::make_unique<BinaryTreeNodeP<int>>();
+    root->data = (arr[0]);
+    std::queue<BinaryTreeNodeP<int>*> nodes;
+    nodes.push(root.get());
+
+    int i = 1;
+    while (true)
+    {
+        BinaryTreeNodeP<int>* node = nodes.front();
+        nodes.pop();
+        
+        if (arr[i] != -1)
+        {
+            node->left = std::make_unique<BinaryTreeNodeP<int>>();
+            node->left->data = arr[i];
+            node->left->parent = node;
+            nodes.push(node->left.get());
+        }
+
+        i++;
+        if (arr[i] != -1)
+        {
+            node->right = std::make_unique<BinaryTreeNodeP<int>>();
+            node->right->data = (arr[i]);
+            node->right->parent = node;
+            nodes.push(node->right.get());
+        }
+        i++;
+
+        if (nodes.empty() || i >= arr.size())
+        {
+            break;
+        }
+    }
+
+    return std::move(root);
+}

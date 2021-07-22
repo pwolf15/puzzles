@@ -63,4 +63,13 @@ void postorder(const std::unique_ptr<BinaryTreeNode<int>>& root);
 
 bool IsBalanced(const std::unique_ptr<BinaryTreeNode<int>>& tree);
 
+template <typename T>
+struct BinaryTreeNodeP {
+    T data;
+    std::unique_ptr<BinaryTreeNodeP<T>> left, right; 
+    BinaryTreeNodeP<T>* parent;
+};
+
+std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr);
+
 #endif
