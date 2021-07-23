@@ -653,7 +653,7 @@ std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr)
         }
         i++;
 
-        if (nodes.empty() || i >= arr.size())
+        if (nodes.empty())
         {
             break;
         }
@@ -852,9 +852,14 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
         }
         i++;
 
-        if (nodes.empty() || i >= arr.size())
+        if (nodes.empty())
         {
             break;
+        }
+        else
+        {
+            std::cout << "nodes.front(): " << nodes.front()->data << std::endl;
+            std::cout << "nodes.size(): " << nodes.size() << std::endl;
         }
     }
 
@@ -873,7 +878,9 @@ int depth(BinaryTreeNodeP<int>* node)
     }
 }
 
-BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+// time complexity: O(n)
+// space complexity: O(1)
+BinaryTreeNodeP<int>* Lca_PW(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     const std::unique_ptr<BinaryTreeNodeP<int>>& node1
 )
 {
@@ -910,4 +917,20 @@ BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     }
 
     return cur0;
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+BinaryTreeNodeP<int>* Lca_epi(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+    const std::unique_ptr<BinaryTreeNodeP<int>>& node1
+)
+{
+    return nullptr;
+}
+
+BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+    const std::unique_ptr<BinaryTreeNodeP<int>>& node1
+)
+{
+    return Lca_PW(node0, node1);
 }
