@@ -139,31 +139,31 @@ TEST(Stacks, ExamineBuildsWithSunset)
 
 TEST(Stacks, BinaryTreeDepthOrder)
 {
-    std::unique_ptr<BinaryTreeNode<int>> node = fromArrayBT({ 314, 6, 6, 271, 561, 2, 271 });
+    // std::unique_ptr<BinaryTreeNode<int>> node = fromArrayBT({ 314, 6, 6, 271, 561, 2, 271 });
     
-    std::function<void(const std::unique_ptr<BinaryTreeNode<int>>&)> print;
-    print = [&print](const std::unique_ptr<BinaryTreeNode<int>>& n)->void {
+    // std::function<void(const std::unique_ptr<BinaryTreeNode<int>>&)> print;
+    // print = [&print](const std::unique_ptr<BinaryTreeNode<int>>& n)->void {
         
-        if (n == nullptr)
-        {
-            return;
-        }
+    //     if (n == nullptr)
+    //     {
+    //         return;
+    //     }
 
-        std::cout << n->data << " ";
-        print(n->left);
-        print(n->right);
-    };
-    print(node);
+    //     std::cout << n->data << " ";
+    //     print(n->left);
+    //     print(n->right);
+    // };
+    // print(node);
 
-    auto depthOrder = BinaryTreeDepthOrder(node);
-    std::cout << "Size: " << depthOrder.size() << std::endl;
-    for (auto level: depthOrder)
-    {
-        for (auto node: level)
-        {
-            std::cout << node << " ";
-        }
+    // auto depthOrder = BinaryTreeDepthOrder(node);
+    // std::cout << "Size: " << depthOrder.size() << std::endl;
+    // for (auto level: depthOrder)
+    // {
+    //     for (auto node: level)
+    //     {
+    //         std::cout << node << " ";
+    //     }
 
-        std::cout << std::endl;
-    }
+    //     std::cout << std::endl;
+    // }
 }

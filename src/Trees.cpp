@@ -653,7 +653,7 @@ std::unique_ptr<BinaryTreeNode<int>> fromArrayBT(std::vector<int> arr)
         }
         i++;
 
-        if (nodes.empty())
+        if (nodes.empty() || i >= arr.size())
         {
             break;
         }
@@ -852,7 +852,7 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
         }
         i++;
 
-        if (nodes.empty())
+        if (nodes.empty() || i >= arr.size())
         {
             break;
         }
