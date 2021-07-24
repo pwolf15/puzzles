@@ -523,20 +523,15 @@ void printBTP(const std::unique_ptr<BinaryTreeNodeP<int>>& node)
 
 TEST(Trees, LCA)
 {
-    // auto n = fromArrayBTP({});
-    // CHECK(!n);
-    // auto n1 = fromArrayBTP({2,1,3});
-    // CHECK(n1);
-    // CHECK(!n1->parent);
-    // CHECK(n1->left->parent == n1.get());
-    // CHECK(n1->right->parent == n1.get());
+    auto n = fromArrayBTP({});
+    auto n1 = fromArrayBTP({2,1,3,-1,-1,-1,-1});
 
-    // CHECK(n1.get() == Lca(n1->left, n1->right));
+    CHECK(n1.get() == Lca(n1->left, n1->right));
 
-    // auto n2 = fromArrayBTP({314, 6, 6, 271, 561, 2, 271 });
-    // CHECK(n2);
-    // CHECK(!n2->parent)
-    // CHECK(n2->left.get() == Lca(n2->left->left, n2->left->right));
+    auto n2 = fromArrayBTP({314, 6, 6, 271, 561, 2, 271,-1,-1,-1,-1,-1,-1,-1,-1});
+    CHECK(n2);
+    CHECK(!n2->parent)
+    CHECK(n2->left.get() == Lca(n2->left->left, n2->left->right));
 
     auto makeNode = [](int num) {
         auto newNode = std::make_unique<BinaryTreeNodeP<int>>();
