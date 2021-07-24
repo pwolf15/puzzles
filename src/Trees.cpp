@@ -914,20 +914,48 @@ BinaryTreeNodeP<int>* Lca_PW(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     return cur0;
 }
 
+int GetDepth(const BinaryTreeNodeP<int>* node)
+{
+    int depth = 0;
+    while (node->parent)
+    {
+        ++depth, node = node->parent;
+    }
+    return depth;
+}
+
 // time complexity: O(n)
 // space complexity: O(1)
-BinaryTreeNodeP<int>* Lca_epi(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
+BinaryTreeNodeP<int>* Lca_EPI(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     const std::unique_ptr<BinaryTreeNodeP<int>>& node1
 )
 {
-    return nullptr;
+    BinaryTreeNodeP<int>* iter0 = node0.get(), *iter1 = node1.get();
+    int depth0 = GetDepth(iter0), depth1 = GetDepth(iter1);
+    // Makes iter0 as the deeper node in order to simplify the code.
+    if (depth1 > depth0)
+    {
+        std::swap(iter0, iter1);
+    }
+    // Ascends from the deeper node.
+    int depth_diff = std::abs(depth0 - depth1);
+    while (depth_diff--) 
+    {
+        iter0 = iter0->parent;
+    }
+    // Now ascends both nodes until we reach the LCA.
+    while (iter0 != iter1)
+    {
+        iter0 = iter0->parent, iter1 = iter1->parent;
+    }
+    return iter0;
 }
 
 BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     const std::unique_ptr<BinaryTreeNodeP<int>>& node1
 )
 {
-    return Lca_PW(node0, node1);
+    return Lca_EPI(node0, node1);
 }
 
 // time complexity: O(n)
