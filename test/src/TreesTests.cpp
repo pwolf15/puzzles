@@ -573,4 +573,5 @@ TEST(Trees, LCA)
     CHECK(K == Lca(M, N));
     CHECK(A.get() == Lca(M, H));
     CHECK(I == Lca(J,O));
+    CHECK(I == Lca(M,P));
 }
