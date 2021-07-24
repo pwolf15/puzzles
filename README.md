@@ -204,6 +204,18 @@ Boyer-Moore implementations for find str
 * make complexity better when given parent field
 * easy to mistake parent with single child as leaf
 
+## Heaps
+
+* heaps are specialized binary tree: complete binary tree, where key at each node is at least a great as keys stored in its children.
+* max-heap:
+* log(n) insertions
+* O(1) time lookup for max, 
+* O(log n) for deletion of max element
+* O(n) search for keyss
+* also referred to as priority queue
+* min-heap, symmetric version of data structure
+* example problem: k longest strings in stream
+
 ### TODO.
 
 Implement variants
