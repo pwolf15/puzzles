@@ -828,9 +828,10 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
     std::queue<BinaryTreeNodeP<int>*> nodes;
     nodes.push(root.get());
 
-    std::cout << "Nodes size: " << nodes.size() << std::endl;
+    std::cout << "Nodes size1: " << nodes.size() << std::endl;
 
     int i = 1;
+    int j = 0;
     while (true)
     {
         BinaryTreeNodeP<int>* node = nodes.front();
@@ -864,8 +865,6 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
             std::cout << "nodes.front(): " << nodes.front()->data << std::endl;
             std::cout << "nodes.size(): " << nodes.size() << std::endl;
         }
-
-        break;
     }
 
     return std::move(root);
@@ -938,4 +937,45 @@ BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
 )
 {
     return Lca_PW(node0, node1);
+}
+
+// time complexity: O(n)
+// space complexity: O(1)
+BinaryTreeNodeP<int>* Lca(BinaryTreeNodeP<int>* node0,
+    BinaryTreeNodeP<int>* node1
+)
+{
+    int depth0 = depth(node0);
+    int depth1 = depth(node1);
+
+    BinaryTreeNodeP<int>* cur0 = node0;
+    BinaryTreeNodeP<int>* cur1 = node1;
+
+    if (depth0 < depth1)
+    {
+        int diff = depth1 - depth0;
+        while (diff)
+        {
+            std::cout << cur1->data << std::endl;
+            cur1 = cur1->parent;
+            --diff;
+        }
+    }
+    else if (depth1 < depth0)
+    {
+        int diff = depth0 - depth1;
+        while (diff)
+        {
+            cur0 = cur0->parent;
+            --diff;
+        }
+    }
+
+    while (cur0 != cur1)
+    {
+        cur0 = cur0->parent;
+        cur1 = cur1->parent;
+    }
+
+    return cur0;
 }

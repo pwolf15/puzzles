@@ -480,7 +480,7 @@ TEST(Trees, IsBalanced)
     CHECK(!IsBalanced(n4));
 }
 
-std::unique_ptr<BinaryTreeNodeP<int>> findNode(std::unique_ptr<BinaryTreeNodeP<int>>& node, int value)
+BinaryTreeNodeP<int>* findNode(std::unique_ptr<BinaryTreeNodeP<int>>& node, int value)
 {
     if (node == nullptr)
     {
@@ -488,7 +488,7 @@ std::unique_ptr<BinaryTreeNodeP<int>> findNode(std::unique_ptr<BinaryTreeNodeP<i
     }
     else if (node->data == value)
     {
-        return std::move(node);
+        return node.get();
     }
     else
     {
@@ -538,24 +538,44 @@ TEST(Trees, LCA)
     // CHECK(!n2->parent)
     // CHECK(n2->left.get() == Lca(n2->left->left, n2->left->right));
 
-    std::vector<int> arr = 
-    {
-        314,
-        6,6,
-        271,561,2,271,
-        28,0,-1,3,-1,1,-1,28,
-        20,2,-1,-1,-1,-1,17,-1,-1,-1,401,257,-1,-1,-1,-1,
-        40,32,3,4,-1,-1,-1,-1,641,-1,641,-1,641,10,12,641, -1,-1,641,641,641,641,-1,-1,-1,641,-1,-1,-1,-1,-1,-1
+    auto makeNode = [](int num) {
+        auto newNode = std::make_unique<BinaryTreeNodeP<int>>();
+        newNode->data = num;
+        return std::move(newNode);
+    };
+    auto makeLeft = [](int num, BinaryTreeNodeP<int>* node) {
+        node->left = std::make_unique<BinaryTreeNodeP<int>>();
+        node->left->data = num;
+        node->left->parent = node;
+        return node->left.get();
+    };
+    auto makeRight = [](int num, BinaryTreeNodeP<int>* node) {
+        node->right = std::make_unique<BinaryTreeNodeP<int>>();
+        node->right->data = num;
+        node->right->parent = node;
+        return node->right.get();
     };
 
-    auto n3 = fromArrayBTP(arr);
-    // CHECK(n3->left->left.get() == Lca(n3->left->left->left, n3->left->left));
+    auto A = makeNode(314);
+    auto I = makeRight(6, A.get());
+    auto B = makeLeft(6, A.get());
+    auto C = makeLeft(271, B);
+    auto F = makeRight(561, B);
+    auto D = makeLeft(28, C);
+    auto E = makeRight(0, C);
+    auto G = makeRight(3, F);
+    auto H = makeLeft(17, G);
+    auto J = makeLeft(2, I);
+    auto O = makeRight(271, I);
+    auto K = makeRight(1, J);
+    auto L = makeLeft(401, K);
+    auto N = makeRight(257, K);
+    auto M = makeRight(641, L);
+    auto P = makeRight(28, O);
 
-    // auto node0 = findNode(n3, 257);
-    // auto node1 = findNode(n3, 641);
-    // auto result = findNode(n3, 1);
-    printBTP(n3);
-    // // std::cout << node1 == nullptr << std::endl;
-    // CHECK(result.get() == Lca(node0,node1));
+    // printBTP(A);
 
+    CHECK(K == Lca(M, N));
+    CHECK(A.get() == Lca(M, H));
+    CHECK(I == Lca(J,O));
 }

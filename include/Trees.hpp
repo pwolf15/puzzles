@@ -76,4 +76,8 @@ BinaryTreeNodeP<int>* Lca(const std::unique_ptr<BinaryTreeNodeP<int>>& node0,
     const std::unique_ptr<BinaryTreeNodeP<int>>& node1
 );
 
+BinaryTreeNodeP<int>* Lca(BinaryTreeNodeP<int>* node0,
+    BinaryTreeNodeP<int>* node1
+);
+
 #endif
