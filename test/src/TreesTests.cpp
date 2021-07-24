@@ -538,23 +538,23 @@ TEST(Trees, LCA)
     // CHECK(!n2->parent)
     // CHECK(n2->left.get() == Lca(n2->left->left, n2->left->right));
 
-    // std::vector<int> arr = 
-    // {
-    //     314,
-    //     6,6,
-    //     271,561,2,271,
-    //     28,0,-1,3,-1,1,-1,28,
-    //     20,2,-1,-1,-1,-1,17,-1,-1,-1,401,257,-1,-1,-1,-1,
-    //     40,32,3,4,-1,-1,-1,-1,641,-1,641,-1,641,10,12,641, -1,-1,641,641,641,641,-1,-1,-1,641,-1,-1,-1,-1,-1,-1
-    // };
+    std::vector<int> arr = 
+    {
+        314,
+        6,6,
+        271,561,2,271,
+        28,0,-1,3,-1,1,-1,28,
+        20,2,-1,-1,-1,-1,17,-1,-1,-1,401,257,-1,-1,-1,-1,
+        40,32,3,4,-1,-1,-1,-1,641,-1,641,-1,641,10,12,641, -1,-1,641,641,641,641,-1,-1,-1,641,-1,-1,-1,-1,-1,-1
+    };
 
-    // auto n3 = fromArrayBTP(arr);
+    auto n3 = fromArrayBTP(arr);
     // CHECK(n3->left->left.get() == Lca(n3->left->left->left, n3->left->left));
 
     // auto node0 = findNode(n3, 257);
     // auto node1 = findNode(n3, 641);
     // auto result = findNode(n3, 1);
-    // printBTP(n3);
+    printBTP(n3);
     // // std::cout << node1 == nullptr << std::endl;
     // CHECK(result.get() == Lca(node0,node1));
 

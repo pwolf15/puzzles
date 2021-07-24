@@ -828,17 +828,20 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
     std::queue<BinaryTreeNodeP<int>*> nodes;
     nodes.push(root.get());
 
+    std::cout << "Nodes size: " << nodes.size() << std::endl;
+
     int i = 1;
     while (true)
     {
         BinaryTreeNodeP<int>* node = nodes.front();
         nodes.pop();
+        std::cout << "Nodes size: " << nodes.size() << std::endl;
         
         if (arr[i] != -1)
         {
             node->left = std::make_unique<BinaryTreeNodeP<int>>();
             node->left->data = arr[i];
-            node->left->parent = node;
+            // node->left->parent = node;
             nodes.push(node->left.get());
         }
 
@@ -847,7 +850,7 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
         {
             node->right = std::make_unique<BinaryTreeNodeP<int>>();
             node->right->data = (arr[i]);
-            node->right->parent = node;
+            // node->right->parent = node;
             nodes.push(node->right.get());
         }
         i++;
@@ -861,6 +864,8 @@ std::unique_ptr<BinaryTreeNodeP<int>> fromArrayBTP(std::vector<int> arr)
             std::cout << "nodes.front(): " << nodes.front()->data << std::endl;
             std::cout << "nodes.size(): " << nodes.size() << std::endl;
         }
+
+        break;
     }
 
     return std::move(root);
