@@ -26,8 +26,9 @@ add_executable(RunTests
     src/test.cpp
     src/StackTests.cpp
     src/QueueTests.cpp
+    src/HeapTests.cpp
 )
 
-target_link_libraries(RunTests Arrays Primitives Strings LinkedLists DynamicProgramming Design Trees Recursion Stacks Queues ${CPPUTEST_LDFLAGS})
+target_link_libraries(RunTests Arrays Primitives Strings LinkedLists DynamicProgramming Design Trees Recursion Stacks Queues Heaps ${CPPUTEST_LDFLAGS})
 
 target_compile_features(RunTests PRIVATE cxx_std_17)
