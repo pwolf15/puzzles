@@ -215,6 +215,8 @@ Boyer-Moore implementations for find str
 * also referred to as priority queue
 * min-heap, symmetric version of data structure
 * example problem: k longest strings in stream
+* use a heap when all you care about are largest or smallest elements and do not need fast lookup, delete or search for arbitrary elements
+* good for computing k largest (min-heap) or smallest (max-heap)
 
 ### TODO.
 

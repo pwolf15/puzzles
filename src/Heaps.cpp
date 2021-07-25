@@ -3,6 +3,8 @@
 #include <functional>
 #include <queue>
 
+// time complexity: O(n log k), where n is number of input strings
+// space complexity: O(k)
 std::vector<std::string> TopK(
     int k,
     std::vector<std::string>::const_iterator stream_begin,
