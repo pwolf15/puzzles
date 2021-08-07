@@ -35,6 +35,8 @@ std::vector<std::string> TopK(
   return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(1)
 std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
