@@ -152,70 +152,47 @@ std::vector<int> MergeSortedArrays_PW1(const std::vector<std::vector<int>>& sort
 std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
-  std::priority_queue<int, std::vector<int>,
-                      std::greater<int>> q;
+  struct HeapPair 
+  {
+    int index;
+    int value;
+    int arrIndex;
+  };
 
-  std::vector<int> indices(sorted_arrays.size());
+  std::priority_queue<HeapPair, std::vector<HeapPair>,
+                      std::function<bool(HeapPair, HeapPair)>>
+      min_heap([](const HeapPair& a, const HeapPair& b)
+               { return a.value >= b.value; });
 
   for (int i = 0; i < sorted_arrays.size(); ++i)
   {
-    q.push(sorted_arrays[i][0]);
-    ++indices[i];
+    HeapPair hp;
+    hp.index = 0;
+    hp.value = sorted_arrays[i][0];
+    hp.arrIndex = i;
+    min_heap.push(hp);
   }
-
-  std::cout << "HERE!" << q.size() << "," << q.top() << std::endl;
-  // return result;
-
-  result.push_back(q.top());
-  q.pop();
 
   while (true)
   {
-
-    for (size_t i = 0; i < sorted_arrays.size(); ++i)
-    {
-      if (indices[i] >= sorted_arrays[i].size())
-      {
-        continue;
-      }
-      else 
-      {
-        while (indices[i] < sorted_arrays[i].size() && sorted_arrays[i][indices[i]] < q.top())
-        {
-          q.push(sorted_arrays[i][indices[i]]);
-          std::cout << "Index" << std::endl;
-          ++indices[i];
-        }
-      }
-    }
-
-    while (!q.empty());
-    {
-      result.push_back(q.top());
-      std::cout << q.size() << std::endl;
-      q.pop();
-    }
-
-    return {};
-
-    std::cout << "HERE!" << q.size() << std::endl;
-
-    result.push_back(q.top());
-    q.pop();
-
-    bool foundMatch = false;
-    for (size_t i = 0; i < indices.size(); ++i)
-    {
-      if (indices[i] < sorted_arrays[i].size())
-      {
-        foundMatch = true;
-        break;
-      }
-    }
-
-    if (!foundMatch)
+    if (min_heap.empty())
     {
       break;
+    }
+
+    HeapPair min = min_heap.top();
+    min_heap.pop();
+    result.push_back(min.value);
+
+    min.index++;
+    if (min.index >= sorted_arrays[min.arrIndex].size())
+    {
+      continue;
+    }
+    else 
+    {
+      min.value = sorted_arrays[min.arrIndex][min.index];
+      min_heap.push(min);
     }
   }
 
@@ -224,5 +201,5 @@ std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sort
 
 std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
 {
-  return MergeSortedArrays_PW1(sorted_arrays);
+  return MergeSortedArrays_PW2(sorted_arrays);
 }
