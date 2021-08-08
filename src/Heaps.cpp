@@ -38,7 +38,7 @@ std::vector<std::string> TopK(
 // time complexity: O(n)
 // space complexity: O(1)
 // won't work for greater number of arrays...
-std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
+std::vector<int> MergeSortedArrays_PW1(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
   int i = 0, j = 0, k = 0;
@@ -147,4 +147,82 @@ std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_a
   }
 
   return result;
+}
+
+std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sorted_arrays)
+{
+  std::vector<int> result;
+  std::priority_queue<int, std::vector<int>,
+                      std::greater<int>> q;
+
+  std::vector<int> indices(sorted_arrays.size());
+
+  for (int i = 0; i < sorted_arrays.size(); ++i)
+  {
+    q.push(sorted_arrays[i][0]);
+    ++indices[i];
+  }
+
+  std::cout << "HERE!" << q.size() << "," << q.top() << std::endl;
+  // return result;
+
+  result.push_back(q.top());
+  q.pop();
+
+  while (true)
+  {
+
+    for (size_t i = 0; i < sorted_arrays.size(); ++i)
+    {
+      if (indices[i] >= sorted_arrays[i].size())
+      {
+        continue;
+      }
+      else 
+      {
+        while (indices[i] < sorted_arrays[i].size() && sorted_arrays[i][indices[i]] < q.top())
+        {
+          q.push(sorted_arrays[i][indices[i]]);
+          std::cout << "Index" << std::endl;
+          ++indices[i];
+        }
+      }
+    }
+
+    while (!q.empty());
+    {
+      result.push_back(q.top());
+      std::cout << q.size() << std::endl;
+      q.pop();
+    }
+
+    return {};
+
+    std::cout << "HERE!" << q.size() << std::endl;
+
+    result.push_back(q.top());
+    q.pop();
+
+    bool foundMatch = false;
+    for (size_t i = 0; i < indices.size(); ++i)
+    {
+      if (indices[i] < sorted_arrays[i].size())
+      {
+        foundMatch = true;
+        break;
+      }
+    }
+
+    if (!foundMatch)
+    {
+      break;
+    }
+  }
+
+  return result;
+}
+
+std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
+{
+  return MergeSortedArrays_PW1(sorted_arrays);
 }
