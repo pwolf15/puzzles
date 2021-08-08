@@ -149,6 +149,8 @@ std::vector<int> MergeSortedArrays_PW1(const std::vector<std::vector<int>>& sort
   return result;
 }
 
+// time complexity: O(n)
+// space complexity: O(n)
 std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
