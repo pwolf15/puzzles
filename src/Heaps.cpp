@@ -37,6 +37,7 @@ std::vector<std::string> TopK(
 
 // time complexity: O(n)
 // space complexity: O(1)
+// won't work for greater number of arrays...
 std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
