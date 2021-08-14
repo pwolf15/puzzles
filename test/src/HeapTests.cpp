@@ -40,3 +40,18 @@ TEST(Heaps, MergeSortedArrays)
     CHECK_EQUAL(expected[i], result[i]);
   }
 }
+
+TEST(Heaps, KClosestStars)
+{
+  std::vector<Star> stars;
+  Star a{1,2,3};
+  // std::vector<int> expected = { 0, 0, 3, 5, 6, 6, 7, 28 };
+  // std::vector<int> result = MergeSortedArrays(arrays);
+  // CHECK_EQUAL(expected.size(), result.size());
+  
+  // for (size_t i = 0; i < expected.size(); ++i)
+  // {
+  //   CHECK_EQUAL(expected[i], result[i]);
+  // }
+}
+

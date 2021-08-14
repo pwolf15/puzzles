@@ -236,3 +236,12 @@ std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_a
 {
   return MergeSortedArrays_EPI(sorted_arrays);
 }
+
+std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begin,
+    const std::vector<Star>::const_iterator& stars_end,
+    int k)
+{
+  std::vector<Star> result;
+
+  return result;
+}

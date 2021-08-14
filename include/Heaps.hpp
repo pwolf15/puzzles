@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
 
 std::vector<std::string> TopK(
     int k,
@@ -21,5 +22,21 @@ struct IteratorCurrentAndEnd
 };
 
 std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays);
+
+struct Star 
+{
+    bool operator<(const Star& that) const
+    {
+        return Distance() < that.Distance();
+    }
+
+    long double Distance() const { return sqrtf(pow(x,2) + pow(y,2) + pow(z,2)); }
+
+    double x, y, z;
+};
+
+std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begin,
+    const std::vector<Star>::const_iterator& stars_end,
+    int k);
 
 #endif  // __HEAPS_HPP
