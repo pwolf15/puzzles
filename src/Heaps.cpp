@@ -149,8 +149,8 @@ std::vector<int> MergeSortedArrays_PW1(const std::vector<std::vector<int>>& sort
   return result;
 }
 
-// time complexity: O(n)
-// space complexity: O(n)
+// time complexity: O(n log k)
+// space complexity: O(k)
 std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sorted_arrays)
 {
   std::vector<int> result;
@@ -201,7 +201,38 @@ std::vector<int> MergeSortedArrays_PW2(const std::vector<std::vector<int>>& sort
   return result;
 }
 
+// time complexity: O(n log k)
+// space complexity: O(k)
+std::vector<int> MergeSortedArrays_EPI(const std::vector<std::vector<int>>& sorted_arrays)
+{
+  std::priority_queue<IteratorCurrentAndEnd, std::vector<IteratorCurrentAndEnd>,
+    std::greater<>>
+    min_heap;
+
+  for (const std::vector<int>& sorted_array: sorted_arrays)
+  {
+    if (!std::empty(sorted_array))
+    {
+      min_heap.emplace(IteratorCurrentAndEnd{std::cbegin(sorted_array),std::cend(sorted_array)});
+    }
+  }
+
+  std::vector<int> result;
+  while (!std::empty(min_heap))
+  {
+    IteratorCurrentAndEnd smallest_array = min_heap.top();
+    min_heap.pop();
+    result.emplace_back(*smallest_array.current);
+    if (std::next(smallest_array.current) != smallest_array.end)
+    {
+      min_heap.emplace(IteratorCurrentAndEnd{std::next(smallest_array.current),
+        smallest_array.end});
+    }
+  }
+  return result;
+}
+
 std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_arrays)
 {
-  return MergeSortedArrays_PW2(sorted_arrays);
+  return MergeSortedArrays_EPI(sorted_arrays);
 }
