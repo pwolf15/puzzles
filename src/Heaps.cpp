@@ -237,6 +237,8 @@ std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_a
   return MergeSortedArrays_EPI(sorted_arrays);
 }
 
+// time complexity: O(n log k)
+// space complexity: O(k)
 std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begin,
     const std::vector<Star>::const_iterator& stars_end,
     int k)
