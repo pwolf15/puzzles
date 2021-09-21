@@ -239,7 +239,7 @@ std::vector<int> MergeSortedArrays(const std::vector<std::vector<int>>& sorted_a
 
 // time complexity: O(n log k)
 // space complexity: O(k)
-std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begin,
+std::vector<Star> FindClosestKStars_PW(std::vector<Star>::const_iterator stars_begin,
     const std::vector<Star>::const_iterator& stars_end,
     int k)
 {
@@ -267,4 +267,43 @@ std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begi
   }
 
   return {std::rbegin(result),std::rend(result)};
+}
+
+// time complexity: O(n log k)
+// space complexity: O(k)
+std::vector<Star> FindClosestKStars_EPI(std::vector<Star>::const_iterator stars_begin,
+    const std::vector<Star>::const_iterator& stars_end,
+    int k)
+{
+  // max_heap to store the closest k stars seen so far
+  std::priority_queue<Star> max_heap;
+
+  while (stars_begin != stars_end)
+  {
+    // Add each star to the max-heap. If the max-heap size exceeds k,
+    // remove the maximum elment from the max-heap.
+    max_heap.emplace(*stars_begin++);
+    if (max_heap.size() == k + 1) 
+    {
+      max_heap.pop();
+    }
+  }
+
+  // Iteratively extract from the max-heap, which yeilds the stars
+  // sorted according from furthest to closest.
+  std::vector<Star> closest_stars;
+  while (!std::empty(max_heap))
+  {
+    closest_stars.emplace_back(max_heap.top());
+    max_heap.pop();
+  }
+
+  return {std::rbegin(closest_stars),std::rend(closest_stars)};
+}
+
+std::vector<Star> FindClosestKStars(std::vector<Star>::const_iterator stars_begin,
+    const std::vector<Star>::const_iterator& stars_end,
+    int k)
+{
+  return FindClosestKStars_EPI(stars_begin, stars_end, k);
 }
