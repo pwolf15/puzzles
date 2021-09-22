@@ -218,6 +218,12 @@ Boyer-Moore implementations for find str
 * use a heap when all you care about are largest or smallest elements and do not need fast lookup, delete or search for arbitrary elements
 * good for computing k largest (min-heap) or smallest (max-heap)
 
+## Searching
+
+* The Anatomy of a Large-Scale Hypertextual Web Search Engine
+* Binary vs. general search
+* Programming Pearls by Jon Bentley
+
 ### TODO.
 
 Implement variants

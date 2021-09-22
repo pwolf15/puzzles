@@ -72,5 +72,6 @@ add_library(Recursion           src/Recursion.cpp)
 add_library(Stacks              src/Stacks.cpp)
 add_library(Queues              src/Queues.cpp)
 add_library(Heaps               src/Heaps.cpp)
+add_library(Search              src/Search.cpp)
            
 add_subdirectory(test)
