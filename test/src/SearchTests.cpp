@@ -19,3 +19,29 @@ TEST(Search, BSearch)
   int idx = bsearch(3, arr);
   CHECK_EQUAL(2, idx);
 }
+
+TEST(Search, SearchStudent)
+{
+  std::vector<Student> students = {
+    {
+      "Julian",
+      3.0
+    },
+    {
+      "Bubbles",
+      4.0
+    },
+    {
+      "Ricky",
+      2.0
+    }
+  };
+
+  Student ricky = { "Ricky", 2.0 };
+
+  CHECK(SearchStudent(students, ricky, CompGPA));
+
+  Student randy = { "Randy", 2.5 };
+
+  CHECK(!SearchStudent(students, randy, CompGPA));
+}
