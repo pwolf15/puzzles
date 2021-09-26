@@ -35,6 +35,8 @@ bool SearchStudent(
                        comp_GPA);
 }
 
+// time complexity: O(log n + n) = O(n)
+// space complexity: O(n)
 int SearchFirstOfK(const std::vector<int>& A, int k)
 {
   int L = 0, U = std::size(A) - 1;
