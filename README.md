@@ -223,6 +223,10 @@ Boyer-Moore implementations for find str
 * The Anatomy of a Large-Scale Hypertextual Web Search Engine
 * Binary vs. general search
 * Programming Pearls by Jon Bentley
+* Binary search can be used for arrays, or earching intervals of real numbers or integers.
+* If solution with computation after sorting is faster than sorting, look into incomplete sort
+* Time/space tradeoffs, multiple passes through data
+* C++ search libraries: binary_search, lower_bound, upper_bound
 
 ### TODO.
 

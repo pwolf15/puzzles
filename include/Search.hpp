@@ -25,3 +25,5 @@ const static std::function<bool(const Student&, const Student&)> CompGPA =
 bool SearchStudent(
   const std::vector<Student>& students, const Student& target,
   const std::function<bool(const Student&, const Student&)>& comp_GPA);
+
+int SearchFirstOfK(const std::vector<int>& A, int k);

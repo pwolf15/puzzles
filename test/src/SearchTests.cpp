@@ -45,3 +45,10 @@ TEST(Search, SearchStudent)
 
   CHECK(!SearchStudent(students, randy, CompGPA));
 }
+
+TEST(Search, SearchFirstOfK)
+{
+  std::vector<int> A = { -14, -10, 2, 108, 108, 243, 285, 285, 285, 401 };
+  CHECK_EQUAL(3, SearchFirstOfK(A, 108));
+  CHECK_EQUAL(6, SearchFirstOfK(A, 285));
+}

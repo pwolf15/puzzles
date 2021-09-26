@@ -34,3 +34,29 @@ bool SearchStudent(
   return binary_search(std::begin(students), std::end(students), target,
                        comp_GPA);
 }
+
+int SearchFirstOfK(const std::vector<int>& A, int k)
+{
+  int L = 0, U = std::size(A) - 1;
+  while (L <= U)
+  {
+    int M = L + (U - L) / 2;
+    if (A[M] < k)
+    {
+      L = M + 1;
+    }
+    else if (A[M] == k)
+    {
+      while (A[M] == k && M >= 0)
+      {
+        --M;
+      }
+      return M + 1;
+    }
+    else
+    {
+      U = M - 1;
+    }
+  }
+  return -1;
+}
