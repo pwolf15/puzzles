@@ -37,7 +37,7 @@ bool SearchStudent(
 
 // time complexity: O(log n + n) = O(n)
 // space complexity: O(n)
-int SearchFirstOfK(const std::vector<int>& A, int k)
+int SearchFirstOfK_PW1(const std::vector<int>& A, int k)
 {
   int L = 0, U = std::size(A) - 1;
   while (L <= U)
@@ -61,4 +61,48 @@ int SearchFirstOfK(const std::vector<int>& A, int k)
     }
   }
   return -1;
+}
+
+int bsearch_iter(std::vector<int>::iterator begin, std::vector<int>::iterator end, int k)
+{
+  int L = 0, U = end - begin;
+  while (L <= U)
+  {
+    int M = L + (U - L) / 2;
+    if (*(begin + M) < k)
+    {
+      L = M + 1;
+    }
+    else if (*(begin + M) == k)
+    {
+      while (*(begin + M) == k && M >= 0)
+      {
+        --M;
+      }
+      return M + 1;
+    }
+    else
+    {
+      U = M - 1;
+    }
+  }
+  return -1;
+}
+
+int SearchFirstOfK_PW2(std::vector<int>& A, int k)
+{
+  int cur = bsearch_iter(A.begin(), A.end(), k);
+  int temp = cur;
+  while (temp != -1)
+  {
+    cur = temp;
+    temp = bsearch_iter(A.begin(), A.begin() + cur, k);
+  }
+
+  return cur;
+}
+
+int SearchFirstOfK(std::vector<int>& A, int k)
+{
+  return SearchFirstOfK_PW1(A, k);
 }

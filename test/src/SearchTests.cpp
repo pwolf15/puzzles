@@ -52,3 +52,10 @@ TEST(Search, SearchFirstOfK)
   CHECK_EQUAL(3, SearchFirstOfK(A, 108));
   CHECK_EQUAL(6, SearchFirstOfK(A, 285));
 }
+
+TEST(Search, BSearchIter)
+{
+  std::vector<int> arr = { 1,2,3,4,5,6,7,8,9};
+  int idx = bsearch_iter(arr.begin(), arr.end(), 3);
+  CHECK_EQUAL(2, idx);
+}

@@ -26,4 +26,6 @@ bool SearchStudent(
   const std::vector<Student>& students, const Student& target,
   const std::function<bool(const Student&, const Student&)>& comp_GPA);
 
-int SearchFirstOfK(const std::vector<int>& A, int k);
+int bsearch_iter(std::vector<int>::iterator begin, std::vector<int>::iterator end, int k);
+
+int SearchFirstOfK(std::vector<int>& A, int k);
