@@ -65,7 +65,7 @@ int SearchFirstOfK_PW1(const std::vector<int>& A, int k)
 
 int bsearch_iter(std::vector<int>::iterator begin, std::vector<int>::iterator end, int k)
 {
-  int L = 0, U = end - begin;
+  int L = 0, U = end - begin - 1;
   while (L <= U)
   {
     int M = L + (U - L) / 2;
@@ -93,10 +93,12 @@ int SearchFirstOfK_PW2(std::vector<int>& A, int k)
 {
   int cur = bsearch_iter(A.begin(), A.end(), k);
   int temp = cur;
+  int i = 0;
   while (temp != -1)
   {
     cur = temp;
     temp = bsearch_iter(A.begin(), A.begin() + cur, k);
+    i++;
   }
 
   return cur;
@@ -104,5 +106,5 @@ int SearchFirstOfK_PW2(std::vector<int>& A, int k)
 
 int SearchFirstOfK(std::vector<int>& A, int k)
 {
-  return SearchFirstOfK_PW1(A, k);
+  return SearchFirstOfK_PW2(A, k);
 }
