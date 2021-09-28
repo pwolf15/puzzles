@@ -59,3 +59,8 @@ TEST(Search, BSearchIter)
   int idx = bsearch_iter(arr.begin(), arr.end(), 3);
   CHECK_EQUAL(2, idx);
 }
+
+TEST(Search, SquareRoot)
+{
+  CHECK_EQUAL(17,SquareRoot(300));
+}

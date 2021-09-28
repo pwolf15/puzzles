@@ -1,6 +1,7 @@
 #include "Search.hpp"
 
 #include <iostream>
+#include <cmath>
 
 // time complexity: O(log n), sorting takes O(n log n)
 int bsearch(int t, const std::vector<int>& A)
@@ -135,4 +136,14 @@ int SearchFirstOfK_EPI(std::vector<int>& A, int k)
 int SearchFirstOfK(std::vector<int>& A, int k)
 {
   return SearchFirstOfK_EPI(A, k);
+}
+
+int SquareRoot_PW1(int k)
+{
+  return floor(sqrt(k));
+}
+
+int SquareRoot(int k)
+{
+  return SquareRoot_PW1(k);
 }
