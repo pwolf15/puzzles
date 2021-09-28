@@ -89,6 +89,8 @@ int bsearch_iter(std::vector<int>::iterator begin, std::vector<int>::iterator en
   return -1;
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
 int SearchFirstOfK_PW2(std::vector<int>& A, int k)
 {
   int cur = bsearch_iter(A.begin(), A.end(), k);
