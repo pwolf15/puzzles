@@ -173,7 +173,57 @@ int SquareRoot_PW2(int k)
   return i;
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
+int SquareRoot_PW3(int k)
+{
+  int l = 1, u = k, m = u + (u - l) / 2, i = 1;
+  while (l <= u)
+  {
+    i = l + (u - l) / 2;
+    int square = i * i;
+    if (square == k)
+    {
+      l = i + 1;
+    }
+    else if (square > k)
+    {
+      u = i - 1;
+    }
+    else if (square < k)
+    {
+      l = i + 1;
+    }
+  }
+  
+  return l - 1;
+}
+
+// time complexity: O(log n)
+// space complexity: O(1)
+int SquareRoot_EPI(int k)
+{
+  int left = 0, right = k;
+  // Candidate interval [left, right] where everything before left has
+  // square <= k, and everything after right has square > k.
+  while (left <= right)
+  {
+    long long mid = left + ((right - left) / 2);
+    if (long long mid_squared = mid * mid; mid_squared <= k)
+    {
+      left = mid + 1;
+    }
+    else 
+    {
+      right = mid - 1;
+    }
+  }
+  
+  return left - 1;
+}
+
+
 int SquareRoot(int k)
 {
-  return SquareRoot_PW2(k);
+  return SquareRoot_EPI(k);
 }
