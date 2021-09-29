@@ -63,4 +63,15 @@ TEST(Search, BSearchIter)
 TEST(Search, SquareRoot)
 {
   CHECK_EQUAL(17,SquareRoot(300));
+  CHECK_EQUAL(1,SquareRoot(1));
+  CHECK_EQUAL(18,SquareRoot(340));
+  CHECK_EQUAL(20,SquareRoot(400));
+
+  for (int i = 4; i < 400; ++i)
+  {
+    int a = floor(sqrt(i));
+    int b = SquareRoot(i);
+
+    CHECK_EQUAL(floor(sqrt(i)), SquareRoot(i));
+  }
 }

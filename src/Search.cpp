@@ -143,7 +143,35 @@ int SquareRoot_PW1(int k)
   return floor(sqrt(k));
 }
 
+int SquareRoot_PW2(int k)
+{
+  int l = 1, u = k, m = u + (u - l) / 2, i = 1;
+  while (l <= u)
+  {
+    i = l + (u - l) / 2;
+    int square = i * i;
+    if (square == k)
+    {
+      break;
+    }
+    else if (square > k)
+    {
+      u = i - 1;
+    }
+    else if (square < k)
+    {
+      l = i + 1;
+    }
+  }
+  
+  if (l > u) 
+  {
+    return u;
+  }
+  return i;
+}
+
 int SquareRoot(int k)
 {
-  return SquareRoot_PW1(k);
+  return SquareRoot_PW2(k);
 }
