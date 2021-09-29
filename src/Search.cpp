@@ -143,6 +143,8 @@ int SquareRoot_PW1(int k)
   return floor(sqrt(k));
 }
 
+// time complexity: O(log n)
+// space complexity: O(1)
 int SquareRoot_PW2(int k)
 {
   int l = 1, u = k, m = u + (u - l) / 2, i = 1;
