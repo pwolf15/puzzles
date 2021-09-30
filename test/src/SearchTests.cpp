@@ -75,3 +75,11 @@ TEST(Search, SquareRoot)
     CHECK_EQUAL(floor(sqrt(i)), SquareRoot(i));
   }
 }
+
+TEST(Search, FindKthLargest)
+{
+  std::vector<int> A = { 3, 2, 1, 5, 4 };
+  CHECK_EQUAL(5, FindKthLargest(0, &A));
+  CHECK_EQUAL(4, FindKthLargest(1, &A));
+  CHECK_EQUAL(3, FindKthLargest(2, &A));
+}

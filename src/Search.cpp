@@ -227,3 +227,12 @@ int SquareRoot(int k)
 {
   return SquareRoot_EPI(k);
 }
+
+
+int FindKthLargest(int k, std::vector<int>* A_ptr)
+{
+  std::vector<int> A = *A_ptr;
+  std::sort(A.rbegin(), A.rend());
+
+  return A[k];
+}

@@ -31,3 +31,5 @@ int bsearch_iter(std::vector<int>::iterator begin, std::vector<int>::iterator en
 int SearchFirstOfK(std::vector<int>& A, int k);
 
 int SquareRoot(int k);
+
+int FindKthLargest(int k, std::vector<int>* A_ptr);
