@@ -228,11 +228,43 @@ int SquareRoot(int k)
   return SquareRoot_EPI(k);
 }
 
-
-int FindKthLargest(int k, std::vector<int>* A_ptr)
+int FindKthLargest_PW1(int k, std::vector<int>* A_ptr)
 {
   std::vector<int> A = *A_ptr;
   std::sort(A.rbegin(), A.rend());
 
   return A[k];
+}
+
+int FindKthLargest_PW2(int k, std::vector<int>* A_ptr)
+{
+  std::vector<int> A = *A_ptr;
+  
+  int numPivots = k - 1;
+  int sizeSet = A.size() / k;
+
+  std::vector<int> pivots;
+  int i = 0;
+  while (i < A.size())
+  {
+    pivots.push_back(i);
+    i += sizeSet;
+  }
+
+  std::vector<int> largest(pivots.size(), -1);
+  for (int i = 0; i < pivots.size(); ++i)
+  {
+    int last = i+1 < pivots.size() ? pivots[i+1] : A.size();
+    for (int j = pivots[i]; j < last; ++j)
+    {
+      largest[i] = std::max(largest[i], A[j]);
+    }
+  }
+
+  return *std::min_element(largest.begin(), largest.end());
+}
+
+int FindKthLargest(int k, std::vector<int>* A_ptr)
+{
+  return FindKthLargest_PW2(k, A_ptr);
 }
