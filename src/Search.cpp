@@ -238,6 +238,8 @@ int FindKthLargest_PW1(int k, std::vector<int>* A_ptr)
   return A[k];
 }
 
+// time complexity: O(n log k)
+// space complexity: O(k)
 int FindKthLargest_PW2(int k, std::vector<int>* A_ptr)
 {
   std::vector<int> A = *A_ptr;
