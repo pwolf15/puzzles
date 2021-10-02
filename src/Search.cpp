@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <cmath>
+#include <queue>
+#include <functional>
 
 // time complexity: O(log n), sorting takes O(n log n)
 int bsearch(int t, const std::vector<int>& A)
@@ -239,29 +241,23 @@ int FindKthLargest_PW1(int k, std::vector<int>* A_ptr)
 int FindKthLargest_PW2(int k, std::vector<int>* A_ptr)
 {
   std::vector<int> A = *A_ptr;
+  std::priority_queue<int, std::vector<int>,
+    std::function<bool(int, int)>>
+  min_heap([](int a, int b) {
+    return a >= b; });
   
-  int numPivots = k - 1;
-  int sizeSet = A.size() / k;
-
-  std::vector<int> pivots;
-  int i = 0;
-  while (i < A.size())
+  for (int i = 0; i < A.size(); ++i)
   {
-    pivots.push_back(i);
-    i += sizeSet;
-  }
-
-  std::vector<int> largest(pivots.size(), -1);
-  for (int i = 0; i < pivots.size(); ++i)
-  {
-    int last = i+1 < pivots.size() ? pivots[i+1] : A.size();
-    for (int j = pivots[i]; j < last; ++j)
+    min_heap.emplace(A[i]);
+    if (std::size(min_heap) > (k+1))
     {
-      largest[i] = std::max(largest[i], A[j]);
+      min_heap.pop();
     }
   }
 
-  return *std::min_element(largest.begin(), largest.end());
+  int cur = min_heap.top();
+
+  return cur;
 }
 
 int FindKthLargest(int k, std::vector<int>* A_ptr)
