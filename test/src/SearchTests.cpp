@@ -79,7 +79,12 @@ TEST(Search, SquareRoot)
 TEST(Search, FindKthLargest)
 {
   std::vector<int> A = { 3, 2, 1, 5, 4 };
-  CHECK_EQUAL(5, FindKthLargest(0, &A));
-  CHECK_EQUAL(4, FindKthLargest(1, &A));
-  CHECK_EQUAL(3, FindKthLargest(2, &A));
+  CHECK_EQUAL(5, FindKthLargest(1, &A));
+  CHECK_EQUAL(4, FindKthLargest(2, &A));
+  CHECK_EQUAL(3, FindKthLargest(3, &A));
+  CHECK_EQUAL(2, FindKthLargest(4, &A));
+  CHECK_EQUAL(1, FindKthLargest(5, &A));
+
+  // A = {3,2,3,1,2,4,5,5,6};
+  // CHECK_EQUAL(4, FindKthLargest(4, &A));
 }

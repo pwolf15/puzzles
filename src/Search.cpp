@@ -235,7 +235,7 @@ int FindKthLargest_PW1(int k, std::vector<int>* A_ptr)
   std::vector<int> A = *A_ptr;
   std::sort(A.rbegin(), A.rend());
 
-  return A[k];
+  return A[k-1];
 }
 
 // time complexity: O(n log k)
@@ -251,7 +251,7 @@ int FindKthLargest_PW2(int k, std::vector<int>* A_ptr)
   for (int i = 0; i < A.size(); ++i)
   {
     min_heap.emplace(A[i]);
-    if (std::size(min_heap) > (k+1))
+    if (std::size(min_heap) > k)
     {
       min_heap.pop();
     }
@@ -269,44 +269,51 @@ int FindKthLargest_PW3(int k, std::vector<int>* A_ptr)
   int pivotIdx = rand() % A.size();
   int pivotValue = A[pivotIdx];
 
-  std::cout << "pivotIdx: " << pivotIdx << std::endl;
-  std::cout << "pivotVal: " << pivotValue << std::endl;
-
   std::vector<int> less;
   std::vector<int> greater;
 
-  for (int i = 0; i < A.size(); ++i)
+  bool found = false;
+
+  int count = 0;
+  while (!found)
   {
-    if (A[i] > pivotValue)
+    for (int i = 0; i < A.size(); ++i)
     {
-      greater.push_back(A[i]);
+      if (A[i] > pivotValue)
+      {
+        greater.push_back(A[i]);
+      }
+      else if (A[i] < pivotValue)
+      {
+        less.push_back(A[i]);
+      }
     }
-    else if (A[i] < pivotValue)
+
+    if (greater.size() == (k-1))
     {
-      less.push_back(A[i]);
+      return pivotValue;
     }
+    else if (greater.size() < (k - 1))
+    {
+      std::swap(A, less);
+      k -= (greater.size() + 1);
+    }
+    else if (greater.size() > (k - 1))
+    {
+      std::swap(A, greater);
+    }
+
+    greater.clear();
+    less.clear();
+
+    pivotIdx = rand() % A.size();
+    pivotValue = A[pivotIdx];
   }
-
-  std::cout << "less: " << std::endl;
-  for (auto el: less)
-  {
-    std::cout << el << " ";
-  }
-
-  std::cout << std::endl;
-
-  std::cout << "greater: " << std::endl;
-  for (auto el: greater)
-  {
-    std::cout << el << " ";
-  }
-
-  std::cout << std::endl;
 
   return 0;
 }
 
 int FindKthLargest(int k, std::vector<int>* A_ptr)
 {
-  return FindKthLargest_PW2(k, A_ptr);
+  return FindKthLargest_PW3(k, A_ptr);
 }
