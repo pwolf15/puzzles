@@ -262,6 +262,50 @@ int FindKthLargest_PW2(int k, std::vector<int>* A_ptr)
   return cur;
 }
 
+int FindKthLargest_PW3(int k, std::vector<int>* A_ptr)
+{
+  std::vector<int> A = *A_ptr;
+  srand(time(NULL));
+  int pivotIdx = rand() % A.size();
+  int pivotValue = A[pivotIdx];
+
+  std::cout << "pivotIdx: " << pivotIdx << std::endl;
+  std::cout << "pivotVal: " << pivotValue << std::endl;
+
+  std::vector<int> less;
+  std::vector<int> greater;
+
+  for (int i = 0; i < A.size(); ++i)
+  {
+    if (A[i] > pivotValue)
+    {
+      greater.push_back(A[i]);
+    }
+    else if (A[i] < pivotValue)
+    {
+      less.push_back(A[i]);
+    }
+  }
+
+  std::cout << "less: " << std::endl;
+  for (auto el: less)
+  {
+    std::cout << el << " ";
+  }
+
+  std::cout << std::endl;
+
+  std::cout << "greater: " << std::endl;
+  for (auto el: greater)
+  {
+    std::cout << el << " ";
+  }
+
+  std::cout << std::endl;
+
+  return 0;
+}
+
 int FindKthLargest(int k, std::vector<int>* A_ptr)
 {
   return FindKthLargest_PW2(k, A_ptr);
