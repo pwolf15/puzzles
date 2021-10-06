@@ -228,6 +228,10 @@ Boyer-Moore implementations for find str
 * Time/space tradeoffs, multiple passes through data
 * C++ search libraries: binary_search, lower_bound, upper_bound
 
+## Hash-maps
+
+* O(1) inserts, deletes, and lookups
+
 ### TODO.
 
 Implement variants
