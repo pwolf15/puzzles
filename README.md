@@ -231,6 +231,9 @@ Boyer-Moore implementations for find str
 ## Hash-maps
 
 * O(1) inserts, deletes, and lookups
+* average of lookups, inserts, and deletions O(1 + n/m) time complexity, where n is number of objects and is length of array
+* soft requirement for spread keys (hash codes for a subset of objects should be uniformly distributed across the underlying array)
+
 
 ### TODO.
 
